@@ -1,4 +1,5 @@
 ActiveAdmin.register CourseFavorite do
+  permit_params 
 
 
   # See permitted parameters documentation:
