@@ -1,4 +1,5 @@
 ActiveAdmin.register CommentResponse do
+  permit_params 
 
 
   # See permitted parameters documentation:
