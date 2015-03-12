@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150312102110) do
   add_index "buckets", ["course_id"], name: "index_buckets_on_course_id", using: :btree
 
   create_table "categories", force: true do |t|
+    t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,19 +90,26 @@ ActiveRecord::Schema.define(version: 20150312102110) do
   end
 
   create_table "comment_responses", force: true do |t|
+    t.integer  "user_id"
     t.integer  "comment_id"
+    t.string   "message",    default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "comment_responses", ["comment_id"], name: "index_comment_responses_on_comment_id", using: :btree
+  add_index "comment_responses", ["user_id"], name: "index_comment_responses_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "message",          default: "", null: false
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
+  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "course_enrollments", force: true do |t|
@@ -127,7 +135,7 @@ ActiveRecord::Schema.define(version: 20150312102110) do
   create_table "courses", force: true do |t|
     t.string   "name"
     t.string   "code"
-    t.text     "professors"
+    t.text     "professors",             default: [], array: true
     t.integer  "college_branch_pair_id"
     t.datetime "created_at"
     t.datetime "updated_at"
