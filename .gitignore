@@ -18,3 +18,7 @@
 #->Prelang (vim_helper:prelang)
 # Ignore all swap files
 .*.swp
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
