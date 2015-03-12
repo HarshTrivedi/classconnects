@@ -1,4 +1,5 @@
 ActiveAdmin.register Branch do
+  permit_params :name
 
 
   # See permitted parameters documentation:
