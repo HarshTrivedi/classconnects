@@ -1,4 +1,5 @@
 ActiveAdmin.register Course do
+  permit_params :name, :code, :professors
 
 
   # See permitted parameters documentation:
