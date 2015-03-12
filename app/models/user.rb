@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :course_enrollments
   has_many :uploads
+  has_many :course_favorites
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
