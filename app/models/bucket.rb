@@ -4,4 +4,5 @@ class Bucket < ActiveRecord::Base
   has_many :folders
   has_many :uploads
   has_many :downloads
+  has_many :comments, as: :commentable
 end
