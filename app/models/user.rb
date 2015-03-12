@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :uploads
   has_many :course_favorites
   has_many :downloads
+  has_many :user_college_branch_enrollments
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
