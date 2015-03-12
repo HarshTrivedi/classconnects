@@ -1,4 +1,5 @@
 ActiveAdmin.register CourseEnrollment do
+  permit_params 
 
 
   # See permitted parameters documentation:
