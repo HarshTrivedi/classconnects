@@ -1,4 +1,5 @@
 ActiveAdmin.register Folder do
+  permit_params :name
 
 
   # See permitted parameters documentation:
