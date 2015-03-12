@@ -1,4 +1,5 @@
 ActiveAdmin.register Document do
+  permit_params :cloud_path
 
 
   # See permitted parameters documentation:
