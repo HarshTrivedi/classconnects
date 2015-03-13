@@ -33,16 +33,16 @@ Rails.application.routes.draw do
   put 'folders/:id'               => 'folders#update_details'   , as: :update_folder_details  
 
 
-  get 'files/:id/details'       => 'files#show_details'         , as: :file_details
-  get 'files/:id/edit_details'  => 'files#edit_details'         , as: :edit_file_details
-  put 'files/:id'               => 'files#update_details'       , as: :update_file_details  
+  get 'documents/:id/details'       => 'documents#show_details'         , as: :documents_details
+  get 'documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_documents_details
+  put 'documents/:id'               => 'documents#update_details'       , as: :update_documents_details  
 
 
-  get '/my_uploads'             => 'profiles#uploads'                   , as: :uploads
-  get '/my_downloads'           => 'profiles#downloads'                 , as: :downloads
-  get '/profile'                => 'profiles#profile'                   , as: :profile
-  get '/enrolled_courses'       => 'profiles#enrolled_courses'          , as: :enrolled_courses
-  get '/favorite_courses'       => 'profiles#favorite_courses'          , as: :favorite_courses
+  get '/my_uploads'             => 'user_details#uploads'                   , as: :uploads
+  get '/my_downloads'           => 'user_details#downloads'                 , as: :downloads
+  get '/profile'                => 'user_details#profile'                   , as: :profile
+  get '/enrolled_courses'       => 'user_details#enrolled_courses'          , as: :enrolled_courses
+  get '/favorite_courses'       => 'user_details#favorite_courses'          , as: :favorite_courses
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
