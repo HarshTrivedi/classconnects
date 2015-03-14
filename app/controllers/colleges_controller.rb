@@ -5,8 +5,25 @@ class CollegesController < ApplicationController
   before_filter :branch_passed , :only => [:show_discussion]
 
 
- 
+  def show_content
+    	college_id = params[:id]
+    	@college = College.find_by_id(college_id)
+      
+      branches = @college.branches
+      @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
 
+      branch_id = params[:branch_id]
+      @branch = Branch.find_by_id(branch_id)
+      if @branch
+          @message = "College-Branch specific buckets"
+          @buckets = @college.buckets_by_branch(@branch).page(params[:page])
+      else
+          @message = "College specific buckets"
+    	   	@buckets = @college.buckets.page(params[:page])
+      end
+  end
+
+ 
 
   #BEFORE FILTER methods
   private
