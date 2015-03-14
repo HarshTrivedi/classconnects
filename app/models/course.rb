@@ -6,4 +6,12 @@ class Course < ActiveRecord::Base
   has_many :course_favorites
   has_many :comments, as: :commentable
 
+  def enrolled_users
+  	course_enrollments.map{|course_enrollment| course_enrollment.user }
+  end
+
+  def favorited_users
+  	course_favorites.map{|course_favorite| course_favorite.user }
+  end
+
 end
