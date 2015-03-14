@@ -11,8 +11,7 @@ class User < ActiveRecord::Base
   has_many :uploads
   has_many :course_favorites
   has_many :downloads
-  has_one :user_college_branch_enrollment
-  has_one :college_branch_pair , through: :user_college_branch_enrollments
+  belongs_to :college_branch_pair
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
@@ -33,36 +32,39 @@ class User < ActiveRecord::Base
   end
 
   def enrolled_courses
-      course_enrollments.map{|course_enrollment| course_enrollment.course }
+      course_ids = self.course_enrollments.map{|course_enrollment| course_enrollment.course }.map(&:id)
+      Course.where(:id => course_ids)
   end
 
 
-  def favroite_courses
-      course_favorites.map{|course_favorite| course_favorite.course }
+  def favorite_courses
+      course_ids = self.course_favorites.map{|course_favorite| course_favorite.course }.flatten.map(&:id)
+      Course.where(:id => course_ids)
   end
 
 
   def downloaded_buckets
-      downloads.map{|download| download.bucket }
+      bucket_ids = downloads.map{|download| download.bucket }.map(&:id)
+      Bucket.where(:id => bucket_ids)
   end
 
 
   def uploaded_buckets
-      uploads.map{|upload| upload.bucket }
+      bucket_ids = uploads.map{|upload| upload.bucket }.map(&:id)
+      Bucket.where(:id => bucket_ids)
   end
 
   def college
-      College.find_by_id(user_college_branch_enrollment.college_id) rescue nil
+      self.college_branch_pair.college rescue nil
   end
 
   def branch
-      Branch.find_by_id(user_college_branch_enrollment.branch_id) rescue nil
+      self.college_branch_pair.branch rescue nil
   end
 
   def college_branch_enrolled?
       not (college.nil? or branch.nil?)
   end
-
 
 
 end
