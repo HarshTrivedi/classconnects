@@ -158,5 +158,24 @@ class User < ActiveRecord::Base
       return bucket
   end
 
+  def favorite_course(course_id)
+      if Course.exists?(:id => course_id)
+        favorite = CourseFavorite.create( :user_id => id ,  :course_id => course_id )
+        course = favorite.course
+      else
+        course = nil
+      end
+      return course
+  end
+
+  def enroll_course(course_id)
+      if Course.exists?(:id => course_id)
+        enrollment = CourseEnrollment.create( :user_id => id ,  :course_id => course_id )
+        course = enrollment.course
+      else
+        course = nil
+      end
+      return course
+  end
 
 end
