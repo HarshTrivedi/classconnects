@@ -543,6 +543,7 @@ DEPENDENCIES
   google-analytics-rails
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   omniauth
   omniauth-facebook
   pg
