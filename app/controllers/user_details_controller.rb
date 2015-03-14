@@ -36,6 +36,18 @@ class UserDetailsController < ApplicationController
   end
 
 
+  def new_college_branch_enrollment
+    @college_branch_pair = CollegeBranchPair.new
+    @user = current_user
+  end
+
+  def create_college_branch_enrollment
+    college_id = params[:college_branch_pair][:college_id]
+    branch_id  = params[:college_branch_pair][:branch_id]
+    current_user.enroll_college_branch_pair(college_id , branch_id)
+    redirect_to landing_path
+  end
+
 
 
 
