@@ -38,6 +38,20 @@ class CollegesController < ApplicationController
   end
 
 
+  def show_courses
+      college_id = params[:id].to_i
+      college = College.find_by_id(college_id)    
+      branch_id = params[:branch_id].to_i
+      branch = Branch.find_by_id(branch_id)
+      if branch
+        @message = "College-Branch specific courses"
+        @courses = college.courses_by_branch(branch.id).page(params[:page])
+      else
+        @message = "College specific courses"
+        @courses = college.courses.page(params[:page])
+      end
+  end
+
 
 
 
