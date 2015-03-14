@@ -1,2 +1,14 @@
-<h1>Courses#show_content</h1>
-<p>Find me in app/views/courses/show_content.html.erb</p>
+
+<!-- Repeating portion starts -->
+<%= form_tag(landing_path, method: "get", class: "") do %>
+		<%= text_field_tag :search %>
+		<%= submit_tag :private , :name => "choice" , :class => "btn btn-default"%>
+		<%= submit_tag :public  , :name => "choice" , :class => "btn btn-default"%>
+<% end %>
+<!-- Repeating portion ends -->
+
+
+
+<%= awesome_print_html(@message)%>
+<%= awesome_print_html(@buckets)%>
+<%= paginate @buckets %>
