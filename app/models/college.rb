@@ -42,6 +42,28 @@ class College < ActiveRecord::Base
   end
 
 
+  def users
+    user_ids = self.college_branch_pairs.map{|college_branch_pair| college_branch_pair.users }.flatten.map(&:id)
+    users = User.where(:id => user_ids)
+    return users
+  end
+
+  def users_by_branch(branch_id)
+    college_branch_pair = CollegeBranchPair.where(:college_id => self.id , :branch_id => branch_id).first
+    if college_branch_pair
+      user_ids = college_branch_pair.users.map(&:id)
+      users = User.where(:id => user_ids)
+      return users
+    else
+      return nil
+    end
+  end
+
+
+  def comments_by_branch(branch_id)
+    college_branch_pair = CollegeBranchPair.where(:college_id => self.id , :branch_id => branch_id).first
+    college_branch_pair.comments rescue nil
+  end
 
 
 
