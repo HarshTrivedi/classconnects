@@ -67,3 +67,4 @@ group :test do
   gem 'database_cleaner'
 end
 gem 'kaminari'
+gem "pg_search"
