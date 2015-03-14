@@ -23,7 +23,23 @@ class CollegesController < ApplicationController
       end
   end
 
- 
+  def show_users
+      college_id = params[:id].to_i
+      college = College.find_by_id(college_id)
+      branch_id = params[:branch_id].to_i
+      branch = Branch.find_by_id(branch_id)
+      if branch
+        @message = "College-Branch specific users"
+        @users = college.users_by_branch(branch).page(params[:page])
+      else
+        @message = "College specific users"
+        @users = college.users.page(params[:page])
+      end
+  end
+
+
+
+
 
   #BEFORE FILTER methods
   private
