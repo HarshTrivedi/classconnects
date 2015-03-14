@@ -138,4 +138,25 @@ class User < ActiveRecord::Base
   end
 
 
+  def upload_bucket(bucket_id)
+      if Bucket.exists?(:id => bucket_id )
+        upload = Upload.create( :user_id => id ,  :bucket_id => bucket_id )
+        bucket = upload.bucket
+      else
+        bucket = nil
+      end
+      return bucket
+  end
+
+  def download_bucket(bucket_id)
+      if Bucket.exists?(:id => bucket_id)
+        download = Download.create( :user_id => id ,  :bucket_id => bucket_id )
+        bucket = download.bucket
+      else
+        bucket = nil
+      end
+      return bucket
+  end
+
+
 end
