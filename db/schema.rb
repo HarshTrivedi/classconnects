@@ -145,11 +145,14 @@ ActiveRecord::Schema.define(version: 20150312102110) do
 
   create_table "documents", force: true do |t|
     t.integer  "folder_id"
+    t.integer  "bucket_id"
+    t.string   "name"
     t.string   "cloud_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "documents", ["bucket_id"], name: "index_documents_on_bucket_id", using: :btree
   add_index "documents", ["folder_id"], name: "index_documents_on_folder_id", using: :btree
 
   create_table "downloads", force: true do |t|
@@ -183,18 +186,6 @@ ActiveRecord::Schema.define(version: 20150312102110) do
   add_index "uploads", ["bucket_id"], name: "index_uploads_on_bucket_id", using: :btree
   add_index "uploads", ["user_id"], name: "index_uploads_on_user_id", using: :btree
 
-  create_table "user_college_branch_enrollments", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "college_branch_pair_id"
-    t.datetime "college_enrollment_year"
-    t.datetime "exprected_year_completion"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_college_branch_enrollments", ["college_branch_pair_id"], name: "index_user_college_branch_enrollments_on_college_branch_pair_id", using: :btree
-  add_index "user_college_branch_enrollments", ["user_id"], name: "index_user_college_branch_enrollments_on_user_id", using: :btree
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -206,6 +197,7 @@ ActiveRecord::Schema.define(version: 20150312102110) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.integer  "college_branch_pair_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "provider"
@@ -215,6 +207,7 @@ ActiveRecord::Schema.define(version: 20150312102110) do
     t.string   "last_name"
   end
 
+  add_index "users", ["college_branch_pair_id"], name: "index_users_on_college_branch_pair_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
