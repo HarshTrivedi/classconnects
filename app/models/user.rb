@@ -84,5 +84,40 @@ class User < ActiveRecord::Base
     return buckets
   end
 
+  def enroll_college_branch_pair(college_id , branch_id)
+    college_branch_pair = CollegeBranchPair.where(:college_id => college_id , :branch_id => branch_id).first
+    if college_branch_pair
+        college_branch_pair.users << self
+        return college_branch_pair
+    end
+    return nil
+  end
+
+  def college_peers
+    college = self.college
+    if not college.nil?
+      college_users = college.users
+      college_peers = college_users - self
+      college_peers
+    else
+      return nil 
+    end
+  end
+
+
+  # If user is not enrolled in the course, it will return NIL
+  # And [] , when he is the only one who has enrolled in that course
+  def course_peers(course_id)
+    user_is_enrolled = CourseEnrollment.exists(:user_id => self.id , :course_id => course_id)
+    if user_is_enrolled
+      course = Course.find_by_id(course_id)
+      course_enrolled_users = course.enrolled_users
+      course_peers = course_enrolled_users - self
+      return course_peers
+    else
+      return nil
+    end
+  end
+
 
 end
