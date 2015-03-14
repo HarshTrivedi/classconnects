@@ -66,5 +66,23 @@ class User < ActiveRecord::Base
       not (college.nil? or branch.nil?)
   end
 
+  def private_buckets
+    return Bucket.none if college.nil?
+    all_college_branch_pairs = college.college_branch_pairs.flatten
+    courses = all_college_branch_pairs.map{|college_branch_pair| college_branch_pair.courses }.flatten
+    bucket_ids = courses.map{|course| course.buckets }.flatten.map(&:id)
+    buckets = Bucket.where(id: bucket_ids)
+    return buckets
+  end
+
+  def public_buckets
+    return Bucket.all if college.nil?
+    all_college_branch_pairs = college.college_branch_pairs.flatten
+    courses = all_college_branch_pairs.map{|college_branch_pair| college_branch_pair.courses }.flatten
+    bucket_ids = courses.map{|course| course.buckets }.flatten.map(&:id)
+    buckets = Bucket.where.not(:id => bucket_ids)
+    return buckets
+  end
+
 
 end
