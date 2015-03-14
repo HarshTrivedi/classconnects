@@ -4,11 +4,8 @@ class CollegeBranchPair < ActiveRecord::Base
   has_many :courses
   has_many :comments, as: :commentable
   has_many :user_college_branch_enrollments
-  has_many :users, through: :user_college_branch_enrollments
+  has_many :users
 
 
-  def add(college_id , branch_id)
-
-  end
 
 end
