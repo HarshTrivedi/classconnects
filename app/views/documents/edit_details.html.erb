@@ -1,2 +1,17 @@
-<h1>Documents#edit_details</h1>
-<p>Find me in app/views/documents/edit_details.html.erb</p>
+
+<!-- Repeating portion starts -->
+<%= form_tag(landing_path, method: "get", class: "") do %>
+		<%= text_field_tag :search %>
+		<%= submit_tag :private , :name => "choice" , :class => "btn btn-default"%>
+		<%= submit_tag :public  , :name => "choice" , :class => "btn btn-default"%>
+<% end %>
+<!-- Repeating portion ends -->
+
+
+
+
+<%= simple_form_for @document , :url => update_document_details_path(@document.id) do |f| %>
+  <%= f.input :id, :as => :hidden, :input_html => { :value => @document.id } %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+<% end %>
