@@ -10,32 +10,34 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'landings#index'
 
-  get 'colleges/:id/content'  => 'college#show_content'         , as: :college_content
-  get 'colleges/:id/peers'    => 'college#show_peers'           , as: :college_peers
-  get 'colleges/:id/courses'  => 'college#show_courses'         , as: :college_courses
-  get 'colleges/:id/discuss'  => 'college#show_discussion'      , as: :college_discussion
+  get 'colleges/:id/content'  => 'colleges#show_content'         , as: :college_content
+  # get 'colleges/:id/peers'    => 'colleges#show_peers'           , as: :college_peers
+  get 'colleges/:id/users'    => 'colleges#show_users'           , as: :college_users
+  get 'colleges/:id/courses'  => 'colleges#show_courses'         , as: :college_courses
+  get 'colleges/:id/discuss'  => 'colleges#show_discussion'      , as: :college_discussion
 
 
   get 'courses/:id/content'  => 'courses#show_content'          , as: :course_content
-  get 'courses/:id/peers'    => 'courses#show_peers'            , as: :course_peers
+  # get 'courses/:id/peers'    => 'courses#show_peers'            , as: :course_peers
+  get 'courses/:id/users'    => 'courses#show_users'            , as: :course_users
   get 'courses/:id/discuss'  => 'courses#show_discussion'       , as: :course_discussion
 
 
   get 'buckets/:id/content'  => 'buckets#show_content'          , as: :bucket_content
   get 'buckets/:id/details'  => 'buckets#show_details'          , as: :bucket_details
   get 'buckets/:id/edit_details'  => 'buckets#edit_details'     , as: :edit_bucket_details
-  put 'buckets/:id'          => 'buckets#update_details'        , as: :update_bucket_details  
+  patch 'buckets/:id'          => 'buckets#update_details'        , as: :update_bucket_details  
 
 
   get 'folders/:id/content'       => 'folders#show_content'     , as: :folder_content
   get 'folders/:id/details'       => 'folders#show_details'     , as: :folder_details
   get 'folders/:id/edit_details'  => 'folders#edit_details'     , as: :edit_folder_details
-  put 'folders/:id'               => 'folders#update_details'   , as: :update_folder_details  
+  patch 'folders/:id'               => 'folders#update_details'   , as: :update_folder_details  
 
 
   get 'documents/:id/details'       => 'documents#show_details'         , as: :documents_details
   get 'documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_documents_details
-  put 'documents/:id'               => 'documents#update_details'       , as: :update_documents_details  
+  patch 'documents/:id'               => 'documents#update_details'       , as: :update_documents_details  
 
 
   get '/my_uploads'             => 'user_details#uploads'                   , as: :uploads
@@ -43,6 +45,17 @@ Rails.application.routes.draw do
   get '/profile'                => 'user_details#profile'                   , as: :profile
   get '/enrolled_courses'       => 'user_details#enrolled_courses'          , as: :enrolled_courses
   get '/favorite_courses'       => 'user_details#favorite_courses'          , as: :favorite_courses
+  get '/my_college'             => 'user_details#my_college'                , as: :my_college
+
+  get  '/enrollment'                  => 'user_details#new_college_branch_enrollment'           , as: :new_college_branch_enrollment
+  post '/enrollment'                  => 'user_details#create_college_branch_enrollment'        , as: :create_college_branch_enrollment
+  post '/favorite'                    => 'user_details#create_favorite_course'                  , as: :create_favorite_course
+  post '/download_bucket/:bucket_id'  => 'user_details#download_bucket'                         , as: :download_bucket
+  post '/upload_bucket/:bucket_id'    => 'user_details#upload_bucket'                           , as: :upload_bucket
+
+
+
+  get '/'                       => 'landings#index'                         , as: :landing
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
