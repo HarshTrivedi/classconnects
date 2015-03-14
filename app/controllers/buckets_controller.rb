@@ -1,13 +1,25 @@
 class BucketsController < ApplicationController
-  def show_content
+  paginates_per 10
+  before_action :authenticate_user!
+  before_filter :bucket_exists
+
+
+  #BEFORE FILTER methods
+  private
+
+  def bucket_exists
+      bucket_exists = Bucket.exists?(params[:id])
+      if not bucket_exists
+        render_404
+        return false
+      else
+        return true
+      end
   end
 
-  def show_details
+  #PERMITTING mass assignment
+  def bucket_params
+    params.require(:bucket).permit(:name , :description , :category)
   end
 
-  def edit_details
-  end
-
-  def update_details
-  end
 end
