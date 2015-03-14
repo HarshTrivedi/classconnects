@@ -18,6 +18,18 @@ class BucketsController < ApplicationController
 
   end
 
+  def edit_details
+    bucket_id = params[:id]
+    @message = "Bucket form should be added"
+    @bucket = Bucket.find_by_id(bucket_id)
+  end
+
+  def update_details
+    bucket_id = params[:bucket][:id]
+    bucket = Bucket.find_by_id(bucket_id)
+    bucket.update_attributes( bucket_params )
+    redirect_to bucket_details_path(bucket_id)
+  end
 
   #BEFORE FILTER methods
   private
