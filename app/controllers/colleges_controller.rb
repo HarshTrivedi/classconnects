@@ -53,6 +53,22 @@ class CollegesController < ApplicationController
   end
 
 
+  ##Branch specific discussion
+  def show_discussion
+      college_id = params[:id].to_i
+      college = College.find_by_id(college_id)
+      branch_id = params[:branch_id].to_i
+      branch = Branch.find_by_id(branch_id)
+      if branch
+        @message = "College-Branch specific Comments"
+        @comments = college.comments_by_branch(branch_id).page(params[:page])
+        #comment responses will have also to be shown
+      else
+        # We dont have college specific discussion forum yet
+        render_404
+      end
+  end
+
 
 
   #BEFORE FILTER methods
