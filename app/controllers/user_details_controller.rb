@@ -48,6 +48,35 @@ class UserDetailsController < ApplicationController
     redirect_to landing_path
   end
 
+  #Need link to reach here (In Buckets partial)
+  def create_favorite_course
+      course_id = params[:course_id]
+      current_user.favorite_course(course_id)
+      redirect_to :back
+  end
+
+  #Need link to reach here (In Buckets partial)
+  def download_bucket
+      bucket_id = params[:bucket_id]
+      current_user.download_bucket(bucket_id)
+      redirect_to :back
+  end
+
+  #uploading bucket is not necessarily actual uploading
+  #it can also be just make a bucket and not uploading anything.
+  #Need link to reach here (In Buckets partial)
+  def upload_bucket
+      bucket_id = params[:bucket_id]
+      current_user.upload_bucket(bucket_id)
+      redirect_to college_content_path(bucket_id)
+      redirect_to :back
+  end
+
+  private
+  ## permitting params for mass assignment
+  def college_branch_params
+    params.require(:college_branch_pair).permit(:college_id , :branch_id )
+  end
 
 
 
