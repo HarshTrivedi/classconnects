@@ -3,6 +3,21 @@ class BucketsController < ApplicationController
   before_action :authenticate_user!
   before_filter :bucket_exists
 
+  def show_content
+    bucket_id = params[:id]
+    bucket = Bucket.find_by_id(bucket_id)
+    @message = "Bucket specific folders and documents"    
+    @folders = course.folders.page(params[:page])
+    @documents = course.documents.page(params[:page])
+  end
+
+  def show_details
+    bucket_id = params[:id]
+    @message = "Bucket itself"
+    @bucket = Bucket.find_by_id(bucket_id)
+
+  end
+
 
   #BEFORE FILTER methods
   private
