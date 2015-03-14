@@ -25,6 +25,17 @@ class UserDetailsController < ApplicationController
     @favorite_courses = current_user.favorite_courses.page(params[:page])
   end
 
+  #Need link to reach here (In side Nav Bar)
+  def my_college
+    college = current_user.college
+    if college.nil?
+        redirect_to new_college_branch_enrollment_path
+    else
+        redirect_to college_content_path(college.id)
+    end
+  end
+
+
 
 
 
