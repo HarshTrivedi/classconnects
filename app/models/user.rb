@@ -119,5 +119,23 @@ class User < ActiveRecord::Base
     end
   end
 
+  def comment_on(object , message )
+      if object.is_a?(Bucket) or object.is_a?(Course) or object.is_a?(CollegeBranchPair)
+        comment = Comment.create(:user_id => self.id , :message => message , :commentable => object)
+        return comment
+      else
+        return nil
+      end
+  end
+
+  def respond_to_comment(comment_id , message )
+      if Comment.exists?(comment_id)
+        comment_response = CommentResponse.create(:message => message , :user_id => self.id ,:comment_id => comment_id )
+        return comment_response
+      else
+        return nil
+      end
+  end
+
 
 end
