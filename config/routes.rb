@@ -35,10 +35,10 @@ Rails.application.routes.draw do
   patch 'folders/:id'               => 'folders#update_details'   , as: :update_folder_details  
 
 
-  get 'documents/:id/details'       => 'documents#show_details'         , as: :documents_details
-  get 'documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_documents_details
-  patch 'documents/:id'               => 'documents#update_details'       , as: :update_documents_details  
-
+  get 'documents/:id/details'       => 'documents#show_details'         , as: :document_details
+  get 'documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_document_details
+  patch 'documents/:id'             => 'documents#update_details'       , as: :update_document_details  
+  post 'documents/:id/create'       => 'documents#create_document'      , as: :create_document
 
   get '/my_uploads'             => 'user_details#uploads'                   , as: :uploads
   get '/my_downloads'           => 'user_details#downloads'                 , as: :downloads
@@ -49,7 +49,13 @@ Rails.application.routes.draw do
 
   get  '/enrollment'                  => 'user_details#new_college_branch_enrollment'           , as: :new_college_branch_enrollment
   post '/enrollment'                  => 'user_details#create_college_branch_enrollment'        , as: :create_college_branch_enrollment
-  post '/favorite'                    => 'user_details#create_favorite_course'                  , as: :create_favorite_course
+
+  post '/favorite_course/:course_id'             => 'user_details#favorite_course'                         , as: :favorite_course
+  post '/unfavorite_course/:course_id'           => 'user_details#unfavorite_course'                       , as: :unfavorite_course
+
+  post '/enroll_course/:course_id'               => 'user_details#enroll_course'                , as: :enroll_course
+  post '/unenroll_course/:course_id'             => 'user_details#unenroll_course'              , as: :unenroll_course
+
   post '/download_bucket/:bucket_id'  => 'user_details#download_bucket'                         , as: :download_bucket
   post '/upload_bucket/:bucket_id'    => 'user_details#upload_bucket'                           , as: :upload_bucket
 
