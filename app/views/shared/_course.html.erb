@@ -1,0 +1,30 @@
+<div class="media-body">
+	  <p></p>
+	  <h4 class="media-heading">
+	  	<%= link_to( course.name , course_content_path(course.id)  ) %>
+	  </h4>
+	  <p></p>
+
+	  <%if not course.enrolled_users.include?(current_user) %>
+	  	<%= link_to("Enroll" , enroll_course_path(course.id) , :method => :post , :class => "label label-danger span-sidebar") %>
+	  <%else%>
+	  	<%= link_to("UnEnroll" , unenroll_course_path(course.id) , :method => :post , :class => "label label-danger span-sidebar") %>	  	
+	  <%end%>
+	  <p><p>
+	  <%if not course.favorited_users.include?(current_user) %>
+		  <%= link_to("Favorite" , favorite_course_path(course.id) , :method => :post , :class => "label label-warning span-sidebar") %>
+	  <%else%>
+		  <%= link_to("Favorite" , unfavorite_course_path(course.id) , :method => :post , :class => "label label-warning span-sidebar") %>	  
+	  <%end%>
+
+	  Professors :
+	  <span class="text-muted">
+	  		<%= course.professors.inspect %>
+	  </span>
+	  <p><p>
+	  Course code :
+	  <span class="text-muted">
+	  		<%= course.code %>
+	  </span>
+	  <p><p>
+</div>
