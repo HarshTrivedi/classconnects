@@ -1,14 +1,14 @@
 class BucketsController < ApplicationController
-  paginates_per 10
+  layout "logged_in"
   before_action :authenticate_user!
   before_filter :bucket_exists
 
   def show_content
     bucket_id = params[:id]
-    bucket = Bucket.find_by_id(bucket_id)
+    @bucket = Bucket.find_by_id(bucket_id)
     @message = "Bucket specific folders and documents"    
-    @folders = course.folders.page(params[:page])
-    @documents = course.documents.page(params[:page])
+    @folders = @bucket.folders.page(params[:folder_page])
+    @documents = @bucket.documents.page(params[:document_page])
   end
 
   def show_details
