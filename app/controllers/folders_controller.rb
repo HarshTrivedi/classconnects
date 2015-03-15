@@ -1,13 +1,14 @@
 class FoldersController < ApplicationController
+  layout "logged_in"
   before_action :authenticate_user!
   before_filter :folder_exists
 
   def show_content
     folder_id = params[:id]
-    folder = Folder.find_by_id(folder_id)
+    @folder = Folder.find_by_id(folder_id)
     @message = "Folder specific folders and documents"    
-    @folders = folder.folders.page(params[:page])
-    @documents = folder.documents.page(params[:page])
+    @folders = @folder.folders.page(params[:folder_page])
+    @documents = @folder.documents.page(params[:document_page])
   end
 
   def show_details
