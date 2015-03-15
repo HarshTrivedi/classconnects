@@ -1,20 +1,8 @@
 
-<!-- Repeating portion starts -->
-<%= form_tag(landing_path, :method => "get", :class => "") do %>
-		<%= text_field_tag :search %>
-		<%= submit_tag :private , :name => "choice" , :class => "btn btn-default"%>
-		<%= submit_tag :public  , :name => "choice" , :class => "btn btn-default"%>
-<% end %>
-<!-- Repeating portion ends -->
+<%= render(:partial => 'shared/select_branch' ,:locals => { :college => @college , :branches_name_id => @branches_name_id } ) %>
 
+<%= render(:partial => 'shared/college_navbar' , :locals => {:college => @college }) %> 
 
-<%= form_tag( college_content_path(@college.id) , :method => "get" , :class => "" ) do %>
-	<%= select_tag(:branch_id, options_for_select( @branches_name_id ) , :class => "form-control" ,  :prompt => "No Branch Selected" ) %>
-	<%= submit_tag(:Go , :class => "btn btn-default") %>
-<% end %>
+<%= render(:partial => 'shared/buckets', :locals => {:buckets => @buckets } )%>
 
-<!-- To Choose Department Ends-->
-
-<%= awesome_print_html(@message)%>
-<%= awesome_print_html(@buckets)%>
 <%= paginate @buckets %>
