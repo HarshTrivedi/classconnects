@@ -1,0 +1,16 @@
+<!-- bucket -->
+<div class="media-body">
+	  <p></p>
+	  <h6 >
+	  		<%= comment_response.message %>
+	  </h6>
+	  <p></p>
+	  CommenterResponder : 
+	  <% user = comment_response.user %>
+	  <span class="text-muted">
+	  		<%= link_to( user.email , "#no_profile_yet"  ) %>
+	  </span>
+	  <p><p>
+</div>
+
+
