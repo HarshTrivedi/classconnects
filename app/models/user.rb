@@ -188,5 +188,9 @@ class User < ActiveRecord::Base
     CourseEnrollment.delete_all( :user_id => id , :course_id => course_id)
   end
 
+  def full_name
+    [self.first_name , self.last_name ].join(" ")
+  end
+
 
 end
