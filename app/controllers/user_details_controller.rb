@@ -1,13 +1,13 @@
 class UserDetailsController < ApplicationController
   before_action :authenticate_user!
-
+  layout "logged_in"
   def uploads
-    @uploads = current_user.uploaded_buckets.page(params[:page])
+    @uploaded_buckets = current_user.uploaded_buckets.page(params[:page])
 
   end
 
   def downloads
-    @downloads = current_user.downloaded_buckets.page(params[:page])
+    @downloaded_buckets = current_user.downloaded_buckets.page(params[:page])
   end
 
   def profile
@@ -49,17 +49,40 @@ class UserDetailsController < ApplicationController
   end
 
   #Need link to reach here (In Buckets partial)
-  def create_favorite_course
+  def favorite_course
       course_id = params[:course_id]
       current_user.favorite_course(course_id)
       redirect_to :back
   end
 
+  def unfavorite_course
+      course_id = params[:course_id]
+      current_user.unfavorite_course(course_id)
+      redirect_to :back
+  end
+
+  #Need link to reach here (In Buckets partial)
+  def enroll_course
+      course_id = params[:course_id]
+      current_user.enroll_course(course_id)
+      redirect_to :back
+  end
+
+  def unenroll_course
+      course_id = params[:course_id]
+      current_user.unenroll_course(course_id)
+      redirect_to :back
+  end
+
+
+
+
   #Need link to reach here (In Buckets partial)
   def download_bucket
       bucket_id = params[:bucket_id]
       current_user.download_bucket(bucket_id)
-      redirect_to :back
+      send_file Rails.root.join('public', 'temporary_bucket.zip'), :type=>"application/zip", :x_sendfile=>true
+      # redirect_to :back
   end
 
   #uploading bucket is not necessarily actual uploading
