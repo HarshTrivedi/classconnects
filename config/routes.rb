@@ -35,10 +35,14 @@ Rails.application.routes.draw do
   patch 'folders/:id'               => 'folders#update_details'   , as: :update_folder_details  
 
 
-  get 'documents/:id/details'       => 'documents#show_details'         , as: :document_details
-  get 'documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_document_details
-  patch 'documents/:id'             => 'documents#update_details'       , as: :update_document_details  
-  post 'documents/:id/create'       => 'documents#create_document'      , as: :create_document
+  get '/documents/:id/details'       => 'documents#show_details'         , as: :document_details
+  get '/documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_document_details
+  patch '/documents/:id'             => 'documents#update_details'       , as: :update_document_details  
+
+  get   '/documents/new'               => 'documents#new_document'         , as: :new_document
+  post  '/documents/create/:folder_id' => 'documents#create_document'      , as: :create_document
+
+
 
   get '/my_uploads'             => 'user_details#uploads'                   , as: :uploads
   get '/my_downloads'           => 'user_details#downloads'                 , as: :downloads
