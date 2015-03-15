@@ -1,0 +1,28 @@
+<div class="panel with-nav-tabs panel-success panel-square panel-no-border">
+<div class="panel-heading">     
+		<div class="right-content">
+			<div class="btn-group">
+			</div>
+		</div><!-- /.right-content -->
+		<ul class="nav nav-tabs">
+
+			<%if current_page?(document_details_path)%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Details"), document_details_path(document.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Details"), document_details_path(document.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+
+			<%if current_page?(edit_document_details_path)%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Edit Details"), edit_document_details_path(document.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Edit Details"), edit_document_details_path(document.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+			 
+
+		</ul>
+</div>
+</div>
+
+
+
