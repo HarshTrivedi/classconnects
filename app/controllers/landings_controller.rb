@@ -1,5 +1,6 @@
 class LandingsController < ApplicationController
-  layout "logged_in"
+  layout :layout_by_resource
+
   def index
   		if current_user.nil?
   			render(:template => "landings/non_login_landing")
@@ -22,6 +23,17 @@ class LandingsController < ApplicationController
   				render(:template => "landings/login_landing_without_search")
 	  		end
   		end
+  end
+
+
+  protected
+
+  def layout_by_resource
+      if not current_user.nil?
+          "logged_in"
+      else
+          "application"
+      end
   end
 
 end
