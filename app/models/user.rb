@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  paginates_per 1
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -168,6 +169,11 @@ class User < ActiveRecord::Base
       return course
   end
 
+  def unfavorite_course(course_id)    
+    CourseFavorite.delete_all( :user_id => id , :course_id => course_id)
+  end
+
+
   def enroll_course(course_id)
       if Course.exists?(:id => course_id)
         enrollment = CourseEnrollment.create( :user_id => id ,  :course_id => course_id )
@@ -177,5 +183,10 @@ class User < ActiveRecord::Base
       end
       return course
   end
+
+  def unenroll_course(course_id)
+    CourseEnrollment.delete_all( :user_id => id , :course_id => course_id)
+  end
+
 
 end
