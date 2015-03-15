@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<html lang="en"><head>
+	  	<title>Classcolab</title>
+	  	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  	<%= csrf_meta_tags %>
+		<!-- Prelang: Analytics / Google Analytics -->
+	    <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
+		<meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
+		<meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
+		<title>Welcome - CollegeColab</title>
+
+
+</head>
+
+
+<body class="tooltips">
+
+		<!-- BEGIN PANEL DEMO -->
+		<div class="box-demo">
+			<div class="inner-panel">
+				<div class="cog-panel" id="demo-panel"><i class="fa fa-search"></i> </div>
+				<!--<p class="text-muted small text-center">35 COLOR SCHEMES</p>-->
+				<div class="row text-center">
+					
+					<div class="col-xs-3">
+						<div class="custom-search">
+						<form>
+						<h3>Custom Search</h3>
+						<h4>Select College <!--<b class="caret"></b>--></h4>
+
+						<select name = "Colleges" style="font-size:13px; font-weight:700; font-family: 'Lato',sans-serif; margin-bottom:5px;" type="text"/>
+							
+          				<option ><a href="#"><h2>DA-IICT</h2></a></option>
+            			<option><a href="#">MSU</a></option>
+            			<option><a href="#">xyz</a></option>
+            		
+               			</select>
+               			
+               			<button class="btn btn-primary btn-xs"><i class="fa fa-search fa-xs"></i> Go to College</button>
+               			<br><br>
+               			<h4>Select Branch <!--<b class="caret"></b>--></h4>
+						<select name = "Branches" style="font-size:13px; font-weight:700; font-family: 'Lato',sans-serif; margin-bottom:5px;" type="text"/>
+          				<option><a href="#">EC</a></option>
+            			<option><a href="#">CS</a></option>
+            			<option><a href="#">xyz</a></option>
+               			</select>
+               			<button class="btn btn-primary btn-xs"><i class="fa fa-search fa-xs"></i> Go to Branch</button>
+               			<br><br>
+               			<h4>Select Course</h4>
+						<select name = "Courses" style="font-size:13px; font-weight:700; font-family: 'Lato',sans-serif; margin-bottom:5px;" type="text"/>
+          				<option><a href="#">Software engineering</a></option>
+            			<option><a href="#">OS</a></option>
+            			<option><a href="#">CG</a></option>
+            			</select>
+            			<button class="btn btn-primary btn-xs"><i class="fa fa-search fa-xs"></i> Go to Course</button>
+            			<br> <br> <br>
+            			<button class="btn btn-warning btn-s"><i class="fa fa-search fa-xs"></i> Custom Search</button>
+						</form>
+					</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+		<!-- END PANEL DEMO -->
+	
+		
+		
+		
+		<!--
+		===========================================================
+		BEGIN PAGE
+		===========================================================
+		-->
+		<div class="wrapper">
+			<!-- BEGIN TOP NAV -->
+			<div class="top-navbar">
+				<div class="top-navbar-inner">
+					
+					<!-- Begin Logo brand -->
+					<div class="logo-brand">
+						<a href="#">CollegeColab</a>
+					</div><!-- /.logo-brand -->
+					<!-- End Logo brand -->
+					
+					<div class="top-nav-content">
+						
+						<!-- Begin button sidebar left toggle -->
+						<div class="btn-collapse-sidebar-left">
+							<i class="fa fa-bars"></i>
+						</div><!-- /.btn-collapse-sidebar-left -->
+						<!-- End button sidebar left toggle -->
+												
+						<!-- Begin user session nav -->
+						<ul class="nav-user navbar-right">
+							<li class="dropdown">
+							  <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
+								<%= image_tag avatar_url(current_user) , :class => "avatar img-circle"%>
+								Hi, <strong>Mihir Pastagia</strong>
+							  </a>
+							  <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
+								<li><a href="#fakelink">Account setting</a></li>
+								<li><a href="#fakelink">Payment setting</a></li>
+								<li><a href="#fakelink">Change password</a></li>
+								<li><a href="#fakelink">My public profile</a></li>
+								<li class="divider"></li>
+								<li><a href="http://diliat.in/themeforest/sentir/1.2/lock-screen.html">Lock screen</a></li>
+								<li><a href="http://diliat.in/themeforest/sentir/1.2/login.html">Log out</a></li>
+							  </ul>
+							</li>
+						</ul>
+						<!-- End user session nav -->
+						
+						<!-- Begin Collapse menu nav -->
+						<div class="collapse navbar-collapse" id="main-fixed-nav">
+							 <!-- Begin nav search form -->
+							<!--<form class="navbar-form navbar-left" role="search">
+								<div class="form-group">
+									<input class="form-control" placeholder="Search" type="text">
+								</div>
+							</form>-->
+							<!-- End nav search form -->
+								
+						</div><!-- /.navbar-collapse -->
+						<!-- End Collapse menu nav -->
+					</div><!-- /.top-nav-content -->
+				</div><!-- /.top-navbar-inner -->
+			</div><!-- /.top-navbar -->
+			<!-- END TOP NAV -->
+			
+			
+			
+			<!-- BEGIN SIDEBAR LEFT -->
+			<div tabindex="5000" style="overflow: hidden;" class="sidebar-left sidebar-nicescroller">
+				<ul class="sidebar-menu">
+					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%= content_tag(:li , link_to(fa_icon("cloud-download icon-sidebar", text: "My Downloads"), downloads_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
+
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Upload"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"" )%>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"" )%>
+					
+					<%if not current_user.college.nil?%>
+						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%else%>
+						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enroll College/Branch"), new_college_branch_enrollment_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%end%>
+
+				</ul>
+			</div><!-- /.sidebar-left -->
+			<!-- END SIDEBAR LEFT -->
+			
+			
+			
+			
+			
+			<!-- BEGIN PAGE CONTENT -->
+			<div class="page-content">				
+					<div class="container-fluid">
+						<div class="the-box transparent full search-page">
+							<div style="position: relative; z-index: 0; background: none repeat scroll 0% 0% transparent;" class="the-box no-margin no-border bg-success" id="search-heading">
+									<div class="text-center">
+										<h1> CollegeColab</h1><h5>Keep Sharring</h5>
+									</div>
+
+									<!-- Repeating portion starts -->
+									<%= render(:partial => 'shared/main_search_form' ) %>
+									<!-- Repeating portion ends -->
+
+
+								</div><!-- search-heading-->
+						</div><!-- /.full search-page-->
+					</div><!-- container-fluid-->
+				
+					<%= yield %>
+
+
+
+
+					<!-- BEGIN FOOTER -->
+					<footer>
+						© 2015 <a href="#fakelink">Senonagon</a><br>
+						Design by <a href="http://isohdesign.com/" target="_blank">Senonagon</a>.
+					</footer>
+					<!-- END FOOTER -->
+			</div><!-- /.page-content -->
+		<!-- END PAGE CONTENT -->
+		
+		</div><!-- /.wrapper -->
+		
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+ 
+		
