@@ -1,0 +1,34 @@
+<!-- bucket -->
+<div class="media-body">
+	  <p></p>
+	  <h4 class="media-heading">
+	  	<%= link_to( bucket.name , bucket_content_path(bucket.id)  ) %>
+	  </h4>
+	  <p></p>
+	  <a href="#Download">
+			<span class="label label-danger span-sidebar">Download</span>
+			</a>|
+		  <b>Up:</b>120 <b>Down:</b>6
+	  <p></p>
+
+	  <% category = bucket.category.category %>
+	  Category : 
+	  <span class="label label-warning span-sidebar">
+		  <%= category %>
+	  </span>
+	  <p><p>
+
+	  <span class="text-muted">
+	  		<%= bucket.description %>
+	  </span>
+	  <p><p>
+	  Course : 
+	  <% course = bucket.course %>
+	  <span class="text-muted">
+	  		<%= link_to( course.name , course_content_path(course.id)  ) %>
+	  </span>
+	  <p><p>
+
+
+</div>
+
