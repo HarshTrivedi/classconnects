@@ -1,0 +1,10 @@
+
+<%= form_tag( college_content_path(college.id) , :method => "get" , :class => "form-group has-feedback lg no-label" ) do %>
+	<div class="form-group has-feedback lg no-label">
+		<%= select_tag(:branch_id, options_for_select( branches_name_id ) , :class => "form-control" ,  :prompt => "No Branch Selected" ) %>
+	</div>
+	<div class="text-center">
+		<%= submit_tag(:Go , :class => "btn btn-danger") %>
+	</div>
+<% end %>
+
