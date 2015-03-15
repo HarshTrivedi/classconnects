@@ -1,17 +1,11 @@
 
-<!-- Repeating portion starts -->
-<%= form_tag(landing_path, method: "get", class: "") do %>
-		<%= text_field_tag :search %>
-		<%= submit_tag :private , :name => "choice" , :class => "btn btn-default"%>
-		<%= submit_tag :public  , :name => "choice" , :class => "btn btn-default"%>
-<% end %>
-<!-- Repeating portion ends -->
+<%= render(:partial => 'shared/document_navbar' , :locals => {:document => @document }) %> 
 
 
-
-
-<%= simple_form_for @document , :url => update_document_details_path(@document.id) do |f| %>
+<%= simple_form_for @document , :url => update_document_details_path(@document.id)   , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
   <%= f.input :id, :as => :hidden, :input_html => { :value => @document.id } %>
-  <%= f.input :name %>
-  <%= f.button :submit %>
+  <%= f.input :name , :input_html => { :class => ""} %>
+  <div class="text-center">
+	  <%= f.button :submit %>
+  </div>
 <% end %>
