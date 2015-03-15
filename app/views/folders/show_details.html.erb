@@ -1,13 +1,4 @@
 
-<!-- Repeating portion starts -->
-<%= form_tag(landing_path, method: "get", class: "") do %>
-		<%= text_field_tag :search %>
-		<%= submit_tag :private , :name => "choice" , :class => "btn btn-default"%>
-		<%= submit_tag :public  , :name => "choice" , :class => "btn btn-default"%>
-<% end %>
-<!-- Repeating portion ends -->
+<%= render(:partial => 'shared/folder_navbar' , :locals => {:folder => @folder }) %> 
 
-
-
-<%= awesome_print_html(@message)%>
-<%= awesome_print_html(@folder)%>
+<%= render(:partial => 'shared/folder_details', :locals => {:folder => @folder } )%>

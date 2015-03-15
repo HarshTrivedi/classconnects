@@ -1,17 +1,9 @@
+<%= render(:partial => 'shared/folder_navbar' , :locals => {:folder => @folder }) %> 
 
-<!-- Repeating portion starts -->
-<%= form_tag(landing_path, method: "get", class: "") do %>
-		<%= text_field_tag :search %>
-		<%= submit_tag :private , :name => "choice" , :class => "btn btn-default"%>
-		<%= submit_tag :public  , :name => "choice" , :class => "btn btn-default"%>
-<% end %>
-<!-- Repeating portion ends -->
-
-
-
-
-<%= simple_form_for @folder , :url => update_folder_details_path(@folder.id) do |f| %>
+<%= simple_form_for @folder , :url => update_folder_details_path(@folder.id)   , :input_html=> { :class => "form-group has-feedback lg no-label " }  do |f| %>
   <%= f.input :id, :as => :hidden, :input_html => { :value => @folder.id } %>
-  <%= f.input :name %>
-  <%= f.button :submit %>
+  <%= f.input :name , :input_html => { :class => ""} %>
+  <div class="text-center">
+	 <%= f.button :submit %>
+  </div>
 <% end %>
