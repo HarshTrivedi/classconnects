@@ -1,0 +1,12 @@
+<%= form_tag(landing_path, method: "get", :class => "form-group has-feedback lg no-label") do %>
+		<div class="form-group has-feedback lg no-label">
+			<%= text_field_tag :search , nil , :class => "form-control no-border input-lg" , :placeholder => "Search Documents"%>
+			<span class="fa fa-search form-control-feedback"></span>
+		</div>
+		<div class="text-center">
+			<%= submit_tag "private"  , :name => "choice" , :class => "btn btn-warning"%>
+			<span class="fa fa-suitcase"></span>
+			<%= submit_tag "public"  , :name => "choice" , :class => "btn btn-success"%>
+			<span class="fa fa-globe"></span>
+		</div>
+<% end %>
