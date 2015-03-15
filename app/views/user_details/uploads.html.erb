@@ -1,13 +1,5 @@
+<%= render(:partial => 'shared/user_details_navbar' ) %>
 
-<!-- Repeating portion starts -->
-<%= form_tag(landing_path, method: "get", class: "") do %>
-		<%= text_field_tag :search %>
-		<%= submit_tag :private , :name => "choice" , :class => "btn btn-default"%>
-		<%= submit_tag :public  , :name => "choice" , :class => "btn btn-default"%>
-<% end %>
-<!-- Repeating portion ends -->
+<%= render(:partial => 'shared/buckets', :locals => {:buckets => @uploaded_buckets } )%>
 
-
-<%= awesome_print_html("My Uploads")%>
-<%= awesome_print_html(@uploads)%>
-
+<%= paginate @uploaded_buckets %>

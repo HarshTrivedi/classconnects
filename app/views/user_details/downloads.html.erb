@@ -1,13 +1,10 @@
+<%= render(:partial => 'shared/user_details_navbar' ) %>
 
-<!-- Repeating portion starts -->
-<%= form_tag(landing_path, method: "get", class: "") do %>
-		<%= text_field_tag :search %>
-		<%= submit_tag :private , :name => "choice" , :class => "btn btn-default"%>
-		<%= submit_tag :public  , :name => "choice" , :class => "btn btn-default"%>
+<%= render(:partial => 'shared/buckets', :locals => {:buckets => @downloaded_buckets } )%>
+
+<%= s3_uploader_form callback_url: create_document_path(1) , id: "s3-uploader" , :class => "btn btn-group" do %>
+		<%= file_field_tag "file", multiple: true %>
 <% end %>
-<!-- Repeating portion ends -->
 
 
-<%= awesome_print_html("My Downloads")%>
-<%= awesome_print_html(@downloads)%>
-
+<%= paginate @downloaded_buckets %>
