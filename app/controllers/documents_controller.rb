@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
-  before_filter :document_exists
+  before_filter :document_exists , :except => ["new_document" , "create_document"]
 
   def show_details
     document_id = params[:id]
@@ -22,9 +22,35 @@ class DocumentsController < ApplicationController
     redirect_to document_details_path(document_id)
   end
 
-  def create
-    @document = current_user.documents.create(params[:document])
+  def create_document
+
+    # params => {   "url"=>"https://classcollabdevelopment.s3.amazonaws.com/uploads%2F1426451367919-l6fr3qa6dur6n7b9-47564170fe673ff8b02dffe27e5e0d9a%2F500.html", 
+    #               "filepath"=>"/uploads%2F1426451367919-l6fr3qa6dur6n7b9-47564170fe673ff8b02dffe27e5e0d9a%2F500.html", 
+    #               "filename"=>"500.html", 
+    #               "filesize"=>"1477", 
+    #               "filetype"=>"text/html", 
+    #               "unique_id"=>"l6fr3qa6dur6n7b9", 
+    #               "document"=>"https://classcollabdevelopment.s3.amazonaws.com/uploads%2F1426451367919-l6fr3qa6dur6n7b9-47564170fe673ff8b02dffe27e5e0d9a%2F500.html"
+    #           }
+
+    s3 = params
+    name = s3["filename"]
+    cloud_path = s3["url"]
+    folder_id = s3["folder_id"]
+    folder = Folder.find_by_id(folder_id)
+    if not folder.nil? 
+        Document.create(:folder_id => folder_id , cloud_path => cloud_path , :s3 => s3)
+    end
+
+    render js: "window.location = '/' "
+
   end
+
+
+  def new_document
+
+  end
+
 
   #BEFORE FILTER methods
   private
