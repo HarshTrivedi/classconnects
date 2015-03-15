@@ -7,11 +7,13 @@ class Course < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   def enrolled_users
-  	course_enrollments.map{|course_enrollment| course_enrollment.user }
+  	user_ids = course_enrollments.map{|course_enrollment| course_enrollment.user.id }
+    User.where(:id => user_ids)
   end
 
   def favorited_users
-  	course_favorites.map{|course_favorite| course_favorite.user }
+  	user_ids = course_favorites.map{|course_favorite| course_favorite.user.id }
+    User.where(:id => user_ids)
   end
 
 end
