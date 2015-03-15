@@ -68,3 +68,6 @@ group :test do
 end
 gem 'kaminari'
 gem "pg_search"
+gem "font-awesome-rails"
+gem 's3_direct_upload'
+gem 'aws-sdk'
