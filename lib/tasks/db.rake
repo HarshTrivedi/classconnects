@@ -84,7 +84,7 @@ namespace :db do
             folders << folder
         end
         rand(0..8).times do
-            document = Document.create(:cloud_path => Faker::Internet.url )
+            document = Document.create(:cloud_path => Faker::Internet.url , :name => Faker::Lorem.word)
             bucket.documents << document
             documents << document
         end
