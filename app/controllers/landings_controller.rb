@@ -1,4 +1,5 @@
 class LandingsController < ApplicationController
+  layout "logged_in"
   def index
   		if current_user.nil?
   			render(:template => "landings/non_login_landing")
@@ -14,10 +15,10 @@ class LandingsController < ApplicationController
   				end
 	  			render(:template => "landings/login_landing_with_search")
 	  		else
-  				@enrolled_courses = current_user.enrolled_courses
-  				@favorite_courses = current_user.favorite_courses
-  				@downloaded_buckets = current_user.downloaded_buckets
-  				@uploaded_buckets = current_user.downloaded_buckets
+  				# @enrolled_courses = current_user.enrolled_courses.page(params[:page])
+  				# @favorite_courses = current_user.favorite_courses.page(params[:page])
+  				# @uploaded_buckets = current_user.downloaded_buckets.page(params[:page])
+          @downloaded_buckets = current_user.downloaded_buckets.page(params[:page])
   				render(:template => "landings/login_landing_without_search")
 	  		end
   		end
