@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  paginates_per 10
+  layout "logged_in"
   before_action :authenticate_user!
   before_filter :document_exists
 
@@ -20,6 +20,10 @@ class DocumentsController < ApplicationController
     document = Document.find_by_id(document_id)
     document.update_attributes( document_params )
     redirect_to document_details_path(document_id)
+  end
+
+  def create
+    @document = current_user.documents.create(params[:document])
   end
 
   #BEFORE FILTER methods
