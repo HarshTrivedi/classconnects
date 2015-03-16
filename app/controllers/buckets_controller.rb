@@ -1,7 +1,7 @@
 class BucketsController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
-  before_filter :bucket_exists
+  # before_filter :bucket_exists
 
   def show_content
     bucket_id = params[:id]
@@ -31,6 +31,29 @@ class BucketsController < ApplicationController
     redirect_to bucket_details_path(bucket_id)
   end
 
+  def new_bucket
+    course_id = params[:course_id]
+    @course = Course.find_by_id(course_id)
+    @bucket = Bucket.new
+    @bucket.course_id = @course_id
+    # if course is not found => redirect to not found page
+
+  end
+
+  def create_bucket
+    course_id = params[:bucket][:course_id]
+    course = Course.find_by_id(course_id)
+    if not course.nil?
+      # name = bucket_params[:name]
+      # description = bucket_params[:description]
+
+      bucket = Bucket.create(bucket_params)
+      current_user.upload_bucket(bucket.id)
+    end
+    redirect_to course_content_path(course_id)
+  end
+
+
   #BEFORE FILTER methods
   private
 
@@ -46,7 +69,7 @@ class BucketsController < ApplicationController
 
   #PERMITTING mass assignment
   def bucket_params
-    params.require(:bucket).permit(:name , :description , :category)
+    params.require(:bucket).permit(:name , :description , :category_id , :course_id )
   end
 
 end

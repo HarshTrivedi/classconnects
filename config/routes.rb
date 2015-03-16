@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   get 'buckets/:id/details'  => 'buckets#show_details'          , as: :bucket_details
   get 'buckets/:id/edit_details'  => 'buckets#edit_details'     , as: :edit_bucket_details
   patch 'buckets/:id'          => 'buckets#update_details'        , as: :update_bucket_details  
-
+  get 'buckets/new/:course_id'  => 'buckets#new_bucket'          , as: :new_bucket
+  post 'buckets/create/:course_id'  => 'buckets#create_bucket'   , as: :create_bucket
 
   get 'folders/:id/content'       => 'folders#show_content'     , as: :folder_content
   get 'folders/:id/details'       => 'folders#show_details'     , as: :folder_details
