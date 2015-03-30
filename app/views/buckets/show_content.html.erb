@@ -1,9 +1,13 @@
 
+
 <%= render(:partial => 'shared/bucket_navbar' , :locals => {:bucket => @bucket }) %> 
 
 
-<%= render(:partial => 'shared/folders', :locals => {:folders => @folders } )%>
+Folders:
+<%= render(:partial => 'shared/folders', :locals => {:folders => @folders  , :parent_type => "bucket" , :parent_id => @bucket.id} )%>
 <%= paginate @folders, :param_name => "folder_page" %>
 
-<%= render(:partial => 'shared/documents', :locals => {:documents => @documents } )%>
+<br>
+Documents:
+<%= render(:partial => 'shared/documents', :locals => {:documents => @documents , :parent_type => "bucket" , :parent_id => @bucket.id} )%>
 <%= paginate @documents, :param_name => "document_page" %>

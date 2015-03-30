@@ -34,7 +34,8 @@ Rails.application.routes.draw do
   get 'folders/:id/details'       => 'folders#show_details'     , as: :folder_details
   get 'folders/:id/edit_details'  => 'folders#edit_details'     , as: :edit_folder_details
   patch 'folders/:id'               => 'folders#update_details'   , as: :update_folder_details  
-
+  get 'folders/new/:parent_type/:parent_id'       => 'folders#new_folder'           , as: :new_folder
+  post 'folders/create/:parent_type/:parent_id'   => 'folders#create_folder'        , as: :create_folder
 
   get '/documents/:id/details'       => 'documents#show_details'         , as: :document_details
   get '/documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_document_details

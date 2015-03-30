@@ -8,6 +8,7 @@
 						<%= render(:partial => 'shared/folder', :locals => {:folder => folder } )%>
 				  </li>
 				  <%end%>
+				  <li><%= link_to("Make A Folder" , new_folder_path( parent_type , parent_id) , :class => "btn btn-success") %></li>
 				</ul>
 			</div>
 		</div>
