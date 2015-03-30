@@ -1,3 +1,4 @@
+
 <% if not current_user.college_branch_enrolled? %>
 <%= render(:partial => 'shared/select_branch' ,:locals => { :college => @college , :branches_name_id => @branches_name_id } ) %>
 <% end %>
@@ -7,3 +8,6 @@
 <%= render(:partial => 'shared/comments' ,:locals => { :comments => @comments } ) %>
 
 <%= paginate @comments %>
+
+<%= render(:partial => "shared/leave_comment" , :locals => {:type => "college"  })%>
+

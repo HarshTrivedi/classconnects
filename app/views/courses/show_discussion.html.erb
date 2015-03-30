@@ -4,3 +4,5 @@
 <%= render(:partial => 'shared/comments' ,:locals => { :comments => @comments } ) %>
 
 <%= paginate @comments %>
+
+<%= render(:partial => "shared/leave_comment" , :locals => {:type => "course"  })%>

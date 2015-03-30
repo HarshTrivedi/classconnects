@@ -1,16 +1,17 @@
 <!-- bucket -->
-<div class="media-body">
-	  <p></p>
-	  <h6 >
-	  		<%= comment_response.message %>
-	  </h6>
-	  <p></p>
-	  CommenterResponder : 
-	  <% user = comment_response.user %>
-	  <span class="text-muted">
-	  		<%= link_to( user.email , "#no_profile_yet"  ) %>
-	  </span>
-	  <p><p>
-</div>
-
-
+<li class="media">
+	<%= link_to (image_tag avatar_url(comment_response.user) , :class => "media-object img-circle") , "#" , :class => "pull-left" %>
+	<div class="media-body">
+		<p></p>
+		<h6 >
+			<%= comment_response.message %>
+		</h6>
+		<p></p>
+		CommenterResponder : 
+		  <% user = comment_response.user %>
+		  <span class="text-muted">
+		  <%= link_to( user.email , "#no_profile_yet"  ) %>
+		  </span>
+		<p><p>
+	</div>
+</li>

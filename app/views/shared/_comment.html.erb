@@ -7,16 +7,18 @@
 	  <p></p>
 	  Commenter : 
 	  <% user = comment.user %>
+	  
 	  <span class="text-muted">
 	  		<%= link_to( user.email , "#no_profile_yet"  ) %>
 	  </span>
 	  <p><p>
 	  <%comment_responses = comment.comment_responses%>
-	  <div class = "comment_response">
+
+	  <ul class="media-list">
 	  		<%for comment_response in comment_responses%>
 				<%= render(:partial => 'shared/comment_response', :locals => {:comment_response => comment_response } )%>		
 	  		<%end%>
-	  </div>
+	  </ul>>
 </div>
 
 
