@@ -13,6 +13,11 @@ class UserDetailsController < ApplicationController
   def profile
   end
 
+  def edit_profile
+
+    
+  end
+
 
   #Need link to reach here (In courses partial)
   def enrolled_courses

@@ -49,9 +49,11 @@ Rails.application.routes.draw do
   get '/my_uploads'             => 'user_details#uploads'                   , as: :uploads
   get '/my_downloads'           => 'user_details#downloads'                 , as: :downloads
   get '/profile'                => 'user_details#profile'                   , as: :profile
+  get '/edit_profile'           => 'user_details#edit_profile'              , as: :edit_profile
   get '/enrolled_courses'       => 'user_details#enrolled_courses'          , as: :enrolled_courses
   get '/favorite_courses'       => 'user_details#favorite_courses'          , as: :favorite_courses
   get '/my_college'             => 'user_details#my_college'                , as: :my_college
+
 
   get  '/enrollment'                  => 'user_details#new_college_branch_enrollment'           , as: :new_college_branch_enrollment
   post '/enrollment'                  => 'user_details#create_college_branch_enrollment'        , as: :create_college_branch_enrollment
