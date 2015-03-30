@@ -13,11 +13,12 @@
 	  </span>
 	  <p><p>
 	  <%comment_responses = comment.comment_responses%>
-
+	  
 	  <ul class="media-list">
 	  		<%for comment_response in comment_responses%>
 				<%= render(:partial => 'shared/comment_response', :locals => {:comment_response => comment_response } )%>		
 	  		<%end%>
+			<%= render(:partial => "shared/leave_comment_response" , :locals => { :comment => comment })%>
 	  </ul>>
 </div>
 

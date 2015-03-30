@@ -93,6 +93,9 @@ class CollegesController < ApplicationController
       if @branch
         @message = "College-Branch specific Comments"
         @comments = @college.comments_by_branch(@branch.id).order(:created_at).page(params[:page])
+        @comment = Comment.new
+        @parent_type = "college_branch"
+        @parent_id = CollegeBranchPair.where(:college_id => @college.id , :branch_id => @branch.id).first.id
         #comment responses will have also to be shown
       else
         # We dont have college specific discussion forum yet

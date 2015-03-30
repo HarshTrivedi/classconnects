@@ -18,4 +18,13 @@ class CommentsController < ApplicationController
   end
 
 
+  def create_comment_response
+    comment_id = params[:comment_id]
+    comment = Comment.find_by_id(comment_id)
+    message = params[:comment_response][:message]
+    CommentResponse.create( :user_id => current_user.id ,  :comment_id => comment_id , :message => message)
+    redirect_to :back
+  end
+
+
 end
