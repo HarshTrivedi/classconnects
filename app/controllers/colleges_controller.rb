@@ -3,40 +3,52 @@ class CollegesController < ApplicationController
   before_action :authenticate_user!
   before_filter :college_exists
   before_filter :branch_exists_if_passed 
-  before_filter :branch_passed , :only => [:show_discussion]
+  # before_filter :branch_passed , :only => [:show_discussion]
 
 
   def show_content
     	college_id = params[:id]
     	@college = College.find_by_id(college_id)
-      branches = @college.branches
-      @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
 
-      branch_id = params[:branch_id]
-      @branch = Branch.find_by_id(branch_id)
+      if current_user.college_branch_enrolled?
+        @branch = current_user.branch        
+      else      
+        branches = @college.branches.order(:created_at)
+        @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
+        branch_id = params[:branch_id]
+        @branch = Branch.find_by_id(branch_id)
+      end
+
+
       if @branch
           @message = "College-Branch specific buckets"
-          @buckets = @college.buckets_by_branch(@branch).page(params[:page])
+          @buckets = @college.buckets_by_branch(@branch).order(:created_at).page(params[:page])
       else
           @message = "College specific buckets"
-    	   	@buckets = @college.buckets.page(params[:page])
+    	   	@buckets = @college.buckets.order(:created_at).page(params[:page])
       end
   end
 
   def show_users
       college_id = params[:id]
       @college = College.find_by_id(college_id)
-      branches = @college.branches
-      @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
 
-      branch_id = params[:branch_id].to_i
-      branch = Branch.find_by_id(branch_id)
-      if branch
+
+      if current_user.college_branch_enrolled?
+        @branch = current_user.branch
+      else
+        branches = @college.branches.order(:created_at)
+        @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
+        branch_id = params[:branch_id]
+        @branch = Branch.find_by_id(branch_id)
+      end
+
+      if @branch
         @message = "College-Branch specific users"
-        @users = @college.users_by_branch(branch).page(params[:page])
+        @users = @college.users_by_branch(@branch.id).order(:created_at).page(params[:page])
       else
         @message = "College specific users"
-        @users = @college.users.page(params[:page])
+        @users = @college.users.order(:created_at).page(params[:page])
       end
   end
 
@@ -44,14 +56,19 @@ class CollegesController < ApplicationController
   def show_courses
       college_id = params[:id]
       @college = College.find_by_id(college_id)
-      branches = @college.branches
-      @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
 
-      branch_id = params[:branch_id].to_i
-      branch = Branch.find_by_id(branch_id)
-      if branch
+      if current_user.college_branch_enrolled?
+        @branch = current_user.branch
+      else
+        branches = @college.branches.order(:created_at)
+        @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
+        branch_id = params[:branch_id]
+        @branch = Branch.find_by_id(branch_id)
+      end
+
+      if @branch
         @message = "College-Branch specific courses"
-        @courses = @college.courses_by_branch(branch.id).page(params[:page])
+        @courses = @college.courses_by_branch(@branch.id).page(params[:page])
       else
         @message = "College specific courses"
         @courses = @college.courses.page(params[:page])
@@ -63,14 +80,19 @@ class CollegesController < ApplicationController
   def show_discussion
       college_id = params[:id]
       @college = College.find_by_id(college_id)
-      branches = @college.branches
-      @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
 
-      branch_id = params[:branch_id].to_i
-      branch = Branch.find_by_id(branch_id)
-      if branch
+      if current_user.college_branch_enrolled?
+        @branch = current_user.branch
+      else
+        branches = @college.branches.order(:created_at)
+        @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
+        branch_id = params[:branch_id]
+        @branch = Branch.find_by_id(branch_id)
+      end
+
+      if @branch
         @message = "College-Branch specific Comments"
-        @comments = @college.comments_by_branch(branch_id).page(params[:page])
+        @comments = @college.comments_by_branch(@branch.id).order(:created_at).page(params[:page])
         #comment responses will have also to be shown
       else
         # We dont have college specific discussion forum yet

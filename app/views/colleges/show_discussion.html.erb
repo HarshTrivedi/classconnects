@@ -1,5 +1,6 @@
-
+<% if not current_user.college_branch_enrolled? %>
 <%= render(:partial => 'shared/select_branch' ,:locals => { :college => @college , :branches_name_id => @branches_name_id } ) %>
+<% end %>
 
 <%= render(:partial => 'shared/college_navbar' , :locals => {:college => @college }) %> 
 
