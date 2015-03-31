@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   patch 'buckets/:id'          => 'buckets#update_details'        , as: :update_bucket_details  
   get 'buckets/new/:course_id'  => 'buckets#new_bucket'          , as: :new_bucket
   post 'buckets/create/:course_id'  => 'buckets#create_bucket'   , as: :create_bucket
+  delete 'buckets/:id'  => 'buckets#destroy_bucket'   , as: :destroy_bucket
 
   get 'folders/:id/content'       => 'folders#show_content'     , as: :folder_content
   get 'folders/:id/details'       => 'folders#show_details'     , as: :folder_details
@@ -36,14 +37,14 @@ Rails.application.routes.draw do
   patch 'folders/:id'               => 'folders#update_details'   , as: :update_folder_details  
   get 'folders/new/:parent_type/:parent_id'       => 'folders#new_folder'           , as: :new_folder
   post 'folders/create/:parent_type/:parent_id'   => 'folders#create_folder'        , as: :create_folder
+  delete 'folders/:id'  => 'folders#destroy_folder'   , as: :destroy_folder
 
   get '/documents/:id/details'       => 'documents#show_details'         , as: :document_details
   get '/documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_document_details
   patch '/documents/:id'             => 'documents#update_details'       , as: :update_document_details  
-
   get   '/documents/new'               => 'documents#new_document'         , as: :new_document
   post  '/documents/create/:folder_id' => 'documents#create_document'      , as: :create_document
-
+  delete '/documents/:id'  => 'documents#destroy_document'   , as: :destroy_document
 
 
   get '/my_uploads'             => 'user_details#uploads'                   , as: :uploads
