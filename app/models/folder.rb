@@ -4,4 +4,8 @@ class Folder < ActiveRecord::Base
   belongs_to :bucket
   has_many :folders
   has_many :documents  
+
+  validates :name, :presence => true
+  validates :bucket, :presence => true
+
 end

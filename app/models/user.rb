@@ -15,6 +15,12 @@ class User < ActiveRecord::Base
   has_many :downloads
   belongs_to :college_branch_pair
 
+
+
+  validates :first_name, :presence => true
+  validates :last_name, :presence => true
+
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 

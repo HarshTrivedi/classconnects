@@ -2,6 +2,9 @@ class College < ActiveRecord::Base
   has_many :college_branch_pairs
   has_many :branches, through: :college_branch_pairs
 
+  validates :name, :presence => true
+
+
   def buckets
   	all_college_branch_pairs = self.college_branch_pairs
   	courses = all_college_branch_pairs.map{|college_branch_pair| college_branch_pair.courses }.flatten

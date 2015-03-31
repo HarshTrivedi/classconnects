@@ -6,6 +6,7 @@ class CollegeBranchPair < ActiveRecord::Base
   has_many :user_college_branch_enrollments
   has_many :users
 
-
+  validates :college, :presence => true
+  validates :branch, :presence => true
 
 end

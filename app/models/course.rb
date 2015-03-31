@@ -6,6 +6,11 @@ class Course < ActiveRecord::Base
   has_many :course_favorites
   has_many :comments, as: :commentable
 
+
+  validates :name, :presence => true
+  validates :college_branch_pair, :presence => true
+
+
   def enrolled_users
   	user_ids = course_enrollments.map{|course_enrollment| course_enrollment.user.id }
     User.where(:id => user_ids)
