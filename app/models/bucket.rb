@@ -4,10 +4,21 @@ class Bucket < ActiveRecord::Base
   paginates_per 3
   belongs_to :category
   belongs_to :course
-  has_many :folders
-  has_many :documents
-  has_many :downloads
-  has_many :comments, as: :commentable
+  belongs_to :user
+  has_many :folders , :dependent => :destroy
+  has_many :documents , :dependent => :destroy
+  # has_many :uploads , :dependent => :destroy
+  has_many :downloads , :dependent => :destroy
+  has_many :comments, as: :commentable , :dependent => :destroy
+
+
+  validates :user, :presence => true
+  validates :name, :presence => true
+  validates :description, :presence => true
+  validates :category, :presence => true
+  validates :course, :presence => true
+
+
 
 
   #TOTALLY wrong implementation
