@@ -9,10 +9,12 @@ class User < ActiveRecord::Base
   #->Prelang (user_login/devise)
   has_many :comments
   has_many :course_enrollments
-  has_many :uploads
+  # has_many :uploads
+  has_many :buckets
   has_many :course_favorites
   has_many :downloads
   belongs_to :college_branch_pair
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
@@ -51,8 +53,9 @@ class User < ActiveRecord::Base
 
 
   def uploaded_buckets
-      bucket_ids = uploads.map{|upload| upload.bucket }.map(&:id)
-      Bucket.where(:id => bucket_ids)
+      # bucket_ids = uploads.map{|upload| upload.bucket }.map(&:id)
+      # Bucket.where(:id => bucket_ids)
+      self.buckets
   end
 
   def college
@@ -140,11 +143,9 @@ class User < ActiveRecord::Base
 
 
   def upload_bucket(bucket_id)
-      if Bucket.exists?(:id => bucket_id )
-        upload = Upload.create( :user_id => id ,  :bucket_id => bucket_id )
-        bucket = upload.bucket
-      else
-        bucket = nil
+      bucket = Bucket.where(:id => bucket_id ).first
+      if bucket
+        self.buckets << bucket
       end
       return bucket
   end
