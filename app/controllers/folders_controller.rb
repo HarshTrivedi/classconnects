@@ -56,6 +56,14 @@ class FoldersController < ApplicationController
   end
 
 
+  #ie remove from the uploads
+  def destroy_folder
+    folder_id = params[:folder_id]
+    folder = Folder.find_by_id(folder_id)
+    folder.destroy if current_user == folder.bucket.uploader
+    redirect_to :back
+  end
+
 
   #BEFORE FILTER methods
   private

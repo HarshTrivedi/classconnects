@@ -1,14 +1,14 @@
 class BucketsController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
-  # before_filter :bucket_exists
+  before_filter :bucket_exists , :except => [:new_bucket , :create_bucket ]
 
   def show_content
     bucket_id = params[:id]
     @bucket = Bucket.find_by_id(bucket_id)
     @message = "Bucket specific folders and documents"    
-    @folders = @bucket.folders.page(params[:folder_page])
-    @documents = @bucket.documents.page(params[:document_page])
+    @folders = @bucket.folders.order(:created_at).page(params[:folder_page])
+    @documents = @bucket.documents.order(:created_at).page(params[:document_page])
   end
 
   def show_details
@@ -51,6 +51,16 @@ class BucketsController < ApplicationController
       current_user.upload_bucket(bucket.id)
     end
     redirect_to course_content_path(course_id)
+  end
+
+
+  #ie remove from the uploads
+  def destroy_bucket
+    bucket_id = params[:id]
+    bucket = Bucket.find_by_id(bucket_id)
+
+    bucket.destroy if current_user == bucket.uploader
+    redirect_to :back
   end
 
 
