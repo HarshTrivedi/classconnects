@@ -36,20 +36,40 @@ class DocumentsController < ApplicationController
     s3 = params
     name = s3["filename"]
     cloud_path = s3["url"]
-    folder_id = s3["folder_id"]
-    folder = Folder.find_by_id(folder_id)
-    if not folder.nil? 
-        Document.create(:folder_id => folder_id , cloud_path => cloud_path , :s3 => s3)
+
+    parent_type = params["parent_type"]
+    parent_id =   params["parent_id"]
+
+    if parent_type == "folder"
+        folder = Folder.find_by_id(parent_id)
+        if not folder.nil? 
+            Document.create(:folder_id => parent_id , cloud_path => cloud_path , :s3 => s3)
+        end
+    elsif parent_type == "bucket"
+        bucket = Bucket.find_by_id(parent_id)
+        if not bucket.nil? 
+            Document.create(:bucket_id => parent_id , cloud_path => cloud_path , :s3 => s3)
+        end
     end
 
-    render js: "window.location = '/' "
-
+    redirect_to :back
+    
   end
 
 
   def new_document
-
+    @parent_type = "folder"
+    @parent_id = 1
   end
+
+  #ie remove from the uploads
+  def destroy_document
+    document_id = params[:document_id]
+    document = Document.find_by_id(document_id)
+    document_id.destroy if current_user == document.bucket.uploader
+    redirect_to :back
+  end
+
 
 
   #BEFORE FILTER methods
