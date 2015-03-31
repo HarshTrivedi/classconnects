@@ -5,12 +5,15 @@
 	  	<%= link_to( document.name , document_details_path(document.id)  ) %>
 	  </h4>
 	  <p></p>
+	  <%if document.bucket.uploader == current_user%>
+		  <%= link_to("Delete" , destroy_document_path(document.id) , :method => :delete ,:class => "btn btn-danger") %>
+	  <%end%>
 
+	  <p><p>
 	  Created At:
 	  <span class="text-muted">
 	  		<%= document.created_at %>
 	  </span>
-	  <p><p>
 	  Updated At: 
 	  <span class="text-muted">
 	  		<%= document.updated_at %>

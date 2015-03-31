@@ -17,7 +17,10 @@
 		  <%= category %>
 	  </span>
 	  <p><p>
-
+	  <%if bucket.uploader == current_user%>
+		  <%= link_to("Delete" , destroy_bucket_path(bucket.id) , :method => :delete , :class => "btn btn-danger") %>
+	  <%end%>
+	  <p><p>
 	  <span class="text-muted">
 	  		<%= bucket.description %>
 	  </span>
