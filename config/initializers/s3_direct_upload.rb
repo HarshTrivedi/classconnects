@@ -1,7 +1,7 @@
 S3DirectUpload.config do |c|
-  c.access_key_id = "AKIAIZPYBJBUBN7HBUWA"                # your access key id
-  c.secret_access_key = "7HKgDXUsNlG1HPqwK/HdwwynEFBKjJfykHbZ9vpW"   # your secret access key
-  c.bucket = "classcollabdevelopment"                             # your bucket name
+  c.access_key_id = ENV["S3_SECRET_KEY"]
+  c.secret_access_key = ENV["S3_ACCESS_KEY"]
+  c.bucket = ENV["S3_BUCKET"]
 end
 
 ## URL MonkeyPatch
