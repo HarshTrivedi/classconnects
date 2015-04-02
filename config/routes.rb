@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   get 'buckets/new/:course_id'  => 'buckets#new_bucket'          , as: :new_bucket
   post 'buckets/create/:course_id'  => 'buckets#create_bucket'   , as: :create_bucket
   delete 'buckets/:id'  => 'buckets#destroy_bucket'   , as: :destroy_bucket
+  put '/buckets/:id/like',     to: 'buckets#up_vote'  , as: :like_bucket
+  put '/buckets/:id/dislike',  to: 'buckets#down_vote', as: :dislike_bucket
+
 
   get 'folders/:id/content'       => 'folders#show_content'     , as: :folder_content
   get 'folders/:id/details'       => 'folders#show_details'     , as: :folder_details
