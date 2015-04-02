@@ -16,6 +16,10 @@
 		<meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
 		<title>Welcome - CollegeColab</title>
 
+    	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
+
 
 </head>
 
@@ -167,8 +171,6 @@
 			<div class="page-content">
 				<%= render partial: "shared/flash_messages", flash: flash %> 
 					<div class="container-fluid">
-						<div class="the-box transparent full search-page">
-							<div style="position: relative; z-index: 0; background: none repeat scroll 0% 0% transparent;" class="the-box no-margin no-border bg-success" id="search-heading">
 									<div class="text-center">
 										<h1> CollegeColab</h1><h5>Keep Sharring</h5>
 									</div>
@@ -178,9 +180,7 @@
 									<!-- Repeating portion ends -->
 
 
-								</div><!-- search-heading-->
 								<%= yield %>
-						</div><!-- /.full search-page-->
 					</div><!-- container-fluid-->
 				
 					<!-- BEGIN FOOTER -->
