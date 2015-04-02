@@ -71,3 +71,5 @@ gem "pg_search"
 gem "font-awesome-rails"
 gem 's3_direct_upload'
 gem 'aws-sdk'
+
+gem 'dotenv-rails', :groups => [:development, :test]

@@ -147,7 +147,7 @@
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
 
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Upload"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"" )%>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"" )%>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), profile_path , :data => {:toggle=>""}), :class=>"" )%>
 					
 					<%if not current_user.college.nil?%>
 						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>

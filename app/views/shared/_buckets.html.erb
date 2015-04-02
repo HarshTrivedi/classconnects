@@ -8,9 +8,9 @@
 						<%= render(:partial => 'shared/bucket', :locals => {:bucket => bucket } )%>
 				  </li>
 				  <%end%>
+				  <li><%= link_to("Make A Bucket" , new_bucket_path(buckets.first.course_id) , :class => "btn btn-success") %></li>
 				</ul>
 			</div>
 		</div>
 	</div><!-- /.tab-pane fade -->
 </div>
-
