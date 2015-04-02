@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312102110) do
+ActiveRecord::Schema.define(version: 20150402014253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -62,6 +63,8 @@ ActiveRecord::Schema.define(version: 20150312102110) do
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "size",        default: 0
   end
 
   add_index "buckets", ["category_id"], name: "index_buckets_on_category_id", using: :btree
@@ -150,6 +153,7 @@ ActiveRecord::Schema.define(version: 20150312102110) do
     t.string   "cloud_path"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.hstore   "s3"
   end
 
   add_index "documents", ["bucket_id"], name: "index_documents_on_bucket_id", using: :btree
@@ -175,16 +179,6 @@ ActiveRecord::Schema.define(version: 20150312102110) do
 
   add_index "folders", ["bucket_id"], name: "index_folders_on_bucket_id", using: :btree
   add_index "folders", ["folder_id"], name: "index_folders_on_folder_id", using: :btree
-
-  create_table "uploads", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "bucket_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "uploads", ["bucket_id"], name: "index_uploads_on_bucket_id", using: :btree
-  add_index "uploads", ["user_id"], name: "index_uploads_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -46,18 +46,23 @@ class DocumentsController < ApplicationController
     if parent_type == "folder"
         folder = Folder.find_by_id(parent_id)
         if not folder.nil? 
-            logger.ap "Folder"
+            # logger.ap "Folder"
             document = Document.create( :name => name ,  :folder_id => parent_id , :bucket_id => folder.bucket_id , :cloud_path => cloud_path , :s3 => s3)
             # logger.ap document.valid?
             # logger.ap document
+            bucket = Bucket.find_by_id(folder.bucket_id)
+            bucket.size = bucket.size + s3["filesize"]
+            bucket.save
         end
     elsif parent_type == "bucket"
         bucket = Bucket.find_by_id(parent_id)
         if not bucket.nil? 
-            logger.ap "Bucket"
+            # logger.ap "Bucket"
             Document.create( :name => name , :bucket_id => parent_id , :cloud_path => cloud_path , :s3 => s3)
             # logger.ap document.valid?
             # logger.ap document
+            bucket.size = bucket.size + s3["filesize"].to_i
+            bucket.save
         end
     end
 
