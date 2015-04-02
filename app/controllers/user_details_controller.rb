@@ -85,7 +85,18 @@ class UserDetailsController < ApplicationController
   #Need link to reach here (In Buckets partial)
   def download_bucket
       bucket_id = params[:bucket_id]
-      current_user.download_bucket(bucket_id)
+      bucket = Bucket.find_by_id(bucket_id)
+      
+      if not bucket.nil?
+        current_user.download_bucket(bucket_id)
+        # Downloaded data size for user should only be added if it is 
+        # not already added
+        if not current_user.downloads.map(&:id).include?(bucket_id.to_i)
+          current_user.downloaded_data_size = current_user.dowloaded_data_size + bucket.size
+          current_user.save
+        end
+        flash[:notice] = 'Please wait while your Bucket gets ready for download.'
+      end
       send_file Rails.root.join('public', 'temporary_bucket.zip'), :type=>"application/zip", :x_sendfile=>true
       # redirect_to :back
   end

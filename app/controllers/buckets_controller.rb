@@ -59,7 +59,12 @@ class BucketsController < ApplicationController
     bucket_id = params[:id]
     bucket = Bucket.find_by_id(bucket_id)
 
-    bucket.destroy if current_user == bucket.uploader
+    if current_user == bucket.uploader
+      uploader = bucket.uploader
+      uploader.uploaded_data_size = uploader.uploaded_data_size - bucket.size
+      uploader.save
+      bucket.destroy
+    end 
     redirect_to :back
   end
 

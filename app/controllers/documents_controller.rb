@@ -65,7 +65,9 @@ class DocumentsController < ApplicationController
             bucket.save
         end
     end
-
+    uploader = bucket.uploader
+    uploader.uploaded_data_size = uploader.uploaded_data_size + s3["filesize"].to_i
+    uploader.save
     # redirect_to :back
     render :nothing => true
   end
