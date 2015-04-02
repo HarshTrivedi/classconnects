@@ -1,19 +1,35 @@
+<div class="property-search-wrap" id="property-search-wrap" style="position: relative; z-index: 0; background-image: none; background-position: initial initial; background-repeat: initial initial;">
 
-<div class="text-center">
-<%= form_tag(landing_path, method: "get", :class => "form-group has-feedback lg no-label") do %>
-	<%= hidden_field_tag("college_autocomplete_id", "", :id => "college_autocomplete_id") %>
-	<%= hidden_field_tag("branch_autocomplete_id" , "", :id => "branch_autocomplete_id") %>
-	<%= hidden_field_tag("course_autocomplete_id" , "", :id => "course_autocomplete_id") %>
+	<div class="row">
 
-	<%= text_field_tag :search_college , nil , :id => "college_autocomplete" , :placeholder => "Search College"  %>
-	<%= text_field_tag :search_branch  , nil , :id => "branch_autocomplete"  , :placeholder => "Search Branch"  %>
-	<%= text_field_tag :search_course  , nil , :id => "course_autocomplete"  , :placeholder => "Search Course"  %>
+		<div class="text-center">
+			<%= form_tag(landing_path, method: "get", :class => "form-group has-feedback lg no-label") do %>
+				<%= hidden_field_tag("college_autocomplete_id", "", :id => "college_autocomplete_id") %>
+				<%= hidden_field_tag("branch_autocomplete_id" , "", :id => "branch_autocomplete_id") %>
+				<%= hidden_field_tag("course_autocomplete_id" , "", :id => "course_autocomplete_id") %>
 
-	<%= submit_tag "Find", :class => "btn btn-success" %>
+				<div class="col-sm-3">
+					<%= text_field_tag :search_college , nil , :id => "college_autocomplete" , :class => "form-control" , :placeholder => "Search College"  %>
+				</div>
+				<div class="col-sm-3">
+					<%= text_field_tag :search_branch  , nil , :id => "branch_autocomplete" , :class => "form-control"   , :placeholder => "Search Branch"  %>
+				</div>
+				<div class="col-sm-3">
+					<%= text_field_tag :search_course  , nil , :id => "course_autocomplete" , :class => "form-control"   , :placeholder => "Search Course"%>
+				</div>
+				<div class="col-sm-3">
+					<%= submit_tag "Find", :class => "btn btn-success form-control" %>
+				</div>
 
-<%end%>
+			<%end%>
+
+			<div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 369px; width: 1521px; z-index: -999998; position: absolute;"><img src="/assets/img-19.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1521px; height: 1140.75px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -385.875px;"></div>
+
+		</div>
+	</div>
+
+
 </div>
-
 
 
 <script>
@@ -140,3 +156,39 @@ $(function() {
 
 
 </script>
+
+
+
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group">
+
+									</div>
+								</div><!-- /.col-sm-4 -->
+								<div class="col-sm-2">
+									<div class="form-group">
+
+									</div>
+								</div>
+								<div class="col-sm-2">
+									<div class="form-group">
+
+									</div>
+								</div>
+								<div class="col-sm-2">
+									<div class="form-group">
+
+									</div>
+								</div>
+								<div class="col-sm-2">
+									<div class="form-group">
+
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group text-center">
+									
+							</div>
+
+					<div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 369px; width: 1521px; z-index: -999998; position: absolute;"><img src="assets/img/photo/medium/img-19.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; width: 1521px; height: 1140.75px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -385.875px;"></div>
