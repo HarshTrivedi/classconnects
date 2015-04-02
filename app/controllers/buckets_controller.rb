@@ -64,6 +64,34 @@ class BucketsController < ApplicationController
   end
 
 
+  def up_vote
+    bucket = Bucket.find_by_id(params[:id])
+    if not bucket.nil?
+      # if not current_user.voted_for?(bucket)
+      logger.ap "About to upvote"
+      current_user.up_votes(bucket)
+      # else
+      #     flash[:notice] = 'Sorry!! You had allready voted this Bucket!'
+      # end
+    end
+    redirect_to :back    
+  end
+
+
+  def down_vote
+    bucket = Bucket.find_by_id(params[:id])
+    if not bucket.nil?
+      # if not current_user.voted_for?(bucket)
+      logger.ap "About to downvote"
+      current_user.down_votes(bucket)
+      # else
+      #     flash[:notice] = 'Sorry!! You had allready voted this Bucket!'
+      # end
+    end
+    redirect_to :back
+  end
+
+
   #BEFORE FILTER methods
   private
 

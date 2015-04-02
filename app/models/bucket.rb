@@ -1,7 +1,11 @@
 class Bucket < ActiveRecord::Base
+  acts_as_votable
   include PgSearch
   pg_search_scope :search, :against => [:name, :description]
+
   paginates_per 3
+
+
   belongs_to :category
   belongs_to :course
   belongs_to :user
@@ -20,10 +24,6 @@ class Bucket < ActiveRecord::Base
 
 
 
-
-  #TOTALLY wrong implementation
-  #Fix this blunder by me, with dbms design
-  #This implementation allows bucket to have multple uploaders which shouldnt be true
   def uploader
     self.user
   end
@@ -32,6 +32,14 @@ class Bucket < ActiveRecord::Base
   def downloaders
     user_ids = self.downloads.map{|download| download.user }.map(&:id)
     User.where(:id => user_ids)
+  end
+
+  def up_votes
+    votes_for.up.size
+  end
+
+  def down_votes
+    votes_for.down.size
   end
 
 

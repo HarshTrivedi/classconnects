@@ -8,7 +8,8 @@
 
 	  <%= link_to("Download" , download_bucket_path(bucket.id) , :method => :post , :class => "label label-danger span-sidebar") %>
 
-	  <b>Up:</b>120 <b>Down:</b>6
+	  <b><%= link_to("UP" , like_bucket_path(bucket.id) , :method => :put)%> </b> <%= bucket.up_votes %>
+	  <b><%= link_to("DOWN" , dislike_bucket_path(bucket.id) , :method => :put)%> </b> <%= bucket.down_votes %>
 	  <p></p>
 
 	  <% category = bucket.category.category %>
