@@ -1,30 +1,26 @@
-<div class="media-body">
-	  <p></p>
-	  <h4 class="media-heading">
-	  	<%= link_to( course.name , course_content_path(course.id)  ) %>
-	  </h4>
-	  <p></p>
-
-	  <%if not course.enrolled_users.include?(current_user) %>
-	  	<%= link_to("Enroll" , enroll_course_path(course.id) , :method => :post , :class => "label label-danger span-sidebar") %>
-	  <%else%>
-	  	<%= link_to("UnEnroll" , unenroll_course_path(course.id) , :method => :post , :class => "label label-danger span-sidebar") %>	  	
-	  <%end%>
-	  <p><p>
-	  <%if not course.favorited_users.include?(current_user) %>
-		  <%= link_to("Favorite" , favorite_course_path(course.id) , :method => :post , :class => "label label-warning span-sidebar") %>
-	  <%else%>
-		  <%= link_to("Favorite" , unfavorite_course_path(course.id) , :method => :post , :class => "label label-warning span-sidebar") %>	  
-	  <%end%>
-
-	  Professors :
-	  <span class="text-muted">
-	  		<%= course.professors.inspect %>
-	  </span>
-	  <p><p>
-	  Course code :
-	  <span class="text-muted">
-	  		<%= course.code %>
-	  </span>
-	  <p><p>
+<div class="col-sm-4">
+	<div class="the-box no-border">
+		<div class="media user-card-sm">
+		<div class="media-body">
+			<h4 class="media-heading">
+				<%= link_to( course.name , course_content_path(course.id)  ) %>
+			</h4>					
+			<span class="course-coding"><%= course.code %></span>
+			<br>
+			<span class="small text-muted">
+					<b>College:</b>
+					<%=course.college_branch_pair.college.name%>
+			</span>
+    	</div>
+		<div class="right-button">
+			<button class="btn btn-xs btn-success">
+				<i class="fa fa-plus"> Enroll</i>
+			</button>
+			<p></p>
+			<button class="btn btn-xs btn-warning">
+				<i class="fa fa-heart fa-xs"> Favourite</i>
+			</button>
+			</div>	
+		</div>
+	</div>
 </div>

@@ -1,38 +1,47 @@
-<!-- bucket -->
-<div class="media-body">
-	  <p></p>
-	  <h4 class="media-heading">
-	  	<%= link_to( bucket.name , bucket_content_path(bucket.id)  ) %>
-	  </h4>
-	  <p></p>
+<div class="the-box no-border property-list">
+    <div class="media">
+        <a class="pull-left" href="#fakelink"> <!--if want to give user profile link-->
+        
+        <img class="media-object img-circle" alt="Avatar" src="img/avatar-1.jpg" title="User name"></img><!--ask remaining-->
+        <div class="clearfix visible-xs"></div>
+        <div class="media-body">
+            <a href="#fakelink"></a>
+            <h4 class="media-heading">
+                <%= link_to( bucket.name , bucket_content_path(bucket.id)  ) %>
+                <% category = bucket.category.category %>
+                <small class="pull-right">
+                	<b>Catagory: </b><span class="label label-warning span-sidebar">
+                    <%= category %></span>
+		        </small>                 
+            </h4>
 
-	  <%= link_to("Download" , download_bucket_path(bucket.id) , :method => :post , :class => "label label-danger span-sidebar") %>
+            <ul class="list-inline">
+                <li><a href="#Up">
+                    <i class="fa fa-thumbs-o-up"></i>
+                </a>120
+                </li>  |  
+                <li><a href="#Down">
+                        <i class="fa fa-thumbs-o-down"></i>
+                    </a>6
+                </li>
+            </ul>
+             <ul class = "list-inline">
+		        <li>
+        	     	<%= link_to("Download" , download_bucket_path(bucket.id) , :method => :post , :class => "label label-warning span-sidebar") %>
+                </li>   |   
+                <li>
+                	<%= link_to("Delete" , download_bucket_path(bucket.id) , :method => :delete , :class => "label label-danger span-sidebar") %>
+                </li>
+            </ul>
+	         <p class="hidden-xs"><!--ask-->
+                <b>Description:</b><%= bucket.description %>
+            </p>
 
-	  <b><%= link_to("UP" , like_bucket_path(bucket.id) , :method => :put)%> </b> <%= bucket.up_votes %>
-	  <b><%= link_to("DOWN" , dislike_bucket_path(bucket.id) , :method => :put)%> </b> <%= bucket.down_votes %>
-	  <p></p>
+            <span class="small text-muted">
+            	<% course = bucket.course %>
+				<b>Course:</b><%= link_to(  course.name , course_content_path(course.id)  ) %>
+			</span>
 
-	  <% category = bucket.category.category %>
-	  Category : 
-	  <span class="label label-warning span-sidebar">
-		  <%= category %>
-	  </span>
-	  <p><p>
-	  <%if bucket.uploader == current_user%>
-		  <%= link_to("Delete" , destroy_bucket_path(bucket.id) , :method => :delete , :class => "btn btn-danger") %>
-	  <%end%>
-	  <p><p>
-	  <span class="text-muted">
-	  		<%= bucket.description %>
-	  </span>
-	  <p><p>
-	  Course : 
-	  <% course = bucket.course %>
-	  <span class="text-muted">
-	  		<%= link_to( course.name , course_content_path(course.id)  ) %>
-	  </span>
-	  <p><p>
-
-
+        </div>
+	 </div>
 </div>
-
