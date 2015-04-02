@@ -199,5 +199,13 @@ class User < ActiveRecord::Base
     [self.first_name , self.last_name ].join(" ")
   end
 
+  def can_upload?(object)
+    if object.is_a?(Bucket)
+        self == object.uploader
+    else
+        self == object.bucket.uploader
+    end
+  end
+
 
 end

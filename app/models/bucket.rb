@@ -25,7 +25,7 @@ class Bucket < ActiveRecord::Base
   #Fix this blunder by me, with dbms design
   #This implementation allows bucket to have multple uploaders which shouldnt be true
   def uploader
-    self.uploads.first.user
+    self.user
   end
 
 
