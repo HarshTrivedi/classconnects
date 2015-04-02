@@ -1,5 +1,5 @@
 class Document < ActiveRecord::Base
-  paginates_per 10
+  paginates_per 3
   belongs_to :folder
   belongs_to :bucket
 

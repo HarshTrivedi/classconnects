@@ -8,6 +8,7 @@
 						<%= render(:partial => 'shared/document', :locals => {:document => document } )%>
 				  </li>
 				  <%end%>
+				  <%= render(:partial => 'shared/new_document_form', :locals => {:parent_type => parent_type , :parent_id => parent_id } )%>
 				</ul>
 			</div>
 		</div>

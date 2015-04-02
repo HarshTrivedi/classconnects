@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   get '/documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_document_details
   patch '/documents/:id'             => 'documents#update_details'       , as: :update_document_details  
   get   '/documents/new'               => 'documents#new_document'         , as: :new_document
-  post  '/documents/create/:folder_id' => 'documents#create_document'      , as: :create_document
+  post  '/documents/create/:parent_type/:parent_id' => 'documents#create_document'      , as: :create_document
   delete '/documents/:id'  => 'documents#destroy_document'   , as: :destroy_document
 
 

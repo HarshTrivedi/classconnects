@@ -3,6 +3,9 @@ class DocumentsController < ApplicationController
   before_action :authenticate_user!
   before_filter :document_exists , :except => ["new_document" , "create_document"]
 
+  skip_before_filter :verify_authenticity_token, :only => [:create_document]
+
+
   def show_details
     document_id = params[:id]
     @message = "Document itself"        
@@ -32,7 +35,7 @@ class DocumentsController < ApplicationController
     #               "unique_id"=>"l6fr3qa6dur6n7b9", 
     #               "document"=>"https://classcollabdevelopment.s3.amazonaws.com/uploads%2F1426451367919-l6fr3qa6dur6n7b9-47564170fe673ff8b02dffe27e5e0d9a%2F500.html"
     #           }
-
+    logger.ap params
     s3 = params
     name = s3["filename"]
     cloud_path = s3["url"]
@@ -43,22 +46,28 @@ class DocumentsController < ApplicationController
     if parent_type == "folder"
         folder = Folder.find_by_id(parent_id)
         if not folder.nil? 
-            Document.create(:folder_id => parent_id , cloud_path => cloud_path , :s3 => s3)
+            logger.ap "Folder"
+            document = Document.create( :name => name ,  :folder_id => parent_id , :bucket_id => folder.bucket_id , :cloud_path => cloud_path , :s3 => s3)
+            # logger.ap document.valid?
+            # logger.ap document
         end
     elsif parent_type == "bucket"
         bucket = Bucket.find_by_id(parent_id)
         if not bucket.nil? 
-            Document.create(:bucket_id => parent_id , cloud_path => cloud_path , :s3 => s3)
+            logger.ap "Bucket"
+            Document.create( :name => name , :bucket_id => parent_id , :cloud_path => cloud_path , :s3 => s3)
+            # logger.ap document.valid?
+            # logger.ap document
         end
     end
 
-    redirect_to :back
-    
+    # redirect_to :back
+    render :nothing => true
   end
 
 
   def new_document
-    @parent_type = "folder"
+    @parent_type = "bucket"
     @parent_id = 1
   end
 

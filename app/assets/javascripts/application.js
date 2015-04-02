@@ -20,16 +20,26 @@
 
 
 $(function() {
+
 	$('#s3_uploader').S3Uploader({
 		remove_completed_progress_bar: false,
-		progress_bar_target: $('#uploads_container')
+		progress_bar_target: $('#uploads_container')//,
+		click_submit_target: $('#submit_upload')
 	});
+
+
+	$(document).bind('s3_uploads_complete', function() {
+		return alert("All files Done");
+	});
+
 	
 	$('#s3_uploader').bind('s3_upload_failed', function(e, content) {
 		return alert(content.filename + ' failed to upload. Error: ' + content.error_thrown);
 	});
 
-	// $('#s3_uploader').bind('s3_upload_complete', function(e, content) {
-	// 	window.location.replace("/view");
-	// });
+
+	$('#s3_uploader').bind('s3_upload_complete', function(e, content) {
+		// window.location.replace("/view");
+		return alert("Heya Completed")
+	});
 });
