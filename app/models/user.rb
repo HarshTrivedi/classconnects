@@ -210,4 +210,10 @@ class User < ActiveRecord::Base
   end
 
 
+  def reputation
+    #Take Upvotes a score of 10 and Downvotes a score of -1 and add them up
+    #Inefficient implementation... will need to change it afterwards.
+    self.uploaded_buckets.map{|bucket| 10 * bucket.up_votes - bucket.down_votes}.inject{|sum , i| sum += i}
+  end
+
 end
