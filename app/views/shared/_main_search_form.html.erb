@@ -8,16 +8,19 @@
 				<%= hidden_field_tag("branch_autocomplete_id" , "", :id => "branch_autocomplete_id") %>
 				<%= hidden_field_tag("course_autocomplete_id" , "", :id => "course_autocomplete_id") %>
 
-				<div class="col-sm-3">
+				<div class="col-sm-4">
+					<%= text_field_tag :search , nil , :id => "main_search" , :class => "form-control" , :placeholder => "Search keyword"  %>
+				</div>				
+				<div class="col-sm-2">
 					<%= text_field_tag :search_college , nil , :id => "college_autocomplete" , :class => "form-control" , :placeholder => "Search College"  %>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<%= text_field_tag :search_branch  , nil , :id => "branch_autocomplete" , :class => "form-control"   , :placeholder => "Search Branch"  %>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<%= text_field_tag :search_course  , nil , :id => "course_autocomplete" , :class => "form-control"   , :placeholder => "Search Course"%>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<%= submit_tag "Find", :class => "btn btn-success form-control" %>
 				</div>
 

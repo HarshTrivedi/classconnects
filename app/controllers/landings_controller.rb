@@ -6,19 +6,33 @@ class LandingsController < ApplicationController
   			render(:template => "landings/non_login_landing")
   			buckets = Bucket
   		else
-  			@search_hash = params[:search]
-  			if @search_hash
-  				choice = params[:choice]
-  				if choice == "private"
-  					@buckets = current_user.private_buckets.search(@search_hash).page(params[:page]).per(10)
-  				else
-  					@buckets = current_user.public_buckets.search(@search_hash).page(params[:page]).per(10)
-  				end
-	  			render(:template => "landings/login_landing_with_search")
+  			search = params[:search]
+        college_id = params[:college_autocomplete_id]
+        branch_id  = params[:branch_autocomplete_id]
+        course_id  = params[:course_autocomplete_id]
+
+  			if search
+            college = College.find_by_id(college_id)
+            branch  = Branch.find_by_id(branch_id)
+            course  = Course.find_by_id(course_id)
+
+            @buckets = Bucket.where(id: nil)
+            if college
+                    if branch
+                        if course
+                            @buckets = course.buckets.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
+                        else
+                            college_branch_pair = CollegeBranchPair.where(:college_id => college.id , :branch_id => branch.id).first
+                            @buckets = college_branch_pair.buckets.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
+                        end
+                    else
+                          @buckets = college.buckets.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
+                    end
+            else
+                @buckets = Bucket.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
+            end
+    	  		render(:template => "landings/login_landing_with_search")
 	  		else
-  				# @enrolled_courses = current_user.enrolled_courses.page(params[:page])
-  				# @favorite_courses = current_user.favorite_courses.page(params[:page])
-  				# @uploaded_buckets = current_user.downloaded_buckets.page(params[:page])
           @downloaded_buckets = current_user.downloaded_buckets.page(params[:page])
   				render(:template => "landings/login_landing_without_search")
 	  		end

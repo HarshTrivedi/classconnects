@@ -9,4 +9,9 @@ class CollegeBranchPair < ActiveRecord::Base
   validates :college, :presence => true
   validates :branch, :presence => true
 
+  def buckets
+  	bucket_ids = self.courses.map{|pair| pair.buckets}.flatten.map(&:id)
+  	Bucket.where(:id => bucket_ids)
+  end
+
 end
