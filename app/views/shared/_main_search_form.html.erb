@@ -1,12 +1,142 @@
+
+<div class="text-center">
 <%= form_tag(landing_path, method: "get", :class => "form-group has-feedback lg no-label") do %>
-		<div class="form-group has-feedback lg no-label">
-			<%= text_field_tag :search , nil , :class => "form-control no-border input-lg" , :placeholder => "Search Documents"%>
-			<span class="fa fa-search form-control-feedback"></span>
-		</div>
-		<div class="text-center">
-			<%= submit_tag "private"  , :name => "choice" , :class => "btn btn-warning"%>
-			<span class="fa fa-suitcase"></span>
-			<%= submit_tag "public"  , :name => "choice" , :class => "btn btn-success"%>
-			<span class="fa fa-globe"></span>
-		</div>
-<% end %>
+	<%= hidden_field_tag("college_autocomplete_id", "", :id => "college_autocomplete_id") %>
+	<%= hidden_field_tag("branch_autocomplete_id" , "", :id => "branch_autocomplete_id") %>
+	<%= hidden_field_tag("course_autocomplete_id" , "", :id => "course_autocomplete_id") %>
+
+	<%= text_field_tag :search_college , nil , :id => "college_autocomplete" , :placeholder => "Search College"  %>
+	<%= text_field_tag :search_branch  , nil , :id => "branch_autocomplete"  , :placeholder => "Search Branch"  %>
+	<%= text_field_tag :search_course  , nil , :id => "course_autocomplete"  , :placeholder => "Search Course"  %>
+
+	<%= submit_tag "Find", :class => "btn btn-success" %>
+
+<%end%>
+</div>
+
+
+
+<script>
+
+$(function() {
+
+	var selected_college_name = "";
+	var selected_branch_name = "";
+	var selected_course_name = "";
+
+    $('#college_autocomplete').autocomplete({
+            minLength: 2,
+			delay: 300 ,
+            source: function(request, response) {
+	            $.ajax({
+	                url: "/colleges/autocomplete_elements.json",
+	                dataType: "json",
+	                data: {
+	                    term : request.term
+	                },
+	                success: function(data) {
+	                	if(data.length == 0){
+		                    response( [{label: "No match Found" , value: ""}] );
+	                	}else{
+	                		response(data);
+		                }
+	                }
+            	});
+	        },
+
+            focus: function(event, ui) {
+                $('#college_autocomplete').val(ui.item.name);
+                return false;
+            },
+	        select: function(event, ui) {
+			        $('#college_autocomplete').val(ui.item.name);
+			        $('#college_autocomplete_id').val(ui.item.id);
+	                return false;
+	        }
+        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+        };
+
+
+    $('#branch_autocomplete').autocomplete({
+            minLength: 2,
+			delay: 300 ,
+            source: function(request, response) {
+	            $.ajax({
+	                url: "/branches/autocomplete_elements.json",
+	                dataType: "json",
+	                data: {
+	                    term : request.term,
+	                    college_name : selected_college_name
+	                },
+	                success: function(data) {
+	                	if(data.length == 0){
+		                    response( [{label: "No match Found" , value: ""}] );
+	                	}else{
+	                		response(data);
+		                }
+	                }
+            	});
+	        },
+
+            focus: function(event, ui) {
+                $('#branches_autocomplete').val(ui.item.name);
+                return false;
+            },
+	        select: function(event, ui) {
+			        $('#branch_autocomplete').val(ui.item.name);
+			        $('#branch_autocomplete_id').val(ui.item.id);
+	                return false;
+	        }
+        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+        };
+
+
+    $('#course_autocomplete').autocomplete({
+            minLength: 2,
+			delay: 300 ,
+            source: function(request, response) {
+	            $.ajax({
+	                url: "/courses/autocomplete_elements.json",
+	                dataType: "json",
+	                data: {
+	                    term : request.term,
+	                    college_name : selected_college_name,
+	                    branch_name : selected_branch_name
+	                },
+	                success: function(data) {
+	                	if(data.length == 0){
+		                    response( [{label: "No match Found" , value: ""}] );
+	                	}else{
+	                		response(data);
+		                }
+	                }
+            	});
+	        },
+
+
+            focus: function(event, ui) {
+                $('#course_autocomplete').val(ui.item.name);
+                return false;
+            },
+	        select: function(event, ui) {
+			        $('#course_autocomplete').val(ui.item.name);
+			        $('#course_autocomplete_id').val(ui.item.id);
+	                return false;
+	        }
+        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+        };
+
+		$( "#college_autocomplete, #branch_autocomplete, #course_autocomplete" ).keypress(function() {
+			selected_college_name = $("#college_autocomplete").val();
+			selected_branch_name  = $("#branch_autocomplete").val();
+			selected_course_name  = $("#course_autocomplete").val();
+		});
+
+
+ });
+
+
+</script>
