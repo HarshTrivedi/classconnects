@@ -2,9 +2,5 @@
 
 <%= render(:partial => 'shared/buckets', :locals => {:buckets => @downloaded_buckets } )%>
 
-<%= s3_uploader_form callback_url: create_document_path(1) , id: "s3-uploader" , :class => "btn btn-group" do %>
-		<%= file_field_tag "file", multiple: true %>
-<% end %>
-
 
 <%= paginate @downloaded_buckets %>
