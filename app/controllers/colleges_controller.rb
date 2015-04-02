@@ -1,7 +1,7 @@
 class CollegesController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
-  before_filter :college_exists
+  before_filter :college_exists , :except => [:college_autocomplete_elements , :branch_autocomplete_elements , :course_autocomplete_elements]
   before_filter :branch_exists_if_passed 
   # before_filter :branch_passed , :only => [:show_discussion]
 
@@ -102,6 +102,43 @@ class CollegesController < ApplicationController
         render_404
       end
   end
+
+
+
+
+  def college_autocomplete_elements
+    @colleges = College.order(:name).where("name like ?" , "%#{params[:term]}%")
+    respond_to do |format|  
+        format.json { render :json => @colleges.to_json }
+    end
+  end
+
+
+  def branch_autocomplete_elements
+    college = College.find_by_name(params[:college_name])
+    if not college.nil?
+      @branches = college.branches.order(:name).where("name like ?" , "%#{params[:term]}%")
+      respond_to do |format|  
+          format.json { render :json => @branches.to_json }
+      end
+    else
+      render json: []      
+    end
+  end
+
+  def course_autocomplete_elements
+    college = College.find_by_name(params[:college_name])
+    branch  = Branch.find_by_name(params[:branch_name])
+    if (not college.nil?) and (not branch.nil?)
+      @courses = CollegeBranchPair.where( :college_id => college.id , :branch_id => branch.id ).first.courses.order(:name).where("name like ?" , "%#{params[:term]}%")
+      respond_to do |format|  
+          format.json { render :json => @courses.to_json }
+      end
+    else
+      render json: []
+    end
+  end
+
 
 
 

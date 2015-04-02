@@ -71,8 +71,13 @@ Rails.application.routes.draw do
   post '/download_bucket/:bucket_id'  => 'user_details#download_bucket'                         , as: :download_bucket
   post '/upload_bucket/:bucket_id'    => 'user_details#upload_bucket'                           , as: :upload_bucket
   
-  post 'comments/create/:parent_type/:parent_id'            => 'comments#create_comment'                  , as: :create_comment
-  post 'comment_responses/create/:comment_id'               => 'comments#create_comment_response'         , as: :create_comment_response
+  post '/comments/create/:parent_type/:parent_id'            => 'comments#create_comment'                  , as: :create_comment
+  post '/comment_responses/create/:comment_id'               => 'comments#create_comment_response'         , as: :create_comment_response
+
+
+  get '/colleges/autocomplete_elements'   => "colleges#college_autocomplete_elements" , as: :get_college_autocompletion
+  get '/branches/autocomplete_elements'   => "colleges#branch_autocomplete_elements" , as: :get_branch_autocompletion
+  get '/courses/autocomplete_elements'    => "colleges#course_autocomplete_elements" , as: :get_course_autocompletion
 
   get '/'                       => 'landings#index'                         , as: :landing
 
