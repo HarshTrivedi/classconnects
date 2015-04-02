@@ -15,11 +15,8 @@
 		<meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
 		<meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
 		<title>Welcome - CollegeColab</title>
-
     	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
-
+	   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 </head>
 
@@ -151,7 +148,7 @@
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
 
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Upload"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"" )%>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), profile_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"" )%>
 					
 					<%if not current_user.college.nil?%>
 						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
@@ -170,30 +167,16 @@
 			<!-- BEGIN PAGE CONTENT -->
 			<div class="page-content">
 				<%= render partial: "shared/flash_messages", flash: flash %> 
-					<div class="container-fluid">
-									<div class="text-center">
-										<h1> CollegeColab</h1><h5>Keep Sharring</h5>
-									</div>
-
-									<!-- Repeating portion starts -->
-									<%= render(:partial => 'shared/main_search_form' ) %>
-									<!-- Repeating portion ends -->
-
-
-								<%= yield %>
-					</div><!-- container-fluid-->
-				
-					<!-- BEGIN FOOTER -->
-					<footer class="footer">
-						© 2015 <a href="#fakelink">Senonagon</a><br>
-						Design by <a href="http://isohdesign.com/" target="_blank">Senonagon</a>.
-					</footer>
-					<!-- END FOOTER -->
-			</div><!-- /.page-content -->
-		<!-- END PAGE CONTENT -->
-		
-		
+				<div style="position: relative; z-index: 0; background: none repeat scroll 0% 0% transparent;" class="the-box no-margin no-border bg-success" id="search-heading">
+						<%= render(:partial => 'shared/main_search_form' ) %>
+						<%= yield %>
+				</div>				
+				<!-- BEGIN FOOTER -->
+				<footer class="footer">
+					© 2015 <a href="#fakelink">Senonagon</a><br>
+					Design by <a href="http://isohdesign.com/" target="_blank">Senonagon</a>.
+				</footer>
+			</div>		
 
 </body>
 </html>
-
