@@ -1,5 +1,11 @@
 <%= form_tag college_courses_remote_path( college.id ) , :id => "courses_search" , :remote => true , :method => :post do %>
     <%= hidden_field_tag :branch_id, branch.try(:id) %>
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
 <% end %>
+
+<script>
+  $("#courses_search input").keyup(function(){ 
+	    $.get($("#courses_search").attr("action"), $("#courses_search").serialize(), null, "script");
+	    return false;
+  });
+</script>

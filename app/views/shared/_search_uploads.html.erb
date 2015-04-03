@@ -1,4 +1,10 @@
 <%= form_tag uploads_remote_path , :id => "uploads_search" , :remote => true , :method => :post do %>
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
 <% end %>
+
+<script>
+  $("#uploads_search input").keyup(function(){ 
+	    $.get($("#uploads_search").attr("action"), $("#uploads_search").serialize(), null, "script");
+	    return false;
+  });
+</script>
