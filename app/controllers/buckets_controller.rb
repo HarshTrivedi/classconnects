@@ -2,6 +2,7 @@ class BucketsController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
   before_filter :bucket_exists , :except => [:new_bucket , :create_bucket ]
+  respond_to :html , :js
 
   def show_content
     bucket_id = params[:id]

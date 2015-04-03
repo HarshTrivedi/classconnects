@@ -2,6 +2,8 @@ class FoldersController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
   before_filter :folder_exists , :except => [:new_folder , :create_folder]
+  respond_to :html , :js
+
 
   def show_content
     folder_id = params[:id]

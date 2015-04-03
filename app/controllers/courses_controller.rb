@@ -2,7 +2,6 @@ class CoursesController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
   before_filter :course_exists
-
   respond_to :html , :js
 
   def show_content
