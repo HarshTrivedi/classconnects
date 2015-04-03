@@ -1,13 +1,18 @@
 class UserDetailsController < ApplicationController
   before_action :authenticate_user!
   layout "logged_in"
+  respond_to :html , :js
+
+
   def uploads
-    @uploaded_buckets = current_user.uploaded_buckets.page(params[:page])
+    search = params[:search] || ""
+    @uploaded_buckets = current_user.uploaded_buckets.search(search).page(params[:page])
 
   end
 
   def downloads
-    @downloaded_buckets = current_user.downloaded_buckets.page(params[:page])
+    search = params[:search] || ""
+    @downloaded_buckets = current_user.downloaded_buckets.search(search).page(params[:page])
   end
 
   def profile
@@ -21,13 +26,15 @@ class UserDetailsController < ApplicationController
 
   #Need link to reach here (In courses partial)
   def enrolled_courses
-    @enrolled_courses = current_user.enrolled_courses.page(params[:page])
+    search = params[:search] || ""
+    @enrolled_courses = current_user.enrolled_courses.search(search).page(params[:page])
   end
 
 
   #Need link to reach here (In courses partial)
   def favorite_courses
-    @favorite_courses = current_user.favorite_courses.page(params[:page])
+    search = params[:search] || ""
+    @favorite_courses = current_user.favorite_courses.search(search).page(params[:page])
   end
 
   #Need link to reach here (In side Nav Bar)

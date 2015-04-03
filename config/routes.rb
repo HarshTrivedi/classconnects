@@ -63,11 +63,20 @@ Rails.application.routes.draw do
   get   '/documents/:id/view'               => 'documents#view_document'         , as: :view_document
 
   get '/my_uploads'             => 'user_details#uploads'                   , as: :uploads
+  post '/my_uploads'             => 'user_details#uploads'                   , as: :uploads_remote
+
   get '/my_downloads'           => 'user_details#downloads'                 , as: :downloads
+  post '/my_downloads'           => 'user_details#downloads'                 , as: :downloads_remote
+
   get '/profile'                => 'user_details#profile'                   , as: :profile
   get '/edit_profile'           => 'user_details#edit_profile'              , as: :edit_profile
+
   get '/enrolled_courses'       => 'user_details#enrolled_courses'          , as: :enrolled_courses
+  post '/enrolled_courses'       => 'user_details#enrolled_courses'          , as: :enrolled_courses_remote
+
   get '/favorite_courses'       => 'user_details#favorite_courses'          , as: :favorite_courses
+  post '/favorite_courses'       => 'user_details#favorite_courses'          , as: :favorite_courses_remote
+
   get '/my_college'             => 'user_details#my_college'                , as: :my_college
 
 

@@ -36,7 +36,17 @@
 				<%= content_tag(:li , link_to(fa_icon("fa-book", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
 			<%end%>
 
-
+			<div id="internal_search_bar">
+				<%if current_page?(downloads_path) %>
+					<%= render(:partial => 'shared/search_downloads' ) %> 
+				<%elsif current_page?(uploads_path)  %>
+					<%= render(:partial => 'shared/search_uploads') %> 
+				<%elsif current_page?(enrolled_courses_path)  %>
+					<%= render(:partial => 'shared/search_enrolled_courses') %> 				
+				<%elsif current_page?(favorite_courses_path)  %>
+					<%= render(:partial => 'shared/search_favorite_courses') %>
+				<%end%>
+			</div>
 
 	
 		</ul>
