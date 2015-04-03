@@ -1,6 +1,6 @@
 
 <%= render(:partial => 'shared/course_navbar' , :locals => {:course => @course }) %> 
 
-<%= render(:partial => 'shared/users' , :locals => {:users => @users }) %> 
-
-<%= paginate @users %>
+<div id="users">
+	<%= render(:partial => 'shared/users' , :locals => {:users => @users }) %> 
+</div>

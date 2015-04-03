@@ -1,9 +1,6 @@
 
 <%= render(:partial => 'shared/folder_navbar' , :locals => {:folder => @folder }) %> 
 
-
 <%= render(:partial => 'shared/folders', :locals => {:folders => @folders , :parent_type => "folder", :parent_id => @folder.id} )%>
-<%= paginate @folders, :param_name => "folder_page" %>
 
 <%= render(:partial => 'shared/documents', :locals => {:documents => @documents , :parent_type => "folder" ,:parent_id => @folder.id} )%>
-<%= paginate @documents, :param_name => "document_page" %>
