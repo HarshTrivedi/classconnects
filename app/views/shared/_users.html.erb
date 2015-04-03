@@ -3,4 +3,4 @@
 	<%= render(:partial => 'shared/user', :locals => {:user => user } )%>
 <%end%>
 </div>
-<%= paginate users %>
+<%= paginate users , :remote => true %>

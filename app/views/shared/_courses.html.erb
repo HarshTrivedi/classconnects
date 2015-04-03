@@ -3,4 +3,4 @@
 	<%= render(:partial => 'shared/course', :locals => {:course => course } )%>
 <%end%>
 </div>
-<%= paginate courses %>
+<%= paginate courses  , :remote => true  %>
