@@ -87,6 +87,22 @@ class DocumentsController < ApplicationController
   end
 
 
+  def view_document
+
+    document = Document.find_by_id(params[:id])
+
+    path = document.cloud_path
+    filename = document.name
+
+    doc = BoxView::Api::Document.new.upload( path , filename )
+
+    document_session = doc.document_session
+    view_url = document_session.view_url
+
+    redirect_to view_url
+    
+  end
+
 
   #BEFORE FILTER methods
   private

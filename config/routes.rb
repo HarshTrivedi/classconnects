@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   get   '/documents/new'               => 'documents#new_document'         , as: :new_document
   post  '/documents/create/:parent_type/:parent_id' => 'documents#create_document'      , as: :create_document
   delete '/documents/:id'  => 'documents#destroy_document'   , as: :destroy_document
-
+  get   '/documents/:id/view'               => 'documents#view_document'         , as: :view_document
 
   get '/my_uploads'             => 'user_details#uploads'                   , as: :uploads
   get '/my_downloads'           => 'user_details#downloads'                 , as: :downloads
