@@ -21,4 +21,12 @@ class Course < ActiveRecord::Base
     User.where(:id => user_ids)
   end
 
+  def self.search(search)
+      if not search.strip.empty?
+        where('name LIKE ?', "%#{search}%")
+      else
+        all
+      end
+  end
+
 end

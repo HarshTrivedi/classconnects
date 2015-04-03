@@ -216,4 +216,13 @@ class User < ActiveRecord::Base
     self.uploaded_buckets.map{|bucket| 10 * bucket.up_votes - bucket.down_votes}.inject{|sum , i| sum += i}
   end
 
+  def self.search(search)
+      if not search.strip.empty?
+        where('email LIKE ?', "%#{search}%")
+      else
+        all
+      end
+  end
+
+
 end

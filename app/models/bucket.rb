@@ -42,5 +42,13 @@ class Bucket < ActiveRecord::Base
     votes_for.down.size
   end
 
+  def self.search(search)
+      if not search.strip.empty?
+        where('name LIKE ?', "%#{search}%")
+      else
+        all
+      end
+  end
+
 
 end
