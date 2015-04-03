@@ -45,6 +45,8 @@ Rails.application.routes.draw do
 
 
   get 'folders/:id/content'       => 'folders#show_content'     , as: :folder_content
+  post 'folders/:id/content'      => 'folders#show_content'     , as: :folder_content_remote
+
   get 'folders/:id/details'       => 'folders#show_details'     , as: :folder_details
   get 'folders/:id/edit_details'  => 'folders#edit_details'     , as: :edit_folder_details
   patch 'folders/:id'               => 'folders#update_details'   , as: :update_folder_details  

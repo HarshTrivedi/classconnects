@@ -1,6 +1,13 @@
 
 <%= render(:partial => 'shared/folder_navbar' , :locals => {:folder => @folder }) %> 
 
+Folders:
+<div id="folders">
 <%= render(:partial => 'shared/folders', :locals => {:folders => @folders , :parent_type => "folder", :parent_id => @folder.id} )%>
+</div>
 
+<br>
+Documents:
+<div id="documents">
 <%= render(:partial => 'shared/documents', :locals => {:documents => @documents , :parent_type => "folder" ,:parent_id => @folder.id} )%>
+</div>

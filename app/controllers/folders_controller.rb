@@ -5,10 +5,11 @@ class FoldersController < ApplicationController
 
   def show_content
     folder_id = params[:id]
+    search = params[:search] || ""
     @folder = Folder.find_by_id(folder_id)
     @message = "Folder specific folders and documents"    
-    @folders = @folder.folders.order(:created_at).page(params[:folder_page])
-    @documents = @folder.documents.order(:created_at).page(params[:document_page])
+    @folders = @folder.folders.order(:created_at).search(search).page(params[:folder_page])
+    @documents = @folder.documents.order(:created_at).search(search).page(params[:document_page])
   end
 
   def show_details
