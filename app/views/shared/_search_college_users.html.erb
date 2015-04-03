@@ -1,0 +1,5 @@
+<%= form_tag college_users_remote_path( college.id ) , :id => "users_search" , :remote => true , :method => :post do %>
+    <%= hidden_field_tag :branch_id, branch.try(:id) %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>

@@ -34,6 +34,15 @@
 			<%end%>
 			 
 
+			<div id="internal_search_bar">
+				<%if current_page?(college_content_path) %>
+					<%= render(:partial => 'shared/search_college_buckets' , :locals => {:college => college , :branch => branch} ) %> 
+				<%elsif current_page?(college_courses_path)  %>
+					<%= render(:partial => 'shared/search_college_courses' , :locals => {:college => college , :branch => branch} ) %> 
+				<%elsif current_page?(college_users_path)  %>
+					<%= render(:partial => 'shared/search_college_users' , :locals => {:college => college , :branch => branch} ) %> 				
+				<%end%>
+			</div>
 		</ul>
 </div>
 </div>
