@@ -2,8 +2,8 @@
 <%= render(:partial => 'shared/select_branch' ,:locals => { :college => @college , :branches_name_id => @branches_name_id } ) %>
 <% end %>
 
-<%= render(:partial => 'shared/college_navbar' , :locals => {:college => @college }) %> 
+<%= render(:partial => 'shared/college_navbar' , :locals => {:college => @college , :branch => @branch }) %> 
 
-<%= render(:partial => 'shared/users' , :locals => {:users => @users }) %> 
-
-<%= paginate @users %>
+<div id="users">
+	<%= render(:partial => 'shared/users' , :locals => {:users => @users }) %> 
+</div>
