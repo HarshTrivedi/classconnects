@@ -1,7 +1,6 @@
 
 <%= render(:partial => 'shared/search_results_navbar' ) %>
 
-<%= render(:partial => 'shared/buckets', :locals => {:buckets => @buckets } )%>
-
-<%= paginate @buckets %>
-
+<div id="buckets">
+	<%= render(:partial => 'shared/buckets', :locals => {:buckets => @buckets } )%>
+</div>
