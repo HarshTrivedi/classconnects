@@ -1,5 +1,5 @@
 <%= render(:partial => 'shared/user_details_navbar' ) %>
 
-<%= render(:partial => 'shared/buckets', :locals => {:buckets => @uploaded_buckets } )%>
-
-<%= paginate @uploaded_buckets %>
+<div id="buckets">
+	<%= render(:partial => 'shared/buckets', :locals => {:buckets => @uploaded_buckets } )%>
+</div>
