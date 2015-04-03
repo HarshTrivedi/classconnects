@@ -70,6 +70,7 @@ GEM
     bourbon (3.2.4)
       sass (~> 3.2)
       thor
+    box_view (0.0.6)
     builder (3.2.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
@@ -544,6 +545,7 @@ DEPENDENCIES
   acts_as_votable (~> 0.10.0)
   awesome_print
   aws-sdk
+  box_view
   bundler
   coffee-rails (~> 4.0.0)
   cucumber-rails
