@@ -25,6 +25,13 @@
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Edit Details"), edit_bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"" )%>
 			<%end%>
+
+
+			<div id="internal_search_bar">
+				<%if current_page?(bucket_content_path) %>
+					<%= render(:partial => 'shared/search_bucket_content' , :locals => {:bucket => bucket } ) %> 
+				<%end%>
+			</div>
 			 
 
 		</ul>

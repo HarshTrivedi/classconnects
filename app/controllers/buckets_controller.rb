@@ -5,10 +5,11 @@ class BucketsController < ApplicationController
 
   def show_content
     bucket_id = params[:id]
+    search = params[:search] || ""
     @bucket = Bucket.find_by_id(bucket_id)
     @message = "Bucket specific folders and documents"    
-    @folders = @bucket.folders.order(:created_at).page(params[:folder_page])
-    @documents = @bucket.documents.order(:created_at).page(params[:document_page])
+    @folders = @bucket.folders.order(:created_at).search(search).page(params[:folder_page])
+    @documents = @bucket.documents.order(:created_at).search(search).page(params[:document_page])
   end
 
   def show_details

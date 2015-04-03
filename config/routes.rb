@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
 
   get 'buckets/:id/content'  => 'buckets#show_content'          , as: :bucket_content
+  post 'buckets/:id/content'  => 'buckets#show_content'          , as: :bucket_content_remote
+
   get 'buckets/:id/details'  => 'buckets#show_details'          , as: :bucket_details
   get 'buckets/:id/edit_details'  => 'buckets#edit_details'     , as: :edit_bucket_details
   patch 'buckets/:id'          => 'buckets#update_details'        , as: :update_bucket_details  

@@ -7,5 +7,13 @@ class Document < ActiveRecord::Base
   validates :name, :presence => true
   validates :cloud_path, :presence => true
 
+  def self.search(search)
+      if not search.strip.empty?
+        where('name LIKE ?', "%#{search}%")
+      else
+        all
+      end
+  end
+
 
 end

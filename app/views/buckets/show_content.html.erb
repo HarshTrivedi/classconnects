@@ -4,10 +4,12 @@
 
 
 Folders:
+<div id="folders">
 <%= render(:partial => 'shared/folders', :locals => {:folders => @folders  , :parent_type => "bucket" , :parent_id => @bucket.id} )%>
-<%= paginate @folders, :param_name => "folder_page" %>
+</div>
 
 <br>
 Documents:
+<div id="documents">
 <%= render(:partial => 'shared/documents', :locals => {:documents => @documents , :parent_type => "bucket" , :parent_id => @bucket.id} )%>
-<%= paginate @documents, :param_name => "document_page" %>
+</div>
