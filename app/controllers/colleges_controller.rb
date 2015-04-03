@@ -4,11 +4,12 @@ class CollegesController < ApplicationController
   before_filter :college_exists , :except => [:college_autocomplete_elements , :branch_autocomplete_elements , :course_autocomplete_elements]
   before_filter :branch_exists_if_passed 
   # before_filter :branch_passed , :only => [:show_discussion]
-
+  respond_to :html , :js
 
   def show_content
     	college_id = params[:id]
     	@college = College.find_by_id(college_id)
+      search = params[:search] || ""
 
       if current_user.college_branch_enrolled?
         @branch = current_user.branch        
@@ -22,17 +23,18 @@ class CollegesController < ApplicationController
 
       if @branch
           @message = "College-Branch specific buckets"
-          @buckets = @college.buckets_by_branch(@branch).order(:created_at).page(params[:page])
+          @buckets = @college.buckets_by_branch(@branch).search(search).order(:created_at).page(params[:page])
       else
           @message = "College specific buckets"
-    	   	@buckets = @college.buckets.order(:created_at).page(params[:page])
+    	   	@buckets = @college.buckets.order(:created_at).search(search).page(params[:page])
       end
+
   end
 
   def show_users
       college_id = params[:id]
       @college = College.find_by_id(college_id)
-
+      search = params[:search] || ""
 
       if current_user.college_branch_enrolled?
         @branch = current_user.branch
@@ -45,10 +47,10 @@ class CollegesController < ApplicationController
 
       if @branch
         @message = "College-Branch specific users"
-        @users = @college.users_by_branch(@branch.id).order(:created_at).page(params[:page])
+        @users = @college.users_by_branch(@branch.id).order(:created_at).search(search).page(params[:page])
       else
         @message = "College specific users"
-        @users = @college.users.order(:created_at).page(params[:page])
+        @users = @college.users.order(:created_at).search(search).page(params[:page])
       end
   end
 
@@ -56,6 +58,7 @@ class CollegesController < ApplicationController
   def show_courses
       college_id = params[:id]
       @college = College.find_by_id(college_id)
+      search = params[:search] || ""
 
       if current_user.college_branch_enrolled?
         @branch = current_user.branch
@@ -68,10 +71,10 @@ class CollegesController < ApplicationController
 
       if @branch
         @message = "College-Branch specific courses"
-        @courses = @college.courses_by_branch(@branch.id).page(params[:page])
+        @courses = @college.courses_by_branch(@branch.id).search(search).page(params[:page])
       else
         @message = "College specific courses"
-        @courses = @college.courses.page(params[:page])
+        @courses = @college.courses.search(search).page(params[:page])
       end
   end
 
