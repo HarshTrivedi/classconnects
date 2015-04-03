@@ -10,10 +10,15 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'landings#index'
 
-  get 'colleges/:id/content'  => 'colleges#show_content'         , as: :college_content
-  # get 'colleges/:id/peers'    => 'colleges#show_peers'           , as: :college_peers
+  get   'colleges/:id/content'  => 'colleges#show_content'         , as: :college_content
+  post  'colleges/:id/content'  => 'colleges#show_content'         , as: :college_content_remote
+
+  get 'colleges/:id/courses'    => 'colleges#show_courses'         , as: :college_courses
+  post 'colleges/:id/courses'   => 'colleges#show_courses'         , as: :college_courses_remote
+  
   get 'colleges/:id/users'    => 'colleges#show_users'           , as: :college_users
-  get 'colleges/:id/courses'  => 'colleges#show_courses'         , as: :college_courses
+  post 'colleges/:id/users'    => 'colleges#show_users'           , as: :college_users_remote
+
   get 'colleges/:id/discuss'  => 'colleges#show_discussion'      , as: :college_discussion
 
 
@@ -78,6 +83,12 @@ Rails.application.routes.draw do
   get '/colleges/autocomplete_elements'   => "colleges#college_autocomplete_elements" , as: :get_college_autocompletion
   get '/branches/autocomplete_elements'   => "colleges#branch_autocomplete_elements" , as: :get_branch_autocompletion
   get '/courses/autocomplete_elements'    => "colleges#course_autocomplete_elements" , as: :get_course_autocompletion
+
+
+  post '/search_buckets'     => "user_details#search_buckets" , as: :search_buckets 
+  post '/search_courses'     => "user_details#search_courses" , as: :search_courses
+  post '/search_users'       => "user_details#search_users" , as: :search_users
+
 
   get '/'                       => 'landings#index'                         , as: :landing
 
