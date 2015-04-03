@@ -25,7 +25,15 @@
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
 			<%end%>
-			 
+
+			<div id="internal_search_bar">
+				<%if current_page?(course_content_path) %>
+					<%= render(:partial => 'shared/search_course_buckets' , :locals => {:course => course } ) %> 
+				<%elsif current_page?(course_users_path)  %>
+					<%= render(:partial => 'shared/search_course_users' , :locals => {:course => course } ) %> 				
+				<%end%>
+			</div>	
+
 
 		</ul>
 </div>

@@ -23,8 +23,11 @@ Rails.application.routes.draw do
 
 
   get 'courses/:id/content'  => 'courses#show_content'          , as: :course_content
-  # get 'courses/:id/peers'    => 'courses#show_peers'            , as: :course_peers
+  post 'courses/:id/content'  => 'courses#show_content'          , as: :course_content_remote
+
   get 'courses/:id/users'    => 'courses#show_users'            , as: :course_users
+  post 'courses/:id/users'    => 'courses#show_users'            , as: :course_users_remote
+
   get 'courses/:id/discuss'  => 'courses#show_discussion'       , as: :course_discussion
 
 

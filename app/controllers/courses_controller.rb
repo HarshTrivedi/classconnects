@@ -3,18 +3,22 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!
   before_filter :course_exists
 
+  respond_to :html , :js
+
   def show_content
     course_id = params[:id]
+    search = params[:search] || ""
     @course = Course.find_by_id(course_id)
     @message = "Course specific buckets"    
-    @buckets = @course.buckets.page(params[:page])
+    @buckets = @course.buckets.search(search).page(params[:page])
   end
 
   def show_users
     course_id = params[:id]
+    search = params[:search] || ""
     @course = Course.find_by_id(course_id)
     @message = "Course specific buckets"    
-    @users = @course.enrolled_users.page(params[:page])
+    @users = @course.enrolled_users.search(search).page(params[:page])
   end
 
   def show_discussion
