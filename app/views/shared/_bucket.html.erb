@@ -2,7 +2,8 @@
     <div class="media">
         <a class="pull-left" href="#fakelink"> <!--if want to give user profile link-->
         
-        <img class="media-object img-circle" alt="Avatar" src="img/avatar-1.jpg" title="User name"></img><!--ask remaining-->
+        <%= image_tag avatar_url(bucket.uploader) , :class => "media-object img-circle" , :title => bucket.uploader.full_name%>
+
         <div class="clearfix visible-xs"></div>
         <div class="media-body">
             <a href="#fakelink"></a>
@@ -18,7 +19,7 @@
             <ul class="list-inline">
                 <li><a href="#Up">
                     <i class="fa fa-thumbs-o-up"></i>
-                </a>120
+                </a> 
                 </li>  |  
                 <li><a href="#Down">
                         <i class="fa fa-thumbs-o-down"></i>
@@ -39,7 +40,7 @@
 
             <span class="small text-muted">
             	<% course = bucket.course %>
-				<b>Course:</b><%= link_to(  course.name , course_content_path(course.id)  ) %>
+				<b>Course:  </b><%= link_to(  course.name , course_content_path(course.id)  ) %>
 			</span>
 
         </div>

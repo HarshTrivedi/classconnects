@@ -1,26 +1,27 @@
-<!-- bucket -->
-<div class="media-body">
-	  <p></p>
-	  <h4 class="media-heading">
-	  	<%= link_to( folder.name , folder_content_path(folder.id)  ) %>
-	  </h4>
-	  <p></p>
-
-	  <%if folder.bucket.uploader == current_user%>
-		  <%= link_to("Delete" , destroy_folder_path(folder.id) , :method => :delete , :class => "btn btn-danger") %>
-	  <%end%>
-
-	  Created At:
-	  <span class="text-muted">
-	  		<%= folder.created_at %>
-	  </span>
-	  <p><p>
-	  Updated At: 
-	  <span class="text-muted">
-	  		<%= folder.updated_at %>
-	  </span>
-	  <p><p>
-
-
+<div class="the-box no-border">
+	<div class="media user-card-sm">	  
+	  <%uploader = folder.bucket.uploader %>
+	  <div class="pull-left" href="#fakelink">
+	      <%= image_tag avatar_url(uploader) , :class => "media-object img-circle" , :title => uploader.full_name%>
+	  </div>
+	  <div class="media-body">										  	
+		<span class="user-heading">
+			<%= link_to( folder.name , folder_content_path(folder.id)  ) %>
+		</span>
+		<br>
+		<span class="user-mail">
+			<%= uploader.email %>
+		</span>
+		<br>
+		<span class="small-user text-muted">
+			Created <%= time_ago_in_words(folder.created_at) %> ago
+		</span>
+	    </div>
+		<div class="right-button">
+			<%= link_to(  fa_icon("external-link-square btn-xs btn-info btn-perspective", text: "Visit") , folder_content_path( folder.id ) )%>
+	    	<%if uploader == current_user %>
+			  <%= link_to("Delete" , destroy_folder_path(folder.id) , :method => :delete , :class => "btn btn-danger") %>
+		    <%end%>
+		</div>
+	</div>
 </div>
-

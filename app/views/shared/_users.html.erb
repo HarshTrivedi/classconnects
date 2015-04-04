@@ -1,6 +1,6 @@
 <div class="row">
-<%for user in users%>
-	<%= render(:partial => 'shared/user', :locals => {:user => user } )%>
-<%end%>
+  <%for user in users%>  
+		<%= render(:partial => 'shared/user', :locals => {:user => user } )%>
+  <%end%>
 </div>
 <%= paginate users , :remote => true %>

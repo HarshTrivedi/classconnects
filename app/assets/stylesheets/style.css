@@ -1670,8 +1670,12 @@ h1.page-heading small{
 	background: #ffffff;
 	border: 1px solid #D5DAE0;
 	position: relative;
+	box-shadow: 10px 10px 5px #888888;
 }
-
+.the-box:hover{
+	
+	background-color: rgba(255,255,255,0.8);
+}
 .the-box.more-padding{
 	padding: 20px;
 }
@@ -6543,7 +6547,7 @@ p.date small{
 	color:rgb(60,118,61);
 }
 .user-heading a{
-	color:rgb(66,139,202);
+	color:rgb(55, 188, 155);
 	font-size : 18px;
 }
 .user-heading a:hover,a:focus{
@@ -6551,6 +6555,18 @@ p.date small{
 	
 }
 .user-heading{
+	color:rgb(55,188,155);
+	font-size : 18px;
+}
+.document-heading a{
+	color:rgb(55, 188, 155);
+	font-size : 18px;
+}
+.document-heading a:hover,a:focus{
+	color:rgb(42,100,150);
+	
+}
+.document-heading{
 	color:rgb(55,188,155);
 	font-size : 18px;
 }

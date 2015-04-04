@@ -1,18 +1,7 @@
-<div class="tab-content">
-	<div class="tab-pane fade in active" id="example-search-class-notes">
-		<div class="row">
-			<div class="col-sm-8 col-xs-12">
-				<ul class="media-list">
-				  <%for document in documents%>
-				  <li class="media">
-						<%= render(:partial => 'shared/document', :locals => {:document => document } )%>
-				  </li>
-				  <%end%>
-				  <%= render(:partial => 'shared/new_document_form', :locals => {:parent_type => parent_type , :parent_id => parent_id } )%>
-				</ul>
-			</div>
-		</div>
-	</div><!-- /.tab-pane fade -->
+<div class="row">
+	  <%for document in documents%>
+			<%= render(:partial => 'shared/document', :locals => {:document => document } )%>
+	  <%end%>
 </div>
 
 <%= paginate documents, :param_name => "document_page"  , :remote => true %>

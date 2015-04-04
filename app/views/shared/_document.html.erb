@@ -1,26 +1,28 @@
-<!-- bucket -->
-<div class="media-body">
-	  <p></p>
-	  <h4 class="media-heading">
-	  	<%= link_to( document.name , document_details_path(document.id)  ) %>
-	  </h4>
-	  <p></p>
-	  <%if document.bucket.uploader == current_user%>
-		  <%= link_to("Delete" , destroy_document_path(document.id) , :method => :delete ,:class => "btn btn-danger") %>
-	  <%end%>
+<div class="the-box no-border">
+	<div class="media user-card-sm">
+	  <%uploader = document.bucket.uploader %>
 
-	  <p><p>
-	  Created At:
-	  <span class="text-muted">
-	  		<%= document.created_at %>
-	  </span>
-	  Updated At: 
-	  <span class="text-muted">
-	  		<%= document.updated_at %>
-	  </span>
-	  <p><p>
-
-	  <%= link_to("View" , view_document_path(document.id) ,:class => "btn btn-success") %>
-
+	  <div class="pull-left" href="#fakelink">
+	      <%= image_tag avatar_url(uploader) , :class => "media-object img-circle" , :title => uploader.full_name%>
+	  </div>
+	  <div class="media-body">
+		<span class="document-heading">
+			<%= link_to( document.name , document_details_path(document.id)  ) %>
+		</span>
+		<br>
+		<span class="user-mail">
+			<%= uploader.email %>
+		</span>
+		<br>
+		<span class="small-user text-muted">
+			Created <%= time_ago_in_words(document.created_at) %> ago
+		</span>
+	  </div>
+		<div class="right-button">
+			<%= link_to(  fa_icon("external-link-square", text: "View") , view_document_path(document.id) )%>
+			<%if uploader == current_user%>
+				<%= link_to("Delete" , destroy_document_path(document.id) , :method => :delete ,:class => "btn btn-danger") %>
+			<%end%>
+		</div>
+	</div>
 </div>
-
