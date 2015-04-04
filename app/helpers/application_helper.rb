@@ -14,7 +14,17 @@ module ApplicationHelper
 	    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
 	    # "http://gravatar.com/avatar/#{gravatar_id}.png?s=48&d=#{CGI.escape(default_url)}"
 		# end
+
+		#Some available options for default but user specific identifications
+
+		#https://en.gravatar.com/site/implement/images/
+		#identicon
+		#retro
+		#mosterid
+		#wavatar
 		"http://gravatar.com/avatar/#{gravatar_id}.png?d=identicon"
+
+
 	end
 
 
