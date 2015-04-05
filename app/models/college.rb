@@ -1,9 +1,10 @@
 class College < ActiveRecord::Base
+  attr_accessor :branch_id
   has_many :college_branch_pairs
   has_many :branches, through: :college_branch_pairs
 
   validates :name, :presence => true
-
+  validates :name, :uniqueness => true
 
   def buckets
   	all_college_branch_pairs = self.college_branch_pairs
@@ -68,6 +69,32 @@ class College < ActiveRecord::Base
     college_branch_pair.comments rescue nil
   end
 
+  def documents
+      Document.where( :bucket_id => self.buckets.map(&:id) )
+  end
+
+
+  def data_shared
+  end
+  
+  ransacker :by_branch_name,
+        formatter: proc { |selected_branch_id|
+              data = Branch.find_by_id(selected_branch_id).colleges.map(&:id)
+              data = data.present? ? data : nil
+        } do |parent|
+        parent.table[:id]
+  end
+
+  ransacker :by_course_name,
+        formatter: proc { |selected_course_id|
+              data = (Course.search(  Course.find_by_id(selected_course_id).name  ).map{|course|  course.colleges.map(&:id)  }.flatten rescue nil)
+              data = data.present? ? data : nil
+        } do |parent|
+        parent.table[:id]
+  end
+
 
 
 end
+
+

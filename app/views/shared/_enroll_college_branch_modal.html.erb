@@ -1,0 +1,25 @@
+<div class="modal fade" id="DarkNoShadowModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+	  <div class="modal-dialog">
+		<div class="modal-content modal-no-shadow">
+		  <div class="modal-header bg-dark no-border">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title">Modal title</h4>
+		  </div>
+		  <div class="modal-body">
+				<%= simple_form_for CollegeBranchPair.new , :url => create_college_branch_enrollment_path , :method => "post" , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+				  <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+				  <%= f.association :college, label_method: :name , :include_blank => false , :input_html => { :class => ""}%>
+				  <%= f.association :branch, label_method: :name , :include_blank => false , :input_html =>  { :class => ""}%>
+				  <div class="text-center">
+				  	<%= f.button :submit , "Enroll Me", :class => "btn btn-success"%>
+				  </div>
+				<% end %>
+
+		  </div>
+		  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+		  </div><!-- /.modal-footer -->
+		</div><!-- /.modal-content .modal-no-shadow -->
+	  </div><!-- /.modal-dialog -->
+</div>

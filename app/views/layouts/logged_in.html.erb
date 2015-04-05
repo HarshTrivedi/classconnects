@@ -23,65 +23,6 @@
 
 
 <body class="tooltips">
-
-		<!-- BEGIN PANEL DEMO -->
-		<div class="box-demo">
-			<div class="inner-panel">
-				<div class="cog-panel" id="demo-panel"><i class="fa fa-search"></i> </div>
-				<!--<p class="text-muted small text-center">35 COLOR SCHEMES</p>-->
-				<div class="row text-center">
-					
-					<div class="col-xs-3">
-						<div class="custom-search">
-						<form>
-						<h3>Custom Search</h3>
-						<h4>Select College <!--<b class="caret"></b>--></h4>
-
-						<select name = "Colleges" style="font-size:13px; font-weight:700; font-family: 'Lato',sans-serif; margin-bottom:5px;" type="text"/>
-							
-          				<option ><a href="#"><h2>DA-IICT</h2></a></option>
-            			<option><a href="#">MSU</a></option>
-            			<option><a href="#">xyz</a></option>
-            		
-               			</select>
-               			
-               			<button class="btn btn-primary btn-xs"><i class="fa fa-search fa-xs"></i> Go to College</button>
-               			<br><br>
-               			<h4>Select Branch <!--<b class="caret"></b>--></h4>
-						<select name = "Branches" style="font-size:13px; font-weight:700; font-family: 'Lato',sans-serif; margin-bottom:5px;" type="text"/>
-          				<option><a href="#">EC</a></option>
-            			<option><a href="#">CS</a></option>
-            			<option><a href="#">xyz</a></option>
-               			</select>
-               			<button class="btn btn-primary btn-xs"><i class="fa fa-search fa-xs"></i> Go to Branch</button>
-               			<br><br>
-               			<h4>Select Course</h4>
-						<select name = "Courses" style="font-size:13px; font-weight:700; font-family: 'Lato',sans-serif; margin-bottom:5px;" type="text"/>
-          				<option><a href="#">Software engineering</a></option>
-            			<option><a href="#">OS</a></option>
-            			<option><a href="#">CG</a></option>
-            			</select>
-            			<button class="btn btn-primary btn-xs"><i class="fa fa-search fa-xs"></i> Go to Course</button>
-            			<br> <br> <br>
-            			<button class="btn btn-warning btn-s"><i class="fa fa-search fa-xs"></i> Custom Search</button>
-						</form>
-					</div>
-					</div>
-					
-				</div>
-				
-			</div>
-		</div>
-		<!-- END PANEL DEMO -->
-	
-		
-		
-		
-		<!--
-		===========================================================
-		BEGIN PAGE
-		===========================================================
-		-->
 		<div class="wrapper">
 			<!-- BEGIN TOP NAV -->
 			<div class="top-navbar">
@@ -89,7 +30,7 @@
 					
 					<!-- Begin Logo brand -->
 					<div class="logo-brand">
-						<a href="#">CollegeColab</a>
+						<h3><a href="#">Class-Colab</a></h3>
 					</div><!-- /.logo-brand -->
 					<!-- End Logo brand -->
 					
@@ -99,9 +40,9 @@
 						<div class="btn-collapse-sidebar-left">
 							<i class="fa fa-bars"></i>
 						</div><!-- /.btn-collapse-sidebar-left -->
-						<!-- End button sidebar left toggle -->
-												
-						<!-- Begin user session nav -->
+
+						<%= render(:partial => 'shared/notifications' ) %>
+
 						<ul class="nav-user navbar-right">
 							<li class="dropdown">
 							  <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">
@@ -110,72 +51,111 @@
 							  </a>
 							  <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
 								<li><a href="#fakelink">Account setting</a></li>
-								<li><a href="#fakelink">Payment setting</a></li>
-								<li><a href="#fakelink">Change password</a></li>
-								<li><a href="#fakelink">My public profile</a></li>
+								<li><%= link_to 'Change Password', edit_user_registration_path %></li>
+								<li><a href="#fakelink">Profile</a></li>
 								<li class="divider"></li>
-								<li><a href="http://diliat.in/themeforest/sentir/1.2/lock-screen.html">Lock screen</a></li>
-								<li><a href="http://diliat.in/themeforest/sentir/1.2/login.html">Log out</a></li>
+								<li><a href="#">Lock screen</a></li>
+								<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %>. </li>
 							  </ul>
 							</li>
 						</ul>
-						<!-- End user session nav -->
-						
-						<!-- Begin Collapse menu nav -->
 						<div class="collapse navbar-collapse" id="main-fixed-nav">
-							 <!-- Begin nav search form -->
-							<!--<form class="navbar-form navbar-left" role="search">
-								<div class="form-group">
-									<input class="form-control" placeholder="Search" type="text">
-								</div>
-							</form>-->
-							<!-- End nav search form -->
-								
 						</div><!-- /.navbar-collapse -->
-						<!-- End Collapse menu nav -->
 					</div><!-- /.top-nav-content -->
 				</div><!-- /.top-navbar-inner -->
 			</div><!-- /.top-navbar -->
-			<!-- END TOP NAV -->
-			
-			
 			
 			<!-- BEGIN SIDEBAR LEFT -->
 			<div tabindex="5000" style="overflow: hidden;" class="sidebar-left sidebar-nicescroller">
 				<ul class="sidebar-menu">
-					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%if current_page?(uploads_path) %>
+					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"active" )%>
+					<%else%>
+					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"")%>
+					<%end%>
+					<%if current_page?(downloads_path) %>
+					<%= content_tag(:li , link_to(fa_icon("cloud-download icon-sidebar", text: "My Downloads"), downloads_path , :data => {:toggle=>""}), :class=>"active" )%>
+					<%else%>
 					<%= content_tag(:li , link_to(fa_icon("cloud-download icon-sidebar", text: "My Downloads"), downloads_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%end%>
+					<%if current_page?(enrolled_courses_path) %>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
+					<%else%>
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%end%>
+					<%if current_page?(favorite_courses_path) %>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
+					<%else%>
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
-
+					<%end%>
+					<%if current_page?("#fake_link_yet") %>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Upload"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"active" )%>
+					<%else%>
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Upload"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"" )%>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"" )%>
+					<%end%>
+					<%if current_page?(profile_main_path) %>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), profile_main_path , :data => {:toggle=>""}), :class=>"active" )%>
+					<%else%>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), profile_main_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%end%>
 					
 					<%if not current_user.college.nil?%>
+						<%if current_page?(my_college_path) %>
+						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"active" )%>
+						<%else%>
 						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
+						<%end%>
 					<%else%>
-						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enroll College/Branch"), new_college_branch_enrollment_path , :data => {:toggle=>""}), :class=>"" )%>
+						<%if current_page?(new_college_branch_enrollment_path) %>
+						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enroll College/Branch"), my_college_path , :data => {:toggle=>""}), :class=>"active" )%>
+						<%else%>
+						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enroll College/Branch"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
+						<%end%>
+						
 					<%end%>
 
 				</ul>
 			</div><!-- /.sidebar-left -->
-			<!-- END SIDEBAR LEFT -->
 			
-			
-			
+
+			<div class="modal fade" id="DarkNoShadowModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+				  <div class="modal-dialog">
+					<div class="modal-content modal-no-shadow">
+					  <div class="modal-header bg-dark no-border">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title"> Register in College / Branch </h4>
+					  </div>
+					  <div class="modal-body">
+							<%= simple_form_for CollegeBranchPair.new , :url => create_college_branch_enrollment_path , :method => "post" , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+							  <%= f.input :user_id, :as => :hidden, :input_html => { :value => 1 } %>
+							  <%= f.association :college, label_method: :name , :include_blank => false , :input_html => { :class => "chosen-input"} %>
+							  <%= f.association :branch, label_method: :name , :include_blank => false , :input_html =>  { :class => "chosen-input"} %>
+							  <div class="modal-footer">
+								  <div class="text-center">
+	   							  	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								  	<%= f.button :submit , "Enroll Me", :class => "btn btn-success"%>
+								  </div><!-- /.modal-footer -->
+							  </div>
+							<% end %>
+					  </div>
+					</div><!-- /.modal-content .modal-no-shadow -->
+				  </div><!-- /.modal-dialog -->
+			</div>
 			
 			
 			<!-- BEGIN PAGE CONTENT -->
+			<%= render partial: "shared/flash_messages", flash: flash %>
 			<div class="page-content">
-				<%= render partial: "shared/flash_messages", flash: flash %> 
-				<div style="position: relative; z-index: 0; background: none repeat scroll 0% 0% transparent;" class="the-box no-margin no-border bg-success" id="search-heading">
-						<%= render(:partial => 'shared/main_search_form' ) %>
-						<%= yield %>
-				</div>				
+				<div class="container-fluid">
+					<%= render(:partial => 'shared/main_search_form' ) %>
+					<div class="setting_two"></div> 			
+				</div>
+				<%= yield %>
 				<!-- BEGIN FOOTER -->
 				<footer class="footer">
-					© 2015 <a href="#fakelink">Senonagon</a><br>
-					Design by <a href="http://isohdesign.com/" target="_blank">Senonagon</a>.
+					<br>
+					© 2015 <a href="http://classcolab.com">CodeArt</a><br>
+					Design by <a href="http://classcolab.com" target="_blank">CodeArt</a>.
 				</footer>
 			</div>		
 

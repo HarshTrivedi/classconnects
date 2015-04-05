@@ -6,6 +6,7 @@ class DocumentsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:create_document]
 
 
+
   def show_details
     document_id = params[:id]
     @message = "Document itself"        
@@ -22,7 +23,7 @@ class DocumentsController < ApplicationController
     document_id = params[:document][:id]
     document = Document.find_by_id(document_id)
     document.update_attributes( document_params )
-    redirect_to document_details_path(document_id)
+    redirect_to :back
   end
 
   def create_document
@@ -69,6 +70,7 @@ class DocumentsController < ApplicationController
     uploader.uploaded_data_size = uploader.uploaded_data_size + s3["filesize"].to_i
     uploader.save
     # redirect_to :back
+    #Need to render JS over here!
     render :nothing => true
   end
 

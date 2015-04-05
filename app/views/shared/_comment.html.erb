@@ -1,25 +1,20 @@
-<!-- bucket -->
-<div class="media-body">
-	  <p></p>
-	  <h4 class="media-heading">	  		
-	  		<%= comment.message %>
-	  </h4>
-	  <p></p>
-	  Commenter : 
-	  <% user = comment.user %>
-	  
-	  <span class="text-muted">
-	  		<%= link_to( user.email , "#no_profile_yet"  ) %>
-	  </span>
-	  <p><p>
-	  <%comment_responses = comment.comment_responses%>
-	  
-	  <ul class="media-list">
-	  		<%for comment_response in comment_responses%>
+<div class="the-box no-border media-discuss">
+	<%user = comment.user %>
+	<%= link_to ( image_tag avatar_url( user ) , :class => "media-object img-circle") , "#" , :class => "pull-left" %>
+
+	<div class="media-body">
+		<h4 class="media-heading">
+			<%= link_to( user.email , "#no_profile_yet"  ) %>
+		</h4>
+		<p class="date"><small> Created <%= time_ago_in_words(comment.created_at) %> ago </small></p>	  		
+		<%= comment.message %>
+		<ul class="media-list">
+			<%comment_responses = comment.comment_responses %>
+			<%for comment_response in comment_responses%>
 				<%= render(:partial => 'shared/comment_response', :locals => {:comment_response => comment_response } )%>		
-	  		<%end%>
-			<%= render(:partial => "shared/leave_comment_response" , :locals => { :comment => comment })%>
-	  </ul>>
+ 			<%end%>
+			<%= render(:partial => 'shared/leave_comment_response', :locals => {:comment => comment } )%>		
+		</ul>
+	</div>
+
 </div>
-
-

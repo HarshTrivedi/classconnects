@@ -75,3 +75,10 @@ gem 'aws-sdk'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'box_view'
+gem 'chosen-rails'
+gem "ancestry"
+gem "active_admin-sortable_tree"
+gem 'active_skin'
+gem 'cancan'
+gem "active_admin_import" 
+gem 'activejob'

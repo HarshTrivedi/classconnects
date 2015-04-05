@@ -1,4 +1,5 @@
 class Bucket < ActiveRecord::Base
+  attr_accessor :course_id
   acts_as_votable
   include PgSearch
   pg_search_scope :search, :against => [:name, :description]
@@ -48,6 +49,48 @@ class Bucket < ActiveRecord::Base
       else
         all
       end
+  end
+
+  def data_shared
+  end
+
+  ransacker :by_college_name,
+        formatter: proc { |selected_college_id|
+              data = College.find_by_id( selected_college_id ).buckets.map(&:id)
+              data = data.present? ? data : nil
+        } do |parent|
+        parent.table[:id]
+  end
+
+  ransacker :by_branch_name,
+        formatter: proc { |selected_branch_id|
+              data = Branch.find_by_id(  selected_branch_id  ).buckets.map(&:id)
+              data = data.present? ? data : nil
+        } do |parent|
+        parent.table[:id]
+  end
+
+  ransacker :by_course_name,
+        formatter: proc { |selected_course_id|
+              data = Course.find(  selected_course_id  ).buckets.map(&:id)
+              data = data.present? ? data : nil
+        } do |parent|
+        parent.table[:id]
+  end
+
+  def download_url
+    s3 = AWS::S3.new
+    bucket = s3.buckets[ENV["S3_BUCKET"]]
+    object = bucket.objects["zip/#{aws_root_to_self_path}.zip"]
+    object.url_for(:get, { 
+      expires: 10.minutes,
+      response_content_disposition: 'attachment;'
+    }).to_s
+  end
+
+
+  def aws_root_to_self_path
+    "bucket_id_#{self.id}/#{self.name}"
   end
 
 

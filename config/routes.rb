@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   get 'landings/index'
 
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords", omniauth_callbacks: "users/omniauth_callbacks"}, skip: [:sessions, :registrations]
-  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -68,7 +67,8 @@ Rails.application.routes.draw do
   get '/my_downloads'           => 'user_details#downloads'                 , as: :downloads
   post '/my_downloads'           => 'user_details#downloads'                 , as: :downloads_remote
 
-  get '/profile'                => 'user_details#profile'                   , as: :profile
+  get '/profile_main'                => 'user_details#profile_main'                   , as: :profile_main
+  get '/profile_uploads'                => 'user_details#profile_uploads'                , as: :profile_uploads
   get '/edit_profile'           => 'user_details#edit_profile'              , as: :edit_profile
 
   get '/enrolled_courses'       => 'user_details#enrolled_courses'          , as: :enrolled_courses
@@ -89,7 +89,8 @@ Rails.application.routes.draw do
   post '/enroll_course/:course_id'               => 'user_details#enroll_course'                , as: :enroll_course
   post '/unenroll_course/:course_id'             => 'user_details#unenroll_course'              , as: :unenroll_course
 
-  post '/download_bucket/:bucket_id'  => 'user_details#download_bucket'                         , as: :download_bucket
+  post '/request_download_bucket/:bucket_id'  => 'user_details#request_download_bucket'         , as: :request_download_bucket
+  get '/download_bucket/:bucket_id'          => 'user_details#download_bucket'                 , as: :download_bucket
   post '/upload_bucket/:bucket_id'    => 'user_details#upload_bucket'                           , as: :upload_bucket
   
   post '/comments/create/:parent_type/:parent_id'            => 'comments#create_comment'                  , as: :create_comment
@@ -155,6 +156,14 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  # namespace :admin do
+  #   resources :courses do
+  #     resources :buckets do
+  #     end
+  #   end
+  # end
+
   
   #->Prelang (user_login:devise/stylized_paths)
   devise_scope :user do

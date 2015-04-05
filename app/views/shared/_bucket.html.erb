@@ -1,3 +1,4 @@
+
 <div class="the-box no-border property-list">
     <div class="media">
         <a class="pull-left" href="#fakelink"> <!--if want to give user profile link-->
@@ -16,33 +17,62 @@
 		        </small>                 
             </h4>
 
-            <ul class="list-inline">
-                <li><a href="#Up">
-                    <i class="fa fa-thumbs-o-up"></i>
-                </a> 
-                </li>  |  
-                <li><a href="#Down">
-                        <i class="fa fa-thumbs-o-down"></i>
-                    </a>6
-                </li>
-            </ul>
-             <ul class = "list-inline">
+            <ul class = "list-inline">
 		        <li>
-        	     	<%= link_to("Download" , download_bucket_path(bucket.id) , :method => :post , :class => "label label-warning span-sidebar") %>
-                </li>   |   
-                <li>
-                	<%= link_to("Delete" , download_bucket_path(bucket.id) , :method => :delete , :class => "label label-danger span-sidebar") %>
+        	     	<%= link_to("Download" , request_download_bucket_path(bucket.id) , :method => :post , :class => "label label-warning span-sidebar") %>
+                  <li>
+                      <%= link_to( fa_icon("thumbs-o-up") , like_bucket_path(bucket.id) , :method => :put)%> 
+                      </b> 
+                      <%= bucket.up_votes %>
+                  </li>  |  
+                  <li>
+                      <%= link_to( fa_icon("thumbs-o-down") , like_bucket_path(bucket.id) , :method => :put)%> 
+                      </b> 
+                      <%= bucket.down_votes %>
+                  </li>
+                    <button type="button" data-toggle="modal" data-target="#bucket_<%=bucket.id%>" class="btn btn-success">
+                        Edit
+                    </button>
                 </li>
             </ul>
+
 	         <p class="hidden-xs"><!--ask-->
                 <b>Description:</b><%= bucket.description %>
             </p>
 
             <span class="small text-muted">
-            	<% course = bucket.course %>
-				<b>Course:  </b><%= link_to(  course.name , course_content_path(course.id)  ) %>
-			</span>
+                <% course = bucket.course %>
+              <b>Course:  </b><%= link_to(  course.name , course_content_path(course.id)  ) %>
+      			</span>
 
         </div>
 	 </div>
+
 </div>
+
+
+<div class="modal fade" id="bucket_<%=bucket.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+     <div class="modal-dialog">
+       <div class="modal-content modal-no-shadow">
+         <div class="modal-header bg-dark no-border">
+           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+           <h4 class="modal-title">Change Bucket Name : <%= bucket.name %> </h4>
+         </div>
+         <div class="modal-body">
+                <%= simple_form_for bucket , :url => update_bucket_details_path( bucket.id )  , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+                  <%= f.input :id, :as => :hidden, :input_html => { :value => bucket.id } %>
+                  <%= f.input :name , :input_html => { :class => "chosen-input"}  %>
+                  <%= f.input :description, :hint => "Please describe in detail" , :input_html => { :class => "chosen-input"}%>
+                  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input" }%>
+                    <div class="modal-footer">
+                      <div class="text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <%= f.button :submit , "Edit", :class => "btn btn-success" %>
+                      </div>
+                    </div>
+                <% end %>
+         </div>
+       </div><!-- /.modal-content .modal-no-shadow -->
+     </div><!-- /.modal-dialog -->
+</div>
+

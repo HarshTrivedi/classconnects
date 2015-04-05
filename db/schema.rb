@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402033837) do
+ActiveRecord::Schema.define(version: 20150409110742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,11 @@ ActiveRecord::Schema.define(version: 20150402033837) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.integer  "size",        default: 0
+    t.integer  "size",                default: 0
+    t.string   "download_waiter_ids", default: [],    array: true
+    t.datetime "last_zip_time"
+    t.string   "zip_url"
+    t.boolean  "zip_being_formed",    default: false
   end
 
   add_index "buckets", ["category_id"], name: "index_buckets_on_category_id", using: :btree
@@ -175,32 +179,38 @@ ActiveRecord::Schema.define(version: 20150402033837) do
     t.integer  "bucket_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry"
+    t.integer  "position"
   end
 
+  add_index "folders", ["ancestry"], name: "index_folders_on_ancestry", using: :btree
   add_index "folders", ["bucket_id"], name: "index_folders_on_bucket_id", using: :btree
   add_index "folders", ["folder_id"], name: "index_folders_on_folder_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                      default: "", null: false
+    t.string   "encrypted_password",         default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",              default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.integer  "college_branch_pair_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
     t.string   "first_name"
     t.string   "last_name"
-    t.integer  "uploaded_data_size",     default: 0
-    t.integer  "downloaded_data_size",   default: 0
+    t.integer  "uploaded_data_size",         default: 0
+    t.integer  "downloaded_data_size",       default: 0
+    t.string   "role"
+    t.string   "ready_bucket_ids",           default: [],              array: true
+    t.string   "pending_request_bucket_ids", default: [],              array: true
   end
 
   add_index "users", ["college_branch_pair_id"], name: "index_users_on_college_branch_pair_id", using: :btree

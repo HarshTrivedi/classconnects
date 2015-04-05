@@ -6,6 +6,8 @@ S3DirectUpload.config do |c|
   # c.url = "https://#{c.bucket}.s3.amazonaws.com/"
 end
 
+AWS.config( access_key_id: ENV["S3_ACCESS_KEY"] ,
+            secret_access_key: ENV["S3_SECRET_KEY"] )
 ## URL MonkeyPatch
 module S3DirectUpload
   module UploadHelper

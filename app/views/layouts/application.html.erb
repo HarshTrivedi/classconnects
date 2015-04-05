@@ -14,15 +14,14 @@
 
 
 <body>
-	<%= render partial: "elements/navbar" %>
-	<%= render partial: "shared/flash_messages", flash: flash %> 
-<%= yield %>
-
-
-
-
+  	<%= render partial: "shared/flash_messages", flash: flash %> 
+   <header class="navbar navbar-fixed-top	">
+		<%= render partial: "elements/navbar" %>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
 
 </body>
 </html>
 
-<!-- $("#autocomplete").val() -->

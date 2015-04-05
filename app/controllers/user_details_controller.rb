@@ -15,12 +15,21 @@ class UserDetailsController < ApplicationController
     @downloaded_buckets = current_user.downloaded_buckets.search(search).page(params[:page])
   end
 
-  def profile
+  def profile_main
+    @user = current_user
+    render(:template => "user_details/profile")    
   end
 
-  def edit_profile
+  def profile_uploads
+    @user = current_user
+    @buckets = @user.uploaded_buckets.page(params[:page])
 
-    
+    respond_to do |format|
+      format.html { render(:template => "user_details/profile")   }
+      format.js
+    end
+
+      
   end
 
 
@@ -88,24 +97,60 @@ class UserDetailsController < ApplicationController
 
 
 
+  def request_download_bucket
+      bucket_id = params[:bucket_id]
+      bucket = Bucket.find_by_id(bucket_id)
+      user = current_user
+
+      if user and bucket
+        if bucket.zip_being_formed
+            ##some worker is already zipping it and so add him to waiter list of that bucket.
+            bucket.download_waiter_ids << user.id
+            bucket.save
+            user.pending_request_bucket_ids << bucket.id
+            user.save
+        elsif (  (bucket.updated_time < bucket.last_zip_time) rescue false  )
+            user.ready_bucket_ids << bucket.id
+            user.save
+        else
+
+            bucket = Bucket.find_by_id(bucket.id)
+            bucket.download_waiter_ids += [user.id]
+            bucket.save
+            ap bucket
+            user.reload
+            user.pending_request_bucket_ids += [bucket.id]
+            user.save
+            ap user
+            ZipAwsContentAndUpload.enqueue(user.id , bucket.id)
+        end
+      end
+      # show flash message that your download will soon become ready.
+      # but ready so directly can be served
+      render :nothing => true
+  end
 
   #Need link to reach here (In Buckets partial)
   def download_bucket
       bucket_id = params[:bucket_id]
       bucket = Bucket.find_by_id(bucket_id)
-      
       if not bucket.nil?
+        
+        current_user.ready_bucket_ids.delete("#{bucket.id}")
+        current_user.ready_bucket_ids_will_change!
+        current_user.save
+
         current_user.download_bucket(bucket_id)
+
         # Downloaded data size for user should only be added if it is 
         # not already added
+        #ThinkOverThis... what if the old download is updated..??
         if not current_user.downloads.map(&:id).include?(bucket_id.to_i)
-          current_user.downloaded_data_size = current_user.dowloaded_data_size + bucket.size
+          current_user.downloaded_data_size = current_user.downloaded_data_size + bucket.size
           current_user.save
         end
-        flash[:notice] = 'Please wait while your Bucket gets ready for download.'
       end
-      send_file Rails.root.join('public', 'temporary_bucket.zip'), :type=>"application/zip", :x_sendfile=>true
-      # redirect_to :back
+      redirect_to bucket.download_url
   end
 
   #uploading bucket is not necessarily actual uploading

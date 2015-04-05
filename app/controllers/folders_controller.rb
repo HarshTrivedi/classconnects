@@ -33,7 +33,7 @@ class FoldersController < ApplicationController
     folder_id = params[:folder][:id]
     folder = Folder.find_by_id(folder_id)
     folder.update_attributes( folder_params )
-    redirect_to folder_details_path(folder_id)
+    redirect_to :back
   end
 
   def new_folder
@@ -49,13 +49,22 @@ class FoldersController < ApplicationController
     @parent_id = params[:parent_id]
 
     if @parent_type == "bucket"
-        Folder.create(:bucket_id => @parent_id , :name => params[:folder][:name] )
-        redirect_to bucket_content_path(@parent_id)
+        @parent_bucket = Bucket.find_by_id(  @parent_id  )
+        @folder = Folder.new( :name => params[:folder][:name] )
+        @parent_bucket.folders << @folder
     elsif @parent_type == "folder"
-        Folder.create(:folder_id => @parent_id , :name => params[:folder][:name] )
-        redirect_to folder_content_path(@parent_id)
+        @folder = Folder.new( :name => params[:folder][:name] )
+        @parent_folder = Folder.find_by_id(  @parent_id  )        
+        if @parent_folder
+            @parent_folder.folders << @folder 
+            @folder.parent = @parent_folder
+        end
+        @parent_bucket = @parent_folder.bucket
+        @parent_bucket.folders << @folder
     end
-      
+
+
+    redirect_to :back      
   end
 
 

@@ -21,7 +21,13 @@ class User < ActiveRecord::Base
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
+  validates :email, :presence => true
 
+  scope :all_admins,        ->{ User.where(  :id =>  User.all.select{|user| user.is_admin? }.map(&:id)                      )}
+  scope :content_generator, ->{ User.where(  :id =>  User.all.select{|user| user.role?(:content_generator)    }.map(&:id)   )}
+  scope :content_moderator, ->{ User.where(  :id =>  User.all.select{|user| user.role?(:content_moderator)    }.map(&:id)   )}
+  scope :college_generator, ->{ User.where(  :id =>  User.all.select{|user| user.role?(:college_generator)    }.map(&:id)   )}
+  scope :non_admins,        ->{ User.where(  :id =>  User.all.select{|user| user.role?(:non_admins)  }.map(&:id)            )}
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
@@ -224,5 +230,16 @@ class User < ActiveRecord::Base
       end
   end
 
+  def role?(r)
+      role.include? r.to_s rescue false
+  end
+
+  def is_admin?
+      role?(:super_admin) or role?(:content_generator) or role?(:content_moderator) or role?(:college_generator)
+  end
+
+  def authorized_to?(action , object)
+    Ability.new( self ).can?( action , object )
+  end
 
 end

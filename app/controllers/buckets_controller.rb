@@ -30,7 +30,7 @@ class BucketsController < ApplicationController
     bucket_id = params[:bucket][:id]
     bucket = Bucket.find_by_id(bucket_id)
     bucket.update_attributes( bucket_params )
-    redirect_to bucket_details_path(bucket_id)
+    redirect_to :back
   end
 
   def new_bucket
@@ -52,7 +52,7 @@ class BucketsController < ApplicationController
       bucket = Bucket.create(bucket_params)
       current_user.upload_bucket(bucket.id)
     end
-    redirect_to course_content_path(course_id)
+    redirect_to :back
   end
 
 

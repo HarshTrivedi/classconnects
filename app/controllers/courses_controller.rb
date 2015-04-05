@@ -25,6 +25,9 @@ class CoursesController < ApplicationController
     @course = Course.find_by_id(course_id)
     @message = "Course specific buckets"    
     @comments = @course.comments.page(params[:page])
+    ap @comments 
+    ap @comments 
+    ap @comments 
     @comment = Comment.new
     @parent_type = "course"
     @parent_id = @course.id

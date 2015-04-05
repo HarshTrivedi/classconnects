@@ -6,6 +6,8 @@
 					 callback_method: "POST",
 					 acl: "private" , 
 					 # acl: "public-read-write" , 
+					 key: "uploads/${filename}",
+					 key_starts_with: "uploads/", 
 					 data: {:parent_type => @parent_type , :parent_id => @parent_id } ,
 					 max_file_size: 5.megabytes do %>
 <%= file_field_tag :file, multiple: true %>
@@ -24,6 +26,7 @@
 			<div class="bar" style="width: 0%"></div>
 		</div>
 	</div>
+
 </script>
 
 		

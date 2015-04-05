@@ -1,8 +1,11 @@
-<%for comment in comments%>
-	<li class="media">
-		<%= link_to (image_tag avatar_url(comment.user) , :class => "media-object img-circle") , "#" , :class => "pull-left" %>
-		<%= render(:partial => 'shared/comment', :locals => {:comment => comment } )%>
-	</li>
-<%end%>
+
+<div class="media no-border">
+	<h4 class="small-heading more-margin-bottom"><%= comments.size%> COMMENTS</h4>
+	<ul class="media-list media-sm media-dotted">
+		<%for comment in comments%>
+			<%= render(:partial => 'shared/comment', :locals => {:comment => comment } )%>
+		<%end%>
+	</ul>
+</div>
 
 <%= paginate comments %>

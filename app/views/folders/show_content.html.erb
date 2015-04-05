@@ -1,13 +1,25 @@
 
 <%= render(:partial => 'shared/folder_navbar' , :locals => {:folder => @folder }) %> 
+<div class="row">
+<div class="col-sm-6">
 
-Folders:
-<div id="folders">
-<%= render(:partial => 'shared/folders', :locals => {:folders => @folders , :parent_type => "folder", :parent_id => @folder.id} )%>
+<div class="section-heading">
+	<h2>Folders</h2>				
 </div>
 
-<br>
-Documents:
-<div id="documents">
-<%= render(:partial => 'shared/documents', :locals => {:documents => @documents , :parent_type => "folder" ,:parent_id => @folder.id} )%>
+<hr class="marginbot-10">
+	<div id="folders">
+	<%= render(:partial => 'shared/folders', :locals => {:folders => @folders  , :parent_type => "folder" , :parent_id => @folder.id} )%>
+	</div>
+</div>
+
+<div class="col-sm-6">
+	<div class="section-heading">
+		<h2>Documents</h2>				
+	</div>
+	<hr class="marginbot-10">
+		<div id="documents">
+		<%= render(:partial => 'shared/documents', :locals => {:documents => @documents , :parent_type => "folder" , :parent_id => @folder.id} )%>
+		</div>
+	</div>
 </div>
