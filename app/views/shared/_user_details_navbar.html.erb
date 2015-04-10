@@ -1,0 +1,54 @@
+<div class="panel with-nav-tabs panel-success panel-square panel-no-border">
+<div class="panel-heading">     
+		<div class="right-content">
+			<div class="btn-group">
+			</div>
+		</div><!-- /.right-content -->
+		<ul class="nav nav-tabs">
+
+
+			<%if current_page?(downloads_path) or current_page?(landing_path)  %>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "My Downloads"), downloads_path , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "My Downloads"), downloads_path , :data => {:toggle=>""} ), :class=>"" )%>
+			<%end%>
+
+
+
+			<%if current_page?(uploads_path) %>
+				<%= content_tag(:li , link_to(fa_icon("cloud-upload", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-upload", text: "My Uploads"), uploads_path , :data => {:toggle=>""} ), :class=>"" )%>
+			<%end%>
+
+
+
+			<%if current_page?(enrolled_courses_path) %>
+				<%= content_tag(:li , link_to(fa_icon("fa-book", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("fa-book", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+
+			<%if current_page?(favorite_courses_path) %>
+				<%= content_tag(:li , link_to(fa_icon("fa-book", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("fa-book", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+			<div id="internal_search_bar">
+				<%if current_page?(downloads_path) %>
+					<%= render(:partial => 'shared/search_downloads' ) %> 
+				<%elsif current_page?(uploads_path)  %>
+					<%= render(:partial => 'shared/search_uploads') %> 
+				<%elsif current_page?(enrolled_courses_path)  %>
+					<%= render(:partial => 'shared/search_enrolled_courses') %> 				
+				<%elsif current_page?(favorite_courses_path)  %>
+					<%= render(:partial => 'shared/search_favorite_courses') %>
+				<%end%>
+			</div>
+
+	
+		</ul>
+</div>
+</div>

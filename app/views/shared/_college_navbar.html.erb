@@ -1,0 +1,51 @@
+<div class="panel with-nav-tabs panel-success panel-square panel-no-border">
+<div class="panel-heading">     
+		<div class="right-content">
+			<div class="btn-group">
+			</div>
+		</div><!-- /.right-content -->
+		<ul class="nav nav-tabs">
+
+			<%if current_page?(college_content_path) %>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), college_content_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), college_content_path(college.id) , :data => {:toggle=>""} ), :class=>"" )%>
+			<%end%>
+
+
+			<%if current_page?(college_users_path)%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Users"), college_users_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Users"), college_users_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+
+			<%if current_page?(college_courses_path)%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Courses"), college_courses_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Courses"), college_courses_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+
+			<%if current_page?(college_discussion_path)%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), college_discussion_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), college_discussion_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+			 
+
+			<div id="internal_search_bar">
+				<%if current_page?(college_content_path) %>
+					<%= render(:partial => 'shared/search_college_buckets' , :locals => {:college => college , :branch => branch} ) %> 
+				<%elsif current_page?(college_courses_path)  %>
+					<%= render(:partial => 'shared/search_college_courses' , :locals => {:college => college , :branch => branch} ) %> 
+				<%elsif current_page?(college_users_path)  %>
+					<%= render(:partial => 'shared/search_college_users' , :locals => {:college => college , :branch => branch} ) %> 				
+				<%end%>
+			</div>
+		</ul>
+</div>
+</div>
+
+
+

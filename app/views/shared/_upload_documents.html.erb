@@ -1,0 +1,57 @@
+<div class ="text-center">
+<%= s3_uploader_form callback_url: create_document_path( parent.class.to_s.downcase , parent.id ) ,
+					 id: "s3_uploader",
+					 callback_param: "file",
+					 callback_method: "POST",
+					 acl: "private" , 
+					 # acl: "public-read-write" , 
+					 key: "#{parent.aws_root_to_self_path}/${filename}",
+					 # key: "uploads/${filename}",
+					 key_starts_with: "bucket_id_" , 
+					 max_file_size: 5.megabytes do %>
+<%= file_field_tag :file, multiple: true %>
+
+<% end %>
+
+</div>
+
+
+<div id="uploads_container"></div>
+<button id="submit_upload" class="btn btn-primary text-centre">Upload</button>
+
+<script id="template-upload" type="text/x-tmpl">
+	<div id="upload_{%=o.unique_id%}" class="upload">
+		<h5>{%=o.name%}</h5>
+		<div class="progress progress-striped active">
+			<div class="bar" style="width: 0%"></div>
+		</div>
+	</div>
+</script>
+
+		
+
+<script>
+	$(function() {
+
+		$('#s3_uploader').S3Uploader({
+			remove_completed_progress_bar: false,
+			progress_bar_target: $('#uploads_container') , 
+			click_submit_target: $('#submit_upload') });
+
+
+		$(document).bind('s3_uploads_complete', function() {
+			return alert("All files Done");
+		});
+
+		
+		$('#s3_uploader').bind('s3_upload_failed', function(e, content) {
+			return alert(content.filename + ' failed to upload. Error: ' + content.error_thrown);
+		});
+
+
+		$('#s3_uploader').bind('s3_upload_complete', function(e, content) {
+			// window.location.replace("/view");
+			return alert("Heya Completed")
+		});
+	});
+</script>

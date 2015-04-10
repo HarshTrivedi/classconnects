@@ -1,0 +1,10 @@
+<%= form_tag bucket_content_remote_path( bucket.id ) , :id => "bucket_search" , :remote => true , :method => :post do %>
+    <%= text_field_tag :search, params[:search] %>
+<% end %>
+
+<script>
+  $("#bucket_search input").keyup(function(){ 
+	    $.get($("#bucket_search").attr("action"), $("#bucket_search").serialize(), null, "script");
+	    return false;
+  });
+</script>

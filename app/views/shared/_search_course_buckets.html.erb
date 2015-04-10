@@ -1,0 +1,10 @@
+<%= form_tag course_content_remote_path( course.id ) , :id => "buckets_search" , :remote => true , :method => :post do %>
+    <%= text_field_tag :search, params[:search] %>
+<% end %>
+
+<script>
+  $("#buckets_search input").keyup(function(){ 
+	    $.get($("#buckets_search").attr("action"), $("#buckets_search").serialize(), null, "script");
+	    return false;
+  });
+</script>

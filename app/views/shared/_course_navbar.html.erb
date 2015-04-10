@@ -1,0 +1,43 @@
+<div class="panel with-nav-tabs panel-success panel-square panel-no-border">
+<div class="panel-heading">     
+		<div class="right-content">
+			<div class="btn-group">
+			</div>
+		</div><!-- /.right-content -->
+		<ul class="nav nav-tabs">
+
+			<%if current_page?(course_content_path) %>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), course_content_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), course_content_path(course.id) , :data => {:toggle=>""} ), :class=>"" )%>
+			<%end%>
+
+
+			<%if current_page?(course_users_path)%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Users"), course_users_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Users"), course_users_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+
+			<%if current_page?(course_discussion_path)%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+			<div id="internal_search_bar">
+				<%if current_page?(course_content_path) %>
+					<%= render(:partial => 'shared/search_course_buckets' , :locals => {:course => course } ) %> 
+				<%elsif current_page?(course_users_path)  %>
+					<%= render(:partial => 'shared/search_course_users' , :locals => {:course => course } ) %> 				
+				<%end%>
+			</div>	
+
+
+		</ul>
+</div>
+</div>
+
+
+

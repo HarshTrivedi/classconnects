@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Classcolab</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+<!-- Prelang: Analytics / Google Analytics -->
+   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+</head>
+
+
+<body>
+  	<%= render partial: "shared/flash_messages", flash: flash %> 
+   <header class="navbar navbar-fixed-top	">
+		<%= render partial: "elements/navbar" %>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+</body>
+</html>
+

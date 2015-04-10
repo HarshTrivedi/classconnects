@@ -1,0 +1,38 @@
+<div class="col-sm-4">
+	<div class="the-box no-border">
+		<div class="media user-card-sm">
+		<div class="media-body">
+			<h4 class="media-heading">
+				<%= link_to( course.name , course_content_path(course.id)  ) %>
+			</h4>					
+			<span class="course-coding"><%= course.code %></span>
+			<br>
+			<span class="small text-muted">
+					<b>College:</b>
+					<%=course.college_branch_pair.college.name%>
+			</span>
+    	</div>
+		<div class="right-button">
+			  <%if not course.enrolled_users.include?(current_user) %>
+			  	<%= link_to(  fa_icon("plus", text: "Enroll") , enroll_course_path(course.id) , :method => :post , :class => "btn btn-xs btn-success") %>
+			  <%else%>
+			  	<%= link_to(  fa_icon("plus", text: "Un-Enroll")  , unenroll_course_path(course.id) , :method => :post , :class => "label label-danger span-sidebar") %>	  	
+			  <%end%>
+
+
+			  <p></p>
+
+ 			  <%if not course.favorited_users.include?(current_user) %>
+			  	<%= link_to(  fa_icon("heart", text: "Favorite") , favorite_course_path(course.id) , :method => :post , :class => "btn btn-xs btn-warning") %>
+		      <%else%>
+			  	<%= link_to(   fa_icon("heart", text: "Un-Favorite")  , unfavorite_course_path(course.id) , :method => :post , :class => "label label-warning span-sidebar") %>	  
+		      <%end%>
+
+			</div>	
+		</div>
+	</div>
+</div>
+
+
+
+	  <p><p>

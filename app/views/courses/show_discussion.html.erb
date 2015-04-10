@@ -1,0 +1,6 @@
+
+<%= render(:partial => 'shared/course_navbar' , :locals => {:course => @course }) %> 
+
+<%= render(:partial => 'shared/comments' ,:locals => { :comments => @comments } ) %>
+
+<%= render(:partial => "shared/leave_comment" , :locals => {:type => "course"  })%>

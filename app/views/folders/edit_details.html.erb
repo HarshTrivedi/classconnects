@@ -1,0 +1,9 @@
+<%= render(:partial => 'shared/folder_navbar' , :locals => {:folder => @folder }) %> 
+
+<%= simple_form_for @folder , :url => update_folder_details_path(@folder.id)   , :input_html=> { :class => "form-group has-feedback lg no-label " }  do |f| %>
+  <%= f.input :id, :as => :hidden, :input_html => { :value => @folder.id } %>
+  <%= f.input :name , :input_html => { :class => ""} %>
+  <div class="text-center">
+	 <%= f.button :submit %>
+  </div>
+<% end %>

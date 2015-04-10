@@ -1,0 +1,39 @@
+
+<div class="col-sm-6">
+	<div class="the-box no-border">
+		<div class="media user-card-sm">
+	      <%= image_tag avatar_url(user) , :class => "media-object img-circle" , :title => user.full_name%>
+		  <div class="media-body">
+		  	
+			<span class="user-heading">
+				<%= link_to( user.full_name , "#no_profile_yet"  ) %>
+			</span>
+			<br>
+			<span class="user-mail">
+				<%= user.email%>
+			</span>
+			<br>
+			<span class="small-user text-muted">
+					<b>Reputation:</b>
+					<%= user.reputation  %>
+			</span>
+		  </div>
+		  <div class="right-button">
+			<span class="small-user text-muted">
+				<%= fa_icon("cloud-upload", text: number_to_human_size(user.uploaded_data_size)  )  %>
+			<p></p>
+				<%= fa_icon("cloud-download", text: number_to_human_size(user.downloaded_data_size  )  )  %>
+		  	</span>
+		  </div>
+		</div>
+	</div>
+</div>
+
+
+ 
+
+
+
+
+
+

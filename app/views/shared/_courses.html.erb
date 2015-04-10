@@ -1,0 +1,6 @@
+<div class="row">
+<%for course in courses%>
+	<%= render(:partial => 'shared/course', :locals => {:course => course } )%>
+<%end%>
+</div>
+<%= paginate courses  , :remote => true  %>

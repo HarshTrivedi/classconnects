@@ -1,0 +1,12 @@
+<li class="media">
+	<%= link_to ( image_tag avatar_url(comment_response.user) , :class => "media-object img-circle") , "#" , :class => "pull-left" %>
+	<div class="media-body">
+		<h4 class="media-heading">
+			<%= link_to( comment_response.user.email , "#no_profile_yet"  ) %>
+		</h4>
+		<p class="date">
+			<small> Created <%= time_ago_in_words(comment_response.created_at) %> ago  </small>
+		</p>
+		<%= comment_response.message %>
+	</div>
+</li>

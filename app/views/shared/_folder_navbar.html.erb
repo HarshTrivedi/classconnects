@@ -1,0 +1,41 @@
+<div class="panel with-nav-tabs panel-success panel-square panel-no-border">
+<div class="panel-heading">     
+		<div class="right-content">
+			<div class="btn-group">
+			</div>
+		</div><!-- /.right-content -->
+		<ul class="nav nav-tabs">
+
+			<%if current_page?(folder_content_path) %>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), folder_content_path(folder.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), folder_content_path(folder.id) , :data => {:toggle=>""} ), :class=>"" )%>
+			<%end%>
+
+
+			<%if current_page?(folder_details_path)%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Details"), folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Details"), folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+
+			<%if current_page?(edit_folder_details_path)%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Edit Details"), edit_folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Edit Details"), edit_folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+			<div id="internal_search_bar">
+				<%if current_page?(folder_content_path) %>
+					<%= render(:partial => 'shared/search_folder_content' , :locals => {:folder => folder } ) %> 
+				<%end%>
+			</div>
+			 
+
+		</ul>
+</div>
+</div>
+
+
+

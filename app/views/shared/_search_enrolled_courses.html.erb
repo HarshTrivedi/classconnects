@@ -1,0 +1,10 @@
+<%= form_tag enrolled_courses_remote_path , :id => "enrolled_courses_search" , :remote => true , :method => :post do %>
+    <%= text_field_tag :search, params[:search] %>
+<% end %>
+
+<script>
+  $("#enrolled_courses_search input").keyup(function(){ 
+	    $.get($("#enrolled_courses_search").attr("action"), $("#enrolled_courses_search").serialize(), null, "script");
+	    return false;
+  });
+</script>

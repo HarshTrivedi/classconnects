@@ -1,0 +1,10 @@
+<%= form_tag folder_content_remote_path( folder.id ) , :id => "folder_search" , :remote => true , :method => :post do %>
+    <%= text_field_tag :search, params[:search] %>
+<% end %>
+
+<script>
+  $("#folder_search input").keyup(function(){ 
+	    $.get($("#folder_search").attr("action"), $("#folder_search").serialize(), null, "script");
+	    return false;
+  });
+</script>
