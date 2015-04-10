@@ -3,10 +3,10 @@ namespace :db do
   task :populate => :environment do
     require 'faker'
     require 'awesome_print'
-    all_models = ActiveRecord::Base.send(:subclasses)
-    all_models.delete(AdminUser)
+    # all_models = ActiveRecord::Base.send(:subclasses)
+    # all_models.delete(AdminUser)
 
-    all_models.each(&:delete_all)
+    # all_models.each(&:delete_all)
 
     colleges = []
     courses  = []
