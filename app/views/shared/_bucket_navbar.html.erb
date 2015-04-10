@@ -27,6 +27,27 @@
 			<%end%>
 
 
+			<li class="dropdown">
+				  <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
+				  <ul class="dropdown-menu square margin-list-rounded with-triangle">
+					<li>
+						<%= link_to( "UpVote" , like_bucket_path(bucket.id) , :method => :put)%> 
+					</li>
+					<li>
+						<%= link_to( "DownVote" , dislike_bucket_path(bucket.id) , :method => :put)%> 
+					</li>
+					<li>
+						<%= link_to( "Download" , request_download_bucket(bucket.id) , :method => :post )%> 
+					</li>
+					<!--<li class="divider"></li>-->
+					<li>
+						<%= link_to( "Report" , "#modal_should_open" )%> 
+					</li>
+					
+				  </ul>
+			</li>
+
+
 			<div id="internal_search_bar">
 				<%if current_page?(bucket_content_path) %>
 					<%= render(:partial => 'shared/search_bucket_content' , :locals => {:bucket => bucket } ) %> 
