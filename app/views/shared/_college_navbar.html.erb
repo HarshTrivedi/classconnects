@@ -27,11 +27,6 @@
 			<%end%>
 
 
-			<%if current_page?(college_discussion_path)%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), college_discussion_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
-			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), college_discussion_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
-			<%end%>
 
 
 			<div id="select_branch">
