@@ -68,4 +68,27 @@ class Document < ActiveRecord::Base
   end
 
 
+  def image_url
+    filetype = self.s3["filetype"] rescue ""
+
+    if filetype.start_with?("text") 
+        return "/assets/text_document.jpg"
+    elsif filetype == "application/pdf"
+        return "/assets/pdf_document.jpg"
+    elsif filetype == "XXXimage"
+        return "/assets/image_document.jpg"
+    elsif filetype == "XXXword"
+        return "/assets/word_document.jpg"      
+    elsif filetype == "XXXppt"
+        return "/assets/ppt_document.jpg"      
+    else
+        return "/assets/default_document.jpg"
+    end
+
+  end
+
+  def size
+      self.s3["filesize"].to_i
+  end
+
 end
