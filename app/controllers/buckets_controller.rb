@@ -28,9 +28,12 @@ class BucketsController < ApplicationController
 
   def update_details
     bucket_id = params[:bucket][:id]
-    bucket = Bucket.find_by_id(bucket_id)
-    bucket.update_attributes( bucket_params )
-    redirect_to :back
+    @bucket = Bucket.find_by_id(bucket_id)
+    @bucket.update_attributes( bucket_params )
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   def new_bucket
@@ -49,10 +52,12 @@ class BucketsController < ApplicationController
       # name = bucket_params[:name]
       # description = bucket_params[:description]
 
-      bucket = Bucket.create(bucket_params)
+      @bucket = Bucket.create(bucket_params)
       current_user.upload_bucket(bucket.id)
     end
-    redirect_to :back
+    respond_to do |format|
+      format.js
+    end
   end
 
 

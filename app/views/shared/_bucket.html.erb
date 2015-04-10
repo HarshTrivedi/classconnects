@@ -36,7 +36,7 @@
                   </button>
                 </li>
                 <li>
-                  <button type="button" data-toggle="modal" data-target="#bucket_<%=bucket.id%>" class="btn btn-xs btn-warning btn-perspective">
+                  <button type="button" data-toggle="modal" data-target="#modal_edit_bucket_<%=bucket.id%>" class="btn btn-xs btn-warning btn-perspective">
                        <i class="fa fa-edit"> Edit </i>
                   </button>
                 </li>
@@ -62,7 +62,7 @@
 </div>
 </div>
 
-<div class="modal fade" id="bucket_<%=bucket.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="modal_edit_bucket_<%=bucket.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
      <div class="modal-dialog">
        <div class="modal-content modal-no-shadow">
          <div class="modal-header bg-dark no-border">
@@ -70,7 +70,7 @@
            <h4 class="modal-title">Change Bucket Name : <%= bucket.name %> </h4>
          </div>
          <div class="modal-body">
-                <%= simple_form_for bucket , :url => update_bucket_details_path( bucket.id )  , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+                <%= simple_form_for bucket , :url => update_bucket_details_path( bucket.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
                   <%= f.input :id, :as => :hidden, :input_html => { :value => bucket.id } %>
                   <%= f.input :name , :input_html => { :class => "chosen-input"}  %>
                   <%= f.input :description, :hint => "Please describe in detail" , :input_html => { :class => "chosen-input"}%>

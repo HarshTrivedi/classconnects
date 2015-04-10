@@ -1,0 +1,4 @@
+$('.modal').modal("hide") ;
+toastr.info('Successfully', 'bucket updated');
+var id = "<%= @bucket.id %>";
+$("#bucket_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/bucket', :locals => {:bucket => @bucket })      ) %>");

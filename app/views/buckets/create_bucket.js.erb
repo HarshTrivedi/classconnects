@@ -1,0 +1,5 @@
+$('.modal').modal("hide") ;
+toastr.info('Successfully', 'Added bucket!');
+var id = "<%= @bucket.id %>" ;
+
+$("#buckets").prepend("<div id=\"bucket_<%=@bucket.id%>\"> <%= escape_javascript(      render(:partial => 'shared/bucket', :locals => {:bucket => @bucket })      ) %>  </div>");
