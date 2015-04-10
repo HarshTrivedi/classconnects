@@ -1,6 +1,17 @@
 
 <%= render(:partial => 'shared/college_navbar' , :locals => {:college => @college , :branch => @branch }) %> 
 
+<div class="section-heading">
+	<h2>
+		<%= link_to( @college.name , college_content_path(@college) )%> 
+		<%if @branch%>
+			> 
+			<%= link_to( @branch.name , college_content_path( :id => @college.id , :branch_id => @branch.id) ) %> 
+		<%end%>
+	</h2>				
+</div>
+
+
 <div id="buckets">
 	<%= render(:partial => 'shared/buckets', :locals => {:buckets => @buckets } )%>
 </div>
