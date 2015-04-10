@@ -82,5 +82,19 @@ class Folder < ActiveRecord::Base
     return "bucket_id_#{bucket.id}/#{bucket.name}/#{folder_path}".chop
   end
 
+  def image_url
+      return "/assets/default_folder.jpg"
+  end
+
+  def size
+     subtree_ids = self.subtree_ids
+     size = 0
+     for subtree_id in subtree_ids
+        Folder.find_by_id(subtree_id).documents.each{ |document| size += document.size }
+     end
+     return size
+  end
+
+
 end
 
