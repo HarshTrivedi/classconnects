@@ -111,19 +111,18 @@
 						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
 						<%end%>
 					<%else%>
-						<%if current_page?(new_college_branch_enrollment_path) %>
-						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enroll College/Branch"), my_college_path , :data => {:toggle=>""}), :class=>"active" )%>
-						<%else%>
-						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enroll College/Branch"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
-						<%end%>
-						
+						<li>
+							<a type="button" data-toggle="modal" data-target="#enroll_college_branch_modal" > 
+								<%=fa_icon("book icon-sidebar", text: "Enroll College Branch")%>
+							</a>
+						</li>
 					<%end%>
 
 				</ul>
 			</div><!-- /.sidebar-left -->
 			
 
-			<div class="modal fade" id="DarkNoShadowModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+			<div class="modal fade" id="enroll_college_branch_modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
 				  <div class="modal-dialog">
 					<div class="modal-content modal-no-shadow">
 					  <div class="modal-header bg-dark no-border">
