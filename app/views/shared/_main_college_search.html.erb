@@ -1,6 +1,6 @@
 <%= form_tag redirect_to_college_path , :id => "college_search" , :method => :get do %>
     <% @colleges = College.all %>
-	<%select_tag "search_college_field", options_from_collection_for_select( @colleges , "id", "name") , :placeholder => "visit a college"%>
+	<%select_tag "search_college_field", options_from_collection_for_select( @colleges , "id", "name") , :placeholder => "visit a college" , :include_blank => true %>
 <% end %>
 
 <script>
