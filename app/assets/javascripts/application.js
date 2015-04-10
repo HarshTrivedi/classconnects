@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require chosen-jquery
 
 //= require apps.js
 //= require bootstrap_002.js
@@ -24,6 +23,7 @@
 //= require jquery_015.js
 //= require retina.js
 
+//= require chosen-jquery
 //= require s3_direct_upload
 
 $(function() {

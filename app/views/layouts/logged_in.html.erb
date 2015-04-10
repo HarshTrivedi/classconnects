@@ -41,7 +41,12 @@
 							<i class="fa fa-bars"></i>
 						</div><!-- /.btn-collapse-sidebar-left -->
 
-						<%= render(:partial => 'shared/notifications' ) %>
+						<ul class="nav navbar-nav navbar-left" >
+							<%= render( :partial => 'shared/main_college_search' )%>
+						</ul>
+						<ul class="nav navbar-nav navbar-left" >					
+							<%= render(:partial => 'shared/notifications' ) %>
+						</ul>
 
 						<ul class="nav-user navbar-right">
 							<li class="dropdown">

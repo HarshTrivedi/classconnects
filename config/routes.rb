@@ -92,6 +92,8 @@ Rails.application.routes.draw do
   post '/request_download_bucket/:bucket_id'  => 'user_details#request_download_bucket'         , as: :request_download_bucket
   get '/download_bucket/:bucket_id'          => 'user_details#download_bucket'                 , as: :download_bucket
   post '/upload_bucket/:bucket_id'    => 'user_details#upload_bucket'                           , as: :upload_bucket
+
+  get '/redirect_to_college'          => 'user_details#redirect_to_college'                     , as: :redirect_to_college
   
   post '/comments/create/:parent_type/:parent_id'            => 'comments#create_comment'                  , as: :create_comment
   post '/comment_responses/create/:comment_id'               => 'comments#create_comment_response'         , as: :create_comment_response

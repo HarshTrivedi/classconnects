@@ -1,0 +1,10 @@
+<%= form_tag redirect_to_college_path , :id => "college_search" , :method => :get do %>
+    <% @colleges = College.all %>
+	<%select_tag "search_college_field", options_from_collection_for_select( @colleges , "id", "name") , :placeholder => "visit a college"%>
+<% end %>
+
+<script>
+	$(function() {
+		$("#search_college_field").chosen( {search_contains: true , placeholder: "Visit a College" , allow_single_deselect: true , no_results_text: "Oops, no College found!"});
+	});
+</script>

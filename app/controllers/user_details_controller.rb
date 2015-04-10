@@ -163,6 +163,18 @@ class UserDetailsController < ApplicationController
       redirect_to :back
   end
 
+  def redirect_to_college
+      college_id = params[:search_college_field]
+      college = College.find_by_id(college_id)
+      if college
+        redirect_to college_content_path(college.id)
+      else
+        flash[:notice] = 'No such College Found'
+        redirect_to :back
+      end
+  end
+
+
   private
   ## permitting params for mass assignment
   def college_branch_params
