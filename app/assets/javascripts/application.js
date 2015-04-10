@@ -23,6 +23,7 @@
 //= require jquery_015.js
 //= require retina.js
 
+//= require toastr
 //= require chosen-jquery
 //= require s3_direct_upload
 

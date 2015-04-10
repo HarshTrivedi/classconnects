@@ -82,3 +82,4 @@ gem 'active_skin'
 gem 'cancan'
 gem "active_admin_import" 
 gem 'activejob'
+gem 'toastr-rails'
