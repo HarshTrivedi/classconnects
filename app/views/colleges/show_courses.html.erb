@@ -5,20 +5,6 @@
 	<h2>
 		<%= link_to( @college.name , college_content_path(@college) )%> 
 
-		<%logger.ap "===================================="%>
-		<%logger.ap "===================================="%>
-		<%logger.ap "===================================="%>
-		<%logger.ap @branch%>
-		<%logger.ap @branch%>
-		<%logger.ap @branch%>
-		<%logger.ap @branch%>
-		<%logger.ap @branch%>
-		<%logger.ap @branch%>
-		<%logger.ap "===================================="%>
-		<%logger.ap "===================================="%>
-		<%logger.ap "===================================="%>
-		<%logger.ap "===================================="%>
-
 		<%if @branch%>
 			> 
 			<%= link_to( @branch.name , college_content_path( :id => @college.id , :branch_id => @branch.id) ) %> 

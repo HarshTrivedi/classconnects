@@ -1,5 +1,24 @@
 
 <%= render(:partial => 'shared/bucket_navbar' , :locals => {:bucket => @bucket }) %> 
+
+<div class="row">
+	<div class="section-heading">
+		<h2>
+			<%course = @bucket.course %>
+			<%branch = course.branch %>
+			<%college = course.college %>
+
+			<%= link_to( college.name , college_content_path( college) )%> 
+			> 
+			<%= link_to( branch.name , college_content_path( :id => college.id , :branch_id => branch.id) ) %> 
+			>
+			<%= link_to( course.name , course_content_path(course) )%> 
+			>
+			<%= @bucket.name %> 
+		</h2>				
+	</div>
+</div>
+
 <div class="row">
 <div class="col-sm-6">
 
