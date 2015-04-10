@@ -11,7 +11,7 @@ class CollegesController < ApplicationController
     	@college = College.find_by_id(college_id)
       search = params[:search] || ""
 
-      if current_user.college_branch_enrolled?
+      if current_user.college_branch_enrolled? and (@college == current_user.college)
         @branch = current_user.branch        
       else      
         branches = @college.branches.order(:created_at)
@@ -36,7 +36,7 @@ class CollegesController < ApplicationController
       @college = College.find_by_id(college_id)
       search = params[:search] || ""
 
-      if current_user.college_branch_enrolled?
+      if current_user.college_branch_enrolled? and (@college == current_user.college)
         @branch = current_user.branch
       else
         branches = @college.branches.order(:created_at)
@@ -60,7 +60,7 @@ class CollegesController < ApplicationController
       @college = College.find_by_id(college_id)
       search = params[:search] || ""
 
-      if current_user.college_branch_enrolled?
+      if current_user.college_branch_enrolled? and (@college == current_user.college)
         @branch = current_user.branch
       else
         branches = @college.branches.order(:created_at)
@@ -84,7 +84,7 @@ class CollegesController < ApplicationController
       college_id = params[:id]
       @college = College.find_by_id(college_id)
 
-      if current_user.college_branch_enrolled?
+      if current_user.college_branch_enrolled? and (@college == current_user.college)
         @branch = current_user.branch
       else
         branches = @college.branches.order(:created_at)
