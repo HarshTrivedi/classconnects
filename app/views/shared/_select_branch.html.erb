@@ -1,10 +1,28 @@
 
-<%= form_tag( college_content_path(college.id) , :id => "branch_search" , :method => :get ) do %>	
-	<%select_tag "search_branch_field", options_from_collection_for_select( college.branches , "id", "name" , nil) , :include_blank => true %>
-<% end %>
+
+<%if current_page?(college_content_path) %>
+
+		<%= form_tag( college_content_path(college.id) , :id => "branch_search" , :method => :get ) do %>	
+		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil) , :include_blank => true %>
+		<% end %>
+
+<%elsif current_page?(college_courses_path) %>
+
+		<%= form_tag( college_courses_path(college.id) , :id => "branch_search" , :method => :get ) do %>	
+		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil) , :include_blank => true %>
+		<% end %>
+
+<%elsif current_page?(college_users_path) %>
+
+		<%= form_tag( college_users_path(college.id) , :id => "branch_search" , :method => :get ) do %>	
+		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil) , :include_blank => true %>
+		<% end %>
+
+<%end%>
+
 
 <script>
 	$(function() {
-		$("#search_branch_field").chosen( {search_contains: true , placeholder: "Visit a Branch" , allow_single_deselect: true , no_results_text: "Oops, no Branch found!"});
+		$("#branch_id").chosen( {search_contains: true , placeholder: "Visit a Branch" , allow_single_deselect: true , no_results_text: "Oops, no Branch found!"});
 	});
 </script>
