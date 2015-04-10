@@ -93,5 +93,12 @@ class Bucket < ActiveRecord::Base
     "bucket_id_#{self.id}/#{self.name}"
   end
 
+  def size
+      size = 0
+      self.folders.each{|folder| size += folder.size }
+      self.documents.each{|document| size += document.size }
+      return size
+  end
+
 
 end
