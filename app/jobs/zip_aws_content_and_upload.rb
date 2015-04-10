@@ -11,7 +11,14 @@ class ZipAwsContentAndUpload < ActiveJob::Base
   def perform(downloader_id , bucket_id)
 
 	bucket = Bucket.find_by_id(bucket_id)
-  	
+	bucket.zip_url  	
+	bucket.last_zip_time = DateTime.now
+	bucket.download_waiter_ids
+
+	original_zip_url = bucket.zip_url
+	original_last_zip_time = bucket.last_zip_time
+	original_download_waiter_ids = bucket.download_waiter_ids
+
   	if not bucket.zip_being_formed 
   		begin
 			bucket.zip_being_formed = true
@@ -110,11 +117,14 @@ class ZipAwsContentAndUpload < ActiveJob::Base
 			ap bucket
 		rescue
 			ap "Fallen In to an ERROR"
-
-			##also reset the queing .. ids as earlier .. load earlier
+			ap "About to restore the bucket"
 			bucket.reload
+			bucket.zip_url = original_zip_url 
+			bucket.last_zip_time = original_last_zip_time 
+			bucket.download_waiter_ids = original_download_waiter_ids
 			bucket.zip_being_formed = false
 			bucket.save
+			bucket.reload
 		end	
 	end
 
