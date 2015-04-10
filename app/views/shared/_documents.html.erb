@@ -1,6 +1,8 @@
 <div class="row">
 	  <%for document in documents%>
-			<%= render(:partial => 'shared/document', :locals => {:document => document } )%>
+      <div id="document_<%=document.id%>">
+	 		  <%= render(:partial => 'shared/document', :locals => {:document => document } )%>
+      </div>
 	  <%end%>
 </div>
 

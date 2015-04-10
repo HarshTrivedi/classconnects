@@ -88,7 +88,7 @@ class Document < ActiveRecord::Base
   end
 
   def size
-      self.s3["filesize"].to_i
+      self.s3["filesize"].to_i rescue 0
   end
 
 end

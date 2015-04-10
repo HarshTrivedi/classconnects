@@ -1,0 +1,4 @@
+toastr.info('Successfully', 'Uploaded document!');
+var id = "<%= @document.id %>" ;
+
+$("#documents").prepend("<div id=\"document_<%=@document.id%>\"> <%= escape_javascript(      render(:partial => 'shared/document', :locals => {:document => @document })      ) %>  </div>");

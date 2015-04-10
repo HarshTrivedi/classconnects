@@ -21,9 +21,11 @@ class DocumentsController < ApplicationController
 
   def update_details
     document_id = params[:document][:id]
-    document = Document.find_by_id(document_id)
-    document.update_attributes( document_params )
-    redirect_to :back
+    @document = Document.find_by_id(document_id)
+    @document.update_attributes( document_params )
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create_document
@@ -48,7 +50,7 @@ class DocumentsController < ApplicationController
         folder = Folder.find_by_id(parent_id)
         if not folder.nil? 
             # logger.ap "Folder"
-            document = Document.create( :name => name ,  :folder_id => parent_id , :bucket_id => folder.bucket_id , :cloud_path => cloud_path , :s3 => s3)
+            @document = Document.create( :name => name ,  :folder_id => parent_id , :bucket_id => folder.bucket_id , :cloud_path => cloud_path , :s3 => s3)
             # logger.ap document.valid?
             # logger.ap document
             bucket = Bucket.find_by_id(folder.bucket_id)
@@ -59,7 +61,7 @@ class DocumentsController < ApplicationController
         bucket = Bucket.find_by_id(parent_id)
         if not bucket.nil? 
             # logger.ap "Bucket"
-            Document.create( :name => name , :bucket_id => parent_id , :cloud_path => cloud_path , :s3 => s3)
+            @document = Document.create( :name => name , :bucket_id => parent_id , :cloud_path => cloud_path , :s3 => s3)
             # logger.ap document.valid?
             # logger.ap document
             bucket.size = bucket.size + s3["filesize"].to_i
@@ -71,7 +73,9 @@ class DocumentsController < ApplicationController
     uploader.save
     # redirect_to :back
     #Need to render JS over here!
-    render :nothing => true
+    respond_to do |format|
+      format.js
+    end
   end
 
 
