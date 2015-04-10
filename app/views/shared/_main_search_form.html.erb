@@ -1,7 +1,4 @@
-<div class="the-box transparent full search-page">
-	<div style="position: relative; z-index: 0; background: none repeat scroll 0% 0% transparent;" class="the-box no-margin no-border bg-success">
-		<div class="setting_one"></div>
-		<div class="row">
+		<div class="row" id="main-search-background">
 			<div class="text-center">
 				<%= form_tag(landing_path, method: "get", :class => "form-group has-feedback lg no-label") do %>
 					<%= hidden_field_tag("college_autocomplete_id", "", :id => "college_autocomplete_id") %>
@@ -20,14 +17,10 @@
 						<%= text_field_tag :search_course  , nil , :id => "course_autocomplete" , :class => "form-control"   , :placeholder => "Search Course"%>
 					</div>
 					<div class="col-sm-2">
-						<%= submit_tag "Find", :class => "btn btn-success form-control" %>
+						<%= submit_tag "Find", :class => "btn btn-info btn-perspective form-control" %>
 					</div>
 				<%end%>
 			</div>
 		</div>
-		<div style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 278px; width:100%; z-index: -999998; position: absolute;" class="backstretch">
-			<img src="/assets/books2.jpg" style="position: absolute; margin: 0px; padding: 0px; border: medium none; width: 100%; height: 698px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -210px;" >
-		</div>
-	</div>			
-</div>
+		<div style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 200px; width:100%; z-index: -999998; position: absolute;" class="backstretch"><img src="/assets/books2.jpg" style="position: absolute; margin: 0px; padding: 0px; border: medium none; width: 100%; height: 698px; max-height: none; max-width: none; z-index: -999999; left: 0px; top: -273px;" ></div>
 

@@ -1,5 +1,5 @@
 <%= form_tag favorite_courses_remote_path , :id => "favorite_courses_search" , :remote => true , :method => :post do %>
-    <%= text_field_tag :search, params[:search] %>
+    <%= text_field_tag :search, nil , {:placeholder=>"search"} %>
 <% end %>
 
 <script>

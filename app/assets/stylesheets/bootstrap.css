@@ -108,7 +108,7 @@ code,kbd,pre,samp{
 }
 
 button,input,optgroup,select,textarea{
-	margin:5px;
+	margin:0px;
 	font:inherit;
 	color:inherit
 }
@@ -139,10 +139,48 @@ input{
 	line-height:normal
 }
 /* added 84  search align right*/
-#search{
+/*#search{
 	line-height:normal;
 	float:right;
+}*/
+/*#search {
+
 }
+*/
+
+#search{
+    background: url(/assets/search-dark.png) no-repeat 10px 6px rgb(255,255,255);
+    border: 0 none;
+    font: 14px Arial,Helvetica,Sans-serif;
+    color: rgb(0,0,0);
+    width:150px;
+    padding: 6px 15px 6px 35px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3); 
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2) inset;
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+   	float:right;
+   	margin-right:20px;
+   	margin-top:5px;
+    }
+
+#search:focus {
+    background: url(/assets/search-dark.png) no-repeat 10px 6px #fcfcfc;
+    color: #6a6f75;
+    width: 200px;
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.9) inset;
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.9) inset;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(0, 0, 0, 0.9) inset;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+
+    }
 input[type=checkbox],input[type=radio]{
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
@@ -1132,12 +1170,12 @@ a:hover,a:focus{
 	color:#2a6496;
 	text-decoration:underline
 }
-
+/* added 94
 a:focus{
 	outline:thin dotted;
 	outline:5px auto -webkit-focus-ring-color;
 	outline-offset:-2px
-}
+}*/
 
 figure{
 	margin:0
@@ -1304,7 +1342,13 @@ mark,.mark{
 .text-center{
 	text-align:center
 }
+/* added 84 main-search background white*/
 
+#main-search-background{
+	background-color: rgba(240,235,235,0.5);
+	border-radius: 10px 10px 10px 10px;
+	padding: 10px;
+}
 .text-justify{
 	text-align:justify
 }
@@ -1623,7 +1667,8 @@ pre code{
 	padding-right:15px;
 	padding-left:15px;
 	margin-right:auto;
-	margin-left:auto
+	margin-left:auto;
+	min-height: 1000px;
 }
 
 .row{
@@ -2866,7 +2911,7 @@ textarea.input-lg,select[multiple].input-lg{
 }
 
 .has-feedback .form-control{
-	padding-right:42.5px
+	padding-right:35px
 }
 
 .form-control-feedback{
@@ -3094,14 +3139,14 @@ textarea.input-lg,select[multiple].input-lg{
 	-ms-user-select:none;
 	user-select:none;
 	background-image:none;
-	border:1px solid transparent;
+	border:0px solid transparent;
 	border-radius:4px
 }
 
 .btn:focus,.btn:active:focus,.btn.active:focus{
-	outline:thin dotted;
+	/* added 94 outline:thin dotted;
 	outline:5px auto -webkit-focus-ring-color;
-	outline-offset:-2px
+	outline-offset:-2px*/
 }
 
 .btn:hover,.btn:focus{
@@ -3325,7 +3370,7 @@ textarea.input-lg,select[multiple].input-lg{
 
 .btn-xs,.btn-group-xs>.btn{
 	padding:1px 5px;
-	font-size:12px;
+	font-size:10px;
 	line-height:1.5;
 	border-radius:3px
 }
@@ -3444,9 +3489,9 @@ tbody.collapse.in{
 }
 
 .dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus{
-	color:#262626;
+	color:#ffffff;
 	text-decoration:none;
-	background-color:#f5f5f5
+	background-color:rgb(36,42,52);
 }
 
 .dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus{

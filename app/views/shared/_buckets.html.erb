@@ -1,8 +1,6 @@
 
 <%for bucket in buckets%>
-	  <li class="media">
-			<%= render(:partial => 'shared/bucket', :locals => {:bucket => bucket } )%>
-	  </li>
+		<%= render(:partial => 'shared/bucket', :locals => {:bucket => bucket } )%>
  <%end%>
 
 

@@ -1,3 +1,4 @@
+<div class="col-sm-6">
 <div class="the-box no-border">
 	<div class="media user-card-sm">
 	  <%uploader = document.bucket.uploader %>
@@ -22,13 +23,14 @@
 			Created <%= time_ago_in_words(document.created_at) %> ago
 		</span>
 	  </div>
-		<div class="right-button">
+		<!-- <div class="right-button"> -->
 			<%= link_to(  fa_icon("external-link-square", text: "View") , view_document_path(document.id) )%>
 			<%if uploader == current_user%>
-				<%= link_to("Delete" , destroy_document_path(document.id) , :method => :delete ,:class => "btn btn-danger") %>
+				<%= link_to(  fa_icon("remove", text: "Delete") , destroy_document_path(document.id) , :method => :delete ,:class => "btn btn-danger") %>
 			<%end%>
-		</div>
+		<!-- </div> -->
 	</div>
+</div>
 </div>
 
 <div class="modal fade" id="document_<%=document.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">

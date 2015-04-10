@@ -1,4 +1,4 @@
-
+<div class="col-sm-6">
 <div class="the-box no-border property-list">
     <div class="media">
         <a class="pull-left" href="#fakelink"> <!--if want to give user profile link-->
@@ -18,8 +18,6 @@
             </h4>
 
             <ul class = "list-inline">
-		        <li>
-        	     	<%= link_to("Download" , request_download_bucket_path(bucket.id) , :method => :post , :class => "label label-warning span-sidebar") %>
                   <li>
                       <%= link_to( fa_icon("thumbs-o-up") , like_bucket_path(bucket.id) , :method => :put)%> 
                       </b> 
@@ -30,9 +28,22 @@
                       </b> 
                       <%= bucket.down_votes %>
                   </li>
-                    <button type="button" data-toggle="modal" data-target="#bucket_<%=bucket.id%>" class="btn btn-success">
-                        Edit
-                    </button>
+            </ul>
+            <ul>
+                <li>
+                  <button class="btn btn-xs btn-warning btn-perspective">
+                       <i class="fa fa-cloud-download"> Download <%= link_to("" , request_download_bucket_path(bucket.id) , :method => :post ) %></i>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" data-toggle="modal" data-target="#bucket_<%=bucket.id%>" class="btn btn-xs btn-warning btn-perspective">
+                       <i class="fa fa-edit"> Edit </i>
+                  </button>
+                </li>
+                <li>
+                  <button class="btn btn-xs btn-warning btn-perspective">
+                        <i class="fa fa-remove"> Delete <%= link_to("" , destroy_bucket_path(bucket.id) , :method => :delete ) %></i>
+                  </button>                 
                 </li>
             </ul>
 
@@ -49,7 +60,7 @@
 	 </div>
 
 </div>
-
+</div>
 
 <div class="modal fade" id="bucket_<%=bucket.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
      <div class="modal-dialog">

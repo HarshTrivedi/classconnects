@@ -20,13 +20,14 @@
 		<span class="small-user text-muted">
 			Created <%= time_ago_in_words(folder.created_at) %> ago
 		</span>
-	    </div>
-		<div class="right-button">
-			<%= link_to(  fa_icon("external-link-square btn-xs btn-info btn-perspective", text: "Visit") , folder_content_path( folder.id ) )%>
+		<br>
+		<!-- <div class="right-button"> -->
+			<%= link_to(  fa_icon("external-link-square btn-xs btn-warning btn-perspective", text: "Visit") , folder_content_path( folder.id ) )%>
 	    	<%if uploader == current_user %>
-			  <%= link_to("Delete" , destroy_folder_path(folder.id) , :method => :delete , :class => "btn btn-danger") %>
+			  <%= link_to("Delete" , destroy_folder_path(folder.id) , :method => :delete , :class => "btn-xs btn-warning btn-perspective") %>
 		    <%end%>
-		</div>
+		<!-- </div> -->
+	    </div>
 	</div>
 </div>
 
