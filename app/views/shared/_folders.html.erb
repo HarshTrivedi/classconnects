@@ -1,15 +1,17 @@
 
 <div class="row">
   <%for folder in folders%>
+    <div id="folder_<%=folder.id%>">
 		<%= render(:partial => 'shared/folder', :locals => {:folder => folder } )%>				  
+    </div>
   <%end%>
 </div>
 
-<button type="button" data-toggle="modal" data-target="#add_folder" class="btn btn-success btn-perspective">Add Folder</button>
+<button type="button" data-toggle="modal" data-target="#modal_add_folder" class="btn btn-success btn-perspective">Add Folder</button>
 
 <%= paginate folders, :param_name => "folder_page"  , :remote => true %>
 
-<div class="modal fade" id="add_folder" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="modal_add_folder" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
      <div class="modal-dialog">
        <div class="modal-content modal-no-shadow">
          <div class="modal-header bg-dark no-border">
@@ -17,7 +19,7 @@
            <h4 class="modal-title">Add a Folder</h4>
          </div>
          <div class="modal-body">
-			<%= simple_form_for Folder.new , :url => create_folder_path( parent_type , parent_id ) , :method => "post" , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+			<%= simple_form_for Folder.new , :url => create_folder_path( parent_type , parent_id ) , :method => :post , :remote => true, :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
 			  <%= f.input :name , :input_html => { :class => ""} %>
                <div class="modal-footer">
                  <div class="text-center">

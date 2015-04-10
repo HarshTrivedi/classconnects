@@ -31,9 +31,13 @@ class FoldersController < ApplicationController
 
   def update_details
     folder_id = params[:folder][:id]
-    folder = Folder.find_by_id(folder_id)
-    folder.update_attributes( folder_params )
-    redirect_to :back
+    @folder = Folder.find_by_id(folder_id)
+    @folder.update_attributes( folder_params )
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 
   def new_folder
@@ -63,8 +67,10 @@ class FoldersController < ApplicationController
         @parent_bucket.folders << @folder
     end
 
+    respond_to do |format|
+      format.js
+    end
 
-    redirect_to :back      
   end
 
 
@@ -73,7 +79,11 @@ class FoldersController < ApplicationController
     folder_id = params[:folder_id]
     folder = Folder.find_by_id(folder_id)
     folder.destroy if current_user == folder.bucket.uploader
-    redirect_to :back
+    # redirect_to :back
+    respond_to do |format|
+      format.js
+    end
+
   end
 
 

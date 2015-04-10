@@ -1,0 +1,4 @@
+$('.modal').modal("hide") ;
+toastr.info('Successfully', 'folder updated');
+var id = "<%= @folder.id %>" ;
+$("#folder_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/folder', :locals => {:folder => @folder })      ) %>");

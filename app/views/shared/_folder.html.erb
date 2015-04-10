@@ -9,7 +9,7 @@
 			<%= link_to( folder.name , folder_content_path(folder.id)  ) %>
 		</span>
 		<br>
-            <button type="button" data-toggle="modal" data-target="#folder_<%=folder.id%>" class="btn btn-success">
+            <button type="button" data-toggle="modal" data-target="#modal_edit_folder_<%=folder.id%>" class="btn btn-success">
                 Change Name
             </button>
 		<br>
@@ -31,7 +31,7 @@
 	</div>
 </div>
 
-<div class="modal fade" id="folder_<%=folder.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="modal_edit_folder_<%=folder.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
      <div class="modal-dialog">
        <div class="modal-content modal-no-shadow">
          <div class="modal-header bg-dark no-border">
@@ -39,7 +39,7 @@
            <h4 class="modal-title">Change Folder Name : <%= folder.name %> </h4>
          </div>
          <div class="modal-body">
-                <%= simple_form_for folder , :url => update_folder_details_path(folder.id )  , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+                <%= simple_form_for folder , :url => update_folder_details_path(folder.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
                   <%= f.input :id, :as => :hidden, :input_html => { :value => folder.id } %>
                   <%= f.input :name , :input_html => { :class => ""}  %>
                   <div class="modal-footer">
