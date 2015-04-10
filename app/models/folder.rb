@@ -30,6 +30,11 @@ class Folder < ActiveRecord::Base
     self.path_ids.map{|folder_id| [ Folder.find_by_id(folder_id).name , "/admin/buckets/#{bucket_id}/folders/#{folder_id}" ]}
   end
 
+  def student_bread_crumb_paths
+    bucket_id = self.bucket.id
+    self.path_ids.map{|folder_id| [ Folder.find_by_id(folder_id).name , "/folders/#{folder_id}/content" ]}
+  end
+
 
   def link
     "/admin/buckets/#{self.bucket.id}/folders/#{id}"
