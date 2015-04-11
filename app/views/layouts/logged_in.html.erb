@@ -93,11 +93,6 @@
 					<%else%>
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
 					<%end%>
-					<%if current_page?("#fake_link_yet") %>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Upload"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"active" )%>
-					<%else%>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Upload"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"" )%>
-					<%end%>
 					<%if current_page?(profile_main_path) %>
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), profile_main_path , :data => {:toggle=>""}), :class=>"active" )%>
 					<%else%>
