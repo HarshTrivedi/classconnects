@@ -12,8 +12,14 @@
 </div>
 
 
-<%= render(:partial => 'shared/comments' ,:locals => { :comments => @comments } ) %>
+<div class="media no-border">
+	<h4 class="small-heading more-margin-bottom"><%= @comments.size%> COMMENTS</h4>
+	<ul class="media-list media-sm media-dotted">
+	<div id="comments">
+		<%= render(:partial => 'shared/comments' ,:locals => { :comments => @comments } ) %>
+	</div>
+	<%= paginate @comments , :remote => true %>
+	</ul>
+</div>
 
-<%= render(:partial => "shared/leave_comment" , :locals => {:type => "course"  })%>
-
-<%= render(:partial => 'shared/add_bucket_without_course' , :locals => {:course => @course } ) %>
+<%= render(:partial => "shared/leave_comment" , :locals => {:parent_type => "course" , :parent_id => @course.id })%>

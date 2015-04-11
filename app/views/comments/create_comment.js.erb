@@ -1,0 +1,24 @@
+toastr.info('Successfully', 'Added comment!');
+$("form").trigger("reset");
+var parent_type = "<%= @parent_type %>"
+var parent_id = "<%= @parent_id %>"
+
+if(parent_type == "college_branch"){
+	console.log("college_branch");
+
+}else if(parent_type == "course"){
+	console.log("course");
+	$("#comments").prepend("<div id=\"comment_<%=@comment.id%>\"> <%= escape_javascript(      render(:partial => 'shared/comment', :locals => {:comment => @comment })      ) %>  </div>");
+
+}else if(parent_type == "bucket" ){
+	console.log("bucket");
+
+}else{
+
+	console.log("NOTHING");
+}
+
+
+
+
+

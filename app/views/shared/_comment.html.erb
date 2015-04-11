@@ -10,9 +10,13 @@
 		<%= comment.message %>
 		<ul class="media-list">
 			<%comment_responses = comment.comment_responses %>
-			<%for comment_response in comment_responses%>
-				<%= render(:partial => 'shared/comment_response', :locals => {:comment_response => comment_response } )%>		
- 			<%end%>
+			<div id="comment_responses_<%=comment.id%>">
+				<%for comment_response in comment_responses%>
+				    <div id="comment_response_<%=comment_response.id%>">
+						<%= render(:partial => 'shared/comment_response', :locals => {:comment_response => comment_response } )%>		
+					</div>
+	 			<%end%>
+ 			</div>
 			<%= render(:partial => 'shared/leave_comment_response', :locals => {:comment => comment } )%>		
 		</ul>
 	</div>
