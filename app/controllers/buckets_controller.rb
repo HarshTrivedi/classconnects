@@ -82,30 +82,36 @@ class BucketsController < ApplicationController
 
 
   def up_vote
-    bucket = Bucket.find_by_id(params[:id])
-    if not bucket.nil?
-      # if not current_user.voted_for?(bucket)
-      logger.ap "About to upvote"
-      current_user.up_votes(bucket)
-      # else
-      #     flash[:notice] = 'Sorry!! You had allready voted this Bucket!'
-      # end
+    @bucket = Bucket.find_by_id(params[:id])
+    if not @bucket.nil?
+      @message = ""
+      if current_user.has_upvoted?(@bucket)
+          @message = "already upvoted"
+      else
+          @message = "success"
+          current_user.up_votes(@bucket)
+      end
     end
-    redirect_to :back    
+    respond_to do |format|
+      format.js
+    end
   end
 
 
   def down_vote
-    bucket = Bucket.find_by_id(params[:id])
-    if not bucket.nil?
-      # if not current_user.voted_for?(bucket)
-      logger.ap "About to downvote"
-      current_user.down_votes(bucket)
-      # else
-      #     flash[:notice] = 'Sorry!! You had allready voted this Bucket!'
-      # end
+    @bucket = Bucket.find_by_id(params[:id])
+    if not @bucket.nil?      
+      @message = ""
+      if current_user.has_downvoted?(@bucket)
+          @message = "already downvoted"
+      else
+          @message = "success"
+          current_user.down_votes(@bucket)
+      end
     end
-    redirect_to :back
+    respond_to do |format|
+      format.js
+    end
   end
 
 

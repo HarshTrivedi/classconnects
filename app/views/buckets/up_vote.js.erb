@@ -1,0 +1,15 @@
+var message = "<%= @message %>" ;
+var id = "<%=@bucket.id%>"
+
+if(message == "already upvoted"){
+	// console.log(message);
+	toastr.info('Already', 'upvoted');
+}else if(message == "success"){
+	// console.log(message);
+	toastr.success('Successfully', 'upvoted');
+	$("#bucket_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/bucket', :locals => {:bucket => @bucket })      ) %>");
+}
+else{
+	// console.log(message);
+	toastr.error('Bad', 'request');
+}

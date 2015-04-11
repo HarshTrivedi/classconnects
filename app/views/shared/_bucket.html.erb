@@ -18,16 +18,35 @@
             </h4>
 
             <ul class = "list-inline">
-                  <li>
-                      <%= link_to( fa_icon("thumbs-o-up") , like_bucket_path(bucket.id) , :method => :put)%> 
-                      </b> 
-                      <%= bucket.up_votes %>
-                  </li>  |  
-                  <li>
-                      <%= link_to( fa_icon("thumbs-o-down") , like_bucket_path(bucket.id) , :method => :put)%> 
-                      </b> 
-                      <%= bucket.down_votes %>
-                  </li>
+
+                  <%if current_user.has_upvoted?(bucket)  %>
+                      <li>
+                          <%= link_to( fa_icon("thumbs-up") , like_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                          </b> 
+                          <%= bucket.up_votes %>
+                      </li>
+                  <%else%>
+                      <li>
+                          <%= link_to( fa_icon("thumbs-o-up") , like_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                          </b> 
+                          <%= bucket.up_votes %>
+                      </li>
+                  <%end%>
+                    |  
+                  <%if current_user.has_downvoted?(bucket)  %>
+                      <li>
+                          <%= link_to( fa_icon("thumbs-down") , dislike_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                          </b> 
+                          <%= bucket.down_votes %>
+                      </li>
+                  <%else%>
+                      <li>
+                          <%= link_to( fa_icon("thumbs-o-down") , dislike_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                          </b> 
+                          <%= bucket.down_votes %>
+                      </li>
+                  <%end%>
+
             </ul>
             <ul>
                 <li>

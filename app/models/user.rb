@@ -242,4 +242,14 @@ class User < ActiveRecord::Base
     Ability.new( self ).can?( action , object )
   end
 
+  def has_upvoted?(bucket)
+    bucket.get_upvotes.map(&:voter_id).include?(self.id)
+  end
+
+  def has_downvoted?(bucket)
+    bucket.get_downvotes.map(&:voter_id).include?(self.id)
+  end
+
+
+
 end
