@@ -11,9 +11,15 @@
 			<%= link_to( document.name , document_details_path(document.id)  ) %>
 		</span>
 		<br>
-            <button type="button" data-toggle="modal" data-target="#modal_edit_document_<%=document.id%>" class="btn btn-success">
-                Change Name
-            </button>
+
+			<%if document.bucket.uploader != current_user %>
+	            <button type="button" data-toggle="modal" data-target="#modal_edit_document_<%=document.id%>" class="btn btn-success">
+	                Change Name
+	            </button>
+	            <%= link_to("Remove" , destroy_document_path(document.id) , :method => :delete , :remote => true) %>
+            <%end%>
+
+
 		<br>
 		<span class="user-mail">
 			<%= uploader.email %>
