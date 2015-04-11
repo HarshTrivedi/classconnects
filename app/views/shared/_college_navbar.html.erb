@@ -29,9 +29,9 @@
 
 
 
-			<div id="select_branch">
+			<li id="select_branch" style="margin-top:7px">
 				<%= render(:partial => 'shared/select_branch' ,:locals => { :college => @college } ) %>
-			</div>			 
+			</li>			 
 
 			<div id="internal_search_bar">
 				<%if current_page?(college_content_path) %>

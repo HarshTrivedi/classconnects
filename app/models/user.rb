@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  paginates_per 1
+  paginates_per 9
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

@@ -4,7 +4,7 @@ class Bucket < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search, :against => [:name, :description]
 
-  paginates_per 3
+  paginates_per 10
 
 
   belongs_to :category

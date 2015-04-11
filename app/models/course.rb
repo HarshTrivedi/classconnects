@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
   attr_accessor :college_branch_pair_id
-  paginates_per 10
+  paginates_per 12
   belongs_to :college_branch_pair
   has_many :buckets
   has_many :course_enrollments

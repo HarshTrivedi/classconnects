@@ -1,7 +1,7 @@
 class Folder < ActiveRecord::Base
   attr_accessor :folder_id , :bucket_id
   has_ancestry :orphan_strategy => :destroy
-  paginates_per 10
+  paginates_per 5
 
   belongs_to :bucket , :touch => true
   has_many :documents  

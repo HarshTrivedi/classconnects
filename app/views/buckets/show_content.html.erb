@@ -2,8 +2,7 @@
 <%= render(:partial => 'shared/bucket_navbar' , :locals => {:bucket => @bucket }) %> 
 
 <div class="row">
-	<div class="section-heading">
-		<h2>
+	<div class="breadcrumb default square rsaquo sm">
 			<%course = @bucket.course %>
 			<%branch = course.branch %>
 			<%college = course.college %>
@@ -15,7 +14,6 @@
 			<%= link_to( course.name , course_content_path(course) )%> 
 			>
 			<%= @bucket.name %> 
-		</h2>				
 	</div>
 </div>
 

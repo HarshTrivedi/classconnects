@@ -4343,7 +4343,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 @media (min-width:768px){
 	.navbar-nav{
 		float:left;
-		margin:0
+		margin:17px;   /*added 114 */ 
 	}
 
 	.navbar-nav>li{
@@ -5486,7 +5486,7 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:hover,a.list-gro
 
 .panel{
 	margin-bottom:20px;
-	background-color:#fff;
+	background-color:rgb(233,233,233);
 	border:1px solid transparent;
 	border-radius:4px;
 	-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);

@@ -2,8 +2,7 @@
 <%= render(:partial => 'shared/folder_navbar' , :locals => {:folder => @folder }) %> 
 
 <div class="row">
-	<div class="section-heading">
-		<h2>
+	<div class="breadcrumb default square rsaquo sm">
 			<%bucket = @folder.bucket %>
 			<%= link_to( bucket.name , bucket_content_path(bucket) )%>
 			>
@@ -15,8 +14,6 @@
 				>
 			<%end%>
 			<%= @folder.name %>
-
-		</h2>				
 	</div>
 </div>
 
