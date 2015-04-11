@@ -1,4 +1,8 @@
 $('.modal').modal("hide") ;
-toastr.info('Successfully', 'folder updated');
+$("form").trigger("reset");
 var id = "<%= @folder.id %>" ;
-$("#folder_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/folder', :locals => {:folder => @folder })      ) %>");
+toastr.info('Successfully', 'folder updated');
+window.setTimeout(function () {
+	$("#folder_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/folder', :locals => {:folder => @folder })      ) %>");	
+}, 300);
+

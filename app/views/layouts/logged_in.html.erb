@@ -119,7 +119,10 @@
 					<%end%>
 
 					<div class="upload-button">
-						<button class="btn btn-success btn-perspective"><i class="fa fa-cloud-upload fa-xs"></i> Upload </button>
+						<button type="button" data-toggle="modal" data-target="#modal_add_bucket_with_course" class="btn btn-success btn-perspective">
+							<i class="fa fa-cloud-upload fa-xs"></i>
+							Upload
+						</button>
 					</div>
 
 				</ul>
@@ -148,6 +151,31 @@
 					  </div>
 					</div><!-- /.modal-content .modal-no-shadow -->
 				  </div><!-- /.modal-dialog -->
+			</div>
+			<div class="modal fade" id="modal_add_bucket_with_course" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+			     <div class="modal-dialog">
+			       <div class="modal-content modal-no-shadow">
+			         <div class="modal-header bg-dark no-border">
+			           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			           <h4 class="modal-title">Add a Bucket</h4>
+			         </div>
+			         <div class="modal-body">
+
+						<%= simple_form_for Bucket.new , :url => create_bucket_path, :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+
+							  <%= f.association :course, collection: current_user.enrolled_courses , prompt: "Choose enrolled course" , :input_html => { :class => "chosen-input"} %>
+							  <%= f.input :main_upload, :as => :hidden, :input_html => { :value => true } %> 
+
+							  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input"}%>
+							  <%= f.input :name , :input_html => { :class => ""} %>
+							  <%= f.input :description , :input_html => { :class => ""} %>
+							  <div class="text-center">
+						  		<%= f.button :submit , "Create", :class => "btn btn-success"%>
+						  	  </div>
+						<% end %>
+			         </div>
+			       </div><!-- /.modal-content .modal-no-shadow -->
+			     </div><!-- /.modal-dialog -->
 			</div>
 			
 			

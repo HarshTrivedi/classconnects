@@ -1,4 +1,7 @@
 $('.modal').modal("hide") ;
-toastr.info('Successfully', 'bucket updated');
+$("form").trigger("reset");
 var id = "<%= @bucket.id %>";
-$("#bucket_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/bucket', :locals => {:bucket => @bucket })      ) %>");
+toastr.info('Successfully', 'bucket updated');
+setInterval(function () {
+	$("#bucket_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/bucket', :locals => {:bucket => @bucket })      ) %>");
+}, 300);

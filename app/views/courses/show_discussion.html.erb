@@ -15,3 +15,5 @@
 <%= render(:partial => 'shared/comments' ,:locals => { :comments => @comments } ) %>
 
 <%= render(:partial => "shared/leave_comment" , :locals => {:type => "course"  })%>
+
+<%= render(:partial => 'shared/add_bucket_without_course' , :locals => {:course => @course } ) %>

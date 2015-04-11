@@ -42,7 +42,7 @@
                 </li>
                 <li>
                   <button class="btn btn-xs btn-warning btn-perspective">
-                        <i class="fa fa-remove"> Delete <%= link_to("" , destroy_bucket_path(bucket.id) , :method => :delete ) %></i>
+                        <i class="fa fa-remove"> Delete <%= link_to("DELETE" , destroy_bucket_path(bucket.id) , :method => :delete , :remote => true) %></i>
                   </button>                 
                 </li>
             </ul>

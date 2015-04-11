@@ -35,9 +35,9 @@ Rails.application.routes.draw do
 
   get 'buckets/:id/details'  => 'buckets#show_details'          , as: :bucket_details
   get 'buckets/:id/edit_details'  => 'buckets#edit_details'     , as: :edit_bucket_details
-  patch 'buckets/:id'          => 'buckets#update_details'        , as: :update_bucket_details  
+  post 'buckets/create'  => 'buckets#create_bucket'   , as: :create_bucket
+  post 'buckets/:id'          => 'buckets#update_details'        , as: :update_bucket_details  
   get 'buckets/new/:course_id'  => 'buckets#new_bucket'          , as: :new_bucket
-  post 'buckets/create/:course_id'  => 'buckets#create_bucket'   , as: :create_bucket
   delete 'buckets/:id'  => 'buckets#destroy_bucket'   , as: :destroy_bucket
   put '/buckets/:id/like',     to: 'buckets#up_vote'  , as: :like_bucket
   put '/buckets/:id/dislike',  to: 'buckets#down_vote', as: :dislike_bucket
@@ -55,7 +55,7 @@ Rails.application.routes.draw do
 
   get '/documents/:id/details'       => 'documents#show_details'         , as: :document_details
   get '/documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_document_details
-  patch '/documents/:id'             => 'documents#update_details'       , as: :update_document_details  
+  post '/documents/:id'             => 'documents#update_details'       , as: :update_document_details  
   get   '/documents/new'               => 'documents#new_document'         , as: :new_document
   post  '/documents/create/:parent_type/:parent_id' => 'documents#create_document'      , as: :create_document
   delete '/documents/:id'  => 'documents#destroy_document'   , as: :destroy_document

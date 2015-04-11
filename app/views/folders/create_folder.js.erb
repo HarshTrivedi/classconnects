@@ -1,4 +1,5 @@
 $('.modal').modal("hide") ;
+$("form").trigger("reset");
 toastr.info('Successfully', 'Added a folder');
 var id = "<%= @folder.id %>" ;
 

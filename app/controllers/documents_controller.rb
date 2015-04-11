@@ -86,10 +86,14 @@ class DocumentsController < ApplicationController
 
   #ie remove from the uploads
   def destroy_document
-    document_id = params[:document_id]
-    document = Document.find_by_id(document_id)
-    document_id.destroy if current_user == document.bucket.uploader
-    redirect_to :back
+    document_id = params[:id]
+    @document = Document.find_by_id(document_id)
+    @document.destroy if current_user == @document.bucket.uploader
+    # redirect_to :back
+    respond_to do |format|
+      format.js
+    end
+
   end
 
 
@@ -101,7 +105,7 @@ class DocumentsController < ApplicationController
     filename = document.name
 
     doc = BoxView::Api::Document.new.upload( path , filename )
-
+    
     document_session = doc.document_session
     view_url = document_session.view_url
 

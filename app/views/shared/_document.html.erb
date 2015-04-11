@@ -26,7 +26,7 @@
 		<!-- <div class="right-button"> -->
 			<%= link_to(  fa_icon("external-link-square", text: "View") , view_document_path(document.id) )%>
 			<%if uploader == current_user%>
-				<%= link_to(  fa_icon("remove", text: "Delete") , destroy_document_path(document.id) , :method => :delete ,:class => "btn btn-danger") %>
+				<%= link_to(  fa_icon("remove", text: "Delete") , destroy_document_path(document.id) , :method => :delete , :remote => true ,:class => "btn btn-danger") %>
 			<%end%>
 		<!-- </div> -->
 	</div>

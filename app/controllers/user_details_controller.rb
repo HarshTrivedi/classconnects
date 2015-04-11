@@ -73,26 +73,27 @@ class UserDetailsController < ApplicationController
   def favorite_course
       course_id = params[:course_id]
       current_user.favorite_course(course_id)
-      redirect_to :back
+      # redirect_to :back
+      render :js => "toastr.success('Course', 'added to favorites')"
   end
 
   def unfavorite_course
       course_id = params[:course_id]
       current_user.unfavorite_course(course_id)
-      redirect_to :back
+      render :js => "toastr.success('Course', 'removed from favorites')"
   end
 
   #Need link to reach here (In Buckets partial)
   def enroll_course
       course_id = params[:course_id]
       current_user.enroll_course(course_id)
-      redirect_to :back
+      render :js => "toastr.success('Course Enrollment', 'successfull!!')"
   end
 
   def unenroll_course
       course_id = params[:course_id]
       current_user.unenroll_course(course_id)
-      redirect_to :back
+      render :js => "toastr.success('Course UnEnrollment', 'successfull!!')"
   end
 
 
@@ -127,7 +128,7 @@ class UserDetailsController < ApplicationController
       end
       # show flash message that your download will soon become ready.
       # but ready so directly can be served
-      render :nothing => true
+      render :js => "toastr.info('Download getting ready', 'please check notification soon')"
   end
 
   #Need link to reach here (In Buckets partial)
@@ -160,7 +161,7 @@ class UserDetailsController < ApplicationController
       bucket_id = params[:bucket_id]
       current_user.upload_bucket(bucket_id)
       redirect_to college_content_path(bucket_id)
-      redirect_to :back
+      render :js => "toastr.success('New Bucket Added', '...')"
   end
 
   def redirect_to_college

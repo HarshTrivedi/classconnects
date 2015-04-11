@@ -1,2 +1,2 @@
-$("#folders").html("<%= escape_javascript(      render(:partial => 'shared/folders', :locals => {:folders => @folders  , :parent_type => 'bucket' , :parent_id => @bucket.id} )      ) %>");
-$("#documents").html("<%= escape_javascript(     render(:partial => 'shared/documents', :locals => {:documents => @documents , :parent_type => 'bucket' , :parent_id => @bucket.id} )      ) %>");
+$("#folders").html("<%= escape_javascript(      render(:partial => 'shared/folders', :locals => {:folders => @folders  , :parent_type => 'folder' , :parent_id => @folder.id} )      ) %>");
+$("#documents").html("<%= escape_javascript(     render(:partial => 'shared/documents', :locals => {:documents => @documents , :parent_type => 'folder' , :parent_id => @folder.id} )      ) %>");

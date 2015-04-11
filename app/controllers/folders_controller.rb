@@ -76,9 +76,9 @@ class FoldersController < ApplicationController
 
   #ie remove from the uploads
   def destroy_folder
-    folder_id = params[:folder_id]
-    folder = Folder.find_by_id(folder_id)
-    folder.destroy if current_user == folder.bucket.uploader
+    folder_id = params[:id]
+    @folder = Folder.find_by_id(folder_id)
+    @folder.destroy if current_user == @folder.bucket.uploader
     # redirect_to :back
     respond_to do |format|
       format.js

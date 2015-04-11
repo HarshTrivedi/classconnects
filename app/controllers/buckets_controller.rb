@@ -48,12 +48,14 @@ class BucketsController < ApplicationController
   def create_bucket
     course_id = params[:bucket][:course_id]
     course = Course.find_by_id(course_id)
-    if not course.nil?
-      # name = bucket_params[:name]
-      # description = bucket_params[:description]
 
-      @bucket = Bucket.create(bucket_params)
-      current_user.upload_bucket(bucket.id)
+    @main_upload = params[:bucket][:main_upload]
+    if not course.nil?
+      @bucket = Bucket.new(bucket_params)
+      @bucket.course_id = course.id
+      @bucket.user_id = current_user.id
+      course.buckets << @bucket
+      current_user.upload_bucket(@bucket.id)
     end
     respond_to do |format|
       format.js
@@ -64,15 +66,18 @@ class BucketsController < ApplicationController
   #ie remove from the uploads
   def destroy_bucket
     bucket_id = params[:id]
-    bucket = Bucket.find_by_id(bucket_id)
+    @bucket = Bucket.find_by_id(bucket_id)
 
-    if current_user == bucket.uploader
-      uploader = bucket.uploader
-      uploader.uploaded_data_size = uploader.uploaded_data_size - bucket.size
+    if current_user == @bucket.uploader
+      uploader = @bucket.uploader
+      uploader.uploaded_data_size = uploader.uploaded_data_size - @bucket.size
       uploader.save
-      bucket.destroy
+      @bucket.destroy
     end 
-    redirect_to :back
+    respond_to do |format|
+      format.js
+    end
+
   end
 
 
