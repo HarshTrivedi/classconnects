@@ -181,16 +181,9 @@ class UserDetailsController < ApplicationController
         current_user.ready_bucket_ids.delete("#{bucket.id}")
         current_user.ready_bucket_ids_will_change!
         current_user.save
-
         current_user.download_bucket(bucket_id)
-
-        # Downloaded data size for user should only be added if it is 
-        # not already added
-        #ThinkOverThis... what if the old download is updated..??
-        if not current_user.downloads.map(&:id).include?(bucket_id.to_i)
-          current_user.downloaded_data_size = current_user.downloaded_data_size + bucket.size
-          current_user.save
-        end
+        current_user.downloaded_data_size = current_user.downloaded_data_size + bucket.size
+        current_user.save
       end
       redirect_to bucket.download_url
   end
