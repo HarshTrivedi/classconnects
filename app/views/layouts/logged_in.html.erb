@@ -135,7 +135,7 @@
 					  </div>
 					  <div class="modal-body">
 							<%= simple_form_for CollegeBranchPair.new , :url => create_college_branch_enrollment_path , :method => "post" , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
-							  <%= f.input :user_id, :as => :hidden, :input_html => { :value => 1 } %>
+							  <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
 							  <%= f.association :college, label_method: :name , :include_blank => false , :input_html => { :class => "chosen-input"} %>
 							  <%= f.association :branch, label_method: :name , :include_blank => false , :input_html =>  { :class => "chosen-input"} %>
 							  <div class="modal-footer">
@@ -160,11 +160,11 @@
 
 						<%= simple_form_for Bucket.new , :url => create_bucket_path, :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
 
-							  <%= f.association :course, collection: current_user.enrolled_courses , prompt: "Choose enrolled course" , :input_html => { :class => "chosen-input"} %>
+							  <%= f.association :course, collection: current_user.enrolled_courses , prompt: "Choose enrolled course" , :input_html => { :class => "chosen-input" } %>
 							  <%= f.input :main_upload, :as => :hidden, :input_html => { :value => true } %> 
 							  <%= f.input :privately_shared , as: :radio_buttons %> 
 							  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input"}%>
-							  <%= f.input :name , :input_html => { :class => ""} %>
+							  <%= f.input :name , :input_html => { :class => "" } %>
 							  <%= f.input :description , :input_html => { :class => ""} %>
 							  <div class="text-center">
 						  		<%= f.button :submit , "Create", :class => "btn btn-success"%>
@@ -175,6 +175,35 @@
 			     </div><!-- /.modal-dialog -->
 			</div>
 			
+
+			<div class="modal fade" id="suggest" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+			     <div class="modal-dialog">
+			       <div class="modal-content modal-no-shadow">
+			         <div class="modal-header bg-dark no-border">
+			           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			           <h4 class="modal-title">Suggest College / Branch / Course</h4>
+			         </div>
+			         <div class="modal-body">
+			                <%= simple_form_for Suggestion.new , :url => suggestion_path( current_user.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label "} do |f| %>
+
+			                  <%= f.input :college_name %>
+			                  <%= f.input :branch_name %>
+			                  <%= f.input :course_name %>
+			                  <%= f.input :message, :hint => "Any more suggestions..?" %>
+
+			                  <div class="modal-footer">
+			                     <div class="text-center">
+			                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			                       <%= f.button :submit , "Submit", :class => "btn btn-success" %>
+			                     </div>
+			                  </div>
+			                <% end %>
+			         </div>
+			       </div><!-- /.modal-content .modal-no-shadow -->
+			     </div><!-- /.modal-dialog -->
+			</div>
+
+
 			
 			<!-- BEGIN PAGE CONTENT -->
 			<%= render partial: "shared/flash_messages", flash: flash %>
