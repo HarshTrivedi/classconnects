@@ -216,6 +216,14 @@ class UserDetailsController < ApplicationController
       end
   end
 
+  def report_inappropriate
+    @reported_inappropriate =  ReportedInappropriate.new(report_params)
+    if @reported_inappropriate.save
+      render :js => "$('.modal').modal(\"hide\") ; $(\"form\").trigger(\"reset\"); toastr.info('Reported', 'successfully')"
+    else
+      render :js => "$('.modal').modal(\"hide\") ; $(\"form\").trigger(\"reset\"); toastr.info('Reported', 'already!!')"
+    end
+  end
 
   private
   ## permitting params for mass assignment
@@ -223,6 +231,9 @@ class UserDetailsController < ApplicationController
     params.require(:college_branch_pair).permit(:college_id , :branch_id )
   end
 
+  def report_params
+    params.require(:reported_inappropriate).permit(:user_id , :bucket_id , :description , :inappropriate_type_id )
+  end
 
 
 end

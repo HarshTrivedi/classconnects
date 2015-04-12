@@ -20,29 +20,9 @@
 			<%end%>
 
 
-			<li class="dropdown">
-				  <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
-				  <ul class="dropdown-menu square margin-list-rounded with-triangle">
-					<li>
-						<%= link_to( "UpVote" , like_bucket_path(bucket.id) , :method => :put)%> 
-					</li>
-					<li>
-						<%= link_to( "DownVote" , dislike_bucket_path(bucket.id) , :method => :put)%> 
-					</li>
-					<li>
-						<%= link_to( "Download" , request_download_bucket_path(bucket.id) , :method => :post )%> 
-					</li>
-					<!--<li class="divider"></li>-->
-					<li>
-						<%= link_to( "Report" , "#modal_should_open" )%> 
-					</li>
-					<li>
-						<%= link_to( "Edit Bucket" , "#modal_should_open" )%> 
-					</li>
-					
-				  </ul>
+			<li class="dropdown" id="bucket_navbar_options" >
+				<%= render(:partial => 'shared/bucket_navbar_options' , :locals => {:bucket => bucket } ) %>
 			</li>
-
 
 			<div id="internal_search_bar">
 				<%if current_page?(bucket_content_path) %>
@@ -56,4 +36,30 @@
 </div>
 
 
+
+<div class="modal fade" id="modal_report_bucket_<%=bucket.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+     <div class="modal-dialog">
+       <div class="modal-content modal-no-shadow">
+         <div class="modal-header bg-dark no-border">
+           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+           <h4 class="modal-title">Report : <%= bucket.name %> </h4>
+         </div>
+         <div class="modal-body">
+                <%= simple_form_for ReportedInappropriate.new , :url => report_inappropriate_path( bucket.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+
+                  <%= f.input :user_id  , :as => :hidden, :input_html => { :value => current_user.id } %>
+                  <%= f.input :bucket_id, :as => :hidden, :input_html => { :value => bucket.id } %>
+                  <%= f.input :description, :hint => "Please describe in detail or suggest improvement in bucket" , :input_html => { :class => ""}%>
+                  <%= f.association :inappropriate_type, label_method: :report_type , :include_blank => false , :input_html => { :class => "chosen-input" }%>
+                    <div class="modal-footer">
+                      <div class="text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <%= f.button :submit , "Edit", :class => "btn btn-warning" %>
+                      </div>
+                    </div>
+                <% end %>
+         </div>
+       </div><!-- /.modal-content .modal-no-shadow -->
+     </div><!-- /.modal-dialog -->
+</div>
 

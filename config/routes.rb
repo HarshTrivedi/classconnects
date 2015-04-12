@@ -91,6 +91,7 @@ Rails.application.routes.draw do
   post '/unenroll_course/:course_id'             => 'user_details#unenroll_course'              , as: :unenroll_course
 
   post '/request_download_bucket/:bucket_id'  => 'user_details#request_download_bucket'         , as: :request_download_bucket
+  post '/report/:bucket_id'                   => 'user_details#report_inappropriate'            , as: :report_inappropriate
   get '/download_bucket/:bucket_id'          => 'user_details#download_bucket'                 , as: :download_bucket
   post '/upload_bucket/:bucket_id'    => 'user_details#upload_bucket'                           , as: :upload_bucket
 
