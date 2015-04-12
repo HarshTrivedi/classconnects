@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :course_favorites
   has_many :downloads
   has_many :reported_inappropriates
+  has_many :suggestions
   belongs_to :college_branch_pair
 
 
