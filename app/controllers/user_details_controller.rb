@@ -72,28 +72,62 @@ class UserDetailsController < ApplicationController
   #Need link to reach here (In Buckets partial)
   def favorite_course
       course_id = params[:course_id]
-      current_user.favorite_course(course_id)
+      @course = Course.find_by_id(course_id)
+      if @course
+        @user = current_user
+        current_user.favorite_course(@course.id)
+      end
       # redirect_to :back
-      render :js => "toastr.success('Course', 'added to favorites')"
+      # render :js => "toastr.success('Course', 'added to favorites')"
+      respond_to do |format|
+        format.js
+      end
+
   end
 
   def unfavorite_course
       course_id = params[:course_id]
-      current_user.unfavorite_course(course_id)
-      render :js => "toastr.success('Course', 'removed from favorites')"
+      @course = Course.find_by_id(course_id)
+      @user = current_user
+      if @course
+        current_user.unfavorite_course(@course.id)
+      end
+      # redirect_to :back
+      # render :js => "toastr.success('Course', 'added to favorites')"
+      respond_to do |format|
+        format.js
+      end
+
   end
 
   #Need link to reach here (In Buckets partial)
   def enroll_course
       course_id = params[:course_id]
-      current_user.enroll_course(course_id)
-      render :js => "toastr.success('Course Enrollment', 'successfull!!')"
+      @course = Course.find_by_id(course_id)
+      @user = current_user
+      if @course
+        current_user.enroll_course(@course.id)
+      end
+      # redirect_to :back
+      # render :js => "toastr.success('Course', 'added to favorites')"
+      respond_to do |format|
+        format.js
+      end
+
   end
 
   def unenroll_course
       course_id = params[:course_id]
-      current_user.unenroll_course(course_id)
-      render :js => "toastr.success('Course UnEnrollment', 'successfull!!')"
+      @course = Course.find_by_id(course_id)
+      if @course
+        @user = current_user
+        current_user.unenroll_course(@course.id)
+      end
+      # redirect_to :back
+      # render :js => "toastr.success('Course', 'added to favorites')"
+      respond_to do |format|
+        format.js
+      end
   end
 
 
@@ -110,9 +144,11 @@ class UserDetailsController < ApplicationController
             bucket.save
             user.pending_request_bucket_ids << bucket.id
             user.save
+            ap user.errors
         elsif (  (bucket.updated_time < bucket.last_zip_time) rescue false  )
             user.ready_bucket_ids << bucket.id
             user.save
+            ap user.errors
         else
 
             bucket = Bucket.find_by_id(bucket.id)
@@ -123,12 +159,15 @@ class UserDetailsController < ApplicationController
             user.pending_request_bucket_ids += [bucket.id]
             user.save
             ap user
-            ZipAwsContentAndUpload.enqueue(user.id , bucket.id)
+            ap user.errors
+            Resque.enqueue(ZipAwsContentAndUpload, user.id , bucket.id)
         end
       end
       # show flash message that your download will soon become ready.
       # but ready so directly can be served
-      render :js => "toastr.info('Download getting ready', 'please check notification soon')"
+      respond_to do |format|
+        format.js
+      end
   end
 
   #Need link to reach here (In Buckets partial)
