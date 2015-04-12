@@ -83,3 +83,4 @@ gem 'cancan'
 gem "active_admin_import" 
 gem 'activejob'
 gem 'toastr-rails'
+gem 'resque', :require => "resque/server"

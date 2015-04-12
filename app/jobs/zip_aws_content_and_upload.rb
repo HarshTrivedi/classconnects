@@ -4,11 +4,13 @@ require 'fileutils'
 require 'zip_file_generator.rb'
 require 'active_job'
 
+#bundle exec rake environment resque:work QUEUE=*
+#Do this to start the server
 
-class ZipAwsContentAndUpload < ActiveJob::Base
-  queue_as :default
+class ZipAwsContentAndUpload 
+   @queue = :default
   
-  def perform(downloader_id , bucket_id)
+  def self.perform(downloader_id , bucket_id)
 
 	bucket = Bucket.find_by_id(bucket_id)
 	bucket.zip_url  	
@@ -85,7 +87,7 @@ class ZipAwsContentAndUpload < ActiveJob::Base
 			bucket.last_zip_time = DateTime.now
 			ap bucket
 
-			waiter_ids = bucket.download_waiter_ids
+			waiter_ids = bucket.download_waiter_ids.uniq
 			ap "My waiters are   #{waiter_ids}"
 			for waiter_id in waiter_ids
 				ap "My waiter #{waiter_id}"
