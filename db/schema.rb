@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412064206) do
+ActiveRecord::Schema.define(version: 20150412214112) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,10 +188,27 @@ ActiveRecord::Schema.define(version: 20150412064206) do
   add_index "folders", ["bucket_id"], name: "index_folders_on_bucket_id", using: :btree
   add_index "folders", ["folder_id"], name: "index_folders_on_folder_id", using: :btree
 
+  create_table "inappropriate_types", force: true do |t|
+    t.string   "report_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reported_inappropriates", force: true do |t|
     t.integer  "user_id"
     t.integer  "bucket_id"
+    t.integer  "inappropriate_type_id"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suggestions", force: true do |t|
+    t.integer  "user_id"
+    t.string   "college_name"
+    t.string   "branch_name"
+    t.string   "course_name"
+    t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
