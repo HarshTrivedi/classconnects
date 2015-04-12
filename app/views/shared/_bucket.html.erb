@@ -12,9 +12,18 @@
                 <%= link_to( bucket.name , bucket_content_path(bucket.id)  ) %>
                 <% category = bucket.category.category %>
                 <small class="pull-right">
-                	<b>Catagory: </b><span class="label label-warning span-sidebar">
-                    <%= category %></span>
-		        </small>                 
+                	  <span class="label label-warning span-sidebar">
+                      <%= category %>
+                    </span>
+                    
+                  <% if current_page?(uploads_path) %>
+                    <br>
+                    <br>
+                    <span class="label label-success span-sidebar">
+                      <%= ( (bucket.privately_shared) ? ("Private") : ("Public") ) %>
+                    </span>
+		              <%end%>
+            </small>                 
             </h4>
 
             <ul class = "list-inline">
