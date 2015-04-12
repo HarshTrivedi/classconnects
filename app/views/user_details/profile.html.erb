@@ -8,8 +8,9 @@
 								<img src="<%=avatar_url(@user)%>" class="avatar" alt="Avatar" height="100" width="100">
 
 								<div class="profile-info">
-									<p class="user-name"><%= @user.email %></p>
+									<p class="user-name"><%= @user.full_name %></p>
 									<p class="text-muted">College : <a href="#fakelink"><%= @user.college.name rescue "None yet" %></a></p>
+									<p class="text-muted">Branch : <a href="#fakelink"><%= @user.branch.name rescue "None yet" %></a></p>
 									<%if @user == current_user %>
 										<p class="right-button">									
 											<%= link_to(fa_icon("fa-edit", text: "Change Password") , edit_user_registration_path , :class => "btn btn-warning btn-perspective btn-sm") %>
