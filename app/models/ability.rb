@@ -24,9 +24,14 @@ class Ability
         can :read, :all
 
     elsif user.role? :content_moderator
+        can :manage, ReportedInappropriate
+        can :manage, InappropriateType
         can :destroy, Bucket
+        can :update,  Bucket
         can :destroy, Folder
+        can :update,  Folder
         can :destroy, Document
+        can :update,  Document
         can :read, :all
     else
 

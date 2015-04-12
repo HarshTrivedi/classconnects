@@ -15,7 +15,7 @@ class Bucket < ActiveRecord::Base
   # has_many :uploads , :dependent => :destroy
   has_many :downloads , :dependent => :destroy
   has_many :comments, as: :commentable , :dependent => :destroy
-
+  has_many :reported_inappropriates , :dependent => :destroy
 
   validates :user, :presence => true
   validates :name, :presence => true
