@@ -37,9 +37,9 @@ ActiveAdmin.register Bucket do
 
       def update
         @bucket = Bucket.find_by_id(params[:id])
-        authorize_me_to( :create , @bucket )
+        authorize_me_to( :update , @bucket )
         @bucket.update_attributes(permitted_params[:bucket])
-        create! do |format|
+        update! do |format|
             format.html { redirect_to admin_course_path( @course ) }
         end
       end
@@ -47,7 +47,7 @@ ActiveAdmin.register Bucket do
 
       def destroy
         @bucket = Bucket.find_by_id(params[:id])
-        authorize_me_to( :create , @bucket )
+        authorize_me_to( :destroy , @bucket )
         destroy! do |format|
             format.html { redirect_to :back }
         end
@@ -118,6 +118,23 @@ ActiveAdmin.register Bucket do
             span link_to( "Create Document within" , new_admin_bucket_document_path( bucket ) ) if can?(:destroy , Document )
             # render 'upload_documents_in_bucket'
             render(:partial => 'shared/upload_documents' , :locals => {:parent => bucket })
+      end
+      panel "Bucket Comments" do
+            table_for bucket.comments do
+                column "Name" do |comment|
+                    user = comment.user
+                    link_to( user.full_name , admin_user_path( user ) ) 
+                end
+                column "Title Thread" do |comment|
+                    link_to( comment.message , admin_comment_path( comment ) ) 
+                end
+                column "Destroy" do |comment|
+                    link_to( "Remove" , admin_comment_path(document) , :method => :delete , data: { confirm: "Are you sure u want to delete this document ?" } ) if can?(:destroy , document )
+                end
+            end
+            # span link_to( "Create Document within" , new_admin_bucket_document_path( bucket ) ) if can?(:destroy , Document )
+            # render 'upload_documents_in_bucket'
+            # render(:partial => 'shared/upload_documents' , :locals => {:parent => bucket })
       end
       active_admin_comments
   end
