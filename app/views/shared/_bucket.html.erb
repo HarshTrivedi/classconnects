@@ -71,7 +71,7 @@
             </ul>
 
 	         <p class="hidden-xs"><!--ask-->
-                <b>Description:</b><%= bucket.description %>
+                <%= truncate(bucket.description , length: 50) %>
             </p>
 
             <span class="small text-muted">

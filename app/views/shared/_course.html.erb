@@ -9,7 +9,8 @@
 			<br>
 			<span class="small text-muted">
 					<b>College:</b>
-					<%=course.college_branch_pair.college.name%>
+					<% college = course.college_branch_pair.college %>
+					<%= link_to(  truncate( college.name , :length => 15) , college_content_path(college.id) )  %>
 			</span>
     	</div>
 		<div class="right-button">
