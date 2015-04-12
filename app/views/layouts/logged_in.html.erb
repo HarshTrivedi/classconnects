@@ -44,8 +44,10 @@
 						<ul class="nav navbar-nav navbar-left" >
 							<%= render( :partial => 'shared/main_college_search' )%>
 						</ul>
-						<ul class="nav navbar-nav navbar-left" >					
-							<%= render(:partial => 'shared/notifications' ) %>
+						<ul class="nav navbar-nav navbar-left" >		
+							<div id="notifications">			
+								<%= render(:partial => 'shared/notifications' ) %>
+							</div>
 						</ul>
 
 						<ul class="nav-user navbar-right">
