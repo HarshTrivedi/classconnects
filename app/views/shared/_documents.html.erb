@@ -1,16 +1,17 @@
-<div class="row">
+<div class="row" style:"margin-bottom:100px">
 	  <%for document in documents%>
       <div id="document_<%=document.id%>">
 	 		  <%= render(:partial => 'shared/document', :locals => {:document => document } )%>
       </div>
 	  <%end%>
-</div>
+
 
 <button type="button" data-toggle="modal" data-target="#add_document" class="btn btn-success btn-perspective">Add Dcouments</button>
-
-<div class = "stick-paginate">
+</div>
+<div style="position:relative margin-bottom:0px">
 <%= paginate documents, :param_name => "document_page"  , :remote => true %>
 </div>
+
 
 <div class="modal fade" id="add_document" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
      <div class="modal-dialog">
