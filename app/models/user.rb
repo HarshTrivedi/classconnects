@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
         :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
 
+  devise :registerable, :confirmable
+
   acts_as_voter
 
   #->Prelang (user_login/devise)
