@@ -1,9 +1,9 @@
 <div class="col-sm-6">
 <div class="the-box no-border property-list">
     <div class="media">
-        <a class="pull-left" href="#fakelink"> <!--if want to give user profile link-->
-        
-        <%= image_tag avatar_url(bucket.uploader) , :class => "media-object img-circle" , :title => bucket.uploader.full_name%>
+        <a class="pull-left" href="<%=profile_main_path(:user_id => bucket.uploader.id)%>"> 
+          <%= image_tag avatar_url(bucket.uploader) , :class => "media-object img-circle" , :title => bucket.uploader.full_name%>
+        </a>
 
         <div class="clearfix visible-xs"></div>
         <div class="media-body">

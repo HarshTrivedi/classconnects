@@ -22,16 +22,16 @@
 								<%if current_page?(profile_main_path) %>
 									  <div class="panel-heading">
 										<ul class="nav nav-tabs">
-												<%= content_tag(:li , link_to(fa_icon("user", text: "Profile"), profile_main_path , :data => {:toggle=>""} ), :class=>"active" )%>											
-												<%= content_tag(:li , link_to(fa_icon("cloud-upload", text: "Uploads"), profile_uploads_path , :data => {:toggle=>""} ), :class=>"" )%>											
+												<%= content_tag(:li , link_to(fa_icon("user", text: "Profile"), profile_main_path(:user_id => @user.id) , :data => {:toggle=>""} ), :class=>"active" )%>											
+												<%= content_tag(:li , link_to(fa_icon("cloud-upload", text: "Uploads"), profile_uploads_path(:user_id => @user.id) , :data => {:toggle=>""} ), :class=>"" )%>											
 										</ul>
 									  </div>
 									<%= render(:partial => 'shared/profile_main' , :locals => { :user => @user }) %> 
 								<%elsif current_page?(profile_uploads_path) %>
 									  <div class="panel-heading">
 										<ul class="nav nav-tabs">
-												<%= content_tag(:li , link_to(fa_icon("user", text: "Profile"), profile_main_path , :data => {:toggle=>""} ), :class=>"" )%>											
-												<%= content_tag(:li , link_to(fa_icon("cloud-upload", text: "Uploads"), profile_uploads_path , :data => {:toggle=>""}), :class=>"active" )%>
+												<%= content_tag(:li , link_to(fa_icon("user", text: "Profile"), profile_main_path(:user_id => @user.id) , :data => {:toggle=>""} ), :class=>"" )%>											
+												<%= content_tag(:li , link_to(fa_icon("cloud-upload", text: "Uploads"), profile_uploads_path(:user_id => @user.id) , :data => {:toggle=>""}), :class=>"active" )%>
 										</ul>
 									  </div>
 									<%= render(:partial => 'shared/profile_uploads' , :locals => { :user => @user , :buckets => @buckets }) %> 

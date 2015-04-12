@@ -2,13 +2,13 @@
 <div class="col-sm-6">
 	<div class="the-box no-border">
 		<div class="media user-card-sm">
-		  <div class="pull-left">		
+		  <a class="pull-left" href="<%=profile_main_path(:user_id => user.id)%>">
 	      		<%= image_tag avatar_url(user) , :class => "media-object img-circle" , :title => user.full_name%>
-	      </div>
+	      </a>
 		  <div class="media-body">
 		  	
 			<span class="user-heading">
-				<%= link_to( user.full_name , "#no_profile_yet"  ) %>
+				<%= link_to( user.full_name , profile_main_path(:user_id => user.id)  ) %>
 			</span>
 			<br>
 			<span class="user-mail">

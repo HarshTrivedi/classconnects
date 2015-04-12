@@ -16,12 +16,14 @@ class UserDetailsController < ApplicationController
   end
 
   def profile_main
-    @user = current_user
+    user_id = params[:user_id]    
+    @user = User.find_by_id(user_id) || current_user
     render(:template => "user_details/profile")    
   end
 
   def profile_uploads
-    @user = current_user
+    user_id = params[:user_id]
+    @user = User.find_by_id(user_id) || current_user
     @buckets = @user.uploaded_buckets.page(params[:page])
 
     respond_to do |format|
