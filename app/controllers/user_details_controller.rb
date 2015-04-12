@@ -195,6 +195,18 @@ class UserDetailsController < ApplicationController
       redirect_to bucket.download_url
   end
 
+  def download_document
+      document_id = params[:document_id]
+      document = Document.find_by_id( document_id )
+      if not document.nil?        
+        current_user.downloaded_data_size = current_user.downloaded_data_size + document.size
+        current_user.save
+      end
+      redirect_to document.download_url
+  end
+
+
+
   #uploading bucket is not necessarily actual uploading
   #it can also be just make a bucket and not uploading anything.
   #Need link to reach here (In Buckets partial)
