@@ -20,16 +20,16 @@ class LandingsController < ApplicationController
             if college
                     if branch
                         if course
-                            @buckets = course.buckets.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
+                            @buckets = course.buckets.order(:name).filter_search_for(current_user).search(search).page(params[:page])
                         else
                             college_branch_pair = CollegeBranchPair.where(:college_id => college.id , :branch_id => branch.id).first
-                            @buckets = college_branch_pair.buckets.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
+                            @buckets = college_branch_pair.buckets.order(:name).filter_search_for(current_user).search(search).page(params[:page])
                         end
                     else
-                          @buckets = college.buckets.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
+                          @buckets = college.buckets.filter_search_for(current_user).search(search).page(params[:page])
                     end
             else
-                @buckets = Bucket.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
+                @buckets = Bucket.order(:name).filter_search_for(current_user).search(search).page(params[:page])
             end
     	  		render(:template => "landings/login_landing_with_search")
 	  		else

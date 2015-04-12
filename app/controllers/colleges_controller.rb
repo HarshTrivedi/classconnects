@@ -23,10 +23,10 @@ class CollegesController < ApplicationController
 
       if @branch
           @message = "College-Branch specific buckets"
-          @buckets = @college.buckets_by_branch(@branch).search(search).order(:created_at).page(params[:page])
+          @buckets = @college.buckets_by_branch(@branch).filter_search_for(current_user).search(search).order(:created_at).page(params[:page])
       else
           @message = "College specific buckets"
-    	   	@buckets = @college.buckets.order(:created_at).search(search).page(params[:page])
+    	   	@buckets = @college.buckets.order(:created_at).filter_search_for(current_user).search(search).page(params[:page])
       end
 
   end

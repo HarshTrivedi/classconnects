@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
     search = params[:search] || ""
     @course = Course.find_by_id(course_id)
     @message = "Course specific buckets"    
-    @buckets = @course.buckets.search(search).page(params[:page])
+    @buckets = @course.buckets.filter_search_for(current_user).search(search).page(params[:page])
   end
 
   def show_users
