@@ -49,17 +49,13 @@
 
             </ul>
             <ul>
-                  <button class="btn btn-xs btn-warning btn-perspective">
-                       <i class="fa fa-cloud-download"> Download <%= link_to("" , request_download_bucket_path(bucket.id) , :method => :post ) %></i>
-                  </button>
 
+                <%= link_to( fa_icon("cloud-download", text: "Download") , request_download_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "btn btn-xs btn-warning btn-perspective")%> 
                 <%if bucket.uploader == current_user %>
-                  <button type="button" data-toggle="modal" data-target="#modal_edit_bucket_<%=bucket.id%>" class="btn btn-xs btn-warning btn-perspective">
-                       <i class="fa fa-edit"> Edit </i>
-                  </button>
-                  <button class="btn btn-xs btn-warning btn-perspective">
-                        <i class="fa fa-remove"> Delete <%= link_to("DELETE" , destroy_bucket_path(bucket.id) , :method => :delete , :remote => true) %></i>
-                  </button>                 
+                    <button type="button" data-toggle="modal" data-target="#modal_edit_bucket_<%=bucket.id%>" class="btn btn-xs btn-warning btn-perspective">
+                         <i class="fa fa-edit"> Edit </i>
+                    </button>
+                    <%= link_to( fa_icon("cloud-remove", text: "Remove") , destroy_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "btn btn-xs btn-warning btn-perspective")%> 
                 <%end%>
 
 
