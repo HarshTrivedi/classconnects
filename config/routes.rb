@@ -93,6 +93,7 @@ Rails.application.routes.draw do
   post '/request_download_bucket/:bucket_id'  => 'user_details#request_download_bucket'         , as: :request_download_bucket
   post '/report/:bucket_id'                   => 'user_details#report_inappropriate'            , as: :report_inappropriate
   get '/download_bucket/:bucket_id'          => 'user_details#download_bucket'                 , as: :download_bucket
+  get '/download_document/:document_id'          => 'user_details#download_document'           , as: :download_document
   post '/upload_bucket/:bucket_id'    => 'user_details#upload_bucket'                           , as: :upload_bucket
 
   get '/redirect_to_college'          => 'user_details#redirect_to_college'                     , as: :redirect_to_college

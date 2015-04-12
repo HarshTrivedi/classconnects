@@ -45,13 +45,13 @@ class Document < ActiveRecord::Base
   # end
 
   def download_url
-    s3 = AWS::S3.new
-    bucket = s3.buckets[ENV["S3_BUCKET"]]
-    object = bucket.objects[self.cloud_path]
-    object.url_for(:get, { 
-      expires: 10.minutes,
-      response_content_disposition: 'attachment;'
-    }).to_s
+      s3 = AWS::S3.new
+      bucket = s3.buckets[ENV["S3_BUCKET"]]
+      object = bucket.objects[self.aws_root_to_self_path]
+      object.url_for(:get, { 
+        expires: 10.minutes,
+        response_content_disposition: 'attachment;'
+      }).to_s
   end
 
   def aws_root_to_self_path
