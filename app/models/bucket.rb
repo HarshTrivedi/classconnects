@@ -51,7 +51,29 @@ class Bucket < ActiveRecord::Base
       end
   end
 
+  def self.filter_search_for(user)
+      publicly_shared_bucket_ids  = where(:privately_shared => false).map(&:id)
+      privately_shared_buckets = where(:privately_shared => true)
+      
+      private_accessible_bucket_ids = []
+      
+      for private_bucket in privately_shared_buckets
+        if private_bucket.college == user.college
+          private_accessible_bucket_ids << private_bucket.id
+        end
+      end
+
+      accessible_bucket_ids = publicly_shared_bucket_ids + private_accessible_bucket_ids
+
+      where(:id => accessible_bucket_ids)
+
+  end
+
   def data_shared
+  end
+
+  def college
+      self.course.college
   end
 
   ransacker :by_college_name,
