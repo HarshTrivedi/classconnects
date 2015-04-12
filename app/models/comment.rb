@@ -5,4 +5,6 @@ class Comment < ActiveRecord::Base
   has_many :comment_responses
   belongs_to :commentable , polymorphic: true
 
+  validates :user, :presence => true
+
 end
