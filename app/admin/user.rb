@@ -58,6 +58,41 @@ ActiveAdmin.register User do
             row("Reputation") { user.reputation }
         end
       end
+
+      panel "Uploaded Buckets" do
+          table_for user.uploaded_buckets do
+              column "name" do |bucket|
+                link_to( bucket.name , admin_bucket_path( bucket ) ) 
+              end
+              column "View" do |bucket|
+                link_to( bucket.name , admin_bucket_path( bucket ) ) 
+              end
+              column "edit" do |bucket|
+                link_to( "edit" , edit_admin_bucket_path( bucket )  ) if can?(:edit , bucket )
+              end
+              column "Destroy" do |bucket|
+                link_to( "Remove" , admin_bucket_path(bucket) , :method => :delete , data: { confirm: "Are you sure u want to delete this folder ?" } )  if can?(:destroy , bucket )
+              end
+          end
+      end
+
+      panel "Downloaded Buckets" do
+        table_for user.downloaded_buckets do
+              column "name" do |bucket|
+                link_to( bucket.name , admin_bucket_path( bucket ) ) 
+              end
+              column "View" do |bucket|
+                link_to( bucket.name , admin_bucket_path( bucket ) ) 
+              end
+              column "edit" do |bucket|
+                link_to( "edit" , edit_admin_bucket_path( bucket )  ) if can?(:edit , bucket )
+              end
+              column "Destroy" do |bucket|
+                link_to( "Remove" , admin_bucket_path(bucket) , :method => :delete , data: { confirm: "Are you sure u want to delete this folder ?" } )  if can?(:destroy , bucket )
+              end
+        end
+      end
+
   end
 
 
