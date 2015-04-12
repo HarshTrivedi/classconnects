@@ -5,15 +5,17 @@
 								<div class="right-action">
 								</div><!-- /.right-action -->
 
-								<img src="http://diliat.in/themeforest/sentir/1.2/assets/img/avatar/avatar-1@2x.jpg" class="avatar" alt="Avatar" height="100" width="100">
+								<img src="<%=avatar_url(@user)%>" class="avatar" alt="Avatar" height="100" width="100">
 
 								<div class="profile-info">
 									<p class="user-name"><%= @user.email %></p>
 									<p class="text-muted">College : <a href="#fakelink"><%= @user.college.name rescue "None yet" %></a></p>
-									<p class="right-button">
-									<button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Change Password</button>
-									<button class="btn btn-warning btn-perspective btn-sm"><i class="fa fa-edit"></i>Change ProPic</button>
-									</p>
+									<%if @user == current_user %>
+										<p class="right-button">									
+											<%= link_to(fa_icon("fa-edit", text: "Change Password") , edit_user_registration_path , :class => "btn btn-warning btn-perspective btn-sm") %>
+											<%= link_to(fa_icon("fa-edit", text: "Change Profile Pic") , "http://en.gravatar.com/" , :class => "btn btn-warning btn-perspective btn-sm") %>
+										</p>
+									<%end%>
 								</div><!-- /.profile-info -->
 							</div><!-- /.the-box .transparent .profile-heading -->
 							<!-- END PROFILE HEADING -->
