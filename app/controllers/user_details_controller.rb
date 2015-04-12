@@ -230,6 +230,14 @@ class UserDetailsController < ApplicationController
     end
   end
 
+  def suggestion
+    suggestion = Suggestion.new(suggestion_params)
+    suggestion.user_id = params[:user_id]
+    suggestion.save
+    ap suggestion.errors
+    render :js => "$('.modal').modal(\"hide\") ; $(\"form\").trigger(\"reset\"); toastr.info('Thankyou', 'for suggestion')"
+  end
+
   private
   ## permitting params for mass assignment
   def college_branch_params
@@ -238,6 +246,10 @@ class UserDetailsController < ApplicationController
 
   def report_params
     params.require(:reported_inappropriate).permit(:user_id , :bucket_id , :description , :inappropriate_type_id )
+  end
+
+  def suggestion_params
+    params.require(:suggestion).permit(:user_id , :college_name , :branch_name , :course_name , :message )
   end
 
 
