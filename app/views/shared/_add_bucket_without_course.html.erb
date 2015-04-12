@@ -12,7 +12,7 @@
 			<%= simple_form_for Bucket.new , :url => create_bucket_path, :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
 
 				<%= f.input :course_id, :as => :hidden, :input_html => { :value => course.id } %> 
-
+			    <%= f.input :privately_shared , as: :radio_buttons %> 
 				<%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input"}%>
 			    <%= f.input :main_upload, :as => :hidden, :input_html => { :value => false } %> 
 			  	

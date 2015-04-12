@@ -48,12 +48,15 @@ class BucketsController < ApplicationController
   def create_bucket
     course_id = params[:bucket][:course_id]
     course = Course.find_by_id(course_id)
+    privately_shared = params[:bucket][:privately_shared]
+    privately_shared =  ( privately_shared == "true" ) ? (true) : (false)
 
     @main_upload = params[:bucket][:main_upload]
     if not course.nil?
       @bucket = Bucket.new(bucket_params)
       @bucket.course_id = course.id
       @bucket.user_id = current_user.id
+      @bucket.privately_shared = privately_shared
       course.buckets << @bucket
       current_user.upload_bucket(@bucket.id)
     end
