@@ -1,0 +1,16 @@
+  <a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
+  <ul class="dropdown-menu square margin-list-rounded with-triangle">
+	<%if user.college == course.college %>
+		<%if user.enrolled_courses.include?(course)  %>
+			<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "UnEnroll"), unenroll_course_path(course.id) , :method => :post , :remote => true ), :class=>"" )%>
+		<%else%>
+			<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Enroll"), enroll_course_path(course.id) , :method => :post , :remote => true), :class=>"" )%>
+		<%end%>
+	<%end%>
+	<%if user.favorite_courses.include?(course)  %>
+			<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "UnFavorite"), unfavorite_course_path(course.id) , :method => :post , :remote => true), :class=>"" )%>
+	<%else%>
+			<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Favorite"), favorite_course_path(course.id) , :method => :post , :remote => true ) , :class=>"" )%>
+	<%end%>
+	
+  </ul>

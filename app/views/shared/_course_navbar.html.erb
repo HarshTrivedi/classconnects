@@ -26,19 +26,9 @@
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
 			<%end%>
 
-
-			<%if current_user.college == course.college %>
-				<%if current_user.enrolled_courses.include?(course)  %>
-					<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Enroll"), enroll_course_path(course.id) , :method => :post ), :class=>"" )%>
-				<%else%>
-					<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "UnEnroll"), unenroll_course_path(course.id) , :method => :post ), :class=>"" )%>
-				<%end%>
-			<%end%>
-			<%if current_user.favorite_courses.include?(course)  %>
-					<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "UnFavorite"), unfavorite_course_path(course.id) , :method => :post), :class=>"" )%>
-			<%else%>
-					<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Favorite"), favorite_course_path(course.id) , :method => :post), :class=>"" )%>
-			<%end%>
+			<li class="dropdown" id="course_navbar_options" >
+				<%= render(:partial => 'shared/course_navbar_options' , :locals => {:course => course , :user => current_user } ) %>
+			</li>
 
 			<div id="internal_search_bar">
 				<%if current_page?(course_content_path) %>
