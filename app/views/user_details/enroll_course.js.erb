@@ -1,2 +1,4 @@
 toastr.success('Course', 'successfully Enrolled');
 $("#course_navbar_options").html("<%= escape_javascript(       render(:partial => 'shared/course_navbar_options' , :locals => {:course => @course , :user => @user} )       ) %>");
+
+$("#course_<%=@course.id%>").html("<%= escape_javascript(      render(:partial => 'shared/course', :locals => {:course => @course } )       ) %>");

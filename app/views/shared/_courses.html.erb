@@ -1,6 +1,8 @@
 <div class="row">
 <%for course in courses%>
-	<%= render(:partial => 'shared/course', :locals => {:course => course } )%>
+	<div id="course_<%=course.id%>">
+		<%= render(:partial => 'shared/course', :locals => {:course => course } )%>
+	</div>
 <%end%>
 </div>
 <div class = "stick-paginate">
