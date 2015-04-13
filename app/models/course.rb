@@ -16,6 +16,7 @@ class Course < ActiveRecord::Base
   validates :college_branch_pair, :presence => true
 
 
+
   def enrolled_users
   	user_ids = course_enrollments.map{|course_enrollment| course_enrollment.user.id }
     User.where(:id => user_ids)
@@ -28,7 +29,7 @@ class Course < ActiveRecord::Base
 
   def self.search(search)
       if not search.strip.empty?
-        where('name LIKE ?', "%#{search}%")
+        where('name ILIKE ? or code ILIKE ?', "%#{search}%" , "%#{search}%")
       else
         all
       end

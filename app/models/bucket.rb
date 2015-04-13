@@ -2,8 +2,12 @@ class Bucket < ActiveRecord::Base
   attr_accessor :course_id
   acts_as_votable
   include PgSearch
-  pg_search_scope :search, :against => [:name, :description]
 
+  pg_search_scope :full_text_search, :against => [:name, :description],
+  associated_against: { category: :category , course: [:name] , folders: [:name] , documents: [:name] } ,
+  :using => {
+        :tsearch => {:prefix => true}
+        }
   paginates_per 10
 
 
@@ -45,11 +49,13 @@ class Bucket < ActiveRecord::Base
 
   def self.search(search)
       if not search.strip.empty?
-        where('name LIKE ?', "%#{search}%")
+        full_text_search(search)
       else
         all
       end
+
   end
+
 
   def self.filter_search_for(user)
       publicly_shared_bucket_ids  = where(:privately_shared => false).map(&:id)

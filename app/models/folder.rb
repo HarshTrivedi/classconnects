@@ -16,9 +16,10 @@ class Folder < ActiveRecord::Base
   validates :name, :presence => true
   validates :bucket, :presence => true
 
+
   def self.search(search)
       if not search.strip.empty?
-        where('name LIKE ?', "%#{search}%")
+        where('name ILIKE ?', "%#{search}%")
       else
         all
       end

@@ -9,7 +9,7 @@ class Document < ActiveRecord::Base
 
   def self.search(search)
       if not search.strip.empty?
-        where('name LIKE ?', "%#{search}%")
+        where('name ILIKE ?', "%#{search}%")
       else
         all
       end
