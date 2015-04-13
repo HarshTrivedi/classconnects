@@ -7,6 +7,14 @@ class Document < ActiveRecord::Base
   validates :name, :presence => true
   # validates :cloud_path, :presence => true
 
+  after_create :store_aws_name
+
+  def store_aws_name
+      self.aws_name = self.name
+      self.save
+  end
+
+
   def self.search(search)
       if not search.strip.empty?
         where('name ILIKE ?', "%#{search}%")
@@ -57,12 +65,12 @@ class Document < ActiveRecord::Base
   def aws_root_to_self_path
     bucket = Bucket.find_by_id(self.bucket.id)
     folder = self.folder
-    bucket_path = "#{bucket.name}/"
+    bucket_path = "#{bucket.aws_name}/"
     if folder
-        folder_path = folder.path_ids.map{ |folder_id| "#{Folder.find_by_id(folder_id).name}"  }.join("/")
-        return "bucket_id_#{bucket.id}/#{bucket.name}/#{folder_path}/#{self.name}"
+        folder_path = folder.path_ids.map{ |folder_id| "#{Folder.find_by_id(folder_id).aws_name}"  }.join("/")
+        return "bucket_id_#{bucket.id}/#{bucket.aws_name}/#{folder_path}/#{self.aws_name}"
     else
-        return "bucket_id_#{bucket.id}/#{bucket.name}/#{self.name}"
+        return "bucket_id_#{bucket.id}/#{bucket.aws_name}/#{self.aws_name}"
     end
 
   end

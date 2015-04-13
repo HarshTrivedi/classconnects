@@ -10,6 +10,13 @@ class Bucket < ActiveRecord::Base
         }
   paginates_per 10
 
+  after_create :store_aws_name
+
+  def store_aws_name
+      self.aws_name = self.name
+      self.save
+  end
+
 
   belongs_to :category
   belongs_to :course
@@ -118,7 +125,7 @@ class Bucket < ActiveRecord::Base
 
 
   def aws_root_to_self_path
-    "bucket_id_#{self.id}/#{self.name}"
+    "bucket_id_#{self.id}/#{self.aws_name}"
   end
 
   def size

@@ -16,6 +16,21 @@ class Folder < ActiveRecord::Base
   validates :name, :presence => true
   validates :bucket, :presence => true
 
+  after_create :store_aws_name
+
+  after_destroy :destory_aws_content
+
+  def store_aws_name
+      self.aws_name = self.name
+      self.save
+  end
+
+  def destroy_aws_content
+    
+    key =  self.aws_root_to_self_path 
+    DestroyAwsContent.enqueue( key )
+    
+  end
 
   def self.search(search)
       if not search.strip.empty?
@@ -79,8 +94,8 @@ class Folder < ActiveRecord::Base
 
   def aws_root_to_self_path
     bucket = Bucket.find_by_id(self.bucket.id)
-    folder_path = self.path_ids.map{ |folder_id| "#{Folder.find_by_id(folder_id).name}"  }.join("/")
-    return "bucket_id_#{bucket.id}/#{bucket.name}/#{folder_path}".chop
+    folder_path = self.path_ids.map{ |folder_id| "#{Folder.find_by_id(folder_id).aws_name}"  }.join("/")
+    return "bucket_id_#{bucket.id}/#{bucket.aws_name}/#{folder_path}".chop
   end
 
   def image_url
