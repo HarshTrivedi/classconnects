@@ -26,6 +26,10 @@
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Edit Details"), edit_folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"" )%>
 			<%end%>
 
+			<li class="dropdown" id="folder_navbar_options" >
+				<%= render(:partial => 'shared/folder_navbar_options' , :locals => {:folder => folder } ) %>
+			</li>
+
 			<div id="internal_search_bar">
 				<%if current_page?(folder_content_path) %>
 					<%= render(:partial => 'shared/search_folder_content' , :locals => {:folder => folder } ) %> 

@@ -6,26 +6,8 @@
 	  <%end%>
 
 
-<button type="button" data-toggle="modal" data-target="#add_document" class="btn btn-success btn-perspective">Add Dcouments</button>
 </div>
 <div style="position:relative margin-bottom:0px">
 <%= paginate documents, :param_name => "document_page"  , :remote => true %>
 </div>
-
-
-<div class="modal fade" id="add_document" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-     <div class="modal-dialog">
-       <div class="modal-content modal-no-shadow">
-         <div class="modal-header bg-dark no-border">
-           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-           <h4 class="modal-title">Upload Documents</h4>
-         </div>
-         <div class="modal-body">
-			<% parent = eval(parent_type.camelcase + ".find_by_id(#{parent_id})" )%>
-            <%= render(:partial => 'shared/upload_documents' , :locals => {:parent => parent }) %>
-         </div>
-       </div><!-- /.modal-content .modal-no-shadow -->
-     </div><!-- /.modal-dialog -->
-</div>
-
 
