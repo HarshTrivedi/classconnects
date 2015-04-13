@@ -16,7 +16,7 @@
 	            <button type="button" data-toggle="modal" data-target="#modal_edit_document_<%=document.id%>" class="btn btn-success">
 	                Change Name
 	            </button>
-	            <%= link_to("Remove" , destroy_document_path(document.id) , :method => :delete , :remote => true) %>
+	            <%= link_to("Remove" , destroy_document_path(document.id) , :method => :delete , :remote => true , :confirm => true) %>
             <%end%>
 
 
@@ -49,8 +49,8 @@
          </div>
          <div class="modal-body">
                 <%= simple_form_for document , :url => update_document_details_path(document.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
-                  <%= f.input :id, :as => :hidden, :input_html => { :value => document.id } %>
-		          <%= f.input :name , :input_html => { :class => ""}  %>
+                  <%= f.input :id, :as => :hidden  %>
+		          <%= f.input :name , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"} %>
                   <div class="modal-footer">
                     <div class="text-center">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -27,3 +27,8 @@
 //= require s3_direct_upload
 
 //= require bootstrapValidator.min.js
+
+
+$(document).ready(function() {
+	$("form").bootstrapValidator();
+});

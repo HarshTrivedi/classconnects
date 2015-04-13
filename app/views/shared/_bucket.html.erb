@@ -95,9 +95,9 @@
          <div class="modal-body">
                 <%= simple_form_for bucket , :url => update_bucket_details_path( bucket.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
                   <%= f.input :id, :as => :hidden, :input_html => { :value => bucket.id } %>
-                  <%= f.input :name , :input_html => { :class => "chosen-input"}  %>
-                  <%= f.input :description, :hint => "Please describe in detail" , :input_html => { :class => "chosen-input"}%>
-                  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input" }%>
+                  <%= f.input :name , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"}  %>
+                  <%= f.input :description, :hint => "Please describe in detail" , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"}%>
+                  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"}%>
                     <div class="modal-footer">
                       <div class="text-center">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
