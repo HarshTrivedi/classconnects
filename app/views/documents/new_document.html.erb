@@ -10,7 +10,12 @@
 					 key_starts_with: "uploads/", 
 					 data: {:parent_type => @parent_type , :parent_id => @parent_id } ,
 					 max_file_size: 5.megabytes do %>
-<%= file_field_tag :file, multiple: true %>
+
+<label class="myLabel">
+	<%= file_field_tag :file, multiple: true %>
+    <span>Upload File</span>
+</label>
+
 
 <% end %>
 
@@ -21,6 +26,7 @@
 
 <script id="template-upload" type="text/x-tmpl">
 	<div id="upload_{%=o.unique_id%}" class="upload">
+		<br>
 		<h5>{%=o.name%}</h5>
 		<div class="progress progress-striped active">
 			<div class="bar" style="width: 0%"></div>
