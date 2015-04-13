@@ -29,6 +29,7 @@
 //= require bootstrapValidator.min.js
 
 
-$(document).ready(function() {
+$(document).on('page:load', function() {
 	$("form").bootstrapValidator();
+
 });
