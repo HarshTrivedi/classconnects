@@ -2,6 +2,7 @@ class BucketsController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
   before_filter :bucket_exists , :except => [:new_bucket , :create_bucket ]
+  before_filter :authenticate_access_bucket , :except => [:new_bucket , :create_bucket ]
   respond_to :html , :js
 
   def show_content
@@ -128,6 +129,20 @@ class BucketsController < ApplicationController
         return false
       else
         return true
+      end
+  end
+
+
+  def authenticate_access_bucket
+      bucket = Bucket.find_by_id(params[:id])
+      if not bucket.privately_shared
+        return true
+      else
+        if bucket.college == current_user.college
+          return true
+        else
+          return false
+        end
       end
   end
 

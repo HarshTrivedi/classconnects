@@ -2,7 +2,7 @@ class DocumentsController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
   before_filter :document_exists , :except => ["new_document" , "create_document"]
-
+  before_filter :authenticate_access_document , :except => [:new_document , :create_document ]
   skip_before_filter :verify_authenticity_token, :only => [:create_document]
 
 
@@ -133,6 +133,20 @@ class DocumentsController < ApplicationController
         return false
       else
         return true
+      end
+  end
+
+  def authenticate_access_document
+      document = Document.find_by_id(params[:id])
+      bucket = document.bucket
+      if not bucket.privately_shared
+        return true
+      else
+        if bucket.college == current_user.college
+          return true
+        else
+          return false
+        end
       end
   end
 

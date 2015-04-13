@@ -2,6 +2,7 @@ class FoldersController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
   before_filter :folder_exists , :except => [:new_folder , :create_folder]
+  before_filter :authenticate_access_folder , :except => [:new_folder , :create_folder ]
   respond_to :html , :js
 
 
@@ -99,6 +100,21 @@ class FoldersController < ApplicationController
         return true
       end
   end
+
+  def authenticate_access_folder
+      folder = Folder.find_by_id(params[:id])
+      bucket = folder.bucket
+      if not bucket.privately_shared
+        return true
+      else
+        if bucket.college == current_user.college
+          return true
+        else
+          return false
+        end
+      end
+  end
+
 
   #PERMITTING mass assignment
   def folder_params
