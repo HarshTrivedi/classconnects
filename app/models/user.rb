@@ -21,8 +21,7 @@ class User < ActiveRecord::Base
   has_many :suggestions
   belongs_to :college_branch_pair
 
-
-
+  
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :email, :presence => true
@@ -228,7 +227,7 @@ class User < ActiveRecord::Base
 
   def self.search(search)
       if not search.strip.empty?
-        where('email LIKE ?', "%#{search}%")
+        where('first_name ILIKE ? or last_name ILIKE ? or email ILIKE ?', "%#{search}%" , "%#{search}%" , "%#{search}%")
       else
         all
       end
