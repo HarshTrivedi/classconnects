@@ -8371,6 +8371,39 @@ h1.tiles-number{
  position: absolute;
   bottom: 100px;
 }
+
+
+/*added choose file*/
+label.myLabel input[type="file"] {
+    position: fixed;
+    top:-1000px;
+    
+}
+
+/***** Example custom styling *****/
+.myLabel {
+    border: 1px solid rgb(190,190,190);
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 2px;
+    background: #ffffff;
+    display: inline-block;
+    cursor:pointer;
+    float:left;
+}
+.myLabel:hover {
+    border: 1px solid rgb(0,0,255);
+}
+.myLabel:active {
+ 	border: 1px solid rgb(0,0,255);
+}
+.myLabel :invalid + span {
+    color: rgb(10,10,10)
+}
+.myLabel :valid + span {
+    color: rgb(10,10,10)
+}
+
 /*a {
     color: rgb(249, 145, 41);
     text-decoration: none;
