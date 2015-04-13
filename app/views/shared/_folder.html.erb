@@ -2,7 +2,8 @@
 	<div class="media user-card-sm">	  
 	  <%uploader = folder.bucket.uploader %>
 	  <div class="pull-left" href="#fakelink">
-	      <%= image_tag avatar_url(uploader) , :class => "media-object img-circle" , :title => uploader.full_name%>
+	      <%= image_tag folder.image_url , :class => "media-object" %>
+
 	  </div>
 	  <div class="media-body">										  	
 		<span class="user-heading">

@@ -4,7 +4,7 @@
 	  <%uploader = document.bucket.uploader %>
 
 	  <div class="pull-left" href="#fakelink">
-	      <%= image_tag avatar_url(uploader) , :class => "media-object img-circle" , :title => uploader.full_name%>
+	      <%= image_tag document.image_url , :class => "media-object" %>
 	  </div>
 	  <div class="media-body">
 		<span class="document-heading">
