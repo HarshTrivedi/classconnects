@@ -72,17 +72,19 @@ class Document < ActiveRecord::Base
     filetype = self.s3["filetype"] rescue ""
 
     if filetype.start_with?("text") 
-        return "/assets/text_document.jpg"
+        return "text_document.png"
     elsif filetype == "application/pdf"
-        return "/assets/pdf_document.jpg"
-    elsif filetype == "XXXimage"
-        return "/assets/image_document.jpg"
-    elsif filetype == "XXXword"
-        return "/assets/word_document.jpg"      
-    elsif filetype == "XXXppt"
-        return "/assets/ppt_document.jpg"      
+        return "pdf_document.png"
+    elsif filetype == "image/jpeg"
+        return "image_document.png"
+    elsif filetype == "image/png"
+        return "word_document.png"      
+    elsif filetype == "image/gif"
+        return "ppt_document.png"      
+    elsif filetype == "application/zip"
+        return "ppt_document.png"            
     else
-        return "/assets/default_document.jpg"
+        return "default_document.png"
     end
 
   end

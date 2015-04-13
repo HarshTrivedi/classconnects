@@ -83,7 +83,7 @@ class Folder < ActiveRecord::Base
   end
 
   def image_url
-      return "/assets/default_folder.jpg"
+      return "default_folder.jpg"
   end
 
   def size
