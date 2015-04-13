@@ -31,6 +31,11 @@ class BucketsController < ApplicationController
     bucket_id = params[:bucket][:id]
     @bucket = Bucket.find_by_id(bucket_id)
     @bucket.update_attributes( bucket_params )
+
+    privately_shared = params[:bucket][:privately_shared]
+    privately_shared =  ( privately_shared == "true" ) ? (true) : (false)
+    @bucket.privately_shared = privately_shared
+    @bucket.save
     respond_to do |format|
       format.js
     end

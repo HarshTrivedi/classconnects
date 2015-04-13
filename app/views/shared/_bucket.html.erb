@@ -97,6 +97,7 @@
                   <%= f.input :id, :as => :hidden, :input_html => { :value => bucket.id } %>
                   <%= f.input :name , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"}  %>
                   <%= f.input :description, :hint => "Please describe in detail" , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"}%>
+                  <%= f.input :privately_shared , as: :radio_buttons %> 
                   <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"}%>
                     <div class="modal-footer">
                       <div class="text-center">
