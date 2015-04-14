@@ -51,7 +51,7 @@
            <h4 class="modal-title">Change Folder Name : <%= folder.name %> </h4>
          </div>
          <div class="modal-body">
-                <%= simple_form_for folder , :url => update_folder_details_path(folder.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+                <%= simple_form_for folder , :url => update_folder_details_path(folder.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label "  } do |f| %>
                   <%= f.input :id, :as => :hidden, :input_html => { :value => folder.id } %>
                   <%= f.input :name , :input_html => { :class => "chosen-input" , :required => true } %>
                   <div class="modal-footer">
@@ -65,3 +65,18 @@
        </div><!-- /.modal-content .modal-no-shadow -->
      </div><!-- /.modal-dialog -->
 </div>
+
+<script>
+
+  $('#modal_edit_folder_<%=folder.id%>').on('shown.bs.modal', function() {
+    $("#modal_edit_folder_<%=folder.id%> form").validate({
+          rules: {
+            'folder[name]': "required"
+          },
+          messages: {
+            'folder[name]': "Please enter non-empty folder name"
+          }
+    });
+  });
+
+</script>

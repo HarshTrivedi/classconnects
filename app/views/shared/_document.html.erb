@@ -73,3 +73,16 @@
        </div><!-- /.modal-content .modal-no-shadow -->
      </div><!-- /.modal-dialog -->
 </div>
+
+<script type="text/javascript">
+  $('#modal_edit_document_<%=document.id%>').on('shown.bs.modal', function() {
+      $("#modal_edit_document_<%=document.id%>").validate({
+          rules: {
+            'document[name]': "required"
+          },
+          messages: {
+            'document[name]': "Please enter non empty document name"
+          }      	
+      });
+  })
+</script>

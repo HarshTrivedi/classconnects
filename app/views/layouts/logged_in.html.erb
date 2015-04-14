@@ -157,12 +157,12 @@
 
 						<%= simple_form_for Bucket.new , :url => create_bucket_path, :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
 
-							  <%= f.association :course, collection: current_user.enrolled_courses , prompt: "Choose enrolled course" , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"} %>
+							  <%= f.association :course, collection: current_user.enrolled_courses , prompt: "Choose enrolled course" , :input_html => { :class => "chosen-input" } %>
 							  <%= f.input :main_upload, :as => :hidden, :input_html => { :value => true } %> 
 							  <%= f.input :privately_shared , as: :radio_buttons %> 
-							  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"}%>
-							  <%= f.input :name , :input_html => { :class => "" , "data-bv-notempty" => "true" } %>
-							  <%= f.input :description , :input_html => { :class => "" , "data-bv-notempty" => "true"} %>
+							  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input" }%>
+							  <%= f.input :name , :input_html => { :class => "" ,  :required => true} %>
+							  <%= f.input :description , :input_html => { :class => "" ,  :required => true } %>
 							  <div class="text-center">
 						  		<%= f.button :submit , "Create", :class => "btn btn-warning btn-perspective"%>
 						  	  </div>
@@ -225,9 +225,31 @@
 				<footer class="footer">
 					<br>
 					© 2015 <a href="#fakelink">CodeArt</a><br>
-					Design by <a href="http://isohdesign.com/" target="_blank">CodeArt</a>.
+					Design by <a href="http://classcolab.com/" target="_blank">CodeArt</a>.
 				</footer>
 			</div>
+<script>
+
+  $('#modal_add_bucket_with_course').on('shown.bs.modal', function() {
+    $("#modal_add_bucket_with_course form").validate({
+          rules: {
+            'bucket[name]': "required",
+            'bucket[course]': "required",
+            'bucket[description]': "required",
+            'bucket[category]': "required"
+          },
+          messages: {
+            'bucket[name]': "Please non-empty bucket name",
+            'bucket[description]': "Please add some description...",
+            'bucket[course]': "Please select a course",
+            'bucket[category]': "Please select a category, bucket would belong to."
+          }
+    });
+  });
+
+
+</script>
+
 
 </body>
 </html>

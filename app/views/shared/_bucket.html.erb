@@ -96,11 +96,23 @@
 </div>
 
 
-<script type="text/javascript">
+
+
+<script>
 
   $('#modal_edit_bucket_<%=bucket.id%>').on('shown.bs.modal', function() {
-      console.log("In event <%=bucket.id%>  called");
-      $("#edit_bucket_<%=bucket.id%>").validate();
-  })
+    $("#modal_edit_bucket_<%=bucket.id%> form").validate({
+          rules: {
+            'bucket[name]': "required",
+            'bucket[description]': "required",
+            'bucket[category]': "required"
+          },
+          messages: {
+            'bucket[name]': "Please enter non-empty bucket name",
+            'bucket[description]': "Please add some description...",
+            'bucket[category]': "Please select a category, bucket would belong to."
+          }
+    });
+  });
 
-</script>>
+</script>

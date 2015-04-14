@@ -23,13 +23,11 @@
 //= require chosen-jquery
 //= require s3_direct_upload
 
-//= require bootstrapValidator.min.js
+//= require jquery_validator.js
 
 
 
-function bootrap_validator() {
-	$("form").bootstrapValidator();	
-}
+
 
 
 function main_college_search_autocomplete() {
@@ -203,12 +201,10 @@ function autocomplete_search_fields() {
 $(document).on('page:load', function() {
 	autocomplete_search_fields();
 	main_college_search_autocomplete();
-	bootrap_validator();
 });
 
 $(document).on('ready', function() {
 	autocomplete_search_fields();
 	main_college_search_autocomplete();
-	bootrap_validator();
 });
 
