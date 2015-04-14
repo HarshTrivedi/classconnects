@@ -110,7 +110,8 @@ class CollegesController < ApplicationController
 
 
   def college_autocomplete_elements
-    @colleges = College.order(:name).where("name like ?" , "%#{params[:term]}%")
+    college_ids = College.order(:name).where("name like ?" , "%#{params[:term]}%").map(&:id).take(10)
+    @colleges = College.where( :id => college_ids )
     respond_to do |format|  
         format.json { render :json => @colleges.to_json }
     end
@@ -118,14 +119,16 @@ class CollegesController < ApplicationController
 
 
   def branch_autocomplete_elements
-    @branches = Branch.order(:name).where("name like ?" , "%#{params[:term]}%")
+    branch_ids = Branch.order(:name).where("name like ?" , "%#{params[:term]}%").map(&:id).take(10)
+    @branches = Branch.where( :id => branch_ids )
     respond_to do |format|  
         format.json { render :json => @branches.to_json }
     end
   end
 
   def course_autocomplete_elements
-    @courses = Course.order(:name).where("name like ?" , "%#{params[:term]}%")
+    course_ids = Course.order(:name).where("name like ?" , "%#{params[:term]}%").uniq.take(10)
+    @courses = Course.where(:id => course_ids )
     respond_to do |format|  
         format.json { render :json => @courses.to_json }
     end
