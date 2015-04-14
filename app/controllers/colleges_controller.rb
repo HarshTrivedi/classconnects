@@ -118,27 +118,16 @@ class CollegesController < ApplicationController
 
 
   def branch_autocomplete_elements
-    college = College.find_by_name(params[:college_name])
-    if not college.nil?
-      @branches = college.branches.order(:name).where("name like ?" , "%#{params[:term]}%")
-      respond_to do |format|  
-          format.json { render :json => @branches.to_json }
-      end
-    else
-      render json: []      
+    @branches = Branch.order(:name).where("name like ?" , "%#{params[:term]}%")
+    respond_to do |format|  
+        format.json { render :json => @branches.to_json }
     end
   end
 
   def course_autocomplete_elements
-    college = College.find_by_name(params[:college_name])
-    branch  = Branch.find_by_name(params[:branch_name])
-    if (not college.nil?) and (not branch.nil?)
-      @courses = CollegeBranchPair.where( :college_id => college.id , :branch_id => branch.id ).first.courses.order(:name).where("name like ?" , "%#{params[:term]}%")
-      respond_to do |format|  
-          format.json { render :json => @courses.to_json }
-      end
-    else
-      render json: []
+    @courses = Course.order(:name).where("name like ?" , "%#{params[:term]}%")
+    respond_to do |format|  
+        format.json { render :json => @courses.to_json }
     end
   end
 
