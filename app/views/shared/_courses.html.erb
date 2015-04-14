@@ -1,3 +1,4 @@
+<%if courses.size > 0%>
 <div class="row">
 <%for course in courses%>
 	<div id="course_<%=course.id%>">
@@ -8,3 +9,8 @@
 <div class = "stick-paginate">
 <%= paginate courses  , :remote => true  %>
 </div>
+<%else%>
+	<div class ="text-center media-heading">
+		<h1  style="font-size:60px; margin:250px"><i class="fa fa-search"></i> Nothing Found! </h1>
+	</div> 
+<%end%>

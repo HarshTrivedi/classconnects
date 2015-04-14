@@ -1,3 +1,4 @@
+<%if users.size > 0%>
 <div class="row">
   <%for user in users%>  
 		<%= render(:partial => 'shared/user', :locals => {:user => user } )%>
@@ -6,3 +7,8 @@
 <div class = "stick-paginate">
 <%= paginate users , :remote => true %>
 </div>
+<%else%>
+	<div class ="text-center media-heading">
+		<h1  style="font-size:60px; margin:250px"><i class="fa fa-search"></i> Nothing Found! </h1>
+	</div> 
+<%end%>
