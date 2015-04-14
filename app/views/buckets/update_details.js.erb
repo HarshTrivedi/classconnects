@@ -2,6 +2,6 @@ $('.modal').modal("hide") ;
 $("form").trigger("reset");
 var id = "<%= @bucket.id %>";
 toastr.info('Successfully', 'bucket updated');
-setInterval(function () {
+window.setTimeout(function () {
 	$("#bucket_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/bucket', :locals => {:bucket => @bucket })      ) %>");
 }, 300);
