@@ -46,24 +46,27 @@ function main_college_search_autocomplete() {
 	                },
 	                success: function(data) {
 	                	if(data.length == 0){
-		                    response( [{label: "No match Found" , value: ""}] );
+		                    response( [{label: "" , val: -1 }] );
 	                	}else{
 	                		response(data);
 		                }
 	                }
             	});
 	        },
-            focus: function(event, ui) {
-                $('#main_college_search_autocomplete').val(ui.item.name);
-                return false;
-            },
 	        select: function(event, ui) {
+	 				if (ui.item.val == -1) {
+	                    return false;
+	                }
 			        $('#main_college_search_autocomplete').val(ui.item.name);
 			        $('#main_college_search_autocomplete_id').val(ui.item.id);
 	                return false;
 	        }
         }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+			if(item.val == -1){
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + "No result" + "</a>" ).appendTo( ul );
+			}else{
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+			}
         };
 
 
@@ -87,7 +90,7 @@ function autocomplete_search_fields() {
 	                },
 	                success: function(data) {
 	                	if(data.length == 0){
-		                    response( [{label: "No match Found" , value: ""}] );
+		                    response( [{label: "" , val: -1 }] );
 	                	}else{
 	                		response(data);
 		                }
@@ -99,12 +102,19 @@ function autocomplete_search_fields() {
                 return false;
             },
 	        select: function(event, ui) {
+	 				if (ui.item.val == -1) {
+	                    return false;
+	                }
 			        $('#college_autocomplete').val(ui.item.name);
 			        $('#college_autocomplete_id').val(ui.item.id);
 	                return false;
 	        }
         }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+			if(item.val == -1){
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + "No result" + "</a>" ).appendTo( ul );
+			}else{
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+			}
         };
     $('#branch_autocomplete').autocomplete({
             minLength: 1,
@@ -118,7 +128,7 @@ function autocomplete_search_fields() {
 	                },
 	                success: function(data) {
 	                	if(data.length == 0){
-		                    response( [{label: "No match Found" , value: ""}] );
+		                    response( [{label: "" , val: -1 }] );
 	                	}else{
 	                		response(data);
 		                }
@@ -130,12 +140,19 @@ function autocomplete_search_fields() {
                 return false;
             },
 	        select: function(event, ui) {
+	 				if (ui.item.val == -1) {
+	                    return false;
+	                }
 			        $('#branch_autocomplete').val(ui.item.name);
 			        $('#branch_autocomplete_id').val(ui.item.id);
 	                return false;
 	        }
         }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+			if(item.val == -1){
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + "No result" + "</a>" ).appendTo( ul );
+			}else{
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+			}
         };
     $('#course_autocomplete').autocomplete({
             minLength: 1,
@@ -149,7 +166,7 @@ function autocomplete_search_fields() {
 	                },
 	                success: function(data) {
 	                	if(data.length == 0){
-		                    response( [{label: "No match Found" , value: ""}] );
+		                    response( [{label: "" , val: -1 }] );
 	                	}else{
 	                		response(data);
 		                }
@@ -161,12 +178,19 @@ function autocomplete_search_fields() {
                 return false;
             },
 	        select: function(event, ui) {
+	 				if (ui.item.val == -1) {
+	                    return false;
+	                }
 			        $('#course_autocomplete').val(ui.item.name);
 			        $('#course_autocomplete_id').val(ui.item.id);
 	                return false;
 	        }
         }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+			if(item.val == -1){
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + "No result" + "</a>" ).appendTo( ul );
+			}else{
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+			}
         };
 		$( "#college_autocomplete, #branch_autocomplete, #course_autocomplete" ).keypress(function() {
 			selected_college_name = $("#college_autocomplete").val();
