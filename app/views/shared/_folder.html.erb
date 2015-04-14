@@ -1,41 +1,45 @@
-<div class="the-box no-border">
-	<div class="media user-card-sm">	  
+<div class="the-box no-border" >
+	<div class="media user-card-sm" >	  
 	  <%uploader = folder.bucket.uploader %>
 	  <div class="pull-left" href="#fakelink">
 	      <%= image_tag folder.image_url , :class => "media-object" %>
-
 	  </div>
-	  <div class="media-body">										  	
-		<span class="user-heading">
-			<%= link_to( folder.name , folder_content_path(folder.id)  ) %>
-		</span>
-		<br>
-
-
-			<%if uploader == current_user %>
-	            <button type="button" data-toggle="modal" data-target="#modal_edit_folder_<%=folder.id%>" class="btn btn-success">
-	                Change Name
-	            </button>
-	            <%= link_to("Remove" , destroy_folder_path(folder.id) , :method => :delete , :remote => true) %>
-            <%end%>
-
-
-		<br>
-		<span class="user-mail">
-			<%= uploader.email %>
-		</span>
-		<br>
-		<span class="small-user text-muted">
-			Created <%= time_ago_in_words(folder.created_at) %> ago
-		</span>
-		<br>
-		<!-- <div class="right-button"> -->
-			<%= link_to(  fa_icon("external-link-square btn-xs btn-warning btn-perspective", text: "Visit") , folder_content_path( folder.id ) )%>
-	    	<%if uploader == current_user %>
-			  <%= link_to("Delete" , destroy_folder_path(folder.id) , :method => :delete , :remote => true, :class => "btn-xs btn-warning btn-perspective") %>
-		    <%end%>
-		<!-- </div> -->
-	    </div>
+	  <div class="pull-right" href="#fakelink">
+		  <div class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#fakelink">
+				   <i class="fa fa-ellipsis-v"></i>
+				</a>
+				<ul class="dropdown-menu primary" role="menu" style="position:relative">
+					<li><%= link_to(  fa_icon("external-link", text: "Visit") , folder_content_path( folder.id ) )%>
+					</li>
+						<%if uploader == current_user %>
+							<li>
+								<a type="button" data-toggle="modal" data-target="#modal_edit_folder_<%=folder.id%>" >
+								<i class="fa fa-edit">Edit Name</i>
+								</a>
+		            		</li>
+		            		<li>
+		            			<%= link_to(fa_icon("remove", text: "Remove") , destroy_folder_path(folder.id) , :method => :delete , :remote => true) %>
+							</li>
+						<%end%>
+				</ul>
+		  </div>
+	  </div>
+	  
+	  <div class="media-body" >		
+			<span class="user-heading">
+				<%= link_to( folder.name , folder_content_path(folder.id)  ) %>
+			</span>
+			<br>
+			<span class="user-mail">
+				<%= uploader.email %>
+			</span>
+			<br>
+			<span class="small-user text-muted">
+				Created <%= time_ago_in_words(folder.created_at) %> ago
+			</span>
+			<br>
+	  </div>
 	</div>
 </div>
 
@@ -49,11 +53,11 @@
          <div class="modal-body">
                 <%= simple_form_for folder , :url => update_folder_details_path(folder.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
                   <%= f.input :id, :as => :hidden, :input_html => { :value => folder.id } %>
-                  <%= f.input :name , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"} %>
+                  <%= f.input :name , :input_html => { :class => "chosen-input" , :required => true } %>
                   <div class="modal-footer">
                     <div class="text-center">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <%= f.button :submit , "Edit", :class => "btn btn-success" %>
+                      <%= f.button :submit , "Edit", :class => "btn btn-warning btn-perspective" %>
                     </div>
                   </div>
                 <% end %>

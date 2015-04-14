@@ -1,22 +1,43 @@
 <!-- bucket -->
+<div class="the-box">
 <div class="media-body">
 	  <p></p>
-	  <h4 class="media-heading">
+	  <h2 class="media-heading">
 	  	<%= link_to( folder.name , folder_content_path(folder.id)  ) %>
-	  </h4>
+	  </h2>
+<hr class="marginbot-10">
+	  <p></p>
+	  
+	  <b>Owner:</b>
+	  <span class="text-muted">
+	  		folder.bucket.uploader.name
+	  </span>
+	  <p></p>
+	  
+	  <b>Size:</b>
+	  <span class="text-muted">
+	  		folder.size
+	  </span>
+	  <p></p>
+	  
+	  <b>Catagory:</b>
+	  <span class="text-muted">
+	  		folder.bucket.category.category
+	  </span>
+	  	  <p></p>
+	  
+	  <b>Accessibility:</b>
+	  <span class="text-muted">
+	  		<%= ( (bucket.privately_shared) ? ("Private") : ("Public") ) %>
+	  </span>	  
 	  <p></p>
 
-	  Created At:
+	  <b>Last Updated</b>
 	  <span class="text-muted">
 	  		<%= folder.created_at %>
+			<%= time_ago_in_words( folder.updated_at ) %>
 	  </span>
 	  <p><p>
-	  Updated At: 
-	  <span class="text-muted">
-	  		<%= folder.updated_at %>
-	  </span>
-	  <p><p>
-
 
 </div>
-
+</div>

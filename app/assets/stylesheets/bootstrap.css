@@ -5283,7 +5283,12 @@ a.thumbnail:hover,a.thumbnail:focus,a.thumbnail.active{
 }
 
 .media-object{
-	display:block
+	display:block;
+	/*add for image sizing*/
+
+	height:60px;
+	width:60px;
+
 }
 
 .media-heading{

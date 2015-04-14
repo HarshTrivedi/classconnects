@@ -4,15 +4,12 @@
         <a class="pull-left" href="<%=profile_main_path(:user_id => bucket.uploader.id)%>"> 
           <%= image_tag avatar_url(bucket.uploader) , :class => "media-object img-circle" , :title => bucket.uploader.full_name%>
         </a>
+        <% category = bucket.category.category %>
 
-        <div class="clearfix visible-xs"></div>
-        <div class="media-body">
-            <a href="#fakelink"></a>
-            <h4 class="media-heading">
-                <%= link_to( bucket.name , bucket_content_path(bucket.id)  ) %>
-                <% category = bucket.category.category %>
-                <small class="pull-right">
-                	  <span class="label label-warning span-sidebar">
+              <!--added start-->
+             <div class="pull-right" >
+                <small class="pull-right" style="margin-bottom:20px">
+                    <span class="label label-warning span-sidebar">
                       <%= category %>
                     </span>
                     
@@ -22,55 +19,42 @@
                     <span class="label label-success span-sidebar">
                       <%= ( (bucket.privately_shared) ? ("Private") : ("Public") ) %>
                     </span>
-		              <%end%>
-            </small>                 
+                  <%end%>
+                </small>  
+
+                <div class="vote circle">
+                    <%if current_user.has_upvoted?(bucket)  %>                      
+                              <%= link_to( "", like_bucket_path(bucket.id) ,:class=>"hasvoted up", :method => :post , :remote => true)%> 
+                      <%else%>                      
+                              <%= link_to( "" , like_bucket_path(bucket.id),:class=>"increment up" , :method => :post , :remote => true)%>                            
+                              <% bucket.up_votes %>                      
+                      <%end%>                      
+                      <%if current_user.has_downvoted?(bucket)  %>                      
+                              <%= link_to( "", dislike_bucket_path(bucket.id) ,:class=>"hasvoted down", :method => :post , :remote => true)%>                        
+                              <% bucket.down_votes%>                      
+                      <%else%>                      
+                              <%= link_to( "" , dislike_bucket_path(bucket.id) ,:class=>"increment down", :method => :post , :remote => true)%>                           
+                              <% bucket.down_votes %>                      
+                      <%end%>
+                      <div class="count"><%=bucket.up_votes - bucket.down_votes%></div>
+                </div>
+            </div> 
+
+        <div class="clearfix visible-xs"></div>
+        <div class="media-body" >
+            <a href="#fakelink"></a>
+            <h4 class="media-heading">
+                <%= link_to( bucket.name , bucket_content_path(bucket.id)  ) %>
             </h4>
-
-            <ul class = "list-inline">
-
-                  <%if current_user.has_upvoted?(bucket)  %>
-                      <li>
-                          <%= link_to( fa_icon("thumbs-up") , like_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
-                          </b> 
-                          <%= bucket.up_votes %>
-                      </li>
-                  <%else%>
-                      <li>
-                          <%= link_to( fa_icon("thumbs-o-up") , like_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
-                          </b> 
-                          <%= bucket.up_votes %>
-                      </li>
-                  <%end%>
-                    |  
-                  <%if current_user.has_downvoted?(bucket)  %>
-                      <li>
-                          <%= link_to( fa_icon("thumbs-down") , dislike_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
-                          </b> 
-                          <%= bucket.down_votes %>
-                      </li>
-                  <%else%>
-                      <li>
-                          <%= link_to( fa_icon("thumbs-o-down") , dislike_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
-                          </b> 
-                          <%= bucket.down_votes %>
-                      </li>
-                  <%end%>
-
-            </ul>
-            <ul>
-
-                <%= link_to( fa_icon("cloud-download", text: "Download") , request_download_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "btn btn-xs btn-warning btn-perspective")%> 
-                <%if bucket.uploader == current_user %>
-                    <button type="button" data-toggle="modal" data-target="#modal_edit_bucket_<%=bucket.id%>" class="btn btn-xs btn-warning btn-perspective">
+            <%= link_to( fa_icon("cloud-download", text: "Download") , request_download_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "btn btn-xs btn-warning btn-perspective")%> 
+            <%if bucket.uploader == current_user %>
+                <button type="button" data-toggle="modal" data-target="#modal_edit_bucket_<%=bucket.id%>" class="btn btn-xs btn-warning btn-perspective">
                          <i class="fa fa-edit"> Edit </i>
-                    </button>
-                    <%= link_to( fa_icon("cloud-remove", text: "Remove") , destroy_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "btn btn-xs btn-warning btn-perspective")%> 
-                <%end%>
+                </button>
+                <%= link_to( fa_icon("remove", text: "Remove") , destroy_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "btn btn-xs btn-warning btn-perspective")%> 
+            <%end%>
 
-
-            </ul>
-
-	         <p class="hidden-xs"><!--ask-->
+	         <p class="hidden-xs">
                 <%= truncate(bucket.description , length: 50) %>
             </p>
 
@@ -95,14 +79,14 @@
          <div class="modal-body">
                 <%= simple_form_for bucket , :url => update_bucket_details_path( bucket.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
                   <%= f.input :id, :as => :hidden, :input_html => { :value => bucket.id } %>
-                  <%= f.input :name , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"}  %>
-                  <%= f.input :description, :hint => "Please describe in detail" , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"}%>
+                  <%= f.input :name , :input_html => { :class => "chosen-input" , :required => true}  %>
+                  <%= f.input :description, :hint => "Please describe in detail" , :input_html => { :class => "chosen-input" , :required => true }%>
                   <%= f.input :privately_shared , as: :radio_buttons %> 
-                  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input" , "data-bv-notempty" => "true"}%>
+                  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input" , :required => true }%>
                     <div class="modal-footer">
                       <div class="text-center">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <%= f.button :submit , "Edit", :class => "btn btn-success" %>
+                        <%= f.button :submit , "Edit", :class => "btn btn-warning btn-perspective" %>
                       </div>
                     </div>
                 <% end %>
@@ -111,3 +95,12 @@
      </div><!-- /.modal-dialog -->
 </div>
 
+
+<script type="text/javascript">
+
+  $('#modal_edit_bucket_<%=bucket.id%>').on('shown.bs.modal', function() {
+      console.log("In event <%=bucket.id%>  called");
+      $("#edit_bucket_<%=bucket.id%>").validate();
+  })
+
+</script>>

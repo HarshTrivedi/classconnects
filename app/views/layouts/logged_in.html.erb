@@ -15,8 +15,7 @@
 		<meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
 		<meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
 		<title>Welcome - CollegeColab</title>
-    	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 	   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 </head>
@@ -57,11 +56,9 @@
 								Hi, <strong><%=current_user.full_name%></strong>
 							  </a>
 							  <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
-								<li><a href="#fakelink">Account setting</a></li>
 								<li><%= link_to 'Change Password', edit_user_registration_path %></li>
 								<li><a href="#fakelink">Profile</a></li>
 								<li class="divider"></li>
-								<li><a href="#">Lock screen</a></li>
 								<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %>. </li>
 							  </ul>
 							</li>
@@ -141,7 +138,7 @@
 							  <div class="modal-footer">
 								  <div class="text-center">
 	   							  	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								  	<%= f.button :submit , "Enroll Me", :class => "btn btn-success"%>
+								  	<%= f.button :submit , "Enroll Me", :class => "btn btn-warning btn-perspective"%>
 								  </div><!-- /.modal-footer -->
 							  </div>
 							<% end %>
@@ -167,7 +164,7 @@
 							  <%= f.input :name , :input_html => { :class => "" , "data-bv-notempty" => "true" } %>
 							  <%= f.input :description , :input_html => { :class => "" , "data-bv-notempty" => "true"} %>
 							  <div class="text-center">
-						  		<%= f.button :submit , "Create", :class => "btn btn-success"%>
+						  		<%= f.button :submit , "Create", :class => "btn btn-warning btn-perspective"%>
 						  	  </div>
 						<% end %>
 			         </div>
@@ -194,7 +191,7 @@
 			                  <div class="modal-footer">
 			                     <div class="text-center">
 			                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			                       <%= f.button :submit , "Submit", :class => "btn btn-success" %>
+			                       <%= f.button :submit , "Submit", :class => "btn btn-warning btn-perspective" %>
 			                     </div>
 			                  </div>
 			                <% end %>

@@ -1,34 +1,87 @@
 <!-- bucket -->
+<div class="the-box">
 <div class="media-body">
 	  <p></p>
-	  <h4 class="media-heading">
+	  <h2 class="media-heading">
 	  	<%= link_to( bucket.name , bucket_content_path(bucket.id)  ) %>
-	  </h4>
+	  </h2>
+<hr class="marginbot-10">
 	  <p></p>
-	  <a href="#Download">
-			<span class="label label-danger span-sidebar">Download</span>
-			</a>|
-		  <b>Up:</b>120 <b>Down:</b>6
+	  
+	  <b>Author:</b>
+	  <span class="text-muted">
+	  		Karan Tankshali<!--user name-->
+	  </span>
+	  	  <p></p>
+	  
+	  <b>Author Reputation:</b>
+	  <span class="text-muted">
+	  		30<!--user name-->
+	  </span>
+	  <p></p>
+	  <p></p>
+	  
+	  <b>Full Description:</b>
+	  <span class="text-muted">
+	  		Karan Tankshali here.<!--no of downloads-->
+	  </span>
+	  
+	  <p></p>
+	  
+	  <b>Total Downloads:</b>
+	  <span class="text-muted">
+	  		5757<!--no of downloads-->
+	  </span>
+	  <p></p>
+	  
+	  <b>Total Up-votes:</b>
+	  <span class="text-muted">
+	  		575<!--no of upvotes-->
+	  </span>
+	  
+	  <p></p>
+	  
+	  <b>Total Down-Votes:</b>
+	  <span class="text-muted">
+	  		5<!--no of downvotes-->
+	  </span>
+	  <p></p>
+	  <b>Bucket Size:</b>
+	  <span class="text-muted">
+	  		30MB<!--Folder size-->
+	  </span>
+	  	  <p></p>
+	  
+	  <b>Catagory:</b>
+	  <span class="text-muted">
+	  		Exam<!--Catagory-->
+	  </span>
+	  <p></p>
+	  
+	  <b>Course:</b>
+	  <span class="text-muted">
+	  		Course name with link
+	  </span>
+	  
+	  	  <p></p>
+	  
+	  <b>Accessibility:</b>
+	  <span class="text-muted">
+	  		Private<!--Public Private-->
+	  </span>
 	  <p></p>
 
-	  <% category = bucket.category.category %>
-	  Category : 
-	  <span class="label label-warning span-sidebar">
-		  <%= category %>
+	  <b>Created At:</b>
+	  <span class="text-muted">
+	  		<%= bucket.created_at %>
 	  </span>
 	  <p><p>
-
+	  <b>Updated At:</b> 
 	  <span class="text-muted">
-	  		<%= bucket.description %>
-	  </span>
-	  <p><p>
-	  Course : 
-	  <% course = bucket.course %>
-	  <span class="text-muted">
-	  		<%= link_to( course.name , course_content_path(course.id)  ) %>
+	  		<%= bucket.updated_at %>
 	  </span>
 	  <p><p>
 
 
 </div>
-
+</div>

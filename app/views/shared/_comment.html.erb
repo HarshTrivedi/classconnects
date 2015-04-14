@@ -6,8 +6,9 @@
 		<h4 class="media-heading">
 			<%= link_to( user.email , "#no_profile_yet"  ) %>
 		</h4>
-		<p class="date"><small> Created <%= time_ago_in_words(comment.created_at) %> ago </small></p>	  		
+		<p class="date"><small> Created <%= time_ago_in_words(comment.created_at) %> ago </small></p>	  	
 		<%= comment.message %>
+		<br><br>
 		<ul class="media-list">
 			<%comment_responses = comment.comment_responses %>
 			<div id="comment_responses_<%=comment.id%>">
@@ -17,6 +18,7 @@
 					</div>
 	 			<%end%>
  			</div>
+
 			<%= render(:partial => 'shared/leave_comment_response', :locals => {:comment => comment } )%>		
 		</ul>
 	</div>
