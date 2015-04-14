@@ -14,7 +14,7 @@
 			</span>
     	</div>
 		<div class="right-button">
-			  <%if course.college == current_user.college %>
+			  <%if (course.college == current_user.college ) and ( course.branch == current_user.branch) %>
 				  <%if not course.enrolled_users.include?(current_user) %>
 				  	<%= link_to(  fa_icon("plus", text: "Enroll") , enroll_course_path(course.id) , :method => :post  , :remote => true , :class => "btn btn-xs btn-warning btn-perspective") %>
 				  <%else%>
