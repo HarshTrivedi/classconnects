@@ -6,6 +6,11 @@
 		</div><!-- /.right-content -->
 		<ul class="nav nav-tabs">
 			<%= content_tag(:li , link_to(fa_icon("search", text: "Results"), "#" ), :class=>"active" )%>
+
+			<div id="internal_search_bar">
+				<%= render(:partial => 'shared/search_search_results') %>
+			</div>
+
 		</ul>
 </div>
 </div>

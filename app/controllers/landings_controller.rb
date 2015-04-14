@@ -16,22 +16,31 @@ class LandingsController < ApplicationController
             branch  = Branch.find_by_id(branch_id)
             course  = Course.find_by_id(course_id)
 
-            @buckets = Bucket.where(id: nil)
-            if college
-                    if branch
-                        if course
-                            @buckets = course.buckets.order(:name).filter_search_for(current_user).search(search).page(params[:page])
-                        else
-                            college_branch_pair = CollegeBranchPair.where(:college_id => college.id , :branch_id => branch.id).first
-                            @buckets = college_branch_pair.buckets.order(:name).filter_search_for(current_user).search(search).page(params[:page])
-                        end
-                    else
-                          @buckets = college.buckets.filter_search_for(current_user).search(search).page(params[:page])
-                    end
+            bucket_ids = []            
+
+            if college or branch or course
+                if college
+                   bucket_ids = bucket_ids + college.buckets.filter_search_for(current_user).search(search).map(&:id)
+                end
+                if branch
+                   bucket_ids = bucket_ids + branch.buckets.filter_search_for(current_user).search(search).map(&:id)
+                end
+                if course
+                  bucket_ids = bucket_ids + course.buckets.filter_search_for(current_user).search(search).map(&:id)
+                end
             else
-                @buckets = Bucket.order(:name).filter_search_for(current_user).search(search).page(params[:page])
+                bucket_ids = Bucket.where(nil).filter_search_for(current_user).search(search).map(&:id)
             end
-    	  		render(:template => "landings/login_landing_with_search")
+
+            bucket_ids = bucket_ids.uniq
+            ap bucket_ids
+            @buckets = Bucket.where(:id => bucket_ids).page(params[:page])
+
+            respond_to do |format|
+              format.html{render(:template => "landings/login_landing_with_search")}
+              format.js {render(:template => "landings/login_landing_with_search")}
+            end
+    	  		
 	  		else
           @downloaded_buckets = current_user.downloaded_buckets.page(params[:page])
   				render(:template => "landings/login_landing_without_search")
