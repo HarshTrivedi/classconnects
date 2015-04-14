@@ -127,7 +127,7 @@ class CollegesController < ApplicationController
   end
 
   def course_autocomplete_elements
-    course_ids = Course.order(:name).where("name like ?" , "%#{params[:term]}%").uniq.take(10)
+    course_ids = Course.order(:name).where("name like ?" , "%#{params[:term]}%").to_a.uniq{|p| p.name}.take(10).map(&:id)
     @courses = Course.where(:id => course_ids )
     respond_to do |format|  
         format.json { render :json => @courses.to_json }
