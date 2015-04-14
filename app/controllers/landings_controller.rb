@@ -17,17 +17,25 @@ class LandingsController < ApplicationController
             course  = Course.find_by_id(course_id)
 
             bucket_ids = []            
+            college_bucket_ids = []
+            branch_bucket_ids = []
+            course_bucket_ids = []
 
             if college or branch or course
                 if college
-                   bucket_ids = bucket_ids + college.buckets.filter_search_for(current_user).search(search).map(&:id)
+                   college_bucket_ids = college.buckets.filter_search_for(current_user).search(search).map(&:id)
                 end
                 if branch
-                   bucket_ids = bucket_ids + branch.buckets.filter_search_for(current_user).search(search).map(&:id)
+                   branch_bucket_ids = branch.buckets.filter_search_for(current_user).search(search).map(&:id)
                 end
                 if course
-                  bucket_ids = bucket_ids + course.buckets.filter_search_for(current_user).search(search).map(&:id)
+                  courses = Course.where('name ILIKE ? or code ILIKE ?', "%#{search}%" , "%#{search}%")
+                  course_bucket_ids = []
+                  for course in courses
+                    course_bucket_ids = course_bucket_ids + course.buckets.filter_search_for(current_user).search(search).map(&:id)
+                  end
                 end
+                bucket_ids = college_bucket_ids and branch_bucket_ids and course_bucket_ids
             else
                 bucket_ids = Bucket.where(nil).filter_search_for(current_user).search(search).map(&:id)
             end
