@@ -79,7 +79,14 @@ class FoldersController < ApplicationController
   def destroy_folder
     folder_id = params[:id]
     @folder = Folder.find_by_id(folder_id)
-    @folder.destroy if current_user == @folder.bucket.uploader
+    
+    uploader = @folder.bucket.uploader
+
+    if uploader == current_user
+      @folder.destroy
+      uploader.uploaded_data_size = uploader.uploaded_data_size - @folder.size
+      uploader.save
+    end
     # redirect_to :back
     respond_to do |format|
       format.js

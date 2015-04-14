@@ -97,7 +97,11 @@ class DocumentsController < ApplicationController
   def destroy_document
     document_id = params[:id]
     @document = Document.find_by_id(document_id)
-    @document.destroy if current_user == @document.bucket.uploader
+    if current_user == @document.bucket.uploader
+      @document.destroy
+      uploader.uploaded_data_size = uploader.uploaded_data_size - @document.size
+      uploader.save       
+    end
     # redirect_to :back
     respond_to do |format|
       format.js
