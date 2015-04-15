@@ -40,19 +40,7 @@
   background: #3EC144;
   background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);  background-image:-o-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);  background-image:linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);  -webkit-background-size:40px 40px;  background-size:40px 40px;
 }
-
-.ui-autocomplete-input {
-  border: none; 
-  font-size: 14px;
-  width: 300px;
-  height: 24px;
-  margin-bottom: 5px;
-  padding-top: 2px;
-  border: 1px solid #DDD !important;
-  padding-top: 0px !important;
-  z-index: 1511;
-  position: relative;
-}
+/* harsh added*/
 .ui-menu .ui-menu-item a {
   font-size: 12px;
 }
