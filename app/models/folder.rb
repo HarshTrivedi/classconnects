@@ -18,11 +18,17 @@ class Folder < ActiveRecord::Base
 
   after_create :store_aws_name
 
-  after_destroy :destory_aws_content
+  # after_update :update_s3_prefix
+
+  # after_destroy :destory_aws_content
 
   def store_aws_name
       self.aws_name = self.name
       self.save
+  end
+
+  def update_s3_prefix
+    
   end
 
   def destroy_aws_content
@@ -95,7 +101,9 @@ class Folder < ActiveRecord::Base
   def aws_root_to_self_path
     bucket = Bucket.find_by_id(self.bucket.id)
     folder_path = self.path_ids.map{ |folder_id| "#{Folder.find_by_id(folder_id).aws_name}"  }.join("/")
-    return "bucket_id_#{bucket.id}/#{bucket.aws_name}/#{folder_path}".chop
+    ap folder_path
+    ap bucket.id
+    return "bucket_id_#{bucket.id}/#{bucket.aws_name}/#{folder_path}"
   end
 
   def image_url
