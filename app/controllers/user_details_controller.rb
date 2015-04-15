@@ -216,8 +216,8 @@ class UserDetailsController < ApplicationController
   end
 
   def redirect_to_college
-      college_id = params[:search_college_field]
-      college = College.find_by_id(college_id)
+      college_name = params[:search_college_field]
+      college = College.find_by_name( college_name )
       if college
         redirect_to college_content_path(college.id)
       else
