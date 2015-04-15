@@ -58,6 +58,13 @@ class BucketsController < ApplicationController
     privately_shared =  ( privately_shared == "true" ) ? (true) : (false)
 
     @main_upload = params[:bucket][:main_upload]
+
+    if current_user.college_branch_enrolled?
+      @valid_request = true
+    else
+      @valid_request = false
+    end
+
     if not course.nil?
       @bucket = Bucket.new(bucket_params)
       @bucket.course_id = course.id

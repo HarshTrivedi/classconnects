@@ -1,13 +1,20 @@
 $('.modal').modal("hide") ;
 $("form").trigger("reset");
-toastr.info('Successfully', 'Added bucket!');
 var id = "<%= @bucket.id %>" ;
 
 var main_upload = "<%= @main_upload %>"
+var valid_request = "<%= @valid_request %>"
 
 if((main_upload == "true") || (main_upload == true) ){
-	window.location.replace("<%= escape_javascript(bucket_content_path(@bucket.id)) %>");
+
+	if((valid_request == "true") || ( valid_request == true) ){
+		toastr.info('Successfully', 'Added bucket!');
+		window.location.replace("<%= escape_javascript(bucket_content_path(@bucket.id)) %>");
+	}else{
+		toastr.info('Please Enroll in college', 'First');
+	}
 }else{
+	toastr.info('Successfully', 'Added bucket!');
 	$("#buckets").prepend("<div id=\"bucket_<%=@bucket.id%>\"> <%= escape_javascript(      render(:partial => 'shared/bucket', :locals => {:bucket => @bucket })      ) %>  </div>");
 }
 
