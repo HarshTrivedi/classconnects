@@ -84,6 +84,8 @@ Rails.application.routes.draw do
   get  '/enrollment'                  => 'user_details#new_college_branch_enrollment'           , as: :new_college_branch_enrollment
   post '/enrollment'                  => 'user_details#create_college_branch_enrollment'        , as: :create_college_branch_enrollment
 
+  post '/unenrollment'                  => 'user_details#unenroll_college_branch_pair'        , as: :unenroll_college_branch_pair
+
   post '/favorite_course/:course_id'             => 'user_details#favorite_course'                         , as: :favorite_course
   post '/unfavorite_course/:course_id'           => 'user_details#unfavorite_course'                       , as: :unfavorite_course
 

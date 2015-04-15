@@ -137,18 +137,16 @@ class UserDetailsController < ApplicationController
       end
   end
 
-  def unenroll_college_branch
+  def unenroll_college_branch_pair
 
       current_user.college_branch_pair_id = nil
       current_user.save
-
-      enrolled_courses = current_user.enrolled_courses
-
+      enrolled_courses = current_user.enrolled_courses      
       for enrolled_course in enrolled_courses
-        current_user.unenroll_course(enroll_course.id)
+        current_user.unenroll_course(enrolled_course.id)
       end
-      render :js => "toastr.success('unenrolled from all your enrolled courses', 'Successfully');toastr.success('unenrolled from college and branch', 'Successfully')"
-
+      flash[:success] = 'Successfully Un enrolled! Now you can enroll in any college / branch'
+      redirect_to :back
   end
 
 
