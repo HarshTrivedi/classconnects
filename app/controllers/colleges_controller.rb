@@ -110,7 +110,7 @@ class CollegesController < ApplicationController
 
 
   def college_autocomplete_elements
-    college_ids = College.order(:name).where("name like ?" , "%#{params[:term]}%").map(&:id).take(10)
+    college_ids = College.order(:name).where("name ilike ?" , "%#{params[:term]}%").map(&:id).take(10)
     @colleges = College.where( :id => college_ids )
     respond_to do |format|  
         format.json { render :json => @colleges.to_json }
@@ -125,14 +125,14 @@ class CollegesController < ApplicationController
       college = College.find_by_name( college_name )
       ap college
       if college
-          branch_ids = college.branches.order(:name).where("name like ?" , "%#{params[:term]}%").map(&:id).take(10).uniq          
+          branch_ids = college.branches.order(:name).where("name ilike ?" , "%#{params[:term]}%").map(&:id).take(10).uniq          
       else
           branch_ids = [] 
       end
       ap branch_ids
     else
       logger.ap "College not Given !!!!"
-      branch_ids = Branch.order(:name).where("name like ?" , "%#{params[:term]}%").map(&:id).take(10)
+      branch_ids = Branch.order(:name).where("name ilike ?" , "%#{params[:term]}%").map(&:id).take(10)
     end
 
     @branches = Branch.where( :id => branch_ids )
