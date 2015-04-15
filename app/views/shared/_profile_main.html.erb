@@ -55,6 +55,18 @@
 					  </p>
 					</div>
 				</div><!-- /.form-group -->
+
+				<% if not current_user.college_branch_pair.nil? %>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">UnEnroll</label>
+						<div class="col-sm-10">
+						  <p class="form-control-static">
+						  		<%= link_to( "College and Branch" , unenroll_college_branch_pair_path , :method => :post , :remote => true , :data => { :confirm => "This will unenroll you from all your current courses. And you will have to enroll in different college. Are you sure you want to continue?"  } ) %>
+						  </p>
+						</div>
+					</div><!-- /.form-group -->
+				<%end%>
+
 				</form>
 			</div><!-- /#panel-about -->
 			
