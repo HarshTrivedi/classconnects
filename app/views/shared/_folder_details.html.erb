@@ -10,19 +10,19 @@
 	  
 	  <b>Owner:</b>
 	  <span class="text-muted">
-	  		folder.bucket.uploader.name
+	  		<%= folder.bucket.uploader.name %>
 	  </span>
 	  <p></p>
 	  
 	  <b>Size:</b>
 	  <span class="text-muted">
-	  		folder.size
+	  		<%= folder.size %>
 	  </span>
 	  <p></p>
 	  
 	  <b>Catagory:</b>
 	  <span class="text-muted">
-	  		folder.bucket.category.category
+	  		<%= folder.bucket.category.category %>
 	  </span>
 	  	  <p></p>
 	  
@@ -34,7 +34,6 @@
 
 	  <b>Last Updated</b>
 	  <span class="text-muted">
-	  		<%= folder.created_at %>
 			<%= time_ago_in_words( folder.updated_at ) %>
 	  </span>
 	  <p><p>

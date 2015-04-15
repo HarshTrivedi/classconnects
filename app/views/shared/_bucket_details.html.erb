@@ -7,78 +7,79 @@
 	  </h2>
 <hr class="marginbot-10">
 	  <p></p>
-	  
+
+	  <% uploader = bucket.uploader %>	  
 	  <b>Author:</b>
 	  <span class="text-muted">
-	  		Karan Tankshali<!--user name-->
+	  		bucket.uploader.name
 	  </span>
 	  	  <p></p>
 	  
 	  <b>Author Reputation:</b>
 	  <span class="text-muted">
-	  		30<!--user name-->
+	  		<%= uploader.reputation%>
 	  </span>
 	  <p></p>
 	  <p></p>
 	  
 	  <b>Full Description:</b>
 	  <span class="text-muted">
-	  		Karan Tankshali here.<!--no of downloads-->
+	  		<%= bucket.description %>
 	  </span>
 	  
 	  <p></p>
 	  
 	  <b>Total Downloads:</b>
 	  <span class="text-muted">
-	  		5757<!--no of downloads-->
+	  		<%= bucket.downloads.size%>
 	  </span>
 	  <p></p>
 	  
 	  <b>Total Up-votes:</b>
 	  <span class="text-muted">
-	  		575<!--no of upvotes-->
+	  		<%= bucket.up_votes %>
 	  </span>
 	  
 	  <p></p>
 	  
 	  <b>Total Down-Votes:</b>
 	  <span class="text-muted">
-	  		5<!--no of downvotes-->
+	  		<%= bucket.down_votes%>
 	  </span>
 	  <p></p>
 	  <b>Bucket Size:</b>
 	  <span class="text-muted">
-	  		30MB<!--Folder size-->
+	  		<%= bucket.size %>
 	  </span>
 	  	  <p></p>
 	  
 	  <b>Catagory:</b>
 	  <span class="text-muted">
-	  		Exam<!--Catagory-->
+	  		<%= bucket.category %>
 	  </span>
 	  <p></p>
 	  
 	  <b>Course:</b>
 	  <span class="text-muted">
-	  		Course name with link
+	  		<%= bucket.course.name %>
 	  </span>
 	  
 	  	  <p></p>
 	  
 	  <b>Accessibility:</b>
 	  <span class="text-muted">
-	  		Private<!--Public Private-->
+	  		<%= ( bucket.privately_shared == "true" ) ? ("private") : ("public") %>
 	  </span>
 	  <p></p>
 
-	  <b>Created At:</b>
+	  <b>Uploaded:</b>
 	  <span class="text-muted">
-	  		<%= bucket.created_at %>
+		  	<%= time_ago_in_words( bucket.created_at ) %> ago
 	  </span>
 	  <p><p>
-	  <b>Updated At:</b> 
+	  <b>Last updated:</b> 
 	  <span class="text-muted">
-	  		<%= bucket.updated_at %>
+	  		<%= time_ago_in_words( bucket.updated_at ) %> ago
 	  </span>
 	  <p><p>
 
