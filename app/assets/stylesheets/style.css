@@ -8561,3 +8561,7 @@ body {
 * {
   box-sizing: border-box;
 }
+/*for showing jquery error in validation*/
+.error{
+	color: rgb(255,0,0);
+}
