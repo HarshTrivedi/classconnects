@@ -24,7 +24,7 @@
        						</a>
        					</li>
        					<li>
-       						<%= link_to(fa_icon("remove", text: "Remove"), destroy_document_path(document.id) , :method => :delete , :remote => true , :confirm => true) %>
+       						<%= link_to(fa_icon("remove", text: "Remove"), destroy_document_path(document.id) , :method => :delete , :remote => true , :data => { :confirm => "Are you sure you want to delete?"  }) %>
 	            		</li>
 	            	<%end%>			
 			</ul>
@@ -32,7 +32,7 @@
 	</div>
 	  <div class="media-body">
 		<span class="document-heading">
-			<%= document.name %>
+			<%= document.name %> | <b> ( <%= number_to_human_size( document.size )  %>  )</b>
 		</span>
 		<br>
 
@@ -42,9 +42,6 @@
 		<br>
 		<span class="small-user text-muted">
 			Created <%= time_ago_in_words(document.created_at) %> ago
-		</span>
-		<span class="small-user text-muted" >
-			<b> document.size </b>
 		</span>
 	  </div>
 	</div>

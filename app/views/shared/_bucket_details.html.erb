@@ -11,7 +11,7 @@
 	  <% uploader = bucket.uploader %>	  
 	  <b>Author:</b>
 	  <span class="text-muted">
-	  		bucket.uploader.name
+	  		<%= link_to( uploader.full_name , profile_main_path( :user_id => uploader.id) )  %>
 	  </span>
 	  	  <p></p>
 	  
