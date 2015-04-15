@@ -137,6 +137,20 @@ class UserDetailsController < ApplicationController
       end
   end
 
+  def unenroll_college_branch
+
+      current_user.college_branch_pair_id = nil
+      current_user.save
+
+      enrolled_courses = current_user.enrolled_courses
+
+      for enrolled_course in enrolled_courses
+        current_user.unenroll_course(enroll_course.id)
+      end
+      render :js => "toastr.success('unenrolled from all your enrolled courses', 'Successfully');toastr.success('unenrolled from college and branch', 'Successfully')"
+
+  end
+
 
 
   def request_download_bucket
