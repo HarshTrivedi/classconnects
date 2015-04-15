@@ -3,19 +3,19 @@
 <%if current_page?(college_content_path) %>
 
 		<%= form_tag( college_content_path(college.id) , :id => "branch_search" , :method => :get ) do %>	
-		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil) , :include_blank => true %>
+		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil) , { :prompt => "Filter by Department" } %>
 		<% end %>
 
 <%elsif current_page?(college_courses_path) %>
 
 		<%= form_tag( college_courses_path(college.id) , :id => "branch_search" , :method => :get ) do %>	
-		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil) , :include_blank => true %>
+		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil)  , { :prompt => "Filter by Department" }%>
 		<% end %>
 
 <%elsif current_page?(college_users_path) %>
 
 		<%= form_tag( college_users_path(college.id) , :id => "branch_search" , :method => :get ) do %>	
-		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil) , :include_blank => true %>
+		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil)  , {:prompt => "Filter by Department" }%>
 		<% end %>
 
 <%end%>
