@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :downloads
   has_many :reported_inappropriates
   has_many :suggestions
+  has_many :notifications
+
   belongs_to :college_branch_pair
 
   
@@ -31,6 +33,14 @@ class User < ActiveRecord::Base
   scope :content_moderator, ->{ User.where(  :id =>  User.all.select{|user| user.role?(:content_moderator)    }.map(&:id)   )}
   scope :college_generator, ->{ User.where(  :id =>  User.all.select{|user| user.role?(:college_generator)    }.map(&:id)   )}
   scope :non_admins,        ->{ User.where(  :id =>  User.all.select{|user| user.role?(:non_admins)  }.map(&:id)            )}
+
+  # after_create :notifiy_course_peers
+
+  # def notifiy_course_peers
+  #   notifiables = self.course.favorited_users
+
+  # end
+
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
@@ -196,6 +206,7 @@ class User < ActiveRecord::Base
       if Course.exists?(:id => course_id)
         enrollment = CourseEnrollment.create( :user_id => id ,  :course_id => course_id )
         course = enrollment.course
+        Resque.enqueue( NotifyCoursePeers , self.id , course.id )
       else
         course = nil
       end

@@ -12,10 +12,19 @@ class Bucket < ActiveRecord::Base
 
   after_create :store_aws_name
 
+  after_create :notifiy_waiters
+
+
   def store_aws_name
       self.aws_name = self.name
       self.save
   end
+
+  def notifiy_waiters
+    Resque.enqueue( NotifyEnrolledWaiters , self.uploader.id , self.id )    
+    Resque.enqueue( NotifyFavoritedWaiters , self.uploader.id , self.id )    
+  end
+
 
 
   belongs_to :category
