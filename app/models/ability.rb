@@ -24,7 +24,7 @@ class Ability
         can :read, :all
 
     elsif user.role? :content_moderator
-        can :manage, ReportedInappropriate
+        can :destroy, ReportedInappropriate
         can :manage, InappropriateType
         can :destroy, Bucket
         can :update,  Bucket
@@ -32,6 +32,7 @@ class Ability
         can :update,  Folder
         can :destroy, Document
         can :update,  Document
+        can :destroy, Suggestion
         can :read, :all
     else
 
