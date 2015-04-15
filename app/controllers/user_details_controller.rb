@@ -65,10 +65,15 @@ class UserDetailsController < ApplicationController
   end
 
   def create_college_branch_enrollment
-    college_id = params[:college_branch_pair][:college_id]
-    branch_id  = params[:college_branch_pair][:branch_id]
-    current_user.enroll_college_branch_pair(college_id , branch_id)
-    redirect_to landing_path
+    college_id = params[:enroll_college_autocomplete_id].to_i rescue nil
+    branch_id  = params[:enroll_branch_autocomplete_id].to_i rescue nil
+    if college_id and branch_id
+      flash[:success] = 'Successfully enrolled !'  
+      current_user.enroll_college_branch_pair(college_id , branch_id)
+    else
+      flash[:notice] = 'Bad Request'  
+    end
+    redirect_to :back
   end
 
   #Need link to reach here (In Buckets partial)

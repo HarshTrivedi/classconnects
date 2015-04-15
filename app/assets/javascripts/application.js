@@ -198,13 +198,111 @@ function autocomplete_search_fields() {
 }
 
 
+
+
+
+
+
+
+
+
+function cascade_enroll_college_branch() {
+	var selected_enroll_college_name = "";
+	var selected_enroll_branch_name = "";
+    $('#enroll_college_autocomplete').autocomplete({
+            minLength: 1,
+			delay: 300 ,
+            source: function(request, response) {
+	            $.ajax({
+	                url: "/colleges/autocomplete_elements.json",
+	                dataType: "json",
+	                data: {
+	                    term : request.term
+	                },
+	                success: function(data) {
+	                	if(data.length == 0){
+		                    response( [{label: "" , val: -1 }] );
+	                	}else{
+	                		response(data);
+		                }
+	                }
+            	});
+	        },
+            focus: function(event, ui) {
+                $('#enroll_college_autocomplete').val(ui.item.name);
+                return false;
+            },
+	        select: function(event, ui) {
+	 				if (ui.item.val == -1) {
+	                    return false;
+	                }
+			        $('#enroll_college_autocomplete').val(ui.item.name);
+			        $('#enroll_college_autocomplete_id').val(ui.item.id);
+	                return false;
+	        }
+        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+			if(item.val == -1){
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + "No result" + "</a>" ).appendTo( ul );
+			}else{
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+			}
+        };
+    $('#enroll_branch_autocomplete').autocomplete({
+            minLength: 1,
+			delay: 300 ,
+            source: function(request, response) {
+	            $.ajax({
+	                url: "/branches/autocomplete_elements.json",
+	                dataType: "json",
+	                data: {
+	                    term : request.term,
+	                    college_name : selected_enroll_college_name
+	                },
+	                success: function(data) {
+	                	if(data.length == 0){
+		                    response( [{label: "" , val: -1 }] );
+	                	}else{
+	                		response(data);
+		                }
+	                }
+            	});
+	        },
+            focus: function(event, ui) {
+                $('#branches_autocomplete').val(ui.item.name);
+                return false;
+            },
+	        select: function(event, ui) {
+	 				if (ui.item.val == -1) {
+	                    return false;
+	                }
+			        $('#enroll_branch_autocomplete').val(ui.item.name);
+			        $('#enroll_branch_autocomplete_id').val(ui.item.id);
+	                return false;
+	        }
+        }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+			if(item.val == -1){
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + "No result" + "</a>" ).appendTo( ul );
+			}else{
+	            return $( "<li></li>" ).data( "ui-autocomplete-item", item ).append( "<a>" + item.name + "</a>" ).appendTo( ul );
+			}
+        };
+
+		$( "#enroll_college_autocomplete, #enroll_branch_autocomplete" ).keypress(function() {
+			selected_enroll_college_name = $("#enroll_college_autocomplete").val();
+			selected_enroll_branch_name  = $("#enroll_branch_autocomplete").val();
+		});
+}
+
+
 $(document).on('page:load', function() {
 	autocomplete_search_fields();
 	main_college_search_autocomplete();
+	cascade_enroll_college_branch();
 });
 
 $(document).on('ready', function() {
 	autocomplete_search_fields();
 	main_college_search_autocomplete();
+	cascade_enroll_college_branch();
 });
 

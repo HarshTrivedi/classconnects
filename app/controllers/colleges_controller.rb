@@ -119,8 +119,24 @@ class CollegesController < ApplicationController
 
 
   def branch_autocomplete_elements
-    branch_ids = Branch.order(:name).where("name like ?" , "%#{params[:term]}%").map(&:id).take(10)
+    college_name = params[:college_name]
+    if not college_name.nil?
+      logger.ap "College Given !!!!"
+      college = College.find_by_name( college_name )
+      ap college
+      if college
+          branch_ids = college.branches.order(:name).where("name like ?" , "%#{params[:term]}%").map(&:id).take(10).uniq          
+      else
+          branch_ids = [] 
+      end
+      ap branch_ids
+    else
+      logger.ap "College not Given !!!!"
+      branch_ids = Branch.order(:name).where("name like ?" , "%#{params[:term]}%").map(&:id).take(10)
+    end
+
     @branches = Branch.where( :id => branch_ids )
+    ap @branches
     respond_to do |format|  
         format.json { render :json => @branches.to_json }
     end
