@@ -51,11 +51,11 @@
                 <button type="button" data-toggle="modal" data-target="#modal_edit_bucket_<%=bucket.id%>" class="btn btn-xs btn-warning btn-perspective">
                          <i class="fa fa-edit"> Edit </i>
                 </button>
-                <%= link_to( fa_icon("remove", text: "Remove") , destroy_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "btn btn-xs btn-warning btn-perspective")%> 
+                <%= link_to( fa_icon("remove", text: "Remove") , destroy_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "btn btn-xs btn-warning btn-perspective" , :data => { :confirm => "Are you sure you want to delete?"  })%> 
             <%end%>
 
 	         <p class="hidden-xs">
-                <%= truncate(bucket.description , length: 50) %>
+                <%= truncate(bucket.description , length: 40) %>
             </p>
 
             <span class="small text-muted">

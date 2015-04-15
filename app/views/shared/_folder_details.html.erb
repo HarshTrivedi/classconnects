@@ -7,10 +7,12 @@
 	  </h2>
 <hr class="marginbot-10">
 	  <p></p>
-	  
+	  <% bucket = folder.bucket %>
+
 	  <b>Owner:</b>
 	  <span class="text-muted">
-	  		<%= folder.bucket.uploader.name %>
+	  		<% uploader = bucket.uploader %>
+	  		<%= link_to( uploader.full_name , profile_main_path( :user_id => uploader.id) )  %>
 	  </span>
 	  <p></p>
 	  
@@ -22,7 +24,7 @@
 	  
 	  <b>Catagory:</b>
 	  <span class="text-muted">
-	  		<%= folder.bucket.category.category %>
+	  		<%= bucket.category.category %>
 	  </span>
 	  	  <p></p>
 	  
