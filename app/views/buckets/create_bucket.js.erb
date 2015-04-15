@@ -6,7 +6,7 @@ var id = "<%= @bucket.id %>" ;
 var main_upload = "<%= @main_upload %>"
 
 if((main_upload == "true") || (main_upload == true) ){
-
+	window.location.replace("<%= escape_javascript(bucket_content_path(@bucket.id)) %>");
 }else{
 	$("#buckets").prepend("<div id=\"bucket_<%=@bucket.id%>\"> <%= escape_javascript(      render(:partial => 'shared/bucket', :locals => {:bucket => @bucket })      ) %>  </div>");
 }
