@@ -12,8 +12,10 @@
 <%= paginate folders, :param_name => "folder_page"  , :remote => true %>
 </div>
 <%else%>
+	<div id="no_folders_found">
 	<div class ="text-center media-heading">
 		<h1  style="margin:100px"><i class="fa fa-search"></i> No Folders found!</h1>
 	</div> 
+	</div>
 <%end%>
 
