@@ -52,19 +52,19 @@ class User < ActiveRecord::Base
   end
 
   def enrolled_courses
-      course_ids = self.course_enrollments.map{|course_enrollment| course_enrollment.course }.map(&:id)
+      course_ids = self.course_enrollments.map{|course_enrollment| course_enrollment.course.id rescue nil }.compact
       Course.where(:id => course_ids)
   end
 
 
   def favorite_courses
-      course_ids = self.course_favorites.map{|course_favorite| course_favorite.course }.flatten.map(&:id)
+      course_ids = self.course_favorites.map{|course_favorite| course_favorite.course.id rescue nil }.compact
       Course.where(:id => course_ids)
   end
 
 
   def downloaded_buckets
-      bucket_ids = downloads.map{|download| download.bucket }.map(&:id)
+      bucket_ids = downloads.map{|download| download.bucket.id rescue nil }.compact
       Bucket.where(:id => bucket_ids)
   end
 
