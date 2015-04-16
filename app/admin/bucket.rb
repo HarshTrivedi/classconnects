@@ -69,7 +69,7 @@ ActiveAdmin.register Bucket do
           "Created #{time_ago_in_words(bucket.created_at)} ago"
       end
       column :user_id do |bucket|
-          # bucket.uploader.full_name
+          bucket.uploader.full_name
       end
       actions
   end
@@ -96,7 +96,7 @@ ActiveAdmin.register Bucket do
                   link_to( "Edit" , edit_admin_bucket_folder_path( bucket , folder )  ) if can?(:edit , folder )
                 end
                 column "Destroy" do |folder|
-                  # link_to( "Remove" , admin_folder_path(folder) , :method => :delete , data: { confirm: "Are you sure u want to delete this folder ?" } )  if can?(:destroy , folder )
+                  link_to( "Remove" , admin_folder_path(folder) , :method => :delete , data: { confirm: "Are you sure u want to delete this folder ?" } )  if can?(:destroy , folder )
                 end
             end
             span link_to( "Create Folder within" , new_admin_bucket_folder_path( bucket ) )  if can?(:create , Folder )
@@ -117,8 +117,6 @@ ActiveAdmin.register Bucket do
                     link_to( "Remove" , admin_document_path(document) , :method => :delete , data: { confirm: "Are you sure u want to delete this document ?" } ) if can?(:destroy , document )
                 end
             end
-            span link_to( "Create Document within" , new_admin_bucket_document_path( bucket ) ) if can?(:destroy , Document )
-            # render 'upload_documents_in_bucket'
             render(:partial => 'shared/upload_documents' , :locals => {:parent => bucket })
       end
       panel "Bucket Comments" do

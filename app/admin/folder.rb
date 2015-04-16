@@ -129,7 +129,6 @@ ActiveAdmin.register Folder do
                 end
                 
             end
-            span link_to( "Create Document within" , new_admin_bucket_document_path( :bucket_id => bucket.id , :folder_id => folder.id ) )  if can?(:create , Document )
             render(:partial => 'shared/upload_documents' , :locals => {:parent => folder })
       end
       active_admin_comments
