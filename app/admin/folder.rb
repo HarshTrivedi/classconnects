@@ -84,6 +84,8 @@ ActiveAdmin.register Folder do
 
    end
 
+  active_admin_allowed_action_items
+
   show do
       panel "Folder Details" do
         attributes_table_for folder do

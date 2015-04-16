@@ -52,6 +52,7 @@ ActiveAdmin.register Document do
         # render :nothing => true
   end
 
+  active_admin_allowed_action_items
 
 
   controller do

@@ -41,7 +41,7 @@ ActiveAdmin.register User do
 
   end 
 
-
+  active_admin_allowed_action_items
 
   show do
       panel "User Details" do

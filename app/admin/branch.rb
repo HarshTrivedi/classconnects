@@ -83,6 +83,7 @@ ActiveAdmin.register Branch do
       active_admin_comments
   end
 
+  active_admin_allowed_action_items
 
  form do |f|
       f.semantic_errors *f.object.errors.keys

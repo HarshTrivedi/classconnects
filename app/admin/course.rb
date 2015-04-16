@@ -48,6 +48,7 @@ ActiveAdmin.register Course do
 
   end 
 
+  active_admin_allowed_action_items
 
   index do 
       selectable_column
