@@ -67,6 +67,10 @@ ActiveAdmin.register Course do
             row("Course Name")   { course.name }
             row("College Name")  { course.college.name  }
             row("Branch Name")   { course.branch.name  }
+            row("Enrolled Users")   { course.enrolled_users.count  }
+            row("Favorited Users")   { course.favorited_users.count  }
+            row("Buckets shared")   { course.buckets  }
+            row("Data shared")   { course.data_shared  }
         end
       end
       panel "Buckets" do
