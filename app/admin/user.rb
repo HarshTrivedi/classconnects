@@ -50,14 +50,17 @@ ActiveAdmin.register User do
         attributes_table_for user do
             row("Full Name")   { user.full_name }
             row("Email")  { user.email  }
-            row("Uploader") { user.sign_in_count }
+            row("Email Confirmed?")  { user.confirmed_at.nil?  ? "false" : "true" }
             row("College Branch Enrollment") { 
               pair = CollegeBranchPair.where(:id => user.college_branch_pair_id).first 
               (pair || "None").to_s
             }
+            row("uploaded buckets") { user.uploaded_buckets }
+            row("downloaded buckets") { user.downloaded_buckets }
             row("uploaded data") { user.uploaded_data_size }
             row("downloaded data") { user.downloaded_data_size }
             row("Reputation") { user.reputation }
+            row("SignIn Count") { user.sign_in_count }
         end
       end
 
@@ -66,6 +69,10 @@ ActiveAdmin.register User do
               column "name" do |bucket|
                 link_to( bucket.name , admin_bucket_path( bucket ) ) 
               end
+              column "course" do |bucket|
+                course = bucket.course
+                link_to( course.name , admin_course_path( course ) ) 
+              end
               column "View" do |bucket|
                 link_to( bucket.name , admin_bucket_path( bucket ) ) 
               end
@@ -73,7 +80,7 @@ ActiveAdmin.register User do
                 link_to( "edit" , edit_admin_bucket_path( bucket )  ) if can?(:edit , bucket )
               end
               column "Destroy" do |bucket|
-                link_to( "Remove" , admin_bucket_path(bucket) , :method => :delete , data: { confirm: "Are you sure u want to delete this folder ?" } )  if can?(:destroy , bucket )
+                link_to( "Remove" , admin_bucket_path(bucket) , :method => :delete , data: { confirm: "Are you sure u want to delete this bucket ?" } )  if can?(:destroy , bucket )
               end
           end
       end
@@ -82,6 +89,10 @@ ActiveAdmin.register User do
         table_for user.downloaded_buckets do
               column "name" do |bucket|
                 link_to( bucket.name , admin_bucket_path( bucket ) ) 
+              end
+              column "course" do |bucket|
+                course = bucket.course
+                link_to( course.name , admin_course_path( course ) ) 
               end
               column "View" do |bucket|
                 link_to( bucket.name , admin_bucket_path( bucket ) ) 
@@ -100,9 +111,20 @@ ActiveAdmin.register User do
 
 
     index do
+
+        column :full_name do |user|
+            user.full_name
+        end
+
         column :email
-        column :current_sign_in_at
-        column :last_sign_in_at
+
+        column :buckets_uploaded do |user|
+            user.uploaded_buckets
+        end
+        column :buckets_downloaded do |user|
+            user.downloaded_buckets
+        end
+
         column :sign_in_count
         column :role
         actions
@@ -113,9 +135,12 @@ ActiveAdmin.register User do
         f.inputs "User Details" do
             f.input :first_name
             f.input :last_name
-            f.input :email
-            f.input :password
-            f.input :password_confirmation
+
+            if (not f.object.email.nil?) and (not f.object.encrypted_password.nil?)
+              f.input :email 
+              f.input :password
+              f.input :password_confirmation
+            end
             f.input :role, as: :radio, collection: { :content_generator => "content_generator" , :content_moderator => "content_moderator", :college_generator => "college_generator" , :non_admin => "non_admin" }
         end
         f.actions
