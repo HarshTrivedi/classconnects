@@ -60,12 +60,12 @@ ActiveAdmin.register College do
   index do 
       selectable_column
       column :name do |college|
-          if (branch rescue nil)
-            college_branch_pair = CollegeBranchPair.where(:college_id => college.id , :branch_id => branch.id).first
-            link_to( college.name , admin_college_branch_pair_path( college_branch_pair.id ) )
-          else
+          # if (branch rescue nil)
+          #   college_branch_pair = CollegeBranchPair.where(:college_id => college.id , :branch_id => branch.id).first
+          #   link_to( college.name , admin_college_branch_pair_path( college_branch_pair.id ) )
+          # else
             link_to( college.name , admin_college_path(college) )
-          end
+          # end
       end
       column :enrolled_users do |college|
           college.users.size
