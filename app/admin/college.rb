@@ -67,7 +67,12 @@ ActiveAdmin.register College do
             link_to( college.name , admin_college_path(college) )
           end
       end
-      column :created_at
+      column :enrolled_users do |college|
+          college.users.size
+      end
+      column :created_at do |college|
+          time_ago_in_words( college.created_at )
+      end
       actions
   end
 
@@ -75,10 +80,9 @@ ActiveAdmin.register College do
       panel "College Details" do
         attributes_table_for college do
             row("Name")   { college.name }
-            # row("Users")  { link_to( college.users.size   , admin_college_users_path(college) ) }
-            # row("Courses"){ link_to( college.courses.size , admin_college_courses_path(college) ) }
-            # row("Buckets"){ link_to( college.buckets.size , admin_college_buckets_path(college) ) }
-            # row("Data Shared"){ college.data_shared }
+            row("Students registered")  {  college.users.size }
+            row("Courses Offered"){ college.courses.size }
+            row("Buckets shared"){ college.buckets.size  }
         end
       end
       panel "Branches in College" do
@@ -87,6 +91,16 @@ ActiveAdmin.register College do
                 branch = college_branch_pair.branch
                 link_to( branch.name , admin_college_branch_pair_path(college_branch_pair) )
               end
+              column "Courses offered " do |college_branch_pair|
+                link_to( college_branch_pair.courses.size , admin_college_branch_pair_courses_path( college_branch_pair ) )
+              end
+              column "Students registered" do |college_branch_pair|
+                link_to( college_branch_pair.users.size , admin_college_branch_pair_users_path(college_branch_pair) )
+              end
+              column "Buckets shared" do |college_branch_pair|
+                college_branch_pair.buckets_shared
+              end
+
             end
             span link_to( "Change Branches" , edit_admin_college_path(college) ) if can?(:update , college )
 

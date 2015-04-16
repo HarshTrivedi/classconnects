@@ -3,6 +3,8 @@ ActiveAdmin.register User do
 
   permit_params :email, :password, :password_confirmation, :role , :first_name , :last_name
 
+  belongs_to :college_branch_pair , :optional => true
+
   scope :all_admins
   scope :content_generator
   scope :content_moderator
