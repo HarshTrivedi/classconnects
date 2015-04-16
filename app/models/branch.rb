@@ -25,6 +25,20 @@ class Branch < ActiveRecord::Base
     return courses
   end
 
+  def data_shared
+      courses = self.courses
+      buckets = []
+      size = 0
+      for course in courses
+          buckets = course.buckets
+          for bucket in buckets
+            size += bucket.size
+          end
+      end
+      return size
+  end
+
+
   ransacker :by_college_name,
         formatter: proc { |selected_college_id|
               data = College.find_by_id(selected_college_id).branches.map(&:id)

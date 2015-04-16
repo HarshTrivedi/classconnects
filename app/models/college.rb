@@ -75,6 +75,15 @@ class College < ActiveRecord::Base
 
 
   def data_shared
+      courses = self.courses
+      size = 0
+      for course in courses
+          buckets = course.buckets
+          for bucket in buckets
+            size += bucket.size
+          end
+      end
+      return size
   end
   
   ransacker :by_branch_name,

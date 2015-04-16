@@ -24,6 +24,14 @@ class CollegeBranchPair < ActiveRecord::Base
       Document.where( :bucket_id => self.buckets.map(&:id) )
   end
 
+  def buckets_shared
+      courses = self.courses
+      size = 0
+      for course in courses
+          size += course.buckets.size
+      end
+      return size
+  end
 
 
 end
