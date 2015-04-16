@@ -119,10 +119,15 @@ ActiveAdmin.register User do
         column :email
 
         column :buckets_uploaded do |user|
-            user.uploaded_buckets
+            user.uploaded_buckets.size
         end
+
         column :buckets_downloaded do |user|
-            user.downloaded_buckets
+            user.downloaded_buckets.size
+        end
+
+        column :reputation do |user|
+            user.reputation
         end
 
         column :sign_in_count
@@ -135,8 +140,7 @@ ActiveAdmin.register User do
         f.inputs "User Details" do
             f.input :first_name
             f.input :last_name
-
-            if (not f.object.email.nil?) and (not f.object.encrypted_password.nil?)
+            if f.object.email.empty?
               f.input :email 
               f.input :password
               f.input :password_confirmation
