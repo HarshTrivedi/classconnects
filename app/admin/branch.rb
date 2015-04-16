@@ -88,10 +88,7 @@ ActiveAdmin.register Branch do
  form do |f|
       f.semantic_errors *f.object.errors.keys
       f.inputs do
-          f.input :name , :label => "College Name"
-          if f.object.college_id.nil?
-              f.input :colleges  , as: :select ,  input_html: { :class => 'chosen-input' }  , :label => "Choose Course"            
-          end
+          f.input :name , :label => "Branch Name"
       end
       f.actions
   end
