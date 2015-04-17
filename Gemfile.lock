@@ -162,6 +162,7 @@ GEM
       activesupport (>= 3.2, < 5)
     hashie (3.4.0)
     hike (1.2.3)
+    httpclient (2.3.4.1)
     i18n (0.7.0)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
@@ -231,6 +232,10 @@ GEM
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     polyglot (0.3.5)
+    pusher (0.12.0)
+      httpclient (~> 2.3.0)
+      multi_json (~> 1.0)
+      signature (~> 0.1.6)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -314,6 +319,7 @@ GEM
       rdoc (~> 4.0)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
+    signature (0.1.7)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -644,6 +650,7 @@ DEPENDENCIES
   omniauth-facebook
   pg
   pg_search
+  pusher
   railroady
   rails (= 4.1.4)
   rails-erd

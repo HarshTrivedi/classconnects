@@ -86,3 +86,4 @@ gem 'toastr-rails'
 gem 'resque', :require => "resque/server"
 gem "mailcatcher"
 gem 'jquery-ui-rails'
+gem 'pusher'
