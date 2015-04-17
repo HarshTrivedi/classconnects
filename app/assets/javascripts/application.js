@@ -23,6 +23,8 @@
 //= require chosen-jquery
 //= require s3_direct_upload
 
+//= require nprogress.js
+
 //= require jquery_validator.js
 
 
@@ -306,3 +308,6 @@ $(document).on('ready', function() {
 	cascade_enroll_college_branch();
 });
 
+$(document).on('page:fetch',   function() { NProgress.start(); });
+$(document).on('page:change',  function() { NProgress.done(); });
+$(document).on('page:restore', function() { NProgress.remove(); });
