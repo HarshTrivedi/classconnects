@@ -3,6 +3,7 @@ require 'awesome_print'
 require 'fileutils'
 require 'zip_file_generator.rb'
 require 'active_job'
+require 'pusher'
 
 #bundle exec rake environment resque:work QUEUE=*
 #Do this to start the server
@@ -107,6 +108,7 @@ class ZipAwsContentAndUpload
 		        user.save
 		        ap user
 		        ap user.reload
+		        Pusher['private-' + waiter_id.to_s ].trigger('ready_download', { :message => "update download notifications" })
 			end
 
 			bucket.download_waiter_ids = []
