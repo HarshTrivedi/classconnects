@@ -155,30 +155,44 @@ class UserDetailsController < ApplicationController
       bucket_id = params[:bucket_id]
       bucket = Bucket.find_by_id(bucket_id)
       user = current_user
-
+      ap "-----------------"
+      ap bucket.updated_at
+      ap bucket.last_zip_time
+      ap "-----------------"
       if user and bucket
         if bucket.zip_being_formed
             ##some worker is already zipping it and so add him to waiter list of that bucket.
-            bucket.download_waiter_ids << user.id
+            bucket.download_waiter_ids += [user.id]
+            bucket.download_waiter_ids_will_change!
             bucket.save
-            user.pending_request_bucket_ids << bucket.id
+            user.pending_request_bucket_ids += [bucket.id]
+            user.pending_bucket_ids_will_change!
             user.save
             ap user.errors
-        elsif (  (bucket.updated_time < bucket.last_zip_time) rescue false  )
-            user.ready_bucket_ids << bucket.id
+            ap "IN 1-------------"
+            ap bucket
+        elsif (  (bucket.updated_at <= bucket.last_zip_time) rescue false  )
+            ap user.ready_bucket_ids
+            user.ready_bucket_ids += [bucket.id]
+            user.ready_bucket_ids_will_change!
             user.save
+            ap user.ready_bucket_ids
             ap user.errors
+            ap "IN 2-------------"
         else
 
             bucket = Bucket.find_by_id(bucket.id)
             bucket.download_waiter_ids += [user.id]
+            bucket.download_waiter_ids_will_change!
             bucket.save
             ap bucket
             user.reload
             user.pending_request_bucket_ids += [bucket.id]
+            user.pending_request_bucket_ids_will_change!
             user.save
             ap user
             ap user.errors
+            ap "IN 3-------------"
             Resque.enqueue(ZipAwsContentAndUpload, user.id , bucket.id)
         end
       end
