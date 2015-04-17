@@ -57,6 +57,10 @@ class LandingsController < ApplicationController
   end
 
 
+  def refresh_download_buckets_notifications
+      
+  end
+
   protected
 
   def layout_by_resource

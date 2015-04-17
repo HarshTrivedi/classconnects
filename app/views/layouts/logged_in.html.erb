@@ -8,15 +8,48 @@
 		<!-- Prelang: Analytics / Google Analytics -->
 	    <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
-		<meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
-		<meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
 		<title>Welcome - CollegeColab</title>
 
-	   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
+	    <script src="http://js.pusher.com/2.0/pusher.min.js"></script>
+
+	    <script>
+
+			function subscribe_pusher_channel() {	  
+		        var pusher = new Pusher("1c597dcba2477dbb3e59");
+		        var channel = pusher.subscribe('private-<%=current_user.id%>');
+		        
+		        pusher.connection.bind('connecting', function() {
+			          console.log("Connecting to Pusher...");
+		        });
+		        pusher.connection.bind('connected', function() {
+			          console.log("Connected to Pusher...");
+		        });
+		        pusher.connection.bind('failed', function() {
+			          console.log("Connection to Pusher failed...");
+		        });
+		        channel.bind('subscription_error', function(status) {
+			          console.log("Pusher subscription_error");
+		        });	
+			   
+			    channel.bind('ready_download', function(data) {
+			      console.log("I am called");
+			      $.post( "/refresh_ready_buckets_notifications");
+			      $.post( "/refresh_pending_buckets_notifications");
+			    });
+		   	}
+
+			$(document).on('page:load', function() {
+				subscribe_pusher_channel();
+			});
+
+			$(document).on('ready', function() {
+				subscribe_pusher_channel();
+			});
+
+	    </script>
+
+
+	    <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 </head>
 

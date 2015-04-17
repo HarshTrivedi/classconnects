@@ -1,70 +1,11 @@
 
-        <% ready_buckets = current_user.ready_bucket_ids.map{|id| Bucket.find_by_id(id) } %>
-
-        <li class="dropdown" style="float:left">
-                  <a href="index.html#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="badge badge-success icon-count" ><%= ready_buckets.size %></span>
-                    <i class="fa fa-cloud-download"></i>
-                  </a>
-                  <ul class="dropdown-menu square with-triangle">
-                      <li>
-                          <div class="nav-dropdown-heading">
-                          Notifications
-                          </div><!-- /.nav-dropdown-heading -->
-                          <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="nav-dropdown-content scroll-nav-dropdown" style="overflow: hidden; width: auto; height: 350px;">
-
-                            <ul>
-                              <div id="ready_download_list">
-                                  <%for bucket in ready_buckets%>
-                                    <li class="unread">
-                                      <a href="<%= download_bucket_path(bucket) %>">
-                                      <strong>Ready</strong> <%= bucket.name %>
-                                      <span class="small-caps"> <%= number_to_human_size( bucket.last_zip_time ) %> ago</span>
-                                    </a>
-                                    </li>
-                                  <%end%>
-                              </div>
-                            </ul>
-
-                          </div><div class="slimScrollBar" style="background-color: rgb(0, 0, 0); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 223.54014598540147px; background-position: initial initial; background-repeat: initial initial;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.3; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div></div><!-- /.nav-dropdown-content scroll-nav-dropdown -->
-                          <button class="btn btn-primary btn-square btn-block">See all notifications</button>
-                      </li>
-                  </ul>
+        <li class="dropdown" style="float:left" id="ready_buckets_notification">
+            <%= render(:partial => 'shared/ready_buckets_notification' ) %>
         </li>
 
-        <% pending_request_buckets = current_user.pending_request_bucket_ids.map{|id| Bucket.find_by_id(id) } %>
-
-        <li class="dropdown" style="float:left">
-                  <a href="index.html#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="badge badge-danger icon-count"><%= pending_request_buckets.size %></span>
-                    <i class="fa fa-bell"></i>
-                  </a>
-                  <ul class="dropdown-menu square with-triangle">
-                      <li>
-                          <div class="nav-dropdown-heading">
-                          Notifications
-                          </div><!-- /.nav-dropdown-heading -->
-                          <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="nav-dropdown-content scroll-nav-dropdown" style="overflow: hidden; width: auto; height: 350px;">
-
-                            <ul>
-                                  <%for bucket in pending_request_buckets%>
-                                    <li class="unread">
-                                      <a href="<%= download_bucket_path(bucket) %>">
-                                      <strong>Getting Ready</strong> <%= bucket.name %>
-                                      <span class="small-caps"> <%= number_to_human_size( bucket.last_zip_time ) %> ago</span>
-                                    </a>
-                                    </li>
-                                  <%end%>
-                            </ul>
-
-                          </div><div class="slimScrollBar" style="background-color: rgb(0, 0, 0); width: 4px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 223.54014598540147px; background-position: initial initial; background-repeat: initial initial;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.3; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div></div><!-- /.nav-dropdown-content scroll-nav-dropdown -->
-                          <button class="btn btn-primary btn-square btn-block">See all notifications</button>
-                      </li>
-                  </ul>
-        </li>
-
-
-
+        <li class="dropdown" style="float:left" id="pending_buckets_notification">
+            <%= render(:partial => 'shared/pending_buckets_notification' ) %>
+        </div>
 
 
         <%notifications = current_user.notifications.order(:created_at).take(10) %>
