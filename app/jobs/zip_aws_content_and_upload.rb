@@ -21,6 +21,7 @@ class ZipAwsContentAndUpload
 	original_zip_url = bucket.zip_url
 	original_last_zip_time = bucket.last_zip_time
 	original_download_waiter_ids = bucket.download_waiter_ids
+	original_updated_at = bucket.updated_at
 
   	if not bucket.zip_being_formed 
   		begin
@@ -113,12 +114,14 @@ class ZipAwsContentAndUpload
 
 			bucket.download_waiter_ids = []
 			bucket.zip_being_formed = false
+			bucket.updated_at = original_updated_at
 			ap bucket
 
 			ap "------------bucket before saveing-----------------"
 			ap bucket.class
 			bucket.save
 			ap bucket
+
 		rescue
 			ap "Fallen In to an ERROR"
 			ap "About to restore the bucket"
