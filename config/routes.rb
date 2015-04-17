@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get 'colleges/:id/discuss'  => 'colleges#show_discussion'      , as: :college_discussion
 
+  post 'pusher/auth', :to => "pusher#auth"
 
   get 'courses/:id/content'  => 'courses#show_content'          , as: :course_content
   post 'courses/:id/content'  => 'courses#show_content'          , as: :course_content_remote
@@ -116,6 +117,9 @@ Rails.application.routes.draw do
   post '/search_courses'     => "user_details#search_courses" , as: :search_courses
   post '/search_users'       => "user_details#search_users" , as: :search_users
 
+  post '/test_action' => "landings#test_action" , as: :test_action
+
+  post '/refresh_download_buckets_notifications' => "landings#refresh_download_buckets_notifications" , as: :refresh_download_buckets_notifications
 
   get '/'                       => 'landings#index'                         , as: :landing
   post '/'                       => 'landings#index'                         , as: :landing_remote

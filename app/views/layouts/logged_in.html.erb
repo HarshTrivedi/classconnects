@@ -33,8 +33,7 @@
 			   
 			    channel.bind('ready_download', function(data) {
 			      console.log("I am called");
-			      $.post( "/refresh_ready_buckets_notifications");
-			      $.post( "/refresh_pending_buckets_notifications");
+			      $.post( "/refresh_download_buckets_notifications");
 			    });
 		   	}
 

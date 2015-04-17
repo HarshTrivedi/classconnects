@@ -20,6 +20,7 @@ module Classcolab
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.active_job.queue_adapter = :sidekiq
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app/jobs)
     # config.i18n.default_locale = :de
   end
 end

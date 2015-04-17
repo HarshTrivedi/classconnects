@@ -1,3 +1,6 @@
+require "notify_enrolled_waiters"
+require "notify_favorited_waiters"
+
 class Bucket < ActiveRecord::Base
   attr_accessor :course_id
   acts_as_votable
