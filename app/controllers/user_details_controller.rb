@@ -24,7 +24,7 @@ class UserDetailsController < ApplicationController
   def profile_uploads
     user_id = params[:user_id]
     @user = User.find_by_id(user_id) || current_user
-    @buckets = @user.uploaded_buckets.page(params[:page])
+    @buckets = @user.uploaded_buckets.filter_search_for(current_user).page(params[:page])
 
     respond_to do |format|
       format.html { render(:template => "user_details/profile")   }
