@@ -62,7 +62,7 @@
 						  <p class="form-control-static">
 								<% if not current_user.college_branch_pair.nil? %>
 
-							  		<%= link_to( "College and Branch" , unenroll_college_branch_pair_path , :method => :post , :remote => true , :data => { :confirm => "This will unenroll you from all your current courses. And you will have to enroll in different college. Are you sure you want to continue?"  } ) %>
+							  		<%= link_to( "UnEnroll College and Branch" , unenroll_college_branch_pair_path , :method => :post, :data => { :confirm => "This will unenroll you from all your current courses. And you will have to enroll in different college. Are you sure you want to continue?"  } ) %>
 	
 						  		<%else%>
 

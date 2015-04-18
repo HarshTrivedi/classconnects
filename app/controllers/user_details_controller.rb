@@ -139,13 +139,20 @@ class UserDetailsController < ApplicationController
 
   def unenroll_college_branch_pair
 
-      current_user.college_branch_pair_id = nil
-      current_user.save
-      enrolled_courses = current_user.enrolled_courses      
-      for enrolled_course in enrolled_courses
-        current_user.unenroll_course(enrolled_course.id)
+      if current_user.can_unroll_college_branch?
+          current_user.college_branch_pair_id = nil
+          current_user.college_branch_unenrollment_date = DateTime.now
+          current_user.save
+          enrolled_courses = current_user.enrolled_courses      
+          for enrolled_course in enrolled_courses
+            current_user.unenroll_course(enrolled_course.id)
+          end
+          flash[:success] = 'Successfully Un enrolled! Now you can enroll in any college / branch'
+      else
+          unlock_date = current_user.college_branch_enrollment_date || DateTime.now
+          unlock_date = unlock_date.strftime("%B %d, %Y")
+          flash[:alert] = "Sorry You cannot unenroll from this college until : #{unlock_date}"
       end
-      flash[:success] = 'Successfully Un enrolled! Now you can enroll in any college / branch'
       redirect_to :back
   end
 
