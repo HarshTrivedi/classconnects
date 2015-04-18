@@ -29,19 +29,36 @@ class LandingsController < ApplicationController
                    branch_bucket_ids = branch.buckets.filter_search_for(current_user).search(search).map(&:id)
                 end
                 if course
-                  courses = Course.where('name ILIKE ? or code ILIKE ?', "%#{search}%" , "%#{search}%")
+                  course_name = course.name                  
+                  courses = Course.where('name ILIKE ? or code ILIKE ?', "%#{course_name}%" , "%#{course_name}%")
                   course_bucket_ids = []
                   for course in courses
                     course_bucket_ids = course_bucket_ids + course.buckets.filter_search_for(current_user).search(search).map(&:id)
                   end
                 end
-                bucket_ids = college_bucket_ids and branch_bucket_ids and course_bucket_ids
+
+                if college and branch and course
+                      bucket_ids = college_bucket_ids & branch_bucket_ids & course_bucket_ids
+                elsif college and branch
+                      bucket_ids = college_bucket_ids & branch_bucket_ids
+                elsif college and course
+                      bucket_ids = college_bucket_ids & course_bucket_ids
+                elsif branch and course
+                      bucket_ids = branch_bucket_ids & course_bucket_ids
+                elsif college
+                      bucket_ids = college_bucket_ids 
+                elsif branch
+                      bucket_ids = branch_bucket_ids 
+                elsif course
+                      bucket_ids = course_bucket_ids                   
+                end
+                  
             else
                 bucket_ids = Bucket.where(nil).filter_search_for(current_user).search(search).map(&:id)
             end
 
             bucket_ids = bucket_ids.uniq
-            ap bucket_ids
+            # ap bucket_ids
             @buckets = Bucket.where(:id => bucket_ids).page(params[:page])
 
             respond_to do |format|
