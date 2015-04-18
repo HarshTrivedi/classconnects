@@ -24,7 +24,6 @@
 
 
 <div id="uploads_container"></div>
-<button id="submit_upload" class="btn btn-primary text-centre">Upload</button>
 
 <script id="template-upload" type="text/x-tmpl">
 	<div id="upload_{%=o.unique_id%}" class="upload">
@@ -42,8 +41,7 @@
 	$(function() {
 		$('#s3_uploader').S3Uploader({
 			remove_completed_progress_bar: true,
-			progress_bar_target: $('#uploads_container') , 
-			click_submit_target: $('#submit_upload') });
+			progress_bar_target: $('#uploads_container') ;
 
 
 		$(document).bind('s3_uploads_complete', function() {

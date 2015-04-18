@@ -8378,6 +8378,7 @@ h1.tiles-number{
 label.myLabel input[type="file"] {
     position: fixed;
     top:-1000px;
+
     
 }
 
@@ -8391,6 +8392,7 @@ label.myLabel input[type="file"] {
     display: inline-block;
     cursor:pointer;
     float:left;
+    margin-left:220px;
 }
 .myLabel:hover {
     border: 1px solid rgb(0,0,255);
