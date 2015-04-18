@@ -2032,8 +2032,8 @@ a.bg-dark:hover{
 }
 
 .bg-warning .btn.btn-warning:hover,.bg-warning .btn.btn-warning:active,.bg-warning .btn.btn-warning:focus{
-	background-color: #CB8E12;
-	border-color: #CB8E12;
+	background-color: #E0A52C;
+	border-color: #E0A52C;
 }
 
 .bg-primary .progress-bar-primary{
@@ -4052,7 +4052,7 @@ background-color: rgb(41, 145, 249);
     box-shadow: 0px 1px 0px rgb(119, 189, 255) inset, 0px 3px 0px 0px rgb(7, 112, 210), 0px 5px 3px rgb(153, 153, 153);
     /*box-shadow: 0px 1px 0px rgb(0, 0, 0) inset, 0px 3px 0px 0px rgb(0, 0, 0), 0px 5px 3px rgb(0, 0, 0);*/
     margin-bottom:5px;
-}
+    }
 
 .btn-warning.btn-perspective:active , .btn-warning.btn-perspective:hover , .btn-warning.btn-perspective:focus{
 	/*-webkit-box-shadow: 0px 1px 0px #C6901F;
@@ -4067,10 +4067,10 @@ background-color: rgb(41, 145, 249);
 }
 
 .btn-warning:hover,.btn-warning:focus,.btn-warning:active,.btn-warning.active,.open .dropdown-toggle.btn-warning{
-	background-color: rgb(36,42,52);
+	background-color: rgb(119,189,255);
 	box-shadow: 0px 3px 0px rgb(12,13,25);
 	border-color: #29A0CB;
-	border-radius: 10px 10px 10px 10px;
+	
 }
 
 .btn-warning.disabled,.btn-warning[disabled],fieldset[disabled] .btn-warning,.btn-warning.disabled:hover,.btn-warning[disabled]:hover,fieldset[disabled] .btn-warning:hover,.btn-warning.disabled:focus,.btn-warning[disabled]:focus,fieldset[disabled] .btn-warning:focus,.btn-warning.disabled:active,.btn-warning[disabled]:active,fieldset[disabled] .btn-warning:active,.btn-warning.disabled.active,.btn-warning[disabled].active,fieldset[disabled] .btn-warning.active{
@@ -4084,7 +4084,7 @@ background-color: rgb(41, 145, 249);
 
 .btn-danger{
 	transition: background-color 0.5s ease;
-	background-color: #3BAFDA;
+	background-color: #ffffff;
 	border-color: #3BAFDA;
 }
 
@@ -8378,7 +8378,6 @@ h1.tiles-number{
 label.myLabel input[type="file"] {
     position: fixed;
     top:-1000px;
-
     
 }
 
@@ -8392,7 +8391,6 @@ label.myLabel input[type="file"] {
     display: inline-block;
     cursor:pointer;
     float:left;
-    margin-left:220px;
 }
 .myLabel:hover {
     border: 1px solid rgb(0,0,255);
@@ -8563,7 +8561,25 @@ body {
 * {
   box-sizing: border-box;
 }
-/*for showing jquery error in validation*/
-.error{
-	color: rgb(255,0,0);
+
+#college_autocomplete_id li:hover{
+	background-color:rgb(0,0,255);
+}
+
+
+
+
+/* side counter*/
+
+.counter {
+  display: table-cell;
+  font-size:30px;
+  background-color: rgb(36,42,52);
+  width:100px;
+  border-radius: 50%;
+  border: 5px solid rgba(200,52,57,0.5);
+  height:100px;
+  text-align:center;
+
+  vertical-align: middle;
 }

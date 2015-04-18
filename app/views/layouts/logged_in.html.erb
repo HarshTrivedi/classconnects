@@ -91,7 +91,7 @@
 								<li><%= link_to 'Change Password', edit_user_registration_path %></li>
 								<li><a href="#fakelink">Profile</a></li>
 								<li class="divider"></li>
-								<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %>. </li>
+								<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 							  </ul>
 							</li>
 						</ul>
@@ -104,6 +104,21 @@
 			<!-- BEGIN SIDEBAR LEFT -->
 			<div tabindex="5000" style="overflow: hidden;" class="sidebar-left sidebar-nicescroller">
 				<ul class="sidebar-menu">
+
+					<br>
+					<div class="static left-profile-summary">
+						<div class="media">
+						  <p class="pull-left">
+							<%= link_to( (image_tag avatar_url(current_user) , :class => "avatar img-circle" , :style =>"width:60px ; height:60px") , profile_main_path )%>
+						  </p>
+						  <div class="media-body">
+							<h4><%= current_user.first_name%>, <br><strong><%= current_user.last_name %></strong></h4>
+							
+							<%= link_to "Log Out", destroy_user_session_path, :method => :delete , :class => "btn btn-warning btn-xs"%>
+						  </div>
+						</div>
+					</div>
+
 					<%if current_page?(uploads_path) %>
 					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"active" )%>
 					<%else%>
@@ -124,12 +139,6 @@
 					<%else%>
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
 					<%end%>
-					<%if current_page?(profile_main_path) or current_page?(profile_uploads_path) %>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), profile_main_path , :data => {:toggle=>""}), :class=>"active" )%>
-					<%else%>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), profile_main_path , :data => {:toggle=>""}), :class=>"" )%>
-					<%end%>
-					
 					<%if not current_user.college.nil?%>
 						<%if current_page?(my_college_path) %>
 						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"active" )%>
@@ -149,6 +158,20 @@
 							<i class="fa fa-cloud-upload fa-xs"></i>
 							Upload
 						</button>
+					</div>
+
+					<div class="progress-circle">
+ 					<div class="outer">
+   					<div class="half spinner"></div>
+    					<div class="half filler"></div>
+    					<div class="mask"></div>
+  						</div>
+  					<div class="inner"></div>
+ 					<div class="shadow"></div>
+  					<div class="percentage">0%</div>
+					</div>
+					<div class="know" style="text-align:center">
+						Activity Quotient
 					</div>
 
 				</ul>
@@ -289,4 +312,8 @@
 
 
 </body>
+<script>
+setProgress(30);
+</script>
+
 </html>

@@ -11,7 +11,6 @@
 * file per style scope.
 *
 *= require_tree .
-*= require jquery-ui/autocomplete
 *= stub active_admin
 *= require s3_direct_upload_progress_bars
 *= require toastr
@@ -41,20 +40,17 @@
   background: #3EC144;
   background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);  background-image:-o-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);  background-image:linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);  -webkit-background-size:40px 40px;  background-size:40px 40px;
 }
-/* harsh added*/
-.ui-menu .ui-menu-item a {
-  font-size: 12px;
-}
+
 .ui-autocomplete {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1051 !important;
+  z-index: 1000;
   float: left;
   display: none;
   min-width: 160px;
   _width: 160px;
-  padding: 4px 0;
+  padding: 10px;
   margin: 2px 0 0 0;
   list-style: none;
   background-color: #ffffff;
@@ -62,9 +58,9 @@
   border-color: rgba(0, 0, 0, 0.2);
   border-style: solid;
   border-width: 1px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -73,8 +69,8 @@
   background-clip: padding-box;
   *border-right-width: 2px;
   *border-bottom-width: 2px;
-}
-.ui-menu-item > a.ui-corner-all {
+ 
+  .ui-menu-item > a.ui-corner-all {
     display: block;
     padding: 3px 15px;
     clear: both;
@@ -82,17 +78,226 @@
     line-height: 18px;
     color: #555555;
     white-space: nowrap;
-    text-decoration: none;
-}
-.ui-state-hover, .ui-state-active {
+    border-color: rgba(0, 0, 0, 0.2);
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 0px;
+
+    &.ui-state-hover, &.ui-state-active {
       color: #ffffff;
       text-decoration: none;
-      background-color: #0088cc;
+      background-color: #ff0000;
+      border-color: rgba(0, 0, 0, 0.2);
+      border-style: solid;
+      border-width: 1px;
+  
       border-radius: 0px;
+
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;
       background-image: none;
+    }
+  }
 }
+
+
+/* for vertical caraosel*/
+
+
+/* Page Header */
+.page-header {
+    background: #fbf4e0;
+    margin: -30px 0px 0px;
+    padding: 20px 40px;
+    border-top: 4px solid #ccc;
+    color: #a83b3b;
+    text-transform: uppercase;
+    }
+    .page-header h3 {
+        line-height: 0.88rem;
+        color: #a83b3b;
+        }
+
+
+
+/* Thumbnail Box */
+.caption {
+    height: 140px;
+    width: 100%;
+    margin: 20px 0px;
+    padding: 20px;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+.caption .span4, .caption .span8 {
+    padding: 0px 20px;
+}
+.caption .span4 {
+    border-right: 1px dotted #CCCCCC;
+}
+.caption h3 {
+    color: #a83b3b;
+    line-height: 2rem;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+    }
+    .caption p {
+        font-size: 1rem;
+        line-height: 1.6rem;
+        color: #a83b3b;
+        }
+        .btn.btn-mini {
+            background: #a83b3b;
+            border-radius: 0 0 0 0;
+            color: #fbf4e0;
+            font-size: 0.63rem;
+            text-shadow: none !important;
+            }
+.carousel-control {
+    top: 33%;
+}
+
+
+
+
+/* Footer */
+
+
+
+
+
+/* ADD-ON
+-------------------------------------------------- */
+
+::selection { background: #ff5e99; color: #FFFFFF; text-shadow: 0; }
+::-moz-selection { background: #ff5e99; color: #FFFFFF; }
+
+a, a:focus, a:active, a:hover, object, embed { outline: none; }
+:-moz-any-link:focus { outline: none; }
+input::-moz-focus-inner { border: 0; }
+
+
+/*--------------------------circle progress bar*/
+.progress-circle {
+  margin-left:75px;
+  margin-top:30px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  display: inline-block;
+  width: 6em;
+  height: 6em;
+  position: relative;
+  z-index: auto;
+
+}
+
+.progress-circle .outer {
+  background: none repeat scroll 0% 0% rgb(200, 100, 100);
+  width: 6em;
+  height: 6em;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.progress-circle .outer .mask {
+  background: none repeat scroll 0% 0% rgb(200, 100, 100);  -webkit-border-radius: 3em 0 0 3em;
+  border-radius: 3em 0 0 3em;
+  position: absolute;
+  width: 3em;
+  height: 6em;
+  top: 0;
+  left: 0;
+  z-index: 120;
+}
+
+
+.progress-circle .outer .half {
+  background: none repeat scroll 0% 0% rgb(200, 52, 57);
+  position: absolute;
+  width: 3em;
+  height: 6em;
+  top: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.progress-circle .outer .half.spinner {
+  -webkit-border-radius: 0 3em 3em 0;
+  border-radius: 0 3em 3em 0;
+  right: 0;
+  z-index: 10;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  -ms-transform-origin: left center;
+  transform-origin: left center;
+  z-index: 110;
+}
+.progress-circle .outer .half.filler {
+  -webkit-border-radius: 3em 0 0 3em;
+  border-radius: 3em 0 0 3em;
+  left: 0;
+  z-index: 5;
+  -webkit-transform-origin: right center;
+  -moz-transform-origin: right center;
+  -o-transform-origin: right center;
+  -ms-transform-origin: right center;
+  transform-origin: right center;
+  z-index: 130;
+}
+
+.progress-circle .inner {
+  background: none repeat scroll 0% 0% rgb(36, 42, 52);
+
+  position: absolute;
+  left: 0.75em;
+  top: 0.75em;
+  width: 4.5em;
+  height: 4.5em;
+  -webkit-box-shadow: 0 0 0.66666666666666em #000;
+  box-shadow: 0 0 0.6666666666666em #000;
+  z-index: 300;
+}
+
+.progress-circle .percentage {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  font-size: 1.33333333333333em;
+  font-weight: bold;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  letter-spacing: -0.05em;
+  overflow: hidden;
+  line-height: 1em;
+  z-index: 400;
+}
+.progress-circle .shadow {
+  background: transparent;
+  display: inline-block;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  width: 6em;
+  height: 6em;
+  top: 0;
+  left: 0;
+  -webkit-box-shadow: 0 0 0.66666666666em #000 inset;
+  box-shadow: 0 0 0.66666666666666em #000 inset;
+  z-index: 200;
+}
+.progress-circle .inner,
+.progress-circle .outer {
+  display: inline-block;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
 #modalIns{
     width: 500px;
 }
