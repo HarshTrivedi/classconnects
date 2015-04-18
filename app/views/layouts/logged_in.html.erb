@@ -308,6 +308,19 @@
     });
   });
 
+  $('#enroll_college_branch_modal').on('shown.bs.modal', function() {
+    $("#enroll_college_branch_modal form").validate({
+          rules: {
+            'college_name': "required",
+            'branch_name': "required"
+          },
+          messages: {
+            'college_name': "Please add non-empty college name",
+            'branch_name': "Please add non-empty branch name"
+          }
+    });
+  });
+
 
 </script>
 
