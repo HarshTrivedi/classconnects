@@ -75,7 +75,9 @@
            <h4 class="modal-title">Upload Documents</h4>
          </div>
          <div class="modal-body">
-            <%= render(:partial => 'shared/upload_documents' , :locals => {:parent => bucket }) %>
+            <div id="upload_documents">
+              <%= render(:partial => 'shared/upload_documents' , :locals => {:parent => bucket }) %>
+            </div>
          </div>
        </div><!-- /.modal-content .modal-no-shadow -->
      </div><!-- /.modal-dialog -->
