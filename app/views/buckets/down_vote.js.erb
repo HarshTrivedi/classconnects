@@ -7,7 +7,9 @@ if(message == "already downvoted"){
 }else if(message == "success"){
 	// console.log(message);
 	toastr.success('Successfully', 'downvoted');
-	$("#bucket_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/bucket', :locals => {:bucket => @bucket })      ) %>");
+	$("#bucket_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/bucket', :locals => {:bucket => @bucket })      ) %>");	
+	$("#bucket_navbar_options").html("<%= escape_javascript(    render(:partial => 'shared/bucket_navbar_options' , :locals => {:bucket => @bucket } )      ) %>")
+	
 }
 else{
 	// console.log(message);
