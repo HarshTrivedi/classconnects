@@ -13,7 +13,7 @@
 
 <label class="myLabel">
 	<%= file_field_tag :file, multiple: true %>
-    <span>Upload File</span>
+    <span>Upload Files</span>
 </label>
 
 
@@ -22,8 +22,15 @@
 
 </div>
 
-
 <div id="uploads_container"></div>
+<br>
+<div class="text-centre" style="margin-left:200px">
+
+	<br>
+	<a id="submit_upload" class="btn btn-primary text-centre" href="#">Confirm</a>
+	
+	<%= link_to( "Cancel" , refresh_upload_documents_form_path(:parent_type => parent.class.to_s.downcase, :parent_id => parent.id ) , :method => :post , :remote => true , :class => "btn btn-primary") %>
+</div>
 
 <script id="template-upload" type="text/x-tmpl">
 	<div id="upload_{%=o.unique_id%}" class="upload">
@@ -41,7 +48,8 @@
 	$(function() {
 		$('#s3_uploader').S3Uploader({
 			remove_completed_progress_bar: true,
-			progress_bar_target: $('#uploads_container') ;
+			progress_bar_target: $('#uploads_container') , 
+			click_submit_target: $('#submit_upload') });
 
 
 		$(document).bind('s3_uploads_complete', function() {
