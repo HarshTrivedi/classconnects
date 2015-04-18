@@ -129,7 +129,6 @@ class User < ActiveRecord::Base
 
   def can_unroll_college_branch?
     # has enrolled since 6 Months...
-    return true
     (((DateTime.now.to_time - self.college_branch_enrollment_date.to_time )/60/60/24/30) > 6) rescue false
   end
 
