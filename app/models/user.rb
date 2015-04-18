@@ -119,9 +119,18 @@ class User < ActiveRecord::Base
     college_branch_pair = CollegeBranchPair.where(:college_id => college_id , :branch_id => branch_id).first
     if college_branch_pair
         college_branch_pair.users << self
+        self.college_branch_enrollment_date = DateTime.now
+        self.college_branch_unenrollment_date = nil
+        self.save
         return college_branch_pair
     end
     return nil
+  end
+
+  def can_unroll_college_branch?
+    # has enrolled since 6 Months...
+    return true
+    (((DateTime.now.to_time - self.college_branch_enrollment_date.to_time )/60/60/24/30) > 6) rescue false
   end
 
   def college_peers
