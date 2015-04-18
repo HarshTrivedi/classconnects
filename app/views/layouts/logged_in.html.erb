@@ -288,6 +288,296 @@
 					© 2015 <a href="#fakelink">CodeArt</a><br>
 					Design by <a href="http://classcolab.com/" target="_blank">CodeArt</a>.
 				</footer>
+
+				<!-- tour guide starts -->
+
+				<div id="sign_in_count">
+					<%= current_user.sign_in_count%>
+				</div>
+
+				<%if current_user.sign_in_count <= 1 %>
+
+					<div style="top: 0px; left: 250px; display: block;" id="step-1" class="popover tour-tour tour-tour-1 fade bottom in">
+						 <div class="arrow" style="left: 10%"></div> 
+						 <h3 class="popover-title">
+						 	Toggle navigation bar
+						 </h3> 
+						 <div class="popover-content">
+						 	You can toggle this navigation bar to go to user-specific pages.
+						 </div>
+						 <div class="popover-navigation"> 
+						 	<div class="btn-group"> 
+						  		<button class="btn btn-sm btn-default disabled" data-role="prev">
+						  			« Prev
+						 		</button> 
+						 		<button class="btn btn-sm btn-default" id = "next-1">	
+						  			Next »
+						  		</button>  
+						  	</div> 
+						  	<button class="btn btn-sm btn-default" id = "end_tour-1">
+						  		End tour
+						  	</button> 
+						  </div> 
+					</div>
+
+					<div style="top: 0px; left: 300px; display: block;" id="step-2" class="popover tour-tour tour-tour-2 fade bottom in">
+					<div class="arrow" style="left: 40%"></div> 
+						 <h3 class="popover-title">
+						 	Search college
+						 </h3> 
+						 <div class="popover-content">
+						 	You can search any college using this search box. Just type the name and click enter.
+						 </div>
+						 <div class="popover-navigation"> 
+						 	<div class="btn-group"> 
+						  		<button class="btn btn-sm btn-default" id="prev-2">
+						  			« Prev
+						 		</button> 
+						 		<button class="btn btn-sm btn-default" id = "next-2">	
+						  			Next »
+						  		</button>  
+						  	</div> 
+						  	<button class="btn btn-sm btn-default" id = "end_tour-2">
+						  		End tour
+						  	</button> 
+						  </div> 
+					</div>
+
+					<div style="top: 0px; left: 475px; display: block;" id="step-3" class="popover tour-tour tour-tour-3 fade bottom in">
+						 <div class="arrow" style="left: 50%"></div> 
+						 <h3 class="popover-title">
+						 	Notifications
+						 </h3> 
+						 <div class="popover-content">
+						 	These is notifications pane. Gives the notifications about ready downloads. 
+						 </div>
+						 <div class="popover-navigation"> 
+						  	<div class="btn-group"> 
+						  		<button class="btn btn-sm btn-default" id="prev-3">
+						  			« Prev
+						 		</button> 
+						 		<button class="btn btn-sm btn-default" id = "next-3">	
+						  			Next »
+						  		</button>  
+						  	</div> 
+						  	<button class="btn btn-sm btn-default" id = "end_tour-3">
+						  		End tour
+						  	</button> 
+						  </div> 
+					</div>
+
+					<div style="top: 0px; left: 1000px; display: block;" id="step-4" class="popover tour-tour tour-tour-4 fade bottom in">
+						<div class="arrow" style="left:75%"></div> 
+						 <h3 class="popover-title">
+						 	Settings Menu
+						 </h3> 
+						 <div class="popover-content">
+						 	You can change the settings and log out using the dropdown menu given here.
+						 </div>
+						 <div class="popover-navigation"> 
+						 	<div class="btn-group"> 
+						  		<button class="btn btn-sm btn-default" data-role="prev" id = "prev-4">
+						  			« Prev
+						 		</button> 
+						 		<button class="btn btn-sm btn-default" id = "next-4">	
+						  			Next »
+						  		</button>  
+						  	</div> 
+						  	<button class="btn btn-sm btn-default" id = "end_tour-4">
+						  		End tour
+						  	</button> 
+						  </div> 
+					</div>
+						
+					<div id="step-6" class="popover tour-tour tour-tour-6 fade right in" style="top: 310px; left: 175px; display: block;">
+						    <div class="arrow" ></div>
+							    <h3 class="popover-title">
+								    Uploading material
+						    	</h3>
+							<div class="popover-content">
+								Uploading can be done using this button and the button given below in this panel.
+							</div>
+							<div class="popover-navigation">
+								<div class="btn-group">
+						        	<button class="btn btn-sm btn-default" id = "prev-6">
+						                « Prev
+						      	</button>
+						        <button class="btn btn-sm btn-default" id="next-6">
+							        Next »
+						        </button>
+						        </div>
+						        <button class="btn btn-sm btn-default" id="end_tour-6">
+							        End tour
+							    </button>
+						    </div>
+					</div>
+
+					<div id="step-5" class="popover tour-tour tour-tour-5 fade right in" style="top: 30px; left: 155px; display: block;">
+						    <div class="arrow" ></div>
+							    <h3 class="popover-title">
+								    View profile
+						    	</h3>
+							<div class="popover-content">
+								View your own profile by clicking on this button.
+							</div>
+							<div class="popover-navigation">
+								<div class="btn-group">
+						        	<button class="btn btn-sm btn-default" id="prev-5">
+						                « Prev
+						      	</button>
+						        <button class="btn btn-sm btn-default" id="next-5">
+							        Next »
+						        </button>
+						        </div>
+						        <button class="btn btn-sm btn-default" id="end_tour-5">
+							        End tour
+							    </button>
+						    </div>
+					</div>
+
+					<div id="step-7" class="popover tour-tour tour-tour-7 fade right in" style="top: 222.5px; left: 220px; display: block;">
+						    <div class="arrow" ></div>
+							    <h3 class="popover-title">
+								    Visit your college
+						    	</h3>
+							<div class="popover-content">
+								You can visit your college and your peers using this button, if not registered you can enrol using this button.
+							</div>
+							<div class="popover-navigation">
+								<div class="btn-group">
+						        	<button class="btn btn-sm btn-default" id="prev-7">
+						                « Prev
+						      	</button>
+						        <button class="btn btn-sm btn-default" id="next-7">
+							        Next »
+						        </button>
+						        </div>
+						        <button class="btn btn-sm btn-default" id="end_tour-7">
+							        End tour
+							    </button>
+						    </div>
+					</div>
+
+					<div style="top: 107px; left: 1077px; display: block;" id="step-8" class="popover tour-tour tour-tour-8 fade bottom in">
+						 <div class="arrow"></div> 
+						 <h3 class="popover-title">
+						 	Search documents
+						 </h3> 
+						 <div class="popover-content">
+						 	You can search material according to keywords and also college, branch and course specific.
+						 </div>
+						 <div class="popover-navigation"> 
+						 	<div class="btn-group"> 
+						  		<button class="btn btn-sm btn-default" id="prev-8">
+						  			« Prev
+						 		</button> 
+						 		<button class="btn btn-sm btn-default" id="next-8">	
+						  			Next »
+						  		</button>  
+						  	</div> 
+						  	<button class="btn btn-sm btn-default" id = "end_tour-8">
+						  		End tour
+						  	</button> 
+						  </div> 
+					</div>
+
+
+					<div style="top: 50px; left: 250px; display: block;" id="step-9" class="popover tour-tour tour-tour-9 fade top in">
+					<div class="arrow" style="left:30%"></div> 
+						 <h3 class="popover-title">
+						 	View downloads
+						 </h3> 
+						 <div class="popover-content">
+						 	You can view material downloaded by you by this tab, and the same option is also given in the side panel.
+						 </div>
+						 <div class="popover-navigation"> 
+						 	<div class="btn-group"> 
+						  		<button class="btn btn-sm btn-default" id="prev-9">
+						  			« Prev
+						 		</button> 
+						 		<button class="btn btn-sm btn-default" id="next-9">	
+						  			Next »
+						  		</button>  
+						  	</div> 
+						  	<button class="btn btn-sm btn-default" id = "end_tour-9">
+						  		End tour
+						  	</button> 
+						  </div> 
+					</div>
+						
+
+					<div style="top: 50px; left: 365px; display: block;" id="step-10" class="popover tour-tour tour-tour-10 fade top in">
+					<div class="arrow" style="left:30%"></div> 
+						 <h3 class="popover-title">
+						 	View Uploads
+						 </h3> 
+						 <div class="popover-content">
+						 	You can view material uploaded by you by this tab, and the same option is also given in the side panel.
+						 </div>
+						 <div class="popover-navigation"> 
+						 	<div class="btn-group"> 
+						  		<button class="btn btn-sm btn-default" id="prev-10">
+						  			« Prev
+						 		</button> 
+						 		<button class="btn btn-sm btn-default" id="next-10">	
+						  			Next »
+						  		</button>  
+						  	</div> 
+						  	<button class="btn btn-sm btn-default" id = "end_tour-10">
+						  		End tour
+						  	</button> 
+						  </div> 
+					</div>
+
+					<div style="top: 50px; left: 500px; display: block;" id="step-11" class="popover tour-tour tour-tour-11 fade top in">
+					<div class="arrow" style="left:30%"></div> 
+						 <h3 class="popover-title">
+						 	View Courses
+						 </h3> 
+						 <div class="popover-content">
+						 	You can view the courses enrolled by you by this tab, and the same option is also given in the side panel.
+						 </div>
+						 <div class="popover-navigation"> 
+						 	<div class="btn-group"> 
+						  		<button class="btn btn-sm btn-default" id="prev-11">
+						  			« Prev
+						 		</button> 
+						 		<button class="btn btn-sm btn-default" id="next-11">	
+						  			Next »
+						  		</button>  
+						  	</div> 
+						  	<button class="btn btn-sm btn-default" id = "end_tour-11">
+						  		End tour
+						  	</button> 
+						  </div> 
+					</div>
+						
+					<div style="top: 32.5px; left: 620px; display: block;" id="step-12" class="popover tour-tour tour-tour-12 fade top in">
+					<div class="arrow" style="left:30%"></div> 
+						 <h3 class="popover-title">
+						 	View Favourite Courses
+						 </h3> 
+						 <div class="popover-content">
+						 	You can view the courses tagged by you as favourites by this tab, and the same option is also given in the side panel.
+						 </div>
+						 <div class="popover-navigation"> 
+						 	<div class="btn-group"> 
+						  		<button class="btn btn-sm btn-default" id="prev-12">
+						  			« Prev
+						 		</button> 
+						 		<button class="btn btn-sm btn-default disabled" >	
+						  			Next »
+						  		</button>  
+						  	</div> 
+						  	<button class="btn btn-sm btn-default" id = "end_tour-12">
+						  		End tour
+						  	</button> 
+						  </div> 
+					</div>
+
+				<%end%>
+				<!-- tour guide ends -->
+
 			</div>
 <script>
 

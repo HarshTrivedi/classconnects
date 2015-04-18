@@ -276,6 +276,12 @@ class UserDetailsController < ApplicationController
     render :js => "$('.modal').modal(\"hide\") ; $(\"form\").trigger(\"reset\"); toastr.info('Thankyou', 'for suggestion')"
   end
 
+  def seen_tour_guide
+    current_user.sign_in_count += 1
+    current_user.save
+    render :nothing => true
+  end
+
   private
   ## permitting params for mass assignment
   def college_branch_params

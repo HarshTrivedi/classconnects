@@ -122,6 +122,8 @@ Rails.application.routes.draw do
   post '/refresh_download_buckets_notifications' => "landings#refresh_download_buckets_notifications" , as: :refresh_download_buckets_notifications
   post '/refresh_upload_documents_form' => "landings#refresh_upload_documents_form" , as: :refresh_upload_documents_form
 
+  post '/seen_tour_guide' => "user_details#seen_tour_guide" , as: :seen_tour_guide
+
 
   get '/'                       => 'landings#index'                         , as: :landing
   post '/'                       => 'landings#index'                         , as: :landing_remote

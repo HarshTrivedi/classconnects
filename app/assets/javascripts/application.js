@@ -22,9 +22,7 @@
 //= require toastr
 //= require chosen-jquery
 //= require s3_direct_upload
-
 //= require nprogress.js
-
 //= require jquery_validator.js
 
 
@@ -301,6 +299,7 @@ $(document).on('page:load', function() {
 	main_college_search_autocomplete();
 	cascade_enroll_college_branch();
     $('.carousel').carousel({ interval: 15000 })
+	tour_guide();
 });
 
 $(document).on('ready', function() {
@@ -308,6 +307,7 @@ $(document).on('ready', function() {
 	main_college_search_autocomplete();
 	cascade_enroll_college_branch();
     $('.carousel').carousel({ interval: 15000 })
+	tour_guide();
 });
 
 $(document).on('page:fetch',   function() { NProgress.start(); });
@@ -356,3 +356,212 @@ function rotate($el, deg) {
   });
 }
 
+
+
+function tour_guide(){
+	console.log( Number($("#sign_in_count").html().trim()) );
+	if(  Number($("#sign_in_count").html().trim())  <= 1 ){
+		start_tour_guide();
+	}
+}
+
+function start_tour_guide() {
+	$('#step-2').hide();
+	$('#step-3').hide();
+	$('#step-4').hide();
+	$('#step-5').hide();
+	$('#step-6').hide();
+	$('#step-7').hide();
+	$('#step-8').hide();
+	$('#step-9').hide();
+	$('#step-10').hide();
+	$('#step-11').hide();
+	$('#step-12').hide();
+
+	$('#next-1').click(function(event){
+		event.preventDefault();
+		$('#step-2').show();
+		$('#step-1').hide();
+	});
+	$('#end_tour-1').click(function(event){
+		event.preventDefault();
+		$('#step-1').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+	$('#prev-2').click(function(event){
+		event.preventDefault();
+		$('#step-1').show();
+		$('#step-2').hide();
+	});
+	$('#next-2').click(function(event){
+		event.preventDefault();
+		$('#step-3').show();
+		$('#step-2').hide();
+	});
+	$('#end_tour-2').click(function(event){
+		event.preventDefault();
+		$('#step-2').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+
+	$('#prev-3').click(function(event){
+		event.preventDefault();
+		$('#step-2').show();
+		$('#step-3').hide();
+	});
+	$('#next-3').click(function(event){
+		event.preventDefault();
+		$('#step-4').show();
+		$('#step-3').hide();
+	});
+	$('#end_tour-3').click(function(event){
+		event.preventDefault();
+		$('#step-3').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+
+	$('#prev-4').click(function(event){
+		event.preventDefault();
+		$('#step-3').show();
+		$('#step-4').hide();
+	});
+	$('#next-4').click(function(event){
+		event.preventDefault();
+		$('#step-5').show();
+		$('#step-4').hide();
+	});
+	$('#end_tour-4').click(function(event){
+		event.preventDefault();
+		$('#step-4').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+	$('#prev-5').click(function(event){
+		event.preventDefault();
+		$('#step-4').show();
+		$('#step-5').hide();
+	});
+	$('#next-5').click(function(event){
+		event.preventDefault();
+		$('#step-6').show();
+		$('#step-5').hide();
+	});
+	$('#end_tour-5').click(function(event){
+		event.preventDefault();
+		$('#step-5').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+	$('#prev-6').click(function(event){
+		event.preventDefault();
+		$('#step-5').show();
+		$('#step-6').hide();
+	});
+	$('#next-6').click(function(event){
+		event.preventDefault();
+		$('#step-7').show();
+		$('#step-6').hide();
+	});
+	$('#end_tour-6').click(function(event){
+		event.preventDefault();
+		$('#step-6').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+	$('#prev-7').click(function(event){
+		event.preventDefault();
+		$('#step-6').show();
+		$('#step-7').hide();
+	});
+	$('#next-7').click(function(event){
+		event.preventDefault();
+		$('#step-8').show();
+		$('#step-7').hide();
+	});
+	$('#end_tour-7').click(function(event){
+		event.preventDefault();
+		$('#step-7').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+	$('#prev-8').click(function(event){
+		event.preventDefault();
+		$('#step-7').show();
+		$('#step-8').hide();
+	});
+	$('#next-8').click(function(event){
+		event.preventDefault();
+		$('#step-9').show();
+		$('#step-8').hide();
+	});
+	$('#end_tour-8').click(function(event){
+		event.preventDefault();
+		$('#step-8').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+	$('#prev-9').click(function(event){
+		event.preventDefault();
+		$('#step-8').show();
+		$('#step-9').hide();
+	});
+	$('#next-9').click(function(event){
+		event.preventDefault();
+		$('#step-10').show();
+		$('#step-9').hide();
+	});
+	$('#end_tour-9').click(function(event){
+		event.preventDefault();
+		$('#step-9').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+	$('#prev-10').click(function(event){
+		event.preventDefault();
+		$('#step-9').show();
+		$('#step-10').hide();
+	});
+	$('#next-10').click(function(event){
+		event.preventDefault();
+		$('#step-11').show();
+		$('#step-10').hide();
+	});
+	$('#end_tour-10').click(function(event){
+		event.preventDefault();
+		$('#step-10').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+	$('#prev-11').click(function(event){
+		event.preventDefault();
+		$('#step-10').show();
+		$('#step-11').hide();
+	});
+	$('#next-11').click(function(event){
+		event.preventDefault();
+		$('#step-12').show();
+		$('#step-11').hide();
+	});
+	$('#end_tour-11').click(function(event){
+		event.preventDefault();
+		$('#step-11').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+	$('#prev-12').click(function(event){
+		event.preventDefault();
+		$('#step-11').show();
+		$('#step-12').hide();
+	});
+	$('#end_tour-12').click(function(event){
+		event.preventDefault();
+		$('#step-12').hide();
+		$.post( "/seen_tour_guide");
+	});
+
+
+
+}
