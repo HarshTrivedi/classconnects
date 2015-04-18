@@ -193,12 +193,13 @@
 							  <%= hidden_field_tag("enroll_branch_autocomplete_id" , "", :id => "enroll_branch_autocomplete_id") %>
 							  
 							  <%= text_field_tag :college_name , nil , :id => "enroll_college_autocomplete" , :class => "form-control" , :placeholder => "Search College"  %>
+							  <br>
 							  <%= text_field_tag :branch_name , nil , :id => "enroll_branch_autocomplete" , :class => "form-control" , :placeholder => "Search Branch"  %>
-							  
+							  <br>
 							  <div class="modal-footer">
 								  <div class="text-center">
 	   							  	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								  	<%= f.button :submit , "Enroll Me", :class => "btn btn-warning btn-perspective"%>
+								  	<%= f.button :submit , "Enroll Me", :class => "btn btn-warning btn-perspective" , data: { confirm: "Are you sure you want to enroll in this college/branch and access private data shared? You will not be able to unenroll for next 6 months." } %>
 								  </div><!-- /.modal-footer -->
 							  </div>
 							<% end %>
