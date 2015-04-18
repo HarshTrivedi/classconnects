@@ -6,7 +6,7 @@
                   <ul class="dropdown-menu square with-triangle">
                       <li>
                           <div class="nav-dropdown-heading">
-                          Notifications
+                          Ready Bucket Downloads
                           </div><!-- /.nav-dropdown-heading -->
                           <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="nav-dropdown-content scroll-nav-dropdown" style="overflow: hidden; width: auto; height: 350px;">
 
@@ -15,8 +15,8 @@
                                   <%for bucket in ready_buckets%>
                                     <li class="unread">
                                       <a href="<%= download_bucket_path(bucket) %>">
-                                      <strong>Ready</strong> <%= bucket.name %>
-                                      <span class="small-caps"> <%= number_to_human_size( bucket.last_zip_time ) %> ago</span>
+                                      <strong><%= bucket.name %></strong> 
+                                      <span class="small-caps"> Ready <%=   time_ago_in_words( bucket.last_zip_time )  %> ago</span>
                                     </a>
                                     </li>
                                   <%end%>
