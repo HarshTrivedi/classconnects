@@ -40,7 +40,6 @@
 
 <script>
 	$(function() {
-
 		$('#s3_uploader').S3Uploader({
 			remove_completed_progress_bar: true,
 			progress_bar_target: $('#uploads_container') , 
@@ -50,6 +49,7 @@
 		$(document).bind('s3_uploads_complete', function() {
 			$('.modal').modal("hide") ;
 			$("form").trigger("reset");
+			$.post( "/refresh_upload_documents_form", { parent_type: "<%= parent.class.to_s.downcase %>", parent_id: "<%= parent.id %>" } );
 		});
 
 		
