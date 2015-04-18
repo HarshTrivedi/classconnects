@@ -8,3 +8,14 @@
 	  	</div>
 	<% end %>
 </div>
+
+<script>
+    $(".new_comment_response").validate({
+          rules: {
+            'comment_response[message]': "required"
+          },
+          messages: {
+            'comment_response[message]': "Please leave non-empty message"
+          }
+    });
+</script>
