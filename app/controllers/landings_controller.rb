@@ -61,6 +61,18 @@ class LandingsController < ApplicationController
       
   end
 
+  def refresh_upload_documents_form
+     @parent_type = params["parent_type"]
+     @parent_id = params["parent_id"]
+     @parent = nil
+     if @parent_type == "bucket"
+        @parent = Bucket.find_by_id(@parent_id)
+     elsif @parent_type == "folder"
+        @parent = Folder.find_by_id(@parent_id)
+     end       
+
+  end
+
   protected
 
   def layout_by_resource

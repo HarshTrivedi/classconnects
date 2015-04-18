@@ -120,6 +120,8 @@ Rails.application.routes.draw do
   post '/test_action' => "landings#test_action" , as: :test_action
 
   post '/refresh_download_buckets_notifications' => "landings#refresh_download_buckets_notifications" , as: :refresh_download_buckets_notifications
+  post '/refresh_upload_documents_form' => "landings#refresh_upload_documents_form" , as: :refresh_upload_documents_form
+
 
   get '/'                       => 'landings#index'                         , as: :landing
   post '/'                       => 'landings#index'                         , as: :landing_remote
