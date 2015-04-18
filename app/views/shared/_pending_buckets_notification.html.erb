@@ -8,14 +8,14 @@
                           <div class="nav-dropdown-heading">
                           Notifications
                           </div><!-- /.nav-dropdown-heading -->
-                          <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="nav-dropdown-content scroll-nav-dropdown" style="overflow: hidden; width: auto; height: 350px;">
+                          <div class="slimScrollDiv" style="position: relative;  width: auto; overflow: hidden ; height: 350px;"><div class="nav-dropdown-content scroll-nav-dropdown" style="width: auto; height: 350px; overflow: hidden">
 
                             <ul>
                                   <%for bucket in pending_request_buckets%>
                                     <li class="unread">
-                                      <a href="<%= download_bucket_path(bucket) %>">
-                                      <strong>Getting Ready</strong> <%= bucket.name %>
-                                      <span class="small-caps"> <%= number_to_human_size( bucket.last_zip_time ) %> ago</span>
+                                      <a href="<%= bucket_content_path(bucket) %>">
+                                      <strong> <%= bucket.name %> </strong>
+                                      <span class="small-caps"> Getting Ready ... </span>
                                     </a>
                                     </li>
                                   <%end%>
