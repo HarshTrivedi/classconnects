@@ -59,7 +59,7 @@
             <br>
             <%= link_to( fa_icon("cloud-download", text: "Download") , request_download_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "")%> 
             <%if bucket.uploader == current_user %>
-                    <a type="button" data-toggle="modal" data-target="#modal_edit_bucket_<%=bucket.id%>" class="" style="margin-left:20px">
+                    <a type="button" data-toggle="modal" data-target="#modal_edit_bucket_<%=bucket.id%>" class="" style="margin-left:20px; cursor:pointer"  >
                          <i class="fa fa-edit">Edit</i>
                     </a>
                     <%= link_to( fa_icon("trash-o" , :text=>"Delete") , destroy_bucket_path(bucket.id) , :method => :delete , :remote => true ,:style=>"margin-left:20px" , :data => { :confirm => "Are you sure you want to delete?"  }  )%> 
