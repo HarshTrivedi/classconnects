@@ -13,13 +13,9 @@
                       <%= category %>
                     </span>
                     
-                  <% if current_page?(uploads_path) %>
-                    <br>
-                    <br>
                     <span class="label label-success span-sidebar">
                       <%= ( (bucket.privately_shared) ? ("Private") : ("Public") ) %>
                     </span>
-                  <%end%>
                 </small>  
 
                 <div class="vote circle">
