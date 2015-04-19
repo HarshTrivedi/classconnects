@@ -71,7 +71,7 @@ ActiveAdmin.register Document do
       # Destroy link on show
       if can?(:destroy, resource) && controller.action_methods.include?("destroy")
         link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name), resource_path(resource),
-          :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'))
+          :method => :delete , data: { confirm: "Are you sure u want to delete this Resource ?" }  )
       end
     end
 
@@ -206,7 +206,6 @@ ActiveAdmin.register Document do
             # row("Document  Name")   { document.name }
             row("Bucket  Name")  { document.bucket.name  }
             row("Uploader") {document.bucket.uploader.full_name}
-            row("View Link") { "" }
         end
       end
       active_admin_comments

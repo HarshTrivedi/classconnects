@@ -74,7 +74,7 @@ ActiveAdmin.register Bucket do
       # Destroy link on show
       if can?(:destroy, resource) && controller.action_methods.include?("destroy")
         link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name), resource_path(resource),
-          :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'))
+          :method => :delete , data: { confirm: "Are you sure u want to delete this Resource ?" }   )
       end
     end
 
@@ -100,9 +100,12 @@ ActiveAdmin.register Bucket do
         attributes_table_for bucket do
             row("Bucket  Name")   { bucket.name }
             row("Course  Name")  { bucket.course.name  }
-            row("College Name")   { bucket.course.college.name  }
-            row("Branch  Name")   { bucket.course.branch.name  }
-            row("Uploader") {bucket.uploader.full_name}
+            row("College Name")   { link_to( bucket.course.college.name , admin_college_path(bucket.course.college) )   }
+            row("Branch  Name")   { link_to( bucket.course.branch.name , admin_branch_path( bucket.course.branch ) )  }
+            uploader = bucket.uploader
+            row("Uploader") { link_to( uploader.full_name , admin_user_path( uploader ) )   }
+            row("Size") { number_to_human_size(bucket.size)  }
+            row("Created") { time_ago_in_words( bucket.created_at )  }
         end
       end
       panel "Folders" do
@@ -110,6 +113,9 @@ ActiveAdmin.register Bucket do
                 column "Name" do |folder|
                   link_to( folder.name , admin_bucket_folder_path( bucket , folder ) ) 
                 end
+                column "Size" do |folder|
+                    number_to_human_size(folder.size)
+                end 
                 column "View" do |folder|
                   link_to( "View" , admin_bucket_folder_path( bucket , folder ) ) 
                 end
@@ -128,8 +134,14 @@ ActiveAdmin.register Bucket do
                 column "Name" do |document|
                     link_to( document.name , admin_bucket_document_path( bucket , document ) ) 
                 end
-                column "View" do |document|
-                    link_to( document.name , admin_bucket_document_path( bucket , document ) ) 
+                column "Size" do |document|
+                    number_to_human_size(document.size)
+                end 
+                column "Type" do |document|
+                    document.type 
+                end
+                column "Download" do |document|
+                    link_to( "download" , download_document_path(document.id) ) 
                 end
                 column "Edit" do |document|
                     link_to( "Edit" , edit_admin_bucket_document_path( bucket , document )  ) if can?(:edit , document )
@@ -184,25 +196,6 @@ ActiveAdmin.register Bucket do
   filter :by_branch_name_in,  label: "Branch"  , as: :select, collection: proc { Branch.order(:name)  },  input_html: { class: 'chosen-input' }
   filter :by_course_name_in,  label: "Course"  , as: :select, collection: proc { Course.order(:name)  },  input_html: { class: 'chosen-input' }
   
-  
-  
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-        # span link_to( "View all Course" , admin_courses_path )              
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-
 
 
 end

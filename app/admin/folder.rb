@@ -78,7 +78,9 @@ ActiveAdmin.register Folder do
       def destroy
         @folder = Folder.find_by_id( params[:id] )
         authorize_me_to( :destroy , @folder )
-        destroy!
+        destroy! do |format|
+            format.html { redirect_to :back }
+        end
       end
 
 
@@ -101,7 +103,7 @@ ActiveAdmin.register Folder do
       # Destroy link on show
       if can?(:destroy, resource) && controller.action_methods.include?("destroy")
         link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name), resource_path(resource),
-          :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'))
+          :method => :delete   , data: { confirm: "Are you sure u want to delete this Resource ?" }  )
       end
     end
 
@@ -114,6 +116,8 @@ ActiveAdmin.register Folder do
             row("Folder  Name")   { folder.name }
             row("Bucket  Name")  { folder.bucket.name  }
             row("Uploader") {folder.bucket.uploader.full_name}
+            row("Size") { number_to_human_size(folder.size) }
+            row("Created") { time_ago_in_words(folder.created_at) }
         end
       end
       panel "Folders" do
@@ -179,45 +183,8 @@ ActiveAdmin.register Folder do
     end
   end
 
-  sidebar "Any thing can be added here", only: [:show ] do
-    subtree = folder.subtree.arrange_serializable
-
-      ul do
-      end
-  end
-
-
 
 end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  # working code for sortable tree
-  # sortable tree: true,
-  #          sorting_attribute: :position,
-  #          parent_method: :parent,
-  #          children_method: :children_with_documents,
-  #          # roots_method: :roots,
-  #          roots_collection: proc { Folder.where(:id => 1) },
-  #          collapsible: true,
-  #          start_collapsed: true
-
-  #   index as: :sortable do
-  #       label :name
-
-  #   end
