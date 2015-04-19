@@ -14,9 +14,6 @@
 				<li>
 					<%= link_to(  fa_icon("cloud-download", text: "Download") , download_document_path(document.id) )%>
 				</li>
-				<li>
-					<%= link_to( fa_icon("eye", text: "View") , view_document_path(document.id) )%>
-				</li>
 					<%if uploader == current_user %>
        					<li>
        						<a type="button" data-toggle="modal" data-target="#modal_edit_document_<%=document.id%>" >
