@@ -120,15 +120,17 @@ ActiveAdmin.register Course do
 
       panel "Course Discussion Threads" do
             table_for course.comments do
-                column "Name" do |comment|
+                column "User Name" do |comment|
                     user = comment.user
                     link_to( user.full_name , admin_user_path( user ) ) 
                 end
                 column "Title Thread" do |comment|
                     link_to( comment.message , admin_comment_path( comment ) ) 
                 end
-                column "Destroy" do |comment|
-                    link_to( "Remove" , admin_comment_path(document) , :method => :delete , data: { confirm: "Are you sure u want to delete this document ?" } ) if can?(:destroy , document )
+                if can?(:destroy , document )
+                  column "Destroy" do |comment|
+                      link_to( "Remove" , admin_comment_path(comment) , :method => :delete , data: { confirm: "Are you sure u want to delete this comment ?" } )
+                  end
                 end
             end
       end

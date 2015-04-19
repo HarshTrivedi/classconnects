@@ -3,6 +3,42 @@ ActiveAdmin.register Comment do
   permit_params 
 
 
+  controller do
+
+      def new
+        @comment = Comment.new
+        authorize_me_to( :create , @comment )
+      end
+
+      def create
+        @comment = Comment.new( permitted_params[:comment] )
+        authorize_me_to( :create , @comment )
+        create!
+      end
+
+      def edit
+        @comment = Comment.find_by_id(params[:id])
+        authorize_me_to( :create , @comment )
+      end
+
+      def update
+        @comment = Comment.find_by_id( params[:id] )
+        authorize_me_to( :update , @comment )
+        update!
+      end
+
+      def destroy
+        @comment = Comment.find_by_id( params[:id] )
+        authorize_me_to( :destroy , @comment )
+        destroy! do |format|
+            format.html { redirect_to :back }
+        end
+      end
+
+
+   end
+
+
   show do
 
     panel "Thread Title Details" do
@@ -20,22 +56,19 @@ ActiveAdmin.register Comment do
           link_to( user.full_name , admin_user_path( user.id ) )
         end
          
-        column "Message" do |comment|
-          comment.message
+        column "Message" do |comment_response|
+          comment_response.message
         end
+
+        column "Destroy" do |comment_response|
+          if can?(:destroy , comment_response )
+            link_to( "Remove" , admin_comment_response_path(comment_response) , :method => :delete , data: { confirm: "Are you sure u want to delete this comment response ?" } )
+          end
+        end
+
       end
     end
 
   end
-
-  sidebar "Go back to Bucket Root", only: [:show ] do
-    
-  end
-
-  sidebar "Any thing can be added here", only: [:show ] do
-    
-  end
-
-
 
 end
