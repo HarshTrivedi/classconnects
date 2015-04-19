@@ -163,7 +163,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  # config.root_to = 'dashboard#index'
+  config.root_to = 'colleges#index'
 
   # == Admin Comments
   #
