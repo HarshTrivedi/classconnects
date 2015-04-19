@@ -16,9 +16,9 @@
 		<div class="right-button">
 			  <%if (course.college == current_user.college ) and ( course.branch == current_user.branch) %>
 				  <%if not course.enrolled_users.include?(current_user) %>
-				  	<%= link_to(  fa_icon("plus-square") , enroll_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(142,142,131)") %>
+				  	<%= link_to(  fa_icon("plus-square") , enroll_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(142,142,131)", "data-toggle" => "tooltip" , "title" => "Enroll in Course"  ) %>
 				  <%else%>
-				  	<%= link_to(  fa_icon("plus-square")  , unenroll_course_path(course.id) , :method => :post , :remote => true ,:style => "color:rgb(3,14,97)") %>	  	
+				  	<%= link_to(  fa_icon("plus-square")  , unenroll_course_path(course.id) , :method => :post , :remote => true ,:style => "color:rgb(3,14,97)" , "data-toggle" => "tooltip" , "title" => "Un-Enroll in Course") %>	  	
 				  <%end%>
 			  <%end%>
 
@@ -26,9 +26,9 @@
 			  <p></p>
 
  			  <%if not course.favorited_users.include?(current_user) %>
-			  	<%= link_to(  fa_icon("heart-o") , favorite_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(215,31,68)") %>
+			  	<%= link_to(  fa_icon("heart-o") , favorite_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(215,31,68)" , "data-toggle" => "tooltip" , "title" => "Favorite Course") %>
 		      <%else%>
-			  	<%= link_to(   fa_icon("heart")  , unfavorite_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(215,31,68)") %>	  
+			  	<%= link_to(   fa_icon("heart")  , unfavorite_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(215,31,68)" , "data-toggle" => "tooltip" , "title" => "Un-Favorite Course") %>	  
 		      <%end%>
 
 			</div>	

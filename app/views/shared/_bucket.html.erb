@@ -20,16 +20,16 @@
 
                 <div class="vote circle">
                     <%if current_user.has_upvoted?(bucket)  %>                      
-                              <%= link_to( "", like_bucket_path(bucket.id) ,:class=>"hasvoted up", :method => :post , :remote => true)%> 
+                              <%= link_to( "", like_bucket_path(bucket.id) ,:class=>"hasvoted up", :method => :post , :remote => true , "data-toggle" => "tooltip" , "title" => "Up Vote")%> 
                       <%else%>                      
-                              <%= link_to( "" , like_bucket_path(bucket.id),:class=>"increment up" , :method => :post , :remote => true)%>                            
+                              <%= link_to( "" , like_bucket_path(bucket.id),:class=>"increment up" , :method => :post , :remote => true , "data-toggle" => "tooltip" , "title" => "Up Vote" )%>                            
                               <% bucket.up_votes %>                      
                       <%end%>                      
                       <%if current_user.has_downvoted?(bucket)  %>                      
-                              <%= link_to( "", dislike_bucket_path(bucket.id) ,:class=>"hasvoted down", :method => :post , :remote => true)%>                        
+                              <%= link_to( "", dislike_bucket_path(bucket.id) ,:class=>"hasvoted down", :method => :post , :remote => true , "data-toggle" => "tooltip" , "title" => "Down Vote")%>                        
                               <% bucket.down_votes%>                      
                       <%else%>                      
-                              <%= link_to( "" , dislike_bucket_path(bucket.id) ,:class=>"increment down", :method => :post , :remote => true)%>                           
+                              <%= link_to( "" , dislike_bucket_path(bucket.id) ,:class=>"increment down", :method => :post , :remote => true , "data-toggle" => "tooltip" , "title" => "Down Vote")%>                           
                               <% bucket.down_votes %>                      
                       <%end%>
                       <div class="count"><%=bucket.up_votes - bucket.down_votes%></div>
