@@ -4,7 +4,7 @@ class Branch < ActiveRecord::Base
   has_many :colleges, through: :college_branch_pairs
 
   validates :name, :presence => true
-  validates :name, :uniqueness => true
+  validates :name, :uniqueness => true , :case_sensitive => false
 
   def buckets
   	all_college_branch_pairs = self.college_branch_pairs
