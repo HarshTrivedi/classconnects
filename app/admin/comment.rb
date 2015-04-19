@@ -1,5 +1,5 @@
 ActiveAdmin.register Comment do
-  # menu false
+  menu false
   permit_params 
 
 

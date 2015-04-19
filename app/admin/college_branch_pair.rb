@@ -25,7 +25,7 @@ ActiveAdmin.register CollegeBranchPair do
                   course.enrolled_users.size
                 end
 
-                column "Students favorited" do |college_branch_pair|
+                column "Students favorited" do |course|
                   course.favorited_users.size
                 end
 

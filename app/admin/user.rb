@@ -59,7 +59,6 @@ ActiveAdmin.register User do
             row("downloaded buckets") { user.downloaded_buckets }
             row("uploaded data") { user.uploaded_data_size }
             row("downloaded data") { user.downloaded_data_size }
-            row("Reputation") { user.reputation }
             row("SignIn Count") { user.sign_in_count }
         end
       end

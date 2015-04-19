@@ -63,7 +63,6 @@ ActiveAdmin.register Branch do
       panel "Branch Details" do
         attributes_table_for branch do
             row("Name")   { branch.name }
-            row("Students Registered")  {  branch.users.size }
             row("Courses Offered"){  branch.courses.size }
             row("Buckets"){ branch.buckets.size }
         end

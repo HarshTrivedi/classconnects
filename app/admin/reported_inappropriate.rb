@@ -1,11 +1,5 @@
 ActiveAdmin.register ReportedInappropriate do
 
-
-  # scope :recent
-  # scope :abuse
-  # scope :irrelavent
-  # scope :urgent
-
   controller do
 
 	  def new
@@ -41,18 +35,31 @@ ActiveAdmin.register ReportedInappropriate do
 
    end
 
-  active_admin_allowed_action_items
+    config.clear_action_items!   
+      
+    action_item :only => [:show] do
+      # Destroy link on show
+      if can?(:destroy, resource) && controller.action_methods.include?("destroy")
+        link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name), resource_path(resource),
+          :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'))
+      end
+    end
+
 
   index do 
       selectable_column
-      column :user_id do |report|
-	    user = User.find_by_id(report.user_id)
-	    link_to( user.full_name , admin_user_path( user.id ) )
+      column "Reporter" do |report|
+  	    user = User.find_by_id(report.user_id)
+  	    link_to( user.full_name , admin_user_path( user.id ) )
       end
 
       column :bucket_id do |report|
       	bucket = Bucket.find_by_id(report.bucket_id)
-	    link_to( bucket.name , admin_bucket_path( bucket ) )
+	      link_to( bucket.name , admin_bucket_path( bucket ) )
+      end
+
+      column :type do |report|
+        report.inappropriate_type.report_type
       end
 
       column :created_at do |report|
@@ -90,25 +97,8 @@ ActiveAdmin.register ReportedInappropriate do
         end
       end
 
-      panel "Comment Threads" do
-		table_for reported_inappropriate.bucket.comments do
-
-            column "User" do |comment|
-            	user = comment.user
-				link_to( user.full_name , admin_user_path( user.id ) )
-            end
-            
-            column "Thread Message" do |comment|
-            	comment.message
-            end
-
-            column "Details" do |comment|
-            	link_to( "view" , admin_comment_path( comment.id ) )
-            end
-        end
-      end
-
   end
 
+  filter :by_inappropriate_type_in, label: "report type", as: :select, collection: proc { InappropriateType.all },  input_html: { class: 'chosen-input' }
 
 end
