@@ -7,9 +7,9 @@
 		<ul class="nav nav-tabs">
 
 			<%if current_page?(bucket_content_path) %>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), bucket_content_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Buckets"), bucket_content_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), bucket_content_path(bucket.id) , :data => {:toggle=>""} ), :class=>"" )%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Buckets"), bucket_content_path(bucket.id) , :data => {:toggle=>""} ), :class=>"" )%>
 			<%end%>
 
 

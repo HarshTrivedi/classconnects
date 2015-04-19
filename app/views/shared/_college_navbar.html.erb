@@ -7,16 +7,16 @@
 		<ul class="nav nav-tabs">
 
 			<%if current_page?(college_content_path) %>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), college_content_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Buckets"), college_content_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), college_content_path(college.id) , :data => {:toggle=>""} ), :class=>"" )%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Buckets"), college_content_path(college.id) , :data => {:toggle=>""} ), :class=>"" )%>
 			<%end%>
 
 
 			<%if current_page?(college_users_path)%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Users"), college_users_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Enrolled Students"), college_users_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Users"), college_users_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
+				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Enrolled Students"), college_users_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
 			<%end%>
 
 
