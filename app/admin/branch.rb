@@ -68,7 +68,7 @@ ActiveAdmin.register Branch do
         end
       end
       panel "Colleges having this Branch" do
-            table_for branch.college_branch_pairs do
+            table_for branch.college_branch_pairs.select{|x| not x.college.nil?} do
               column "Visit college branch Page " do |college_branch_pair|
                 college = college_branch_pair.college
                 link_to( college.name , admin_college_branch_pair_path(college_branch_pair) ) 

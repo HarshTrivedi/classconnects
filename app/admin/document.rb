@@ -212,6 +212,14 @@ ActiveAdmin.register Document do
       active_admin_comments
   end
 
+  form do |f|    
+      f.semantic_errors *f.object.errors.keys
+      f.inputs "Document Details" do
+          f.input :name 
+      end
+      f.actions
+  end
+
 
 
   filter :name , :label => "Document name"

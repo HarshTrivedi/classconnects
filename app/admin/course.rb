@@ -117,6 +117,22 @@ ActiveAdmin.register Course do
             span link_to( "Add a Bucket here" , new_admin_course_bucket_path( course ) )  if can?(:create , Bucket ) 
             # end
       end
+
+      panel "Course Discussion Threads" do
+            table_for course.comments do
+                column "Name" do |comment|
+                    user = comment.user
+                    link_to( user.full_name , admin_user_path( user ) ) 
+                end
+                column "Title Thread" do |comment|
+                    link_to( comment.message , admin_comment_path( comment ) ) 
+                end
+                column "Destroy" do |comment|
+                    link_to( "Remove" , admin_comment_path(document) , :method => :delete , data: { confirm: "Are you sure u want to delete this document ?" } ) if can?(:destroy , document )
+                end
+            end
+      end
+
       active_admin_comments
   end
 
