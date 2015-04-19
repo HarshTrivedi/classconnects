@@ -147,24 +147,6 @@ ActiveAdmin.register Course do
       f.actions
   end
 
-
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-        # span link_to( "View all Course" , admin_courses_path )              
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-
   filter :name , :label => "Course name"
   filter :by_college_name_in, label: "College", as: :select, collection: proc { College.order(:name) },  input_html: { class: 'chosen-input' }
   filter :by_branch_name_in,  label: "Branch"  , as: :select, collection: proc { Branch.order(:name)  },  input_html: { class: 'chosen-input' }

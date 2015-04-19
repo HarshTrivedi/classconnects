@@ -122,21 +122,4 @@ ActiveAdmin.register College do
   filter :by_course_name_in, label: "haivng course like", as: :select, collection: proc { Course.order(:name) },  input_html: { class: 'chosen-input' }
 
 
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-
-
 end

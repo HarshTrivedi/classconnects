@@ -99,21 +99,6 @@ ActiveAdmin.register Branch do
   end
 
 
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
 
 
   filter :name , :label => "branch name"

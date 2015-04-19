@@ -46,21 +46,4 @@ ActiveAdmin.register CollegeBranchPair do
 
   config.clear_action_items!
 
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-
-
 end
