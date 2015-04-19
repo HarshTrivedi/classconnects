@@ -129,6 +129,7 @@ class User < ActiveRecord::Base
 
   def can_unroll_college_branch?
     # has enrolled since 6 Months...
+    # return true
     (((DateTime.now.to_time - self.college_branch_enrollment_date.to_time )/60/60/24/30) > 6) rescue false
   end
 
@@ -272,6 +273,65 @@ class User < ActiveRecord::Base
     bucket.get_downvotes.map(&:voter_id).include?(self.id)
   end
 
+  def activity_quotient
+
+    score = 0
+    case self.sign_in_count
+    when 0..50
+        score += 5
+    when 51..200
+        score += 10
+    when 201..500
+        score += 15
+    when 501..1000
+        score += 20
+    else
+        score += 25
+    end
 
 
+    case self.enrolled_courses.size
+    when 0..2
+        score += 5
+    when 3..6
+        score += 10
+    when 7..10
+        score += 15
+    when 10..15
+        score += 20
+    else
+        score += 25
+    end
+
+
+
+    case self.uploaded_buckets.size
+    when 0..2
+        score += 5
+    when 3..6
+        score += 10
+    when 7..10
+        score += 15
+    when 10..15
+        score += 20
+    else
+        score += 25
+    end
+
+
+    case self.downloaded_buckets.size
+    when 0..2
+        score += 5
+    when 3..6
+        score += 15
+    when 7..10
+        score += 20
+    else
+        score += 25
+    end
+
+    return score
+
+
+  end
 end
