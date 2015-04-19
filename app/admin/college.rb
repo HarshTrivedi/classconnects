@@ -1,5 +1,5 @@
 ActiveAdmin.register College do
-  menu :label => "Manage Colleges" , :priority => 9
+  menu :label => "Colleges" , :priority => 3
 
   permit_params :name
   belongs_to :branch , :optional => true

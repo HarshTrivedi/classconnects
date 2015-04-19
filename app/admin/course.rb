@@ -1,5 +1,5 @@
 ActiveAdmin.register Course do
-  menu false
+  menu :label => "Course" , :priority => 5
   permit_params :name, :code, :professors , :college_branch_pair_id
 
   belongs_to :college_branch_pair , :optional => true

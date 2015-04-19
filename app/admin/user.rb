@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  menu label: "Users" , :priority => 5
+  menu label: "Users" , :priority => 2
 
   permit_params :email, :password, :password_confirmation, :role , :first_name , :last_name
 
@@ -123,10 +123,6 @@ ActiveAdmin.register User do
 
         column :buckets_downloaded do |user|
             user.downloaded_buckets.size
-        end
-
-        column :reputation do |user|
-            user.reputation
         end
 
         column :sign_in_count

@@ -82,15 +82,15 @@ ActiveAdmin.register Bucket do
   index do
       selectable_column
       column :name
+      column :user_id do |bucket|
+          bucket.uploader.full_name
+      end
       column :description 
       column :category do |bucket|
           status_tag(bucket.category.category , :ok)
       end
       column :created_at do |bucket|
           "Created #{time_ago_in_words(bucket.created_at)} ago"
-      end
-      column :user_id do |bucket|
-          bucket.uploader.full_name
       end
       actions
   end

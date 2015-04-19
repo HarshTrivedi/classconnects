@@ -1,5 +1,5 @@
 ActiveAdmin.register ReportedInappropriate do
-
+  menu label: "Reports" , :priority => 8
   controller do
 
 	  def new
