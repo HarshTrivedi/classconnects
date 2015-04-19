@@ -18,7 +18,7 @@
 //= require retina.js
 //= require demo-panel.js
 //= require bootstrap_002.js
-
+//= bootstrap-tooltip.js
 //= require toastr
 //= require chosen-jquery
 //= require s3_direct_upload
