@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Classcolab</title>
+  <%= csrf_meta_tags %>
+   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="icon" href="http://www.themedept.com/demo/smartmvp/assets/images/favicon/favicon.ico">
+    <link rel="stylesheet" href="assets/landing/bootstrap.css">
+    <link rel="stylesheet" href="assets/landing/icons.css">
+    <link href="assets/landing/css.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/landing/plugins.css">
+    <link rel="stylesheet" href="assets/landing/style.css">
+    <link rel="stylesheet" href="assets/landing/responsive.css">
+    <link rel="stylesheet" href="assets/landing/red.css" title="red">
+    <link rel="alternate stylesheet" href="assets/landing/green.css" title="green">
+    <link rel="alternate stylesheet" href="assets/landing/orange.css" title="orange">
+    <link rel="alternate stylesheet" href="assets/landing/purple.css" title="purple">
+    <link rel="alternate stylesheet" href="assets/landing/yellow.css" title="yellow">
+    <link rel="alternate stylesheet" href="assets/landing/grey.css" title="grey">
+    <link rel="alternate stylesheet" href="assets/landing/blue.css" title="blue">
+    <link rel="alternate stylesheet" href="assets/landing/midnight-blue.css" title="midnight-blue">
+    <link rel="stylesheet" href="assets/landing/demo.css">
+    <link rel="stylesheet" href="assets/landing/venobox.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/landing/font-awesome.css">
+    <style>
+        .counter {
+            display: table-cell;
+            margin:;
+            font-size:30px;
+            background-color: transparent;
+            border: 2px solid rgb(12,185,238);
+            color:#ffffff;
+            width:100px;
+            border-radius: 50%;
+            height:100px;
+            vertical-align: middle;
+            text-align:center;
+        }
+    </style>
+     <link rel="stylesheet" href="assets/landing/bootstrap1.css">
+    <link rel="stylesheet" href="assets/landing/icons1.css">
+    <link href="assets/landing/css1.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/landing/animate1.css">
+    <link rel="stylesheet" href="assets/landing/venobox1.css">
+    <link rel="stylesheet" href="assets/landing/style1.css">
+    <link rel="stylesheet" href="assets/landing/responsive1.css">
+    <link rel="stylesheet" href="assets/landing/red1.css" title="red">
+    <link rel="alternate stylesheet" href="assets/landing/green1.css" title="green">
+    <link rel="alternate stylesheet" href="assets/landing/orange1.css" title="orange">
+    <link rel="alternate stylesheet" href="assets/landing/purple1.css" title="purple">
+    <link rel="alternate stylesheet" href="assets/landing/yellow1.css" title="yellow">
+    <link rel="alternate stylesheet" href="assets/landing/grey1.css" title="grey">
+    <link rel="alternate stylesheet" href="assets/landing/blue1.css" title="blue">
+    <link rel="alternate stylesheet" href="assets/landing/midnight-blue1.css" title="midnight-blue">
+    <link rel="stylesheet" href="assets/landing/demo1.css">
+    
+    <!--[if lt IE 9]>
+            <script src="assets/landing/plugins/html5shiv.min.js"></script>
+            <script src="assets/landing/plugins/respond.min.js"></script>
+    <![endif]-->
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+                        <style> 
+
+                        .content {
+                          width: 80%;
+                          padding: 20px;
+                          margin: 0 auto;
+                          padding: 0 60px 0 0;
+                        }
+
+                        .centerplease {
+                          margin: 0 auto;
+                          max-width: 270px;
+                          font-size: 40px;
+                        }
+
+                        .question {
+                          position: relative;
+                          background: rgba(50,56,69,0.95);
+                          margin: 0;
+                          padding: 10px 10px 10px 50px;
+                          display: block;
+                          width:100%;
+                          cursor: pointer;
+                          color:#ffffff;
+                        }
+
+                        .answers {
+                          background: #ffffff;
+                          padding: 0px 15px;
+                          margin: 5px 0;
+                          height: 0;
+                          overflow: hidden;
+                          z-index: -1;
+                          position: relative;
+                          opacity: 0;
+                          -webkit-transition: .7s ease;
+                          -moz-transition: .7s ease;
+                          -o-transition: .7s ease;
+                          transition: .7s ease;
+                        }
+
+                        .questions:checked ~ .answers{
+                          height: auto;
+                          opacity: 1;
+                          padding: 15px;
+                        }
+
+                        .plus {
+                          position: absolute;
+                          margin-left: 10px;
+                          z-index: 5;
+                          font-size: 2em;
+                          line-height: 100%;
+                          -webkit-user-select: none;    
+                          -moz-user-select: none;
+                          -ms-user-select: none;
+                          -o-user-select: none;
+                          user-select: none;
+                          -webkit-transition: .3s ease;
+                          -moz-transition: .3s ease;
+                          -o-transition: .3s ease;
+                          transition: .3s ease;
+                        }
+
+                        .questions:checked ~ .plus {
+                          -webkit-transform: rotate(45deg);
+                          -moz-transform: rotate(45deg);
+                          -o-transform: rotate(45deg);
+                          transform: rotate(45deg);
+                        }
+
+                        .questions {
+                          display: none;
+                        }
+                     </style>
+
+
+
+
+</head>
+
+
+<body data-offset="11" data-target=".navbar-fixed-top" data-spy="scroll">
+    <div class="main-wrapper">
+
+        <div style="display: none;" class="preloader">
+            <div class="loader-container">
+                <div class="text-logo">CLASSCOLAB</div>
+                <div style="display: none;" class="signal"></div>
+            </div>
+        </div> 
+        
+        <header style="background-position: 50% 0px;" class="header fast-reg-img" id="top" data-stellar-background-ratio="0.5">
+            <!-- Background Overlay -->
+            <div class="overlay">
+
+                <!-- =========================================
+                     Navigation
+                ========================================== -->
+                <nav class="navbar navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Navbar-Header -->
+                                <div class="navbar-header">
+                                    
+                                    <!-- Mobile Menu -->
+                                    <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                                        <i class="icon icon_menu"></i>
+                                    </button>
+
+                                    <!-- Text-Logo -->
+                                    <a href="#top" class="navbar-brand scrollto" title="SmartMvp">
+                                        <span class="text-logo">CLASS COLAB</span>
+                                    </a> 
+
+                                </div><!-- /End Navbar-Header -->
+
+                                <!-- Navbar-Collapse -->
+                                <div class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <!-- Menu Items -->
+                                        <li><a href="#about" title="" class="scrollto">About</a></li>
+                                        <li><a href="#features" title="" class="scrollto">Features</a></li>
+                                        <li><a href="#faq" title="" class="scrollto">FAQ</a></li>                                        
+                                        <!-- Login and Signup Modal on click -->
+                                        <li><%= link_to('Login', new_user_session_path)  %></li>
+                                        <li><%= link_to('SignUp', new_user_registration_path) %>
+                                        </li>
+                                    </ul>
+                                </div><!-- /End Navbar-Collapse -->
+                            </div><!-- /End Col -->
+                        </div><!-- /End Row -->
+                    </div><!-- /End Container -->
+                </nav><!-- /End Sticky Navigation -->
+
+
+                
+                <!-- =========================================
+                     Hero-Section
+                ========================================== -->
+                <div class="container vmiddle fast-reg">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="hero-section">
+                                
+                                <!-- Welcome - Hero Message -->
+                                <h1 class="text-white">CLASS COLAB <br> Reinventing Your Acadamic World</h1>
+                                <p class="text-white">Your academia, anywhere, anytime.</p>
+                                
+                                <div class="col-md-10 col-md-offset-3">
+                                    <div style="float:left ; margin-right:40px ;color:#ffffff">
+                                    <div class="counter" data-count="40">0</div>
+                                    Colleges
+                                    </div>
+                                    <div style="float:left ; margin-right:40px ;color:#ffffff">
+                                    <div class="counter" data-count="230">100</div>
+                                    Branches
+                                    </div>
+                                    <div style="float:left ; margin-right:40px ;color:#ffffff">
+                                    <div class="counter" data-count="1181">200</div> <!-- /End Fast-Reg -->
+                                    Courses
+                                    </div>
+                                    <div style="float:left ; margin-right:40px ;color:#ffffff">
+                                    <div class="counter" data-count="12149">200</div> <!-- /End Fast-Reg -->
+                                    Collabers
+                                    </div>
+                                </div><!-- /End Col -->
+                            </div><!-- /End Intro-Section -->
+                        </div><!-- /End Col -->
+                    </div><!-- /End Row -->
+                </div><!-- /End Container Hero-Section -->
+
+
+            </div><!-- /End Background Overlay -->
+        </header>
+        <!-- =========================
+             /END HEADER
+        ============================== -->
+
+        
+        <!-- =================================
+             SECTION ABOUT - INTRO FEATURES
+        ====================================== -->
+        <section class="intro-features" id="about">
+            <div class="container">
+                <!-- Padding -->
+                <div class="wrapper-lg">
+                    <div class="row">
+                        <!-- Section Header Title -->
+                        <div class="col-xs-12">
+                            <h2>It's about uniting world of education</h2>
+                            <p class="large">Spend less time in searching about the relevant documents and give more time to read them</p>
+                        </div>
+                    </div>
+                    <!-- Three Main Features with Icons -->
+                    <div class="row">
+                        <div class="col-sm-4 intro-content">
+                            <div class="icon-lg">
+                                <i class="icon icon-mobile"></i>
+                            </div>
+                            <h4>New way of sharing</h4>
+                            <p>When it comes to studying, there is nothing more easy. ClassColab gives you a new way of sharing eaperience.</p>
+                        </div>
+                        <div class="col-sm-4 intro-content">
+                            <div class="icon-lg">
+                                <i class="icon icon-browser"></i>
+                            </div>
+                            <h4>New way of Collaboration</h4>
+                            <p>Collaboration of difference classes, which makes you experience limitless, all on the tips of your fingers.</p>  
+                        </div>
+                        <div class="col-sm-4 intro-content">
+                            <div class="icon-lg">
+                                <i class="icon icon-documents"></i>
+                            </div>
+                            <h4>New way to define boundaries</h4>
+                            <p>The needed resources from different classrooms across different colleges along with the resources of your own college are made accessible anytime, anywhere.</p>
+                        </div>
+                    </div><!-- /End Row -->
+                </div><!-- /End Wrapper -->
+            </div><!-- /End Container -->
+        </section>
+        <!-- =============================
+             /END INTRO FEATURES
+        ============================== -->
+        
+        
+        <!-- ==================================================
+             SECTION 2 COLS - IMAGE RIGHT AND TEXT WITH CALL TO ACTION
+        ======================================================= -->
+        <!-- =============================
+             /END CHARTS SECTION 
+        ============================== -->
+        
+        
+        <!-- ==================================================
+            FEATURES SECTION
+        ======================================================= -->
+       
+        <section id="features" class="features" style="background-color:rgba(50,56,69,0.95); color:#ffffff ; padding:40px">
+      <div class="container">
+        <div class="row">
+        
+          <div style="visibility: visible; animation-duration: 500ms; animation-name: bounceInDown;" class="sec-title text-center mb50 wow bounceInDown animated animated" data-wow-duration="500ms">
+            <h2 style="color:#ffffff">Features</h2>
+            <div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
+          </div>
+
+          <!-- service item -->
+          <div style="visibility: visible; animation-duration: 500ms; animation-name: fadeInLeft;" class="col-md-4 wow fadeInLeft animated" data-wow-duration="500ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-github fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">Branding</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+              </div>
+            </div>
+          </div>
+          <!-- end service item -->
+          
+          <!-- service item -->
+          <div style="visibility: visible; animation-duration: 500ms; animation-delay: 500ms; animation-name: fadeInUp;" class="col-md-4 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="500ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-pencil fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">Development</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+              </div>
+            </div>
+          </div>
+          <!-- end service item -->
+          
+          <!-- service item -->
+          <div style="visibility: visible; animation-duration: 500ms; animation-delay: 900ms; animation-name: fadeInRight;" class="col-md-4 wow fadeInRight animated" data-wow-duration="500ms" data-wow-delay="900ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-bullhorn fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">Consulting</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+              </div>
+            </div>
+          </div>
+          <!-- end service item -->
+            <div style="visibility: visible; animation-duration: 500ms; animation-name: fadeInLeft;" class="col-md-4 wow fadeInLeft animated" data-wow-duration="1000ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-github fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">Feature 4</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+              </div>
+            </div>
+          </div>
+          <div style="visibility: visible; animation-duration: 500ms; animation-delay: 500ms; animation-name: fadeInUp;" class="col-md-4 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="500ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-github fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">Feature - 5</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+              </div>
+            </div>
+          </div>
+          <div style="visibility: visible; animation-duration: 500ms; animation-delay: 900ms; animation-name: fadeInRight;" class="col-md-4 wow fadeInRight animated" data-wow-duration="500ms" data-wow-delay="900ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-github fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">Feature - 6</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+        <!-- =============================
+             /END FEATURES TAB
+        ============================== -->
+        
+        
+        <!-- ==================================================
+            SIGNUP DIVIDER
+        ======================================================= -->
+        <!-- =============================
+             /END PRICING SECTION 
+        ============================== -->
+
+
+        <!-- =======================================================
+             TESTIMONIALS WITH PRESS/CLIENTS LOGOS
+        ============================================================ -->
+        <!-- =============================
+             /END TESTIMONIALS
+        ============================== -->
+        
+
+        <!-- ==================================================
+            TEAM
+        ======================================================= -->
+        
+            
+        <!-- ==================================================
+            MOBILE DOWNLOAD SECTION
+        ======================================================= -->
+                        <div class="col-md-6">
+                                      
+                            <!-- =========================
+                                LOCAL SUBSCRIPTION FORM 
+                            ============================== -->
+                            <!-- ALTERNATE USE: SAVE YOUR SUBSCRIBE LIST IN .TXT
+
+                            <form id="subscribe" role="form">
+                                <div class="table">
+                                    <div class="table-row">
+                                        <div class="table-cell getnewsletter">
+                                            <h5 class="table-title">Get the Newsletter</h5>
+                                        </div>
+                                    </div>
+                                    <div class="table-cell">
+                                        <div class="input-group">
+                                            <input type="email" id="s-email" name="email" placeholder="Your email address" class="form-control">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-color">Submit</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
+                                    <p class="subscription-success"><i class="icon icon_check_alt2"></i> You are successfully subscribed for our newsletter.</p>
+                                    <p class="subscription-failed"><i class="icon icon_close_alt2"></i> Something went wrong!</p>
+                                </div>
+                            </form>
+                            -->
+
+                        </div><!-- /End Col -->
+                    </div><!-- /End Row -->
+                </div><!-- End Wrapper -->
+            </div><!-- /End Container -->
+        </section>
+        <!-- =============================
+             /END NEWSLETTER SECTION 
+        ============================== -->
+                <section id="faq" class="faq">
+
+         <div class="container" >
+                <div class="wrapper-lg">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Frequently Asked Questions</h2>
+                            <p class="large">Here is the list of FAQs for our website</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Team Box -->
+                                             
+                   
+                    <div class="content">
+                    <div>
+                      <input type="checkbox" id="question1" name="q"  class="questions">
+                      <div class="plus">+</div>
+                      <label for="question1" class="question">
+                        This is the question that will be asked?
+                      </label>
+                      <div class="answers">
+                        What if the answer is really long and wraps the whole page and you never want to finish it but you have to because its the answer!
+                      </div>
+                    </div>
+
+                    <div>
+                      <input type="checkbox" id="question2" name="q" class="questions">
+                      <div class="plus">+</div>
+                      <label for="question2" class="question">
+                        Short?
+                      </label>
+                      <div class="answers">
+                        short!
+                      </div>
+                    </div>
+                      
+                    <div>
+                      <input type="checkbox" id="question3" name="q" class="questions">
+                      <div class="plus">+</div>
+                      <label for="question3" class="question">
+                        But what if the question is really long and wraps the whole page and you feel like you will never finish reading the question?
+                      </label>
+                      <div class="answers">
+                        This is the answer!
+                      </div>
+                    </div>
+                    </div>
+
+                        </div>
+                    </div><!-- /End Row -->
+                </div><!-- End Wrapper -->
+            </div><!--/End Container -->
+
+        
+        <!-- ==================================================
+            FOOTER
+        ======================================================= -->
+       <footer class="footer dark-bg" id="footer">
+            <div class="container">
+                <div class="wrapper-lg">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5 class="text-white">Get in touch!</h5>
+                            <p class="form-text">Want to support or just
+ want to say hi? It's all good, we'd love to connect with you. </p>
+                            
+                            <form id="contact" role="form" style="color:#ffffff">
+                                <!-- Notifications -->
+                                <p class="email-success"><i class="icon icon_check_alt2"></i> <strong>Your quote has successfully been sent.</strong></p>
+                                <p class="email-failed"><i class="icon icon_close_alt2"></i><strong> Something went wrong!</strong></p>
+                            
+                                <!-- Input Fields -->
+                                <div class="form-group">
+                                    <input class="form-control input-lg" name="name" id="name" placeholder="Your name" required="" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="form-control input-lg" name="email" id="email" placeholder="Email Address" required="" type="email">
+                                </div>
+                                
+                                <!-- Message Textarea -->
+                                <div class="form-group">
+                                    <textarea name="message" class="form-control input-lg textarea" id="message" cols="30" rows="5" placeholder="Your Message.."></textarea>
+                                </div>
+
+                                <!-- Send Button -->
+                                <button class="btn btn-color">Send Message</button>
+
+                            </form>                          
+
+                        </div>
+                        
+
+                        <div class="col-md-4 footer-right">
+                            
+                            <h5 class="text-white">Our Contact</h5>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="icon icon_mail"></i>
+                                </div>
+                                <div class="contact-content">
+                                    <a href="mailto:hi@themedept.com">hi@themedept.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="icon icon_pin"></i>
+                                </div>
+                                <div class="contact-content">
+                                    121 King Street, Melbourne<br>
+                                    Victoria 3000 Australia
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="icon icon_phone"></i>
+                                </div>
+                                <div class="contact-content">
+                                    1-234-567-89
+                                </div>
+                            </div>
+
+                            <div class="twitter-box">
+                                <h5 class="text-white">Recent Tweets</h5>
+                                <div class="tweet"><span>Loading...</span></div>
+                            </div>
+                            
+                        </div>
+
+                    </div><!-- End Row -->
+
+                    <!-- Footer Menu and Copy -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="footer-nav">
+                                <li>
+                                    <a href="#">About</a>
+                                </li>
+                                <li>
+                                    <a href="#">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="#">Help</a>
+                                </li>
+                                <li>
+                                    <a href="#">Terms</a>
+                                </li>
+                                <li>
+                                    <a href="#">Privacy</a>
+                                </li>
+                            </ul>
+                            <p class="footer-copy">© 2014 - SmartMvp. Original Design by <a href="http://themedept.com/">ThemeDept.</a></p>
+                        </div>
+                    </div><!-- End Row -->
+                
+
+
+                </div><!-- /End Wrapper -->
+            </div><!-- /End Container -->
+        </footer>
+    </div><!-- /End Main Wrapper -->
+
+    <!-- =========================
+         SCRIPTS 
+    ============================== -->
+    <script src="assets/landing/jquery1.js"></script>
+    <script src="assets/landing/bootstrap.js"></script>
+    <script src="assets/landing/jquery.js"></script>
+    <script src="assets/landing/modernizr.js"></script>
+    <script src="assets/landing/plugins.js"></script>
+    <script src="assets/landing/tweetie.js"></script>
+    <!-- Custom Script -->
+    <script src="assets/landing/custom.js"></script>
+
+    <!-- =========================================================
+     STYLE SWITCHER | ONLY FOR DEMO NOT INCLUDED IN MAIN FILES
+    ============================================================== -->
+    <script type="text/javascript" src="assets/landing/styleswitcher.js"></script>
+    <script type="text/javascript" src="assets/landing/demo.js"></script>
+    
+
+    
+
+
+</body>
+<!--added for circle counter-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script src="assets/landing/analytics.js"></script>
+<script src="assets/landing/demo.js"></script>
+<script src="assets/landing/custom.js"></script>
+<script src="assets/landing/jquery.js"></script>
+<script src="assets/landing/jquery1.js"></script>
+<script src="assets/landing/plugins.js"></script>
+<script src="assets/landing/tweetie.js"></script>
+<script src="assets/landing/bootstrap.js"></script>
+<script src="assets/landing/modernizr.js"></script>
+<script src="assets/landing/styleswitcher.js"></script>
+<script src="assets/landing/jquery.easing.1.3.js"></script>
+
+    <!-- Custom Script -->
+    <script src="assets/landing/jquery21.js"></script>
+    <script src="assets/landing/bootstrap1.js"></script>
+    <script src="assets/landing/modernizr1.js"></script>
+    <script src="assets/landing/plugins1.js"></script>
+    <script src="assets/landing/tweetie1.js"></script>
+    <!-- Custom Script -->
+    <script src="assets/landing/custom1.js"></script>
+
+<script>
+$('.counter').each(function() {
+  var $this = $(this),
+      countTo = $this.attr('data-count');
+  
+  $({ countNum: $this.text()}).animate({
+    countNum: countTo
+  },
+
+  {
+
+    duration: 5000,
+    easing:'linear',
+    step: function() {
+      $this.text(Math.floor(this.countNum));
+    },
+    complete: function() {
+      $this.text(this.countNum);
+      //alert('finished');
+    }
+
+  });  
+  
+  
+
+});
+</script>
+<script>
+        $(document).ready(function(){
+            $("#link-feature-1").click(function(event){
+                $("#feature-1").addClass('active');
+                $("#feature-2").removeClass('active');
+                $("#feature-3").removeClass('active');
+                $("#feature-4").removeClass('active');
+                $("#feature-5").removeClass('active');
+                document.getElementById("tab-feature-1").style.display="block";
+                document.getElementById("tab-feature-1").style.position="static";
+                document.getElementById("tab-feature-1").style.visibility="visible";
+                
+                document.getElementById("tab-feature-2").style.display="none";
+                document.getElementById("tab-feature-3").style.display="none";
+                document.getElementById("tab-feature-4").style.display="none";
+                document.getElementById("tab-feature-5").style.display="none";
+            });
+            $("#link-feature-2").click(function(event){
+                $("#feature-2").addClass('active');
+                $("#feature-1").removeClass('active');
+                $("#feature-3").removeClass('active');
+                $("#feature-4").removeClass('active');
+                $("#feature-5").removeClass('active');
+                
+                document.getElementById("tab-feature-2").style.display="block";
+                document.getElementById("tab-feature-2").style.position="static";
+                document.getElementById("tab-feature-2").style.visibility="visible";
+                document.getElementById("tab-feature-1").style.display="none";
+                document.getElementById("tab-feature-3").style.display="none";
+                document.getElementById("tab-feature-4").style.display="none";
+                document.getElementById("tab-feature-5").style.display="none";
+               
+          });
+            $("#link-feature-3").click(function(event){
+                $("#feature-3").addClass('active');
+                $("#feature-1").removeClass('active');
+                $("#feature-2").removeClass('active');
+                $("#feature-4").removeClass('active');
+                $("#feature-5").removeClass('active');
+                
+                document.getElementById("tab-feature-3").style.display="block";
+                document.getElementById("tab-feature-3").style.position="static";
+                document.getElementById("tab-feature-3").style.visibility="visible";
+                document.getElementById("tab-feature-1").style.display="none";
+                document.getElementById("tab-feature-2").style.display="none";
+                document.getElementById("tab-feature-4").style.display="none";
+                document.getElementById("tab-feature-5").style.display="none";
+            });
+            $("#link-feature-4").click(function(event){
+                $("#feature-4").addClass('active');
+                $("#feature-1").removeClass('active');
+                $("#feature-2").removeClass('active');
+                $("#feature-3").removeClass('active');
+                $("#feature-5").removeClass('active');
+                
+                document.getElementById("tab-feature-4").style.display="block";
+                document.getElementById("tab-feature-4").style.position="static";
+                document.getElementById("tab-feature-4").style.visibility="visible";
+                document.getElementById("tab-feature-1").style.display="none";
+                document.getElementById("tab-feature-2").style.display="none";
+                document.getElementById("tab-feature-3").style.display="none";
+                document.getElementById("tab-feature-5").style.display="none";
+            });
+            $("#link-feature-5").click(function(event){
+                $("#feature-5").addClass('active');
+                $("#feature-1").removeClass('active');
+                $("#feature-2").removeClass('active');
+                $("#feature-4").removeClass('active');
+                $("#feature-3").removeClass('active');
+                
+                document.getElementById("tab-feature-5").style.display="block";
+                document.getElementById("tab-feature-5").style.position="relative";
+                document.getElementById("tab-feature-5").style.visibility="visible";
+                document.getElementById("tab-feature-1").style.display="none";
+                document.getElementById("tab-feature-2").style.display="none";
+                document.getElementById("tab-feature-4").style.display="none";
+                document.getElementById("tab-feature-3").style.display="none";
+            });
+                            
+        });
+</script>
+
+
+</html>
+

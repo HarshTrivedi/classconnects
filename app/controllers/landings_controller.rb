@@ -96,7 +96,7 @@ class LandingsController < ApplicationController
       if not current_user.nil?
           "logged_in"
       else
-          "application"
+          "non_logged_in"
       end
   end
 

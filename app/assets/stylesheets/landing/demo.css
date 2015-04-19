@@ -1,0 +1,133 @@
+.style-switch {
+    opacity: 0.95;
+    position: fixed;
+    z-index: 9999;
+    top: 70px;
+    left: -220px;
+    background: #FFFFFF;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.style-switch:hover {
+    opacity: 1 !important;
+}
+
+.style-switch .switched-options {
+    position: relative;
+    width: 220px;
+    text-align: left;
+    padding: 20px;
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+.style-switch .config-title {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #dadada;
+    border-top: 1px solid #dadada;
+    margin-bottom: 5px;
+}
+
+.style-switch ul {
+    margin-bottom: 25px;
+}
+
+.style-switch ul .active a {
+    color: #c0392b;
+    font-weight: 400;
+}
+
+.style-switch ul .p {
+    font-weight: 400;
+    font-size: 11px;
+    color: #333333;
+    margin-top: 10px;
+}
+
+.style-switch ul li a {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #333333;
+}
+
+.style-switch ul li a:hover {
+    color: #323a45;
+}
+
+.style-switch ul.styles {
+    margin-top: 15px;
+}
+
+.style-switch ul.styles li {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.style-switch ul.styles li .blue,
+.style-switch ul.styles li .midnight-blue,
+.style-switch ul.styles li .green,
+.style-switch ul.styles li .orange,
+.style-switch ul.styles li .purple,
+.style-switch ul.styles li .red,
+.style-switch ul.styles li .grey,
+.style-switch ul.styles li .yellow {
+    width: 35px;
+    height: 35px;
+}
+
+.style-switch ul.styles li .blue {
+    background: #2980b9;
+}
+
+.style-switch ul.styles li .midnight-blue {
+    background: #2c3e50;
+}
+
+.style-switch ul.styles li .green {
+    background: #27ae60;
+}
+
+.style-switch ul.styles li .orange {
+    background: #d35400;
+}
+
+.style-switch ul.styles li .purple {
+    background: #8e44ad;
+}
+
+.style-switch ul.styles li .red {
+    background: #c0392b;
+}
+
+.style-switch ul.styles li .grey {
+    background: #7f8c8d;
+}
+
+.style-switch ul.styles li .yellow {
+    background: #f1c40f;
+}
+
+.style-switch .switch-button {
+    opacity: 1 !important;
+    background: #FFF;
+    padding: 10px;
+    font-size: 24px;
+    color: #333333;
+    position: absolute;
+    overflow: hidden;
+    right: -44px;
+    top: -10;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.style-switch .switch-button:hover {
+    color: #323a45;
+    cursor: pointer;
+}
