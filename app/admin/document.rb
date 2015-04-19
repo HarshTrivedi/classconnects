@@ -162,11 +162,23 @@ ActiveAdmin.register Document do
 
         if @parent_folder
             create! do |format|
-                format.html { redirect_to admin_bucket_folder_path( @bucket , @parent_folder ) }
+                format.html { 
+                  if @document.valid?
+                    redirect_to admin_bucket_folder_path( @bucket , @parent_folder ) 
+                  else
+                    render 'new'
+                  end
+                }
             end
         else
             create! do |format|
-                format.html { redirect_to admin_bucket_path( @bucket ) }
+                format.html { 
+                  if @document.valid?
+                    redirect_to admin_bucket_path( @bucket ) 
+                  else
+                    render 'new'
+                  end
+                }
             end
         end
 

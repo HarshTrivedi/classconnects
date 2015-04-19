@@ -25,7 +25,13 @@ ActiveAdmin.register Bucket do
 
 	      @course.buckets << @bucket
         create! do |format|
-            format.html { redirect_to admin_course_path( @course ) }
+            format.html {
+              if @bucket.valid?
+                redirect_to admin_course_path( @course ) 
+              else
+                 render 'new'
+              end
+            }
         end
 	    end
 
@@ -40,7 +46,13 @@ ActiveAdmin.register Bucket do
         authorize_me_to( :update , @bucket )
         @bucket.update_attributes(permitted_params[:bucket])
         update! do |format|
-            format.html { redirect_to admin_course_path( @course ) }
+            format.html { 
+              if @bucket.valid?
+                redirect_to admin_course_path( @course ) 
+              else
+                render 'new'
+              end
+            }
         end
       end
 
@@ -182,7 +194,7 @@ ActiveAdmin.register Bucket do
           if f.object.course_id.nil?
 	          f.input :course   , as: :select ,  input_html: { :class => 'chosen-input' }  , :label => "Choose Course"
           else
-            f.input :course_id, :as => :hidden ,  input_html: { :value => f.object.course_id }             
+            f.input :course_id, :as => :hidden ,  input_html: { :value => f.object.course_id }
           end
           f.input :category , as: :select ,  input_html: { :class => 'chosen-input' }  , :label => "Choose Category"
           f.input :description
