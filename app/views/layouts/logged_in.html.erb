@@ -88,8 +88,14 @@
 								Hi, <strong><%=current_user.full_name%></strong>
 							  </a>
 							  <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
-								<li><%= link_to 'Change Password', edit_user_registration_path %></li>
-								<li><a href="#fakelink">Profile</a></li>
+								<li>
+									<a style="cursor:pointer" data-toggle="modal" data-target="#edit_passowrd">
+										Change Password
+									</a>
+								</li>
+								<li>
+									<%= link_to("Profile" , profile_main_path) %>	
+								</li>
 								<li class="divider"></li>
 								<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
 							  </ul>
@@ -261,6 +267,36 @@
 			     </div><!-- /.modal-dialog -->
 			</div>
 
+
+<!--  -->
+			<div class="modal fade" id="edit_passowrd" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+			     <div class="modal-dialog">
+			       <div class="modal-content modal-no-shadow">
+			         <div class="modal-header bg-dark no-border">
+			           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			           <h4 class="modal-title">Change Password</h4>
+			         </div>
+			         <div class="modal-body">
+
+
+						<%= simple_form_for(current_user , url: ajax_change_password_path ,  :method => :put , :remote => true ) do |f| %>
+
+						  <div class="form-inputs">
+						    <%= f.input :password, autocomplete: "off", required: true %>
+						    <%= f.input :password_confirmation, required: true %>
+						    <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+						  </div>
+
+						  <div class="form-actions">
+						    <%= f.button :submit, "Update" %>
+						  </div>
+						<% end %>
+
+			         </div>
+			       </div><!-- /.modal-content .modal-no-shadow -->
+			     </div><!-- /.modal-dialog -->
+			</div>
+<!--  -->
 
 			
 			<!-- BEGIN PAGE CONTENT -->
@@ -607,6 +643,26 @@
           messages: {
             'college_name': "Please add non-empty college name",
             'branch_name': "Please add non-empty branch name"
+          }
+    });
+  });
+
+  $('#edit_passowrd').on('shown.bs.modal', function() {
+    $("#edit_passowrd form").validate({
+          rules: {
+            'user[current_password]': "required",
+			'user[password]' : {
+                    minlength : 5
+                },
+            'user[password_confirmation]' : {
+                    minlength : 5,
+                    equalTo : "#user_password"
+            }
+          },
+          messages: {
+            'user[current_password]': "Please enter non empty current_password",
+            'user[password]': "Please enter password of size greater than 5",
+            'user[password_confirmation]': "password and confirmation must match"
           }
     });
   });

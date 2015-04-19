@@ -13,6 +13,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+
+  def ajax_change_password
+      password = params[:user][:password]
+      password_confirmation = params[:user][:password_confirmation]
+      current_password = params[:user][:current_password]
+
+      if current_user.valid_password?( current_password ) and (password == password_confirmation)
+          current_user.password = password
+          current_user.password_confirmation = password_confirmation
+          current_user.save
+          @message = "success"
+      else
+          @message = "fail"
+      end
+  end
+
   private
  
   def sign_up_params
