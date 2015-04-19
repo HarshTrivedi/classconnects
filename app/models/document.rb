@@ -103,4 +103,9 @@ class Document < ActiveRecord::Base
       self.s3["filesize"].to_i rescue 0
   end
 
+  def type
+      document[:s3]["filetype"]  rescue "none"
+  end
+
+
 end
