@@ -1,99 +1,100 @@
 <!-- bucket -->
 <div class="the-box">
 <div class="media-body">
-	  <p></p>
-	  <h2 class="media-heading">
-	  	<%= link_to( bucket.name , bucket_content_path(bucket.id)  ) %>
-	  </h2>
+<p></p>
+<h2 class="media-heading">
+<%= link_to( bucket.name , bucket_content_path(bucket.id) ) %>
+</h2>
 <hr class="marginbot-10">
-	  <p></p>
+<p></p>
+<% uploader = bucket.uploader %>	
 
-	  <% uploader = bucket.uploader %>	  
-	  <b>Author:</b>
-	  <span class="text-muted">
-	  		<%= link_to( uploader.full_name , profile_main_path( :user_id => uploader.id) )  %>
-	  </span>
-	  	  <p></p>
-	  
-	  <b>Author Reputation:</b>
-	  <span class="text-muted">
-	  		<%= uploader.reputation%>
-	  </span>
-	  <p></p>
-	  <p></p>
-	  
-	  <b>Full Description:</b>
-	  <span class="text-muted">
-	  		<%= bucket.description %>
-	  </span>
-	  
-	  <p></p>
-	  
-	  <b>Total Downloads:</b>
-	  <span class="text-muted">
-	  		<%= bucket.downloads.size%>
-	  </span>
-	  <p></p>
-	  
-	  <b>Total Up-votes:</b>
-	  <span class="text-muted">
-	  		<%= bucket.up_votes %>
-	  </span>
-	  
-	  <p></p>
-	  
-	  <b>Total Down-Votes:</b>
-	  <span class="text-muted">
-	  		<%= bucket.down_votes%>
-	  </span>
-	  <p></p>
-	  <b>Bucket Size:</b>
-	  <span class="text-muted">
-	  		<%= bucket.size %>
-	  </span>
-	  	  <p></p>
-	  
-	  <b>Catagory:</b>
-	  <span class="text-muted">
-	  		<%= bucket.category %>
-	  </span>
-	  <p></p>
-	  
-	  <b>College:</b>
-	  <span class="text-muted">
-	  		<%= bucket.course.college.name %>
-	  </span>
-  	  <p></p>
-
-	  <b>Branch:</b>
-	  <span class="text-muted">
-	  		<%= bucket.course.branch.name %>
-	  </span>
-  	  <p></p>
-
-	  <b>Course:</b>
-	  <span class="text-muted">
-	  		<%= bucket.course.name %>
-	  </span>
-  	  <p></p>
-	  
-	  <b>Accessibility:</b>
-	  <span class="text-muted">
-	  		<%= ( bucket.privately_shared == "true" ) ? ("private") : ("public") %>
-	  </span>
-	  <p></p>
-
-	  <b>Uploaded:</b>
-	  <span class="text-muted">
-		  	<%= time_ago_in_words( bucket.created_at ) %> ago
-	  </span>
-	  <p><p>
-	  <b>Last updated:</b> 
-	  <span class="text-muted">
-	  		<%= time_ago_in_words( bucket.updated_at ) %> ago
-	  </span>
-	  <p><p>
-
-
+	<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Author</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= link_to( uploader.full_name , profile_main_path( :user_id => uploader.id) ) %></p>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Author Reputation</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= uploader.reputation%></p>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Full Description</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= bucket.description %></p>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Total Downloads</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= bucket.downloads.size%></p>
+					</div>
+				</div><!-- /.form-group -->
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Total Up-votes</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= bucket.up_votes %></p>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Bucket Size</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= bucket.size %></p>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Catagory</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= bucket.category %></p>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">College</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= bucket.course.college.name %></p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Branch</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= bucket.course.branch.name %></p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Course</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= bucket.course.name %></p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Accessibility</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= ( bucket.privately_shared == "true" ) ? ("private") : ("public") %></p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Accessibility</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= ( bucket.privately_shared == "true" ) ? ("private") : ("public") %></p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Created</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= time_ago_in_words( bucket.created_at ) %> ago</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Last Updated</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= time_ago_in_words( bucket.updated_at ) %> ago</p>
+					</div>
+				</div>
+			</form>
 </div>
 </div>
