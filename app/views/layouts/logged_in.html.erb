@@ -130,7 +130,7 @@
 							<%= link_to( (image_tag avatar_url(current_user) , :class => "avatar img-circle" , :style =>"width:60px ; height:60px") , profile_main_path )%>
 						  </p>
 						  <div class="media-body">
-							<h4><%= current_user.first_name%>, <br><strong><%= current_user.last_name %></strong></h4>
+							<h4><%= current_user.first_name%>, <br><%= current_user.last_name %></h4>
 							
 							<%= link_to "Log Out", destroy_user_session_path, :method => :delete , :class => "btn btn-primary btn-xs"%>
 						  </div>
