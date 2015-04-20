@@ -190,7 +190,7 @@ button#facebook {
 <body style="background-color:transparent">
 
   <nav class="navbar navbar-fixed-top" role="navigation" style="height:40px ;color:#ffffff">
-                    <div class="container" style="margin-top:-20px">
+                    <div class="container" style="margin-top:-20px">                        
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- Navbar-Header -->
@@ -226,6 +226,7 @@ button#facebook {
                                         
                                     </ul>
                                 </div><!-- /End Navbar-Collapse -->
+                                <%= render partial: "shared/flash_messages", flash: flash %>
                             </div><!-- /End Col -->
                         </div><!-- /End Row -->
                     </div><!-- /End Container -->
