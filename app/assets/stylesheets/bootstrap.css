@@ -4938,8 +4938,8 @@ a.label:hover,a.label:focus{
 .badge{
 	display:inline-block;
 	min-width:10px;
-	padding:3px 7px;
-	font-size:12px;
+	padding:3px 5px;
+	font-size:10px;
 	font-weight:700;
 	line-height:1;
 	color:#fff;

@@ -7,16 +7,16 @@
 		<ul class="nav nav-tabs">
 
 			<%if current_page?(bucket_content_path) %>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Buckets"), bucket_content_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
+				<%= content_tag(:li , link_to(fa_icon("folder-open-o", text: "Content"), bucket_content_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Buckets"), bucket_content_path(bucket.id) , :data => {:toggle=>""} ), :class=>"" )%>
+				<%= content_tag(:li , link_to(fa_icon("folder-open-o", text: "Content"), bucket_content_path(bucket.id) , :data => {:toggle=>""} ), :class=>"" )%>
 			<%end%>
 
 
 			<%if current_page?(bucket_details_path)%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Details"), bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
+				<%= content_tag(:li , link_to(fa_icon("info-circle", text: "Details"), bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Details"), bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"" )%>
+				<%= content_tag(:li , link_to(fa_icon("info-circle", text: "Details"), bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"" )%>
 			<%end%>
 
 

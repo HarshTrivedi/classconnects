@@ -8,6 +8,8 @@
 		<!-- Prelang: Analytics / Google Analytics -->
 	    <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 		<title>Welcome - CollegeColab</title>
 
 	    <script src="http://js.pusher.com/2.0/pusher.min.js"></script>
@@ -47,8 +49,17 @@
 
 	    </script>
 
-
 	    <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+		<link href="http://allfont.net/css/?fonts=p22-corinthia" rel="stylesheet" type="text/css" />
+	    <style type="text/css">
+			.text-logo2 {
+                   font-family: 'P22 Corinthia', arial;
+                    color : #ffffff;
+                    text-shadow: 1px 1px 1px #aaa;
+                    font-size: 60px;
+            }
+	    </style>
 
 </head>
 
@@ -60,8 +71,8 @@
 				<div class="top-navbar-inner">
 					
 					<!-- Begin Logo brand -->
-					<div class="logo-brand">
-						<h3><a href="#">Class-Colab</a></h3>
+					<div class="logo-brand text-logo2">
+						<h3><a href="#" class="text-logo2">ClassCollab</a></h3>
 					</div><!-- /.logo-brand -->
 					<!-- End Logo brand -->
 					
@@ -120,11 +131,11 @@
 						  <div class="media-body">
 							<h4><%= current_user.first_name%>, <br><strong><%= current_user.last_name %></strong></h4>
 							
-							<%= link_to "Log Out", destroy_user_session_path, :method => :delete , :class => "btn btn-warning btn-xs"%>
+							<%= link_to "Log Out", destroy_user_session_path, :method => :delete , :class => "btn btn-primary btn-xs"%>
 						  </div>
 						</div>
 					</div>
-
+					<br>
 					<%if current_page?(uploads_path) %>
 					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"active" )%>
 					<%else%>
@@ -147,9 +158,9 @@
 					<%end%>
 					<%if not current_user.college.nil?%>
 						<%if current_page?(my_college_path) %>
-						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"active" )%>
+						<%= content_tag(:li , link_to(fa_icon("graduation-cap", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"active" )%>
 						<%else%>
-						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
+						<%= content_tag(:li , link_to(fa_icon("graduation-cap", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
 						<%end%>
 					<%else%>
 						<li>
@@ -205,7 +216,7 @@
 							  <div class="modal-footer">
 								  <div class="text-center">
 	   							  	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								  	<%= f.button :submit , "Enroll Me", :class => "btn btn-warning btn-perspective" , data: { confirm: "Are you sure you want to enroll in this college/branch and access private data shared? You will not be able to unenroll for next 6 months." } %>
+								  	<%= f.button :submit , "Enroll Me", :class => "btn btn-primary" , data: { confirm: "Are you sure you want to enroll in this college/branch and access private data shared? You will not be able to unenroll for next 6 months." } %>
 								  </div><!-- /.modal-footer -->
 							  </div>
 							<% end %>
@@ -231,7 +242,7 @@
 							  <%= f.input :name , :input_html => { :class => "" ,  :required => true} %>
 							  <%= f.input :description , :input_html => { :class => "" ,  :required => true } %>
 							  <div class="text-center">
-						  		<%= f.button :submit , "Create", :class => "btn btn-warning btn-perspective"%>
+						  		<%= f.button :submit , "Create", :class => "btn btn-primary"%>
 						  	  </div>
 						<% end %>
 			         </div>
@@ -258,7 +269,7 @@
 			                  <div class="modal-footer">
 			                     <div class="text-center">
 			                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			                       <%= f.button :submit , "Submit", :class => "btn btn-warning btn-perspective" %>
+			                       <%= f.button :submit , "Submit", :class => "btn btn-primary" %>
 			                     </div>
 			                  </div>
 			                <% end %>
@@ -321,13 +332,13 @@
 				<!-- BEGIN FOOTER -->
 				<footer class="footer">
 					<br>
-					© 2015 <a href="#fakelink">CodeArt</a><br>
+					© 2015 <a href="http://classcolab.com/">CodeArt</a><br>
 					Design by <a href="http://classcolab.com/" target="_blank">CodeArt</a>.
 				</footer>
 
 				<!-- tour guide starts -->
 
-				<div id="sign_in_count">
+				<div id="sign_in_count" style="display:none">
 					<%= current_user.sign_in_count%>
 				</div>
 

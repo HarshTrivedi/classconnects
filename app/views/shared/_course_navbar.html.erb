@@ -7,23 +7,23 @@
 		<ul class="nav nav-tabs">
 
 			<%if current_page?(course_content_path) %>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Buckets"), course_content_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
+				<%= content_tag(:li , link_to(fa_icon("briefcase", text: "Buckets"), course_content_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Buckets"), course_content_path(course.id) , :data => {:toggle=>""} ), :class=>"" )%>
+				<%= content_tag(:li , link_to(fa_icon("briefcase", text: "Buckets"), course_content_path(course.id) , :data => {:toggle=>""} ), :class=>"" )%>
 			<%end%>
 
 
 			<%if current_page?(course_users_path)%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Enrolled Students"), course_users_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
+				<%= content_tag(:li , link_to(fa_icon("users", text: "Enrolled Students"), course_users_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Enrolled Students"), course_users_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
+				<%= content_tag(:li , link_to(fa_icon("users", text: "Enrolled Students"), course_users_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
 			<%end%>
 
 
 			<%if current_page?(course_discussion_path)%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
+				<%= content_tag(:li , link_to(fa_icon("comment", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
+				<%= content_tag(:li , link_to(fa_icon("comment", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
 			<%end%>
 
 			<li class="dropdown" id="course_navbar_options" >

@@ -13,8 +13,8 @@
 									<p class="text-muted">Branch : <a href="#fakelink"><%= @user.branch.name rescue "None yet" %></a></p>
 									<%if @user == current_user %>
 										<p class="right-button">									
-											<%= link_to(fa_icon("fa-edit", text: "Change Password") , edit_user_registration_path , :class => "btn btn-warning btn-perspective btn-sm") %>
-											<%= link_to(fa_icon("fa-edit", text: "Change Profile Pic") , "http://en.gravatar.com/" , :class => "btn btn-warning btn-perspective btn-sm") %>
+											<%= link_to(fa_icon("fa-edit", text: "Change Password") , edit_user_registration_path , :class => "btn btn-primary btn-sm") %>
+											<%= link_to(fa_icon("fa-edit", text: "Change Profile Pic") , "http://en.gravatar.com/" , :class => "btn btn-primary btn-sm") %>
 										</p>
 									<%end%>
 								</div><!-- /.profile-info -->

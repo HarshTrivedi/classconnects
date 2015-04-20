@@ -300,6 +300,7 @@ $(document).on('page:load', function() {
 	cascade_enroll_college_branch();
     $('.carousel').carousel({ interval: 15000 })
 	tour_guide();
+	$('[data-toggle="tooltip"]').tooltip();
 });
 
 $(document).on('ready', function() {
@@ -308,6 +309,7 @@ $(document).on('ready', function() {
 	cascade_enroll_college_branch();
     $('.carousel').carousel({ interval: 15000 })
 	tour_guide();
+	$('[data-toggle="tooltip"]').tooltip();
 });
 
 $(document).on('page:fetch',   function() { NProgress.start(); });

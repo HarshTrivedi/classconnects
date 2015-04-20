@@ -1,7 +1,7 @@
 <% pending_request_buckets = current_user.pending_request_bucket_ids.map{|id| Bucket.find_by_id(id) } %>
 <a href="index.html#fakelink" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="badge badge-danger icon-count"><%= pending_request_buckets.size %></span>
-                    <i class="fa fa-bell"></i>
+                    <i class="fa fa-clock-o"></i>
                   </a>
                   <ul class="dropdown-menu square with-triangle">
                       <li>

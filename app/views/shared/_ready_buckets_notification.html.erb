@@ -1,6 +1,6 @@
  <% ready_buckets = current_user.ready_bucket_ids.map{|id| Bucket.find_by_id(id) } %>
  <a href="index.html#fakelink" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="badge badge-success icon-count" ><%= ready_buckets.size %></span>
+                    <span class="badge badge-success icon-count" style="size:10px"><%= ready_buckets.size %></span>
                     <i class="fa fa-cloud-download"></i>
                   </a>
                   <ul class="dropdown-menu square with-triangle">

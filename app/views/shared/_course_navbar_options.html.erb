@@ -2,21 +2,21 @@
   <ul class="dropdown-menu square margin-list-rounded with-triangle">
 	<%if (user.college == course.college ) and (user.branch == course.branch) %>
 		<%if user.enrolled_courses.include?(course)  %>
-			<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "UnEnroll"), unenroll_course_path(course.id) , :method => :post , :remote => true ), :class=>"" )%>
+			<%= content_tag(:li , link_to(fa_icon("plus-square", text: "UnEnroll"), unenroll_course_path(course.id) , :method => :post , :remote => true ), :class=>"" )%>
 		<%else%>
-			<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Enroll"), enroll_course_path(course.id) , :method => :post , :remote => true), :class=>"" )%>
+			<%= content_tag(:li , link_to(fa_icon("plus-square-o", text: "Enroll"), enroll_course_path(course.id) , :method => :post , :remote => true), :class=>"" )%>
 		<%end%>
 	<%end%>
 	<%if user.favorite_courses.include?(course)  %>
-			<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "UnFavorite"), unfavorite_course_path(course.id) , :method => :post , :remote => true), :class=>"" )%>
+			<%= content_tag(:li , link_to(fa_icon("heart", text: "UnFavorite"), unfavorite_course_path(course.id) , :method => :post , :remote => true), :class=>"" )%>
 	<%else%>
-			<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Favorite"), favorite_course_path(course.id) , :method => :post , :remote => true ) , :class=>"" )%>
+			<%= content_tag(:li , link_to(fa_icon("heart-o", text: "Favorite"), favorite_course_path(course.id) , :method => :post , :remote => true ) , :class=>"" )%>
 	<%end%>
 
     <%if current_user.enrolled_courses.include?(course) %>
         <li>
             <a data-toggle="modal" data-target="#modal_add_bucket_without_course" style="cursor:pointer">
-               <i class="fa fa-cloud-upload">Add Bucket</i>
+               <i class="fa fa-briefcase">Add Bucket</i>
             </a>
         </li>
     <%end%>
@@ -43,7 +43,7 @@
           <%= f.input :name , :input_html => { :class => ""  ,  :required => true } %>
           <%= f.input :description , :input_html => { :class => ""   ,  :required => true } %>
           <div class="text-center">
-            <%= f.button :submit , "Create", :class => "btn btn-warning btn-perspective"%>
+            <%= f.button :submit , "Create", :class => "btn btn-primary"%>
           </div>
       <% end %>
          </div>
