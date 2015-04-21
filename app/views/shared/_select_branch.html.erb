@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 <%= form_tag( college_content_path(college.id) , :method => "get" , :class => "form-group has-feedback lg no-label" ) do %>
 	<div class="form-group has-feedback lg no-label">
 		<%= select_tag(:branch_id, options_for_select( branches_name_id ) , :class => "form-control" ,  :prompt => "No Branch Selected" ) %>
@@ -8,3 +9,32 @@
 	</div>
 <% end %>
 
+=======
+
+<%if current_page?(college_content_path) %>
+
+		<%= form_tag( college_content_path(college.id) , :id => "branch_search" , :method => :get ) do %>	
+		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil) , { :prompt => "Filter by Department" } %>
+		<% end %>
+
+<%elsif current_page?(college_courses_path) %>
+
+		<%= form_tag( college_courses_path(college.id) , :id => "branch_search" , :method => :get ) do %>	
+		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil)  , { :prompt => "Filter by Department" }%>
+		<% end %>
+
+<%elsif current_page?(college_users_path) %>
+
+		<%= form_tag( college_users_path(college.id) , :id => "branch_search" , :method => :get ) do %>	
+		<%select_tag "branch_id", options_from_collection_for_select( college.branches , "id", "name" , nil)  , {:prompt => "Filter by Department" }%>
+		<% end %>
+
+<%end%>
+
+
+<script>
+	$(function() {
+		$("#branch_id").chosen( {search_contains: true , placeholder: "Visit a Branch" , allow_single_deselect: true , no_results_text: "Oops, no Branch found!"});
+	});
+</script>
+>>>>>>> tempclasscollab/master

@@ -7,25 +7,49 @@
 		<ul class="nav nav-tabs">
 
 			<%if current_page?(course_content_path) %>
+<<<<<<< HEAD
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), course_content_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), course_content_path(course.id) , :data => {:toggle=>""} ), :class=>"" )%>
+=======
+				<%= content_tag(:li , link_to(fa_icon("briefcase", text: "Buckets"), course_content_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("briefcase", text: "Buckets"), course_content_path(course.id) , :data => {:toggle=>""} ), :class=>"" )%>
+>>>>>>> tempclasscollab/master
 			<%end%>
 
 
 			<%if current_page?(course_users_path)%>
+<<<<<<< HEAD
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Users"), course_users_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Users"), course_users_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
+=======
+				<%= content_tag(:li , link_to(fa_icon("users", text: "Enrolled Students"), course_users_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("users", text: "Enrolled Students"), course_users_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
+>>>>>>> tempclasscollab/master
 			<%end%>
 
 
 			<%if current_page?(course_discussion_path)%>
+<<<<<<< HEAD
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
 			<%end%>
 
+=======
+				<%= content_tag(:li , link_to(fa_icon("comment", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("comment", text: "Discuss"), course_discussion_path(course.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+			<li class="dropdown" id="course_navbar_options" >
+				<%= render(:partial => 'shared/course_navbar_options' , :locals => {:course => course , :user => current_user } ) %>
+			</li>
+
+>>>>>>> tempclasscollab/master
 			<div id="internal_search_bar">
 				<%if current_page?(course_content_path) %>
 					<%= render(:partial => 'shared/search_course_buckets' , :locals => {:course => course } ) %> 

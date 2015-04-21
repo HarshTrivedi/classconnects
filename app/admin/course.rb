@@ -1,5 +1,5 @@
 ActiveAdmin.register Course do
-  menu :label => "Courses" , :priority => 7
+  menu :label => "Course" , :priority => 5
   permit_params :name, :code, :professors , :college_branch_pair_id
 
   belongs_to :college_branch_pair , :optional => true
@@ -48,6 +48,27 @@ ActiveAdmin.register Course do
 
   end 
 
+    config.clear_action_items!   
+    action_item :except => [:new, :show , :index ] do
+      if can?(:create, active_admin_config.resource_class) && controller.action_methods.include?('new')
+        link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), new_resource_path)
+      end
+    end
+   
+    action_item :only => [:show] do
+      if can?(:update, resource) && controller.action_methods.include?('edit')
+        link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource))
+      end
+    end
+   
+    action_item :only => [:show] do
+      # Destroy link on show
+      if can?(:destroy, resource) && controller.action_methods.include?("destroy")
+        link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name), resource_path(resource),
+          :method => :delete , data: { confirm: "Are you sure u want to delete this Resource ?" }    )
+      end
+    end
+
 
   index do 
       selectable_column
@@ -66,6 +87,10 @@ ActiveAdmin.register Course do
             row("Course Name")   { course.name }
             row("College Name")  { course.college.name  }
             row("Branch Name")   { course.branch.name  }
+            row("Enrolled Users")   { course.enrolled_users.count  }
+            row("Favorited Users")   { course.favorited_users.count  }
+            row("Buckets shared")   { course.buckets  }
+            row("Data shared")   { course.data_shared  }
         end
       end
       panel "Buckets" do
@@ -92,6 +117,24 @@ ActiveAdmin.register Course do
             span link_to( "Add a Bucket here" , new_admin_course_bucket_path( course ) )  if can?(:create , Bucket ) 
             # end
       end
+
+      panel "Course Discussion Threads" do
+            table_for course.comments do
+                column "User Name" do |comment|
+                    user = comment.user
+                    link_to( user.full_name , admin_user_path( user ) ) 
+                end
+                column "Title Thread" do |comment|
+                    link_to( comment.message , admin_comment_path( comment ) ) 
+                end
+                if can?(:destroy , document )
+                  column "Destroy" do |comment|
+                      link_to( "Remove" , admin_comment_path(comment) , :method => :delete , data: { confirm: "Are you sure u want to delete this comment ?" } )
+                  end
+                end
+            end
+      end
+
       active_admin_comments
   end
 
@@ -101,31 +144,9 @@ ActiveAdmin.register Course do
       f.inputs  "Course Details" do
           f.input :name 
           f.input :code 
-          if f.object.college_branch_pair_id.nil?
-              f.input :college_branch_pair , as: :select ,  input_html: { :class => 'chosen-input' }  , :label => "Choose College Branch Pair"
-          else
-              f.input :college_branch_pair_id, :as => :hidden ,  input_html: { :value => f.object.college_branch_pair_id }             
-          end
+          f.input :college_branch_pair_id, :as => :hidden ,  input_html: { :value => f.object.college_branch_pair_id }
       end
       f.actions
-  end
-
-
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-        # span link_to( "View all Course" , admin_courses_path )              
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
   end
 
   filter :name , :label => "Course name"

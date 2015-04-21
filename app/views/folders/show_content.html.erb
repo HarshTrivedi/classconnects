@@ -1,7 +1,30 @@
 
 <%= render(:partial => 'shared/folder_navbar' , :locals => {:folder => @folder }) %> 
+<<<<<<< HEAD
 <div class="row">
 <div class="col-sm-6">
+=======
+
+<div class="row">
+	<div class="breadcrumb default square rsaquo sm">
+			<%bucket = @folder.bucket %>
+			<%= link_to( bucket.name , bucket_content_path(bucket) )%>
+			>
+			<% folder_bread_crumbs = @folder.student_bread_crumb_paths %>			
+			<% folder_bread_crumbs.pop %>
+
+			<%for folder_bread_crumb in folder_bread_crumbs %>
+				<%= link_to( folder_bread_crumb[0] , folder_bread_crumb[1] )%>
+				>
+			<%end%>
+			<%= @folder.name %>
+	</div>
+</div>
+
+
+<div class="row">
+<div class="col-sm-4">
+>>>>>>> tempclasscollab/master
 
 <div class="section-heading">
 	<h2>Folders</h2>				
@@ -13,7 +36,11 @@
 	</div>
 </div>
 
+<<<<<<< HEAD
 <div class="col-sm-6">
+=======
+<div class="col-sm-8">
+>>>>>>> tempclasscollab/master
 	<div class="section-heading">
 		<h2>Documents</h2>				
 	</div>

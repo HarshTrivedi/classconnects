@@ -1,7 +1,11 @@
 class Folder < ActiveRecord::Base
   attr_accessor :folder_id , :bucket_id
   has_ancestry :orphan_strategy => :destroy
+<<<<<<< HEAD
   paginates_per 10
+=======
+  paginates_per 5
+>>>>>>> tempclasscollab/master
 
   belongs_to :bucket , :touch => true
   has_many :documents  
@@ -16,9 +20,37 @@ class Folder < ActiveRecord::Base
   validates :name, :presence => true
   validates :bucket, :presence => true
 
+<<<<<<< HEAD
   def self.search(search)
       if not search.strip.empty?
         where('name LIKE ?', "%#{search}%")
+=======
+  after_create :store_aws_name
+
+  # after_update :update_s3_prefix
+
+  # after_destroy :destory_aws_content
+
+  def store_aws_name
+      self.aws_name = self.name
+      self.save
+  end
+
+  def update_s3_prefix
+    
+  end
+
+  def destroy_aws_content
+    
+    key =  self.aws_root_to_self_path 
+    DestroyAwsContent.enqueue( key )
+    
+  end
+
+  def self.search(search)
+      if not search.strip.empty?
+        where('name ILIKE ?', "%#{search}%")
+>>>>>>> tempclasscollab/master
       else
         all
       end
@@ -30,6 +62,14 @@ class Folder < ActiveRecord::Base
     self.path_ids.map{|folder_id| [ Folder.find_by_id(folder_id).name , "/admin/buckets/#{bucket_id}/folders/#{folder_id}" ]}
   end
 
+<<<<<<< HEAD
+=======
+  def student_bread_crumb_paths
+    bucket_id = self.bucket.id
+    self.path_ids.map{|folder_id| [ Folder.find_by_id(folder_id).name , "/folders/#{folder_id}/content" ]}
+  end
+
+>>>>>>> tempclasscollab/master
 
   def link
     "/admin/buckets/#{self.bucket.id}/folders/#{id}"
@@ -73,9 +113,32 @@ class Folder < ActiveRecord::Base
 
   def aws_root_to_self_path
     bucket = Bucket.find_by_id(self.bucket.id)
+<<<<<<< HEAD
     folder_path = self.path_ids.map{ |folder_id| "#{Folder.find_by_id(folder_id).name}"  }.join("/")
     return "bucket_id_#{bucket.id}/#{bucket.name}/#{folder_path}".chop
   end
 
+=======
+    folder_path = self.path_ids.map{ |folder_id| "#{Folder.find_by_id(folder_id).aws_name}"  }.join("/")
+    ap folder_path
+    ap bucket.id
+    return "bucket_id_#{bucket.id}/#{bucket.aws_name}/#{folder_path}"
+  end
+
+  def image_url
+      return "default_folder.jpg"
+  end
+
+  def size
+     subtree_ids = self.subtree_ids
+     size = 0
+     for subtree_id in subtree_ids
+        Folder.find_by_id(subtree_id).documents.each{ |document| size += document.size }
+     end
+     return size
+  end
+
+
+>>>>>>> tempclasscollab/master
 end
 

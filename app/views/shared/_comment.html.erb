@@ -6,6 +6,7 @@
 		<h4 class="media-heading">
 			<%= link_to( user.email , "#no_profile_yet"  ) %>
 		</h4>
+<<<<<<< HEAD
 		<p class="date"><small> Created <%= time_ago_in_words(comment.created_at) %> ago </small></p>	  		
 		<%= comment.message %>
 		<ul class="media-list">
@@ -13,6 +14,21 @@
 			<%for comment_response in comment_responses%>
 				<%= render(:partial => 'shared/comment_response', :locals => {:comment_response => comment_response } )%>		
  			<%end%>
+=======
+		<p class="date"><small> Created <%= time_ago_in_words(comment.created_at) %> ago </small></p>	  	
+		<%= comment.message %>
+		<br><br>
+		<ul class="media-list">
+			<%comment_responses = comment.comment_responses %>
+			<div id="comment_responses_<%=comment.id%>">
+				<%for comment_response in comment_responses%>
+				    <div id="comment_response_<%=comment_response.id%>">
+						<%= render(:partial => 'shared/comment_response', :locals => {:comment_response => comment_response } )%>		
+					</div>
+	 			<%end%>
+ 			</div>
+
+>>>>>>> tempclasscollab/master
 			<%= render(:partial => 'shared/leave_comment_response', :locals => {:comment => comment } )%>		
 		</ul>
 	</div>

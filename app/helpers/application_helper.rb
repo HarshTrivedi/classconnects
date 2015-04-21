@@ -33,9 +33,17 @@ module ApplicationHelper
 	      when :success
 	        "alert-success"
 	      when :error
+<<<<<<< HEAD
 	        "alert-error"
 	      when :alert
 	        "alert-block"
+=======
+	        "alert-warning"
+	      when :alert
+	        "alert-danger"
+	      when :danger
+	        "alert-danger"	        
+>>>>>>> tempclasscollab/master
 	      when :notice
 	        "alert-info"
 	      else

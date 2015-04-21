@@ -7,20 +7,49 @@
 					 # acl: "public-read-write" , 
 					 key: "#{parent.aws_root_to_self_path}/${filename}",
 					 # key: "uploads/${filename}",
+<<<<<<< HEAD
 					 key_starts_with: "bucket_id_" , 
 					 max_file_size: 5.megabytes do %>
 <%= file_field_tag :file, multiple: true %>
+=======
+					 remove_completed_progress_bar: true,
+					 key_starts_with: "bucket_id_" , 
+					 max_file_size: 5.megabytes do %>
+
+<label class="myLabel">
+	<%= file_field_tag :file, multiple: true %>
+    <span>Upload Files</span>
+</label>
+
+
+>>>>>>> tempclasscollab/master
 
 <% end %>
 
 </div>
 
+<<<<<<< HEAD
 
 <div id="uploads_container"></div>
 <button id="submit_upload" class="btn btn-primary text-centre">Upload</button>
 
 <script id="template-upload" type="text/x-tmpl">
 	<div id="upload_{%=o.unique_id%}" class="upload">
+=======
+<div id="uploads_container"></div>
+<br>
+<div class="text-centre" style="margin-left:200px">
+
+	<br>
+	<a id="submit_upload" class="btn btn-primary text-centre" href="#">Confirm</a>
+	
+	<%= link_to( "Cancel" , refresh_upload_documents_form_path(:parent_type => parent.class.to_s.downcase, :parent_id => parent.id ) , :method => :post , :remote => true , :class => "btn btn-primary") %>
+</div>
+
+<script id="template-upload" type="text/x-tmpl">
+	<div id="upload_{%=o.unique_id%}" class="upload">
+		<br>
+>>>>>>> tempclasscollab/master
 		<h5>{%=o.name%}</h5>
 		<div class="progress progress-striped active">
 			<div class="bar" style="width: 0%"></div>
@@ -32,26 +61,45 @@
 
 <script>
 	$(function() {
+<<<<<<< HEAD
 
 		$('#s3_uploader').S3Uploader({
 			remove_completed_progress_bar: false,
+=======
+		$('#s3_uploader').S3Uploader({
+			remove_completed_progress_bar: true,
+>>>>>>> tempclasscollab/master
 			progress_bar_target: $('#uploads_container') , 
 			click_submit_target: $('#submit_upload') });
 
 
 		$(document).bind('s3_uploads_complete', function() {
+<<<<<<< HEAD
 			return alert("All files Done");
+=======
+			$('.modal').modal("hide") ;
+			$("form").trigger("reset");
+			$.post( "/refresh_upload_documents_form", { parent_type: "<%= parent.class.to_s.downcase %>", parent_id: "<%= parent.id %>" } );
+>>>>>>> tempclasscollab/master
 		});
 
 		
 		$('#s3_uploader').bind('s3_upload_failed', function(e, content) {
+<<<<<<< HEAD
 			return alert(content.filename + ' failed to upload. Error: ' + content.error_thrown);
+=======
+			toastr.error( content.filename + ' failed to upload.', content.error_thrown  );
+>>>>>>> tempclasscollab/master
 		});
 
 
 		$('#s3_uploader').bind('s3_upload_complete', function(e, content) {
 			// window.location.replace("/view");
+<<<<<<< HEAD
 			return alert("Heya Completed")
+=======
+			// return alert("Heya Completed")
+>>>>>>> tempclasscollab/master
 		});
 	});
 </script>

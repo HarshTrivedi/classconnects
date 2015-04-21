@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <%for bucket in buckets%>
 	  <li class="media">
@@ -39,4 +40,20 @@
      </div><!-- /.modal-dialog -->
 </div>
 
+=======
+<%if buckets.size > 0%>
+<%for bucket in buckets%>
+    <div id="bucket_<%=bucket.id%>">
+		<%= render(:partial => 'shared/bucket', :locals => {:bucket => bucket } )%>
+	</div>
+ <%end%>
+
+<div class = "stick-paginate">
+	<%= paginate buckets  , :remote => true %>
+</div>
+<%else%>
+	<div class ="text-center media-heading">
+		<h1  style="font-size:60px; margin:250px"><i class="fa fa-search"></i> Nothing Found! </h1>
+	</div> 
+>>>>>>> tempclasscollab/master
 <%end%>

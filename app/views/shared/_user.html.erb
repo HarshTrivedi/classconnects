@@ -2,11 +2,21 @@
 <div class="col-sm-6">
 	<div class="the-box no-border">
 		<div class="media user-card-sm">
+<<<<<<< HEAD
 	      <%= image_tag avatar_url(user) , :class => "media-object img-circle" , :title => user.full_name%>
 		  <div class="media-body">
 		  	
 			<span class="user-heading">
 				<%= link_to( user.full_name , "#no_profile_yet"  ) %>
+=======
+		  <a class="pull-left" href="<%=profile_main_path(:user_id => user.id)%>">
+	      		<%= image_tag avatar_url(user) , :class => "media-object img-circle" , :title => user.full_name%>
+	      </a>
+		  <div class="media-body">
+		  	
+			<span class="user-heading">
+				<%= link_to( user.full_name , profile_main_path(:user_id => user.id)  ) %>
+>>>>>>> tempclasscollab/master
 			</span>
 			<br>
 			<span class="user-mail">

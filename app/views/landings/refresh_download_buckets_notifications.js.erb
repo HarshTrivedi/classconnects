@@ -1,0 +1,4 @@
+
+toastr.info('Downloads Queue', 'Updated');
+$("#pending_buckets_notification").html("<%= escape_javascript(      render(:partial => 'shared/pending_buckets_notification' )      ) %>");
+$("#ready_buckets_notification").html("<%= escape_javascript(      render(:partial => 'shared/ready_buckets_notification' )      ) %>");

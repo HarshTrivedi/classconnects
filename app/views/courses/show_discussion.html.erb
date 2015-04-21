@@ -1,6 +1,31 @@
 
 <%= render(:partial => 'shared/course_navbar' , :locals => {:course => @course }) %> 
 
+<<<<<<< HEAD
 <%= render(:partial => 'shared/comments' ,:locals => { :comments => @comments } ) %>
 
 <%= render(:partial => "shared/leave_comment" , :locals => {:type => "course"  })%>
+=======
+<div class="breadcrumb default square rsaquo sm">
+		<%= link_to( @course.college.name , college_content_path(@course.college) )%> 
+		> 
+		<%= link_to( @course.branch.name , college_content_path( :id => @course.college.id , :branch_id => @course.branch.id) ) %> 
+		> 
+		<%= @course.name %>
+</div>
+
+
+<div class="media no-border">
+	<h4 class="small-heading more-margin-bottom"><%= @comments.size%> COMMENTS</h4>
+	<ul class="media-list media-sm media-dotted">
+	<div id="comments">
+		<%= render(:partial => 'shared/comments' ,:locals => { :comments => @comments } ) %>
+	</div>
+	<div class = "stick-paginate">
+	<%= paginate @comments , :remote => true %>
+	</div>
+	</ul>
+</div>
+
+<%= render(:partial => "shared/leave_comment" , :locals => {:parent_type => "course" , :parent_id => @course.id })%>
+>>>>>>> tempclasscollab/master

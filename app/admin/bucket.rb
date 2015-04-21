@@ -25,7 +25,13 @@ ActiveAdmin.register Bucket do
 
 	      @course.buckets << @bucket
         create! do |format|
-            format.html { redirect_to admin_course_path( @course ) }
+            format.html {
+              if @bucket.valid?
+                redirect_to admin_course_path( @course ) 
+              else
+                 render 'new'
+              end
+            }
         end
 	    end
 
@@ -37,17 +43,23 @@ ActiveAdmin.register Bucket do
 
       def update
         @bucket = Bucket.find_by_id(params[:id])
-        authorize_me_to( :create , @bucket )
+        authorize_me_to( :update , @bucket )
         @bucket.update_attributes(permitted_params[:bucket])
-        create! do |format|
-            format.html { redirect_to admin_course_path( @course ) }
+        update! do |format|
+            format.html { 
+              if @bucket.valid?
+                redirect_to admin_course_path( @course ) 
+              else
+                render 'new'
+              end
+            }
         end
       end
 
 
       def destroy
         @bucket = Bucket.find_by_id(params[:id])
-        authorize_me_to( :create , @bucket )
+        authorize_me_to( :destroy , @bucket )
         destroy! do |format|
             format.html { redirect_to :back }
         end
@@ -56,9 +68,35 @@ ActiveAdmin.register Bucket do
 
    end
 
+
+    config.clear_action_items!   
+    action_item :except => [:new, :show , :index ] do
+      if can?(:create, active_admin_config.resource_class) && controller.action_methods.include?('new')
+        link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), new_resource_path)
+      end
+    end
+   
+    action_item :only => [:show] do
+      if can?(:update, resource) && controller.action_methods.include?('edit')
+        link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource))
+      end
+    end
+   
+    action_item :only => [:show] do
+      # Destroy link on show
+      if can?(:destroy, resource) && controller.action_methods.include?("destroy")
+        link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name), resource_path(resource),
+          :method => :delete , data: { confirm: "Are you sure u want to delete this Resource ?" }   )
+      end
+    end
+
+
   index do
       selectable_column
       column :name
+      column :user_id do |bucket|
+          bucket.uploader.full_name
+      end
       column :description 
       column :category do |bucket|
           status_tag(bucket.category.category , :ok)
@@ -77,9 +115,12 @@ ActiveAdmin.register Bucket do
         attributes_table_for bucket do
             row("Bucket  Name")   { bucket.name }
             row("Course  Name")  { bucket.course.name  }
-            row("College Name")   { bucket.course.college.name  }
-            row("Branch  Name")   { bucket.course.branch.name  }
-            row("Uploader") {bucket.uploader.full_name}
+            row("College Name")   { link_to( bucket.course.college.name , admin_college_path(bucket.course.college) )   }
+            row("Branch  Name")   { link_to( bucket.course.branch.name , admin_branch_path( bucket.course.branch ) )  }
+            uploader = bucket.uploader
+            row("Uploader") { link_to( uploader.full_name , admin_user_path( uploader ) )   }
+            row("Size") { number_to_human_size(bucket.size)  }
+            row("Created") { time_ago_in_words( bucket.created_at )  }
         end
       end
       panel "Folders" do
@@ -87,6 +128,9 @@ ActiveAdmin.register Bucket do
                 column "Name" do |folder|
                   link_to( folder.name , admin_bucket_folder_path( bucket , folder ) ) 
                 end
+                column "Size" do |folder|
+                    number_to_human_size(folder.size)
+                end 
                 column "View" do |folder|
                   link_to( "View" , admin_bucket_folder_path( bucket , folder ) ) 
                 end
@@ -94,7 +138,7 @@ ActiveAdmin.register Bucket do
                   link_to( "Edit" , edit_admin_bucket_folder_path( bucket , folder )  ) if can?(:edit , folder )
                 end
                 column "Destroy" do |folder|
-                  # link_to( "Remove" , admin_folder_path(folder) , :method => :delete , data: { confirm: "Are you sure u want to delete this folder ?" } )  if can?(:destroy , folder )
+                  link_to( "Remove" , admin_folder_path(folder) , :method => :delete , data: { confirm: "Are you sure u want to delete this folder ?" } )  if can?(:destroy , folder )
                 end
             end
             span link_to( "Create Folder within" , new_admin_bucket_folder_path( bucket ) )  if can?(:create , Folder )
@@ -105,8 +149,14 @@ ActiveAdmin.register Bucket do
                 column "Name" do |document|
                     link_to( document.name , admin_bucket_document_path( bucket , document ) ) 
                 end
-                column "View" do |document|
-                    link_to( document.name , admin_bucket_document_path( bucket , document ) ) 
+                column "Size" do |document|
+                    number_to_human_size(document.size)
+                end 
+                column "Type" do |document|
+                    document.type 
+                end
+                column "Download" do |document|
+                    link_to( "download" , download_document_path(document.id) ) 
                 end
                 column "Edit" do |document|
                     link_to( "Edit" , edit_admin_bucket_document_path( bucket , document )  ) if can?(:edit , document )
@@ -115,9 +165,24 @@ ActiveAdmin.register Bucket do
                     link_to( "Remove" , admin_document_path(document) , :method => :delete , data: { confirm: "Are you sure u want to delete this document ?" } ) if can?(:destroy , document )
                 end
             end
-            span link_to( "Create Document within" , new_admin_bucket_document_path( bucket ) ) if can?(:destroy , Document )
-            # render 'upload_documents_in_bucket'
             render(:partial => 'shared/upload_documents' , :locals => {:parent => bucket })
+      end
+      panel "Bucket Comments" do
+            table_for bucket.comments do
+                column "Name" do |comment|
+                    user = comment.user
+                    link_to( user.full_name , admin_user_path( user ) ) 
+                end
+                column "Title Thread" do |comment|
+                    link_to( comment.message , admin_comment_path( comment ) ) 
+                end
+                column "Destroy" do |comment|
+                    link_to( "Remove" , admin_comment_path(document) , :method => :delete , data: { confirm: "Are you sure u want to delete this document ?" } ) if can?(:destroy , document )
+                end
+            end
+            # span link_to( "Create Document within" , new_admin_bucket_document_path( bucket ) ) if can?(:destroy , Document )
+            # render 'upload_documents_in_bucket'
+            # render(:partial => 'shared/upload_documents' , :locals => {:parent => bucket })
       end
       active_admin_comments
   end
@@ -132,7 +197,7 @@ ActiveAdmin.register Bucket do
           if f.object.course_id.nil?
 	          f.input :course   , as: :select ,  input_html: { :class => 'chosen-input' }  , :label => "Choose Course"
           else
-            f.input :course_id, :as => :hidden ,  input_html: { :value => f.object.course_id }             
+            f.input :course_id, :as => :hidden ,  input_html: { :value => f.object.course_id }
           end
           f.input :category , as: :select ,  input_html: { :class => 'chosen-input' }  , :label => "Choose Category"
           f.input :description
@@ -146,25 +211,6 @@ ActiveAdmin.register Bucket do
   filter :by_branch_name_in,  label: "Branch"  , as: :select, collection: proc { Branch.order(:name)  },  input_html: { class: 'chosen-input' }
   filter :by_course_name_in,  label: "Course"  , as: :select, collection: proc { Course.order(:name)  },  input_html: { class: 'chosen-input' }
   
-  
-  
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-        # span link_to( "View all Course" , admin_courses_path )              
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-
 
 
 end

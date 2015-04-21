@@ -1,5 +1,5 @@
 ActiveAdmin.register Document do
-  menu label: "Documents"
+  menu false
   permit_params :cloud_path , :bucket_id , :folder_id , :name
   belongs_to :bucket, :optional => true
   # belongs_to :folder, :optional => true
@@ -51,6 +51,30 @@ ActiveAdmin.register Document do
         render :js => "alert( Uploaded #{name} )"
         # render :nothing => true
   end
+
+
+
+    config.clear_action_items!   
+    action_item :except => [:new, :show , :index ] do
+      if can?(:create, active_admin_config.resource_class) && controller.action_methods.include?('new')
+        link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), new_resource_path)
+      end
+    end
+   
+    action_item :only => [:show] do
+      if can?(:update, resource) && controller.action_methods.include?('edit')
+        link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource))
+      end
+    end
+   
+    action_item :only => [:show] do
+      # Destroy link on show
+      if can?(:destroy, resource) && controller.action_methods.include?("destroy")
+        link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name), resource_path(resource),
+          :method => :delete , data: { confirm: "Are you sure u want to delete this Resource ?" }  )
+      end
+    end
+
 
 
 
@@ -138,11 +162,23 @@ ActiveAdmin.register Document do
 
         if @parent_folder
             create! do |format|
-                format.html { redirect_to admin_bucket_folder_path( @bucket , @parent_folder ) }
+                format.html { 
+                  if @document.valid?
+                    redirect_to admin_bucket_folder_path( @bucket , @parent_folder ) 
+                  else
+                    render 'new'
+                  end
+                }
             end
         else
             create! do |format|
-                format.html { redirect_to admin_bucket_path( @bucket ) }
+                format.html { 
+                  if @document.valid?
+                    redirect_to admin_bucket_path( @bucket ) 
+                  else
+                    render 'new'
+                  end
+                }
             end
         end
 
@@ -182,10 +218,17 @@ ActiveAdmin.register Document do
             # row("Document  Name")   { document.name }
             row("Bucket  Name")  { document.bucket.name  }
             row("Uploader") {document.bucket.uploader.full_name}
-            row("View Link") { "" }
         end
       end
       active_admin_comments
+  end
+
+  form do |f|    
+      f.semantic_errors *f.object.errors.keys
+      f.inputs "Document Details" do
+          f.input :name 
+      end
+      f.actions
   end
 
 

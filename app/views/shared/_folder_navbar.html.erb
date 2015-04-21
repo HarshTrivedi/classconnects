@@ -7,13 +7,20 @@
 		<ul class="nav nav-tabs">
 
 			<%if current_page?(folder_content_path) %>
+<<<<<<< HEAD
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), folder_content_path(folder.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), folder_content_path(folder.id) , :data => {:toggle=>""} ), :class=>"" )%>
+=======
+				<%= content_tag(:li , link_to(fa_icon("folder-open-o", text: "Content"), folder_content_path(folder.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("folder-open-o", text: "Content"), folder_content_path(folder.id) , :data => {:toggle=>""} ), :class=>"" )%>
+>>>>>>> tempclasscollab/master
 			<%end%>
 
 
 			<%if current_page?(folder_details_path)%>
+<<<<<<< HEAD
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Details"), folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Details"), folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"" )%>
@@ -24,6 +31,17 @@
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Edit Details"), edit_folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Edit Details"), edit_folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"" )%>
+=======
+				<%= content_tag(:li , link_to(fa_icon("info-circle", text: "Details"), folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("info-circle", text: "Details"), folder_details_path(folder.id) , :data => {:toggle=>""}), :class=>"" )%>
+			<%end%>
+
+			<%if folder.bucket.uploader == current_user %>
+				<li class="dropdown" id="folder_navbar_options" >
+					<%= render(:partial => 'shared/folder_navbar_options' , :locals => {:folder => folder } ) %>
+				</li>
+>>>>>>> tempclasscollab/master
 			<%end%>
 
 			<div id="internal_search_bar">

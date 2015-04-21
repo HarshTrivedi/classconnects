@@ -2,6 +2,10 @@ class FoldersController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
   before_filter :folder_exists , :except => [:new_folder , :create_folder]
+<<<<<<< HEAD
+=======
+  before_filter :authenticate_access_folder , :except => [:new_folder , :create_folder ]
+>>>>>>> tempclasscollab/master
   respond_to :html , :js
 
 
@@ -31,9 +35,19 @@ class FoldersController < ApplicationController
 
   def update_details
     folder_id = params[:folder][:id]
+<<<<<<< HEAD
     folder = Folder.find_by_id(folder_id)
     folder.update_attributes( folder_params )
     redirect_to :back
+=======
+    @folder = Folder.find_by_id(folder_id)
+    @folder.update_attributes( folder_params )
+
+    respond_to do |format|
+      format.js
+    end
+
+>>>>>>> tempclasscollab/master
   end
 
   def new_folder
@@ -63,17 +77,42 @@ class FoldersController < ApplicationController
         @parent_bucket.folders << @folder
     end
 
+<<<<<<< HEAD
 
     redirect_to :back      
+=======
+    respond_to do |format|
+      format.js
+    end
+
+>>>>>>> tempclasscollab/master
   end
 
 
   #ie remove from the uploads
   def destroy_folder
+<<<<<<< HEAD
     folder_id = params[:folder_id]
     folder = Folder.find_by_id(folder_id)
     folder.destroy if current_user == folder.bucket.uploader
     redirect_to :back
+=======
+    folder_id = params[:id]
+    @folder = Folder.find_by_id(folder_id)
+    
+    uploader = @folder.bucket.uploader
+
+    if uploader == current_user
+      @folder.destroy
+      uploader.uploaded_data_size = uploader.uploaded_data_size - @folder.size
+      uploader.save
+    end
+    # redirect_to :back
+    respond_to do |format|
+      format.js
+    end
+
+>>>>>>> tempclasscollab/master
   end
 
 
@@ -90,6 +129,24 @@ class FoldersController < ApplicationController
       end
   end
 
+<<<<<<< HEAD
+=======
+  def authenticate_access_folder
+      folder = Folder.find_by_id(params[:id])
+      bucket = folder.bucket
+      if not bucket.privately_shared
+        return true
+      else
+        if bucket.college == current_user.college
+          return true
+        else
+          return false
+        end
+      end
+  end
+
+
+>>>>>>> tempclasscollab/master
   #PERMITTING mass assignment
   def folder_params
     params.require(:folder).permit(:name )

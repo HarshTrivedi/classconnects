@@ -1,6 +1,21 @@
+<<<<<<< HEAD
+=======
+<%if users.size > 0%>
+>>>>>>> tempclasscollab/master
 <div class="row">
   <%for user in users%>  
 		<%= render(:partial => 'shared/user', :locals => {:user => user } )%>
   <%end%>
 </div>
+<<<<<<< HEAD
 <%= paginate users , :remote => true %>
+=======
+<div class = "stick-paginate">
+<%= paginate users , :remote => true %>
+</div>
+<%else%>
+	<div class ="text-center media-heading">
+		<h1  style="font-size:60px; margin:250px"><i class="fa fa-search"></i> Nothing Found! </h1>
+	</div> 
+<%end%>
+>>>>>>> tempclasscollab/master

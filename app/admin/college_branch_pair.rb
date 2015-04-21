@@ -8,6 +8,10 @@ ActiveAdmin.register CollegeBranchPair do
         attributes_table_for college_branch_pair do
             row("College Name")   { college_branch_pair.college.name }
             row("Branch  Name")   { college_branch_pair.branch.name  }
+            row("Students registered")  {  college_branch_pair.users.size }
+            row("Courses Offered"){ college_branch_pair.courses.size }
+            row("Buckets shared"){ college_branch_pair.buckets_shared  }
+
         end
       end
       panel "Courses" do
@@ -16,6 +20,15 @@ ActiveAdmin.register CollegeBranchPair do
                   link_to( course.name , admin_college_branch_pair_course_path( college_branch_pair , course) ) 
                 end
                 column :code
+
+                column "Students enrolled" do |course|
+                  course.enrolled_users.size
+                end
+
+                column "Students favorited" do |course|
+                  course.favorited_users.size
+                end
+
                 column "View" do |course|
                   link_to( "View" , admin_college_branch_pair_course_path( college_branch_pair , course) ) 
                 end
@@ -31,21 +44,6 @@ ActiveAdmin.register CollegeBranchPair do
       active_admin_comments
   end
 
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-  sidebar "Any thing can be added here", only: [:show ] do
-    ul do
-      # li link_to "Branches" , admin_college_branches_path( college )
-    end
-  end
-
+  config.clear_action_items!
 
 end

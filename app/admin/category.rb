@@ -1,5 +1,5 @@
 ActiveAdmin.register Category do
-  menu label: "Category" , :priority => 4
+  menu label: "Category" , :priority => 7
   permit_params :category
   config.filters = false
 
@@ -36,6 +36,7 @@ ActiveAdmin.register Category do
 
   end 
 
+  active_admin_allowed_action_items
 
 
   index do 

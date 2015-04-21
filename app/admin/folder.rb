@@ -37,11 +37,23 @@ ActiveAdmin.register Folder do
 
         if @parent_folder
             create! do |format|
-                format.html { redirect_to admin_bucket_folder_path( @bucket , @parent_folder ) }
+                format.html { 
+                  if @folder.valid?
+                    redirect_to admin_bucket_folder_path( @bucket , @parent_folder ) 
+                  else
+                    render 'new'
+                  end
+                }
             end
         else
             create! do |format|
-                format.html { redirect_to admin_bucket_path( @bucket ) }
+                format.html { 
+                  if @folder.valid?
+                    redirect_to admin_bucket_path( @bucket ) 
+                  else
+                    render 'new'
+                  end
+                }
             end
         end
 
@@ -65,11 +77,23 @@ ActiveAdmin.register Folder do
 
         if @parent_folder
             update! do |format|
-                format.html { redirect_to admin_bucket_folder_path( @bucket , @parent_folder ) }
+                format.html { 
+                  if @folder.valid?
+                    redirect_to admin_bucket_folder_path( @bucket , @parent_folder ) 
+                  else
+                    render 'new'
+                  end
+                }
             end
         else
             update! do |format|
-                format.html { redirect_to admin_bucket_path( @bucket ) }
+                format.html { 
+                  if @folder.valid?
+                    redirect_to admin_bucket_path( @bucket ) 
+                  else
+                    render 'new'
+                  end
+                }
             end
         end
 
@@ -78,11 +102,37 @@ ActiveAdmin.register Folder do
       def destroy
         @folder = Folder.find_by_id( params[:id] )
         authorize_me_to( :destroy , @folder )
-        destroy!
+        destroy! do |format|
+            format.html { redirect_to :back }
+        end
       end
 
 
    end
+
+    config.clear_action_items!   
+    action_item :except => [:new, :show , :index ] do
+      if can?(:create, active_admin_config.resource_class) && controller.action_methods.include?('new')
+        link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), new_resource_path)
+      end
+    end
+   
+    action_item :only => [:show] do
+      if can?(:update, resource) && controller.action_methods.include?('edit')
+        link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource))
+      end
+    end
+   
+    action_item :only => [:show] do
+      # Destroy link on show
+      if can?(:destroy, resource) && controller.action_methods.include?("destroy")
+        link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name), resource_path(resource),
+          :method => :delete   , data: { confirm: "Are you sure u want to delete this Resource ?" }  )
+      end
+    end
+
+
+
 
   show do
       panel "Folder Details" do
@@ -90,6 +140,8 @@ ActiveAdmin.register Folder do
             row("Folder  Name")   { folder.name }
             row("Bucket  Name")  { folder.bucket.name  }
             row("Uploader") {folder.bucket.uploader.full_name}
+            row("Size") { number_to_human_size(folder.size) }
+            row("Created") { time_ago_in_words(folder.created_at) }
         end
       end
       panel "Folders" do
@@ -127,7 +179,6 @@ ActiveAdmin.register Folder do
                 end
                 
             end
-            span link_to( "Create Document within" , new_admin_bucket_document_path( :bucket_id => bucket.id , :folder_id => folder.id ) )  if can?(:create , Document )
             render(:partial => 'shared/upload_documents' , :locals => {:parent => folder })
       end
       active_admin_comments
@@ -156,45 +207,8 @@ ActiveAdmin.register Folder do
     end
   end
 
-  sidebar "Any thing can be added here", only: [:show ] do
-    subtree = folder.subtree.arrange_serializable
-
-      ul do
-      end
-  end
-
-
 
 end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  # working code for sortable tree
-  # sortable tree: true,
-  #          sorting_attribute: :position,
-  #          parent_method: :parent,
-  #          children_method: :children_with_documents,
-  #          # roots_method: :roots,
-  #          roots_collection: proc { Folder.where(:id => 1) },
-  #          collapsible: true,
-  #          start_collapsed: true
-
-  #   index as: :sortable do
-  #       label :name
-
-  #   end

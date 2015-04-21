@@ -10,6 +10,23 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
+<<<<<<< HEAD
+=======
+
+//$skinLogo: url("logo.png") no-repeat 0 0;
+
+//Alternative 1
+//$skinActiveColor: #001cee;
+//$skinHeaderBck: #002744;
+//$panelHeaderBck: #002744;
+
+
+//Alternative 2
+$skinActiveColor: #05B6C7;
+$skinHeaderBck: #000000;
+$panelHeaderBck: #000000;
+
+>>>>>>> tempclasscollab/master
 @import "active_skin";
 @import "s3_direct_upload_progress_bars";
 @import "chosen";
@@ -18,3 +35,8 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> tempclasscollab/master

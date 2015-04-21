@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="row">
 	  <%for document in documents%>
 			<%= render(:partial => 'shared/document', :locals => {:document => document } )%>
@@ -24,3 +25,25 @@
 </div>
 
 
+=======
+<%if documents.size > 0%>
+<div class="row" style:"margin-bottom:100px">
+	  <%for document in documents%>
+      <div id="document_<%=document.id%>">
+	 		  <%= render(:partial => 'shared/document', :locals => {:document => document } )%>
+      </div>
+	  <%end%>
+
+
+</div>
+<div style="position:relative margin-bottom:0px">
+<%= paginate documents, :param_name => "document_page"  , :remote => true %>
+</div>
+<%else%>
+	<div id="no_documents_found">
+	<div class ="text-center media-heading">
+		<h1  style="margin:100px"><i class="fa fa-search"></i> No Documents found!</h1>
+	</div> 
+	</div>
+<%end%>
+>>>>>>> tempclasscollab/master

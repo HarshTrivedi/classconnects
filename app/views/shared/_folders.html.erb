@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <div class="row">
   <%for folder in folders%>
@@ -30,3 +31,26 @@
        </div><!-- /.modal-content .modal-no-shadow -->
      </div><!-- /.modal-dialog -->
 </div>
+=======
+<%if folders.size > 0%>
+<div class="row">
+  <%for folder in folders%>
+    <div id="folder_<%=folder.id%>">
+		<%= render(:partial => 'shared/folder', :locals => {:folder => folder } )%>				  
+    </div>
+  <%end%>
+</div>
+
+
+<div style="position:relative margin-bottom:0px">
+<%= paginate folders, :param_name => "folder_page"  , :remote => true %>
+</div>
+<%else%>
+	<div id="no_folders_found">
+	<div class ="text-center media-heading">
+		<h1  style="margin:100px"><i class="fa fa-search"></i> No Folders found!</h1>
+	</div> 
+	</div>
+<%end%>
+
+>>>>>>> tempclasscollab/master

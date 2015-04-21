@@ -1,5 +1,6 @@
 
 <div class="the-box no-border">
+<<<<<<< HEAD
 	<%= simple_form_for @comment , :url => create_comment_path(@parent_type , @parent_id )  , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
 		<h4 class="small-heading more-margin-bottom">LEAVE COMMENT</h4>
 	  	<%= f.input :message , :input_html => { :class => "form-control input-lg rounded bold-border no-resize"}  , :style => "height: 200px;" , :placeholder => "Your Comments Here"%>
@@ -8,3 +9,24 @@
 	  	</div>
 	<% end %>
 </div>
+=======
+	<%= simple_form_for Comment.new , :url => create_comment_path( parent_type , parent_id )  , :input_html=> { :class => "form-group has-feedback lg no-label " } , :remote => true , :method => :post do |f| %>
+		<h4 class="small-heading more-margin-bottom">DO YOU HAVE ANY QUERIES?</h4>
+	  	<%= f.input :message , :input_html => { :class => "form-control input-lg rounded bold-border no-resize"}  , :style => "height: 200px;" , :placeholder => "Ask Your Queries Here May Be We Can Help..."  , "data-bv-notempty" => "true" %>
+	  	<div class="text-center form-group">
+	  		<%= f.button :submit , "Post Query", :class => "btn btn-primary"%>
+	  	</div>
+	<% end %>
+</div>
+
+<script>
+    $(".new_comment_response").validate({
+          rules: {
+            'comment_response[message]': "required"
+          },
+          messages: {
+            'comment_response[message]': "Please leave non-empty message"
+          }
+    });
+</script>
+>>>>>>> tempclasscollab/master

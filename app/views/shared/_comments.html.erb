@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 <div class="media no-border">
 	<h4 class="small-heading more-margin-bottom"><%= comments.size%> COMMENTS</h4>
 	<ul class="media-list media-sm media-dotted">
@@ -9,3 +10,11 @@
 </div>
 
 <%= paginate comments %>
+=======
+<%for comment in comments%>
+	<div id="comment_<%=comment.id%>">
+		<%= render(:partial => 'shared/comment', :locals => {:comment => comment } )%>
+	</div>
+<%end%>
+
+>>>>>>> tempclasscollab/master

@@ -1,5 +1,9 @@
 <%= form_tag downloads_remote_path , :id => "downloads_search" , :remote => true , :method => :post do %>
+<<<<<<< HEAD
     <%= text_field_tag :search, params[:search] %>
+=======
+    <%= text_field_tag :search, nil , {:placeholder=>"search"} %>
+>>>>>>> tempclasscollab/master
 <% end %>
 
 <script>

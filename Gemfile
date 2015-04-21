@@ -82,3 +82,8 @@ gem 'active_skin'
 gem 'cancan'
 gem "active_admin_import" 
 gem 'activejob'
+gem 'toastr-rails'
+gem 'resque', :require => "resque/server"
+gem "mailcatcher"
+gem 'jquery-ui-rails'
+gem 'pusher'

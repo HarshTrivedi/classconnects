@@ -23,7 +23,11 @@ default: &default
 
 development:
   <<: *default
+<<<<<<< HEAD
   database: classcolab_development1
+=======
+  database: classcolab_development
+>>>>>>> tempclasscollab/master
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +61,11 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+<<<<<<< HEAD
   database: classcolab_test1
+=======
+  database: classcolab_test
+>>>>>>> tempclasscollab/master
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

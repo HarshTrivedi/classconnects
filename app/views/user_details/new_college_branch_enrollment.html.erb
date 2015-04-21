@@ -1,9 +1,16 @@
 
 <%= simple_form_for @college_branch_pair , :url => create_college_branch_enrollment_path , :method => "post" , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
   <%= f.input :user_id, :as => :hidden, :input_html => { :value => @user.id } %>
+<<<<<<< HEAD
   <%= f.association :college, label_method: :name , :include_blank => false , :input_html => { :class => ""}%>
   <%= f.association :branch, label_method: :name , :include_blank => false , :input_html =>  { :class => ""}%>
   <div class="text-center">
   	<%= f.button :submit , "Enroll Me", :class => "btn btn-success"%>
+=======
+  <%= f.association :college, label_method: :name , :include_blank => false , :input_html => { :class => ""  , "data-bv-notempty" => "true"}%>
+  <%= f.association :branch, label_method: :name , :include_blank => false , :input_html =>  { :class => ""  , "data-bv-notempty" => "true"}%>
+  <div class="text-center">
+  	<%= f.button :submit , "Enroll Me", :class => "btn btn-primary"%>
+>>>>>>> tempclasscollab/master
   </div>
 <% end %>

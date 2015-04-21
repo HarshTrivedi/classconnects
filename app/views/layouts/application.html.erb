@@ -1,18 +1,203 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
   <title>Classcolab</title>
+=======
+  <title>classcollab</title>
+>>>>>>> tempclasscollab/master
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 <!-- Prelang: Analytics / Google Analytics -->
+<<<<<<< HEAD
    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
    <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
+=======
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="http://allfont.net/css/?fonts=p22-corinthia" rel="stylesheet" type="text/css" />
+   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<style>
+element {
+}
+.navbar-fixed-top {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.navbar {
+    transition: all 300ms ease-in-out 0s;
+}
+.navbar-fixed-top {
+    top: 0px;
+    border-width: 0px 0px 1px;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    border-radius: 0px 0px 0px 0px;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: fixed;
+    right: 0px;
+    left: 0px;
+    z-index: 1030;
+    transform: translate3d(0px, 0px, 0px);
+}
+.navbar {
+    border-radius: 4px 4px 4px 4px;
+}
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+.navbar-fixed-top {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.navbar {
+    transition: all 300ms ease-in-out 0s;
+}
+.navbar-fixed-top {
+    top: 0px;
+    border-width: 0px 0px 1px;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    border-radius: 0px 0px 0px 0px;
+}
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: fixed;
+    right: 0px;
+    left: 0px;
+    z-index: 1030;
+    transform: translate3d(0px, 0px, 0px);
+}
+.navbar {
+    border-radius: 4px 4px 4px 4px;
+}
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    background-color:rgba(50,56,69,0.95);
+    top:-60px;
+}
+.nav > li > a:hover, .nav > li > a:focus , .nav > li > a:active{
+    text-decoration: none;
+    background-color: transparent;
+    color:rgb(192,57,43);
+
+}
+.nav > li > a{
+    color:rgb(255,255,255);
+}
+.nav > li > .active{
+  color:rgb(192,57,43);
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+    display: block;
+}
+* {
+    -moz-box-sizing: border-box;
+}
+* {
+    -moz-box-sizing: border-box;
+}
+body {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(114, 114, 114);
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 400;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: rgb(51, 51, 51);
+}
+body {
+    font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(114, 114, 114);
+    font-size: 16px;
+    line-height: 28px;
+    font-weight: 400;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: rgb(51, 51, 51);
+}
+html {
+    font-size: 10px;
+}
+html {
+    font-family: sans-serif;
+}
+html {
+    font-size: 10px;
+}
+html {
+    font-family: sans-serif;
+}
+html{
+  background: url('/assets/landing/books.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+/*for fb*/
+@import url(http://fonts.googleapis.com/css?family=Merriweather+Sans);
+div.social-wrap button {
+    padding-right: 45px;
+    height: 35px;
+    background: none;
+    border: none;
+    display: block;
+    background-size: 35px 35px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    color: white;
+    font-family:"Merriweather Sans", sans-serif;
+    font-size: 14px;
+    margin-bottom: 15px;
+    width: 205px;
+    border-bottom: 2px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    box-shadow: 0 4px 2px -2px gray;
+    text-shadow: rgba(0, 0, 0, .5) -1px -1px 0;
+}
+button#facebook {
+    border-color: #2d5073;
+    background-color: #3b5998;
+    background-image: url(http://icons.iconarchive.com/icons/danleech/simple/512/facebook-icon.png);
+}
+
+</style>
+
+<style type="text/css">
+    .text-logo2 {
+        font-family: 'P22 Corinthia', arial;
+        color : #ffffff;
+        text-shadow: 1px 1px 1px #aaa;
+        font-size: 60px;
+    }                            
+</style>
+>>>>>>> tempclasscollab/master
 
 </head>
 
 
+<<<<<<< HEAD
 <body>
   	<%= render partial: "shared/flash_messages", flash: flash %> 
    <header class="navbar navbar-fixed-top	">
@@ -22,6 +207,55 @@
       <%= yield %>
     </div>
 
+=======
+<body style="background-color:transparent">
+
+  <nav class="navbar navbar-fixed-top" role="navigation" style="height:40px ;color:#ffffff">
+                    <div class="container" style="margin-top:-20px">                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Navbar-Header -->
+                                <div class="navbar-header" style="color:#ffffff">
+                                    
+                                    <!-- Mobile Menu -->
+                                    <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                                        <i class="icon icon_menu"></i>
+                                    </button>
+
+                                    <!-- Text-Logo -->
+                                    <a href="/" class="navbar-brand scrollto" title="SmartMvp">
+                                        <span class="text-logo2" style="color:#ffffff">classcollab</span>
+                                    </a> 
+
+                                    <!-- Image-Logo: Remove this comments and the section above Text-Logo if you want to add an Image-Logo (recommended sizes -> max-height:50, max-width:200) 
+
+                                    <a href="#top" class="navbar-brand img-logo scrollto" title="SmartMvp">
+                                        <img src="assets/images/logo.png" alt="Logo">
+                                    </a> 
+                                    -->
+
+                                </div><!-- /End Navbar-Header -->
+
+                                <!-- Navbar-Collapse -->
+                                <div class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav navbar-right" style="margin-top:0px">
+                                        <!-- Menu Items -->
+                                        <li><a href="login" title="" class="scrollto" >Login</a></li>
+                                        <li><a href="signup" title="" class="scrollto" >Sign Up</a></li>
+                                        
+                                        <!-- Login and Signup Modal on click -->
+                                        
+                                    </ul>
+                                </div><!-- /End Navbar-Collapse -->
+                                <%= render partial: "shared/flash_messages", flash: flash %>
+                            </div><!-- /End Col -->
+                        </div><!-- /End Row -->
+                    </div><!-- /End Container -->
+                </nav><!-- /End Sticky Navigation -->
+<div style="background:transparent">
+      <%= yield %>
+</div>
+>>>>>>> tempclasscollab/master
 </body>
 </html>
 

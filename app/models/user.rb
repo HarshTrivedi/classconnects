@@ -1,11 +1,20 @@
 class User < ActiveRecord::Base
+<<<<<<< HEAD
   paginates_per 1
+=======
+  paginates_per 9
+>>>>>>> tempclasscollab/master
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
 
+<<<<<<< HEAD
+=======
+  devise :registerable, :confirmable
+
+>>>>>>> tempclasscollab/master
   acts_as_voter
 
   #->Prelang (user_login/devise)
@@ -15,10 +24,20 @@ class User < ActiveRecord::Base
   has_many :buckets
   has_many :course_favorites
   has_many :downloads
+<<<<<<< HEAD
   belongs_to :college_branch_pair
 
 
 
+=======
+  has_many :reported_inappropriates
+  has_many :suggestions
+  has_many :notifications
+
+  belongs_to :college_branch_pair
+
+  
+>>>>>>> tempclasscollab/master
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :email, :presence => true
@@ -29,6 +48,17 @@ class User < ActiveRecord::Base
   scope :college_generator, ->{ User.where(  :id =>  User.all.select{|user| user.role?(:college_generator)    }.map(&:id)   )}
   scope :non_admins,        ->{ User.where(  :id =>  User.all.select{|user| user.role?(:non_admins)  }.map(&:id)            )}
 
+<<<<<<< HEAD
+=======
+  # after_create :notifiy_course_peers
+
+  # def notifiy_course_peers
+  #   notifiables = self.course.favorited_users
+
+  # end
+
+
+>>>>>>> tempclasscollab/master
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
@@ -49,19 +79,31 @@ class User < ActiveRecord::Base
   end
 
   def enrolled_courses
+<<<<<<< HEAD
       course_ids = self.course_enrollments.map{|course_enrollment| course_enrollment.course }.map(&:id)
+=======
+      course_ids = self.course_enrollments.map{|course_enrollment| course_enrollment.course.id rescue nil }.compact
+>>>>>>> tempclasscollab/master
       Course.where(:id => course_ids)
   end
 
 
   def favorite_courses
+<<<<<<< HEAD
       course_ids = self.course_favorites.map{|course_favorite| course_favorite.course }.flatten.map(&:id)
+=======
+      course_ids = self.course_favorites.map{|course_favorite| course_favorite.course.id rescue nil }.compact
+>>>>>>> tempclasscollab/master
       Course.where(:id => course_ids)
   end
 
 
   def downloaded_buckets
+<<<<<<< HEAD
       bucket_ids = downloads.map{|download| download.bucket }.map(&:id)
+=======
+      bucket_ids = downloads.map{|download| download.bucket.id rescue nil }.compact
+>>>>>>> tempclasscollab/master
       Bucket.where(:id => bucket_ids)
   end
 
@@ -106,11 +148,26 @@ class User < ActiveRecord::Base
     college_branch_pair = CollegeBranchPair.where(:college_id => college_id , :branch_id => branch_id).first
     if college_branch_pair
         college_branch_pair.users << self
+<<<<<<< HEAD
+=======
+        self.college_branch_enrollment_date = DateTime.now
+        self.college_branch_unenrollment_date = nil
+        self.save
+>>>>>>> tempclasscollab/master
         return college_branch_pair
     end
     return nil
   end
 
+<<<<<<< HEAD
+=======
+  def can_unroll_college_branch?
+    # has enrolled since 6 Months...
+    # return true
+    (((DateTime.now.to_time - self.college_branch_enrollment_date.to_time )/60/60/24/30) > 6) rescue false
+  end
+
+>>>>>>> tempclasscollab/master
   def college_peers
     college = self.college
     if not college.nil?
@@ -193,6 +250,10 @@ class User < ActiveRecord::Base
       if Course.exists?(:id => course_id)
         enrollment = CourseEnrollment.create( :user_id => id ,  :course_id => course_id )
         course = enrollment.course
+<<<<<<< HEAD
+=======
+        Resque.enqueue( NotifyCoursePeers , self.id , course.id )
+>>>>>>> tempclasscollab/master
       else
         course = nil
       end
@@ -224,7 +285,11 @@ class User < ActiveRecord::Base
 
   def self.search(search)
       if not search.strip.empty?
+<<<<<<< HEAD
         where('email LIKE ?', "%#{search}%")
+=======
+        where('first_name ILIKE ? or last_name ILIKE ? or email ILIKE ?', "%#{search}%" , "%#{search}%" , "%#{search}%")
+>>>>>>> tempclasscollab/master
       else
         all
       end
@@ -242,4 +307,76 @@ class User < ActiveRecord::Base
     Ability.new( self ).can?( action , object )
   end
 
+<<<<<<< HEAD
+=======
+  def has_upvoted?(bucket)
+    bucket.get_upvotes.map(&:voter_id).include?(self.id)
+  end
+
+  def has_downvoted?(bucket)
+    bucket.get_downvotes.map(&:voter_id).include?(self.id)
+  end
+
+  def activity_quotient
+
+    score = 0
+    case self.sign_in_count
+    when 0..50
+        score += 5
+    when 51..200
+        score += 10
+    when 201..500
+        score += 15
+    when 501..1000
+        score += 20
+    else
+        score += 25
+    end
+
+
+    case self.enrolled_courses.size
+    when 0..2
+        score += 5
+    when 3..6
+        score += 10
+    when 7..10
+        score += 15
+    when 10..15
+        score += 20
+    else
+        score += 25
+    end
+
+
+
+    case self.uploaded_buckets.size
+    when 0..2
+        score += 5
+    when 3..6
+        score += 10
+    when 7..10
+        score += 15
+    when 10..15
+        score += 20
+    else
+        score += 25
+    end
+
+
+    case self.downloaded_buckets.size
+    when 0..2
+        score += 5
+    when 3..6
+        score += 15
+    when 7..10
+        score += 20
+    else
+        score += 25
+    end
+
+    return score
+
+
+  end
+>>>>>>> tempclasscollab/master
 end

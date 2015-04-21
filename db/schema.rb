@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150409110742) do
+=======
+ActiveRecord::Schema.define(version: 20150412224746) do
+>>>>>>> tempclasscollab/master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +73,10 @@ ActiveRecord::Schema.define(version: 20150409110742) do
     t.datetime "last_zip_time"
     t.string   "zip_url"
     t.boolean  "zip_being_formed",    default: false
+<<<<<<< HEAD
+=======
+    t.boolean  "privately_shared",    default: false
+>>>>>>> tempclasscollab/master
   end
 
   add_index "buckets", ["category_id"], name: "index_buckets_on_category_id", using: :btree
@@ -187,6 +195,34 @@ ActiveRecord::Schema.define(version: 20150409110742) do
   add_index "folders", ["bucket_id"], name: "index_folders_on_bucket_id", using: :btree
   add_index "folders", ["folder_id"], name: "index_folders_on_folder_id", using: :btree
 
+<<<<<<< HEAD
+=======
+  create_table "inappropriate_types", force: true do |t|
+    t.string   "report_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reported_inappropriates", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "bucket_id"
+    t.integer  "inappropriate_type_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "suggestions", force: true do |t|
+    t.integer  "user_id"
+    t.string   "college_name"
+    t.string   "branch_name"
+    t.string   "course_name"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+>>>>>>> tempclasscollab/master
   create_table "users", force: true do |t|
     t.string   "email",                      default: "", null: false
     t.string   "encrypted_password",         default: "", null: false
@@ -211,9 +247,19 @@ ActiveRecord::Schema.define(version: 20150409110742) do
     t.string   "role"
     t.string   "ready_bucket_ids",           default: [],              array: true
     t.string   "pending_request_bucket_ids", default: [],              array: true
+<<<<<<< HEAD
   end
 
   add_index "users", ["college_branch_pair_id"], name: "index_users_on_college_branch_pair_id", using: :btree
+=======
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+  end
+
+  add_index "users", ["college_branch_pair_id"], name: "index_users_on_college_branch_pair_id", using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+>>>>>>> tempclasscollab/master
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 

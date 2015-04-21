@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="the-box no-border">
 	<div class="media user-card-sm">
 	  <%uploader = document.bucket.uploader %>
@@ -16,12 +17,52 @@
 		<br>
 		<span class="user-mail">
 			<%= uploader.email %>
+=======
+<div class="col-sm-6">
+<div class="the-box no-border">
+	<div class="media user-card-sm">
+	  <%uploader = document.bucket.uploader %>
+	  <div class="pull-left" href="#fakelink">
+	      <%= image_tag document.image_url , :class => "media-object" %>
+	  </div>
+	  <div class="pull-right" href="#fakelink">
+		 <div class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#fakelink">
+			   <i class="fa fa-ellipsis-v" style="font-size:20px;float:right"></i>
+			</a>
+			<ul class="dropdown-menu primary" role="menu" style="position:relative">
+				<li>
+					<%= link_to(  fa_icon("cloud-download", text: "Download") , download_document_path(document.id) )%>
+				</li>
+					<%if uploader == current_user %>
+       					<li>
+       						<a type="button" data-toggle="modal" data-target="#modal_edit_document_<%=document.id%>" style="cursor:pointer" >
+           						<i class="fa fa-edit">Edit Name</i>
+       						</a>
+       					</li>
+       					<li>
+       						<%= link_to(fa_icon("remove", text: "Remove"), destroy_document_path(document.id) , :method => :delete , :remote => true , :data => { :confirm => "Are you sure you want to delete?"  }) %>
+	            		</li>
+	            	<%end%>			
+			</ul>
+	  </div>
+	</div>
+	  <div class="media-body">
+		<span class="document-heading">
+			<%= document.name %> | <b> ( <%= number_to_human_size( document.size )  %>  )</b>
+		</span>
+		<br>
+
+		<span class="user-mail">
+			<%= uploader.full_name %>
+>>>>>>> tempclasscollab/master
 		</span>
 		<br>
 		<span class="small-user text-muted">
 			Created <%= time_ago_in_words(document.created_at) %> ago
 		</span>
 	  </div>
+<<<<<<< HEAD
 		<div class="right-button">
 			<%= link_to(  fa_icon("external-link-square", text: "View") , view_document_path(document.id) )%>
 			<%if uploader == current_user%>
@@ -32,6 +73,13 @@
 </div>
 
 <div class="modal fade" id="document_<%=document.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+=======
+	</div>
+</div>
+</div>
+
+<div class="modal fade" id="modal_edit_document_<%=document.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+>>>>>>> tempclasscollab/master
      <div class="modal-dialog">
        <div class="modal-content modal-no-shadow">
          <div class="modal-header bg-dark no-border">
@@ -39,6 +87,7 @@
            <h4 class="modal-title">Change Document Name : <%= document.name %> </h4>
          </div>
          <div class="modal-body">
+<<<<<<< HEAD
                 <%= simple_form_for document , :url => update_document_details_path(document.id )  , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
                   <%= f.input :id, :as => :hidden, :input_html => { :value => document.id } %>
 		          <%= f.input :name , :input_html => { :class => ""}  %>
@@ -46,6 +95,15 @@
                     <div class="text-center">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                       <%= f.button :submit , "Edit", :class => "btn btn-success" %>
+=======
+                <%= simple_form_for document , :url => update_document_details_path(document.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+                  <%= f.input :id, :as => :hidden  %>
+		          <%= f.input :name , :input_html => { :class => "chosen-input" , :required => true } %>
+                  <div class="modal-footer">
+                    <div class="text-center">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <%= f.button :submit , "Edit", :class => "btn btn-primary" %>
+>>>>>>> tempclasscollab/master
                     </div>
                   </div>
                 <% end %>
@@ -53,3 +111,19 @@
        </div><!-- /.modal-content .modal-no-shadow -->
      </div><!-- /.modal-dialog -->
 </div>
+<<<<<<< HEAD
+=======
+
+<script type="text/javascript">
+  $('#modal_edit_document_<%=document.id%>').on('shown.bs.modal', function() {
+      $("#modal_edit_document_<%=document.id%>").validate({
+          rules: {
+            'document[name]': "required"
+          },
+          messages: {
+            'document[name]': "Please enter non empty document name"
+          }      	
+      });
+  })
+</script>
+>>>>>>> tempclasscollab/master

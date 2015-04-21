@@ -1,0 +1,6 @@
+$('.modal').modal("hide") ;
+var id = "<%= @document.id %>";
+toastr.info('Successfully', 'document updated');
+window.setTimeout(function () {
+	$("#document_" + id ).html("<%= escape_javascript(      render(:partial => 'shared/document', :locals => {:document => @document })      ) %>");
+}, 300);

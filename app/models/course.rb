@@ -1,6 +1,10 @@
 class Course < ActiveRecord::Base
   attr_accessor :college_branch_pair_id
+<<<<<<< HEAD
   paginates_per 10
+=======
+  paginates_per 12
+>>>>>>> tempclasscollab/master
   belongs_to :college_branch_pair
   has_many :buckets
   has_many :course_enrollments
@@ -16,6 +20,10 @@ class Course < ActiveRecord::Base
   validates :college_branch_pair, :presence => true
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> tempclasscollab/master
   def enrolled_users
   	user_ids = course_enrollments.map{|course_enrollment| course_enrollment.user.id }
     User.where(:id => user_ids)
@@ -28,7 +36,11 @@ class Course < ActiveRecord::Base
 
   def self.search(search)
       if not search.strip.empty?
+<<<<<<< HEAD
         where('name LIKE ?', "%#{search}%")
+=======
+        where('name ILIKE ? or code ILIKE ?', "%#{search}%" , "%#{search}%")
+>>>>>>> tempclasscollab/master
       else
         all
       end
@@ -47,6 +59,15 @@ class Course < ActiveRecord::Base
   end
 
   def data_shared
+<<<<<<< HEAD
+=======
+      buckets = self.buckets
+      size = 0
+      for bucket in buckets
+        size += bucket.size
+      end
+      return size
+>>>>>>> tempclasscollab/master
   end
 
   ransacker :by_college_name,

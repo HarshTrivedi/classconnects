@@ -1,0 +1,7 @@
+$('.modal').modal("hide") ;
+$("form").trigger("reset");
+toastr.info('Successfully', 'Added a folder');
+var id = "<%= @folder.id %>" ;
+
+$("#no_folders_found").html("");
+$("#folders").prepend("<div id=\"folder_<%=@folder.id%>\"> <%= escape_javascript(      render(:partial => 'shared/folder', :locals => {:folder => @folder })      ) %>  </div>");

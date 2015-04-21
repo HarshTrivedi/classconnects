@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>classcollab</title>
+  <%= csrf_meta_tags %>
+   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="http://allfont.net/css/?fonts=p22-corinthia" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="http://www.themedept.com/demo/smartmvp/assets/images/favicon/favicon.ico">
+    <link rel="stylesheet" href="assets/landing/bootstrap.css">
+    <link rel="stylesheet" href="assets/landing/icons.css">
+    <link href="assets/landing/css.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/landing/plugins.css">
+    <link rel="stylesheet" href="assets/landing/style.css">
+    <link rel="stylesheet" href="assets/landing/responsive.css">
+    <link rel="stylesheet" href="assets/landing/red.css" title="red">
+    <link rel="alternate stylesheet" href="assets/landing/green.css" title="green">
+    <link rel="alternate stylesheet" href="assets/landing/orange.css" title="orange">
+    <link rel="alternate stylesheet" href="assets/landing/purple.css" title="purple">
+    <link rel="alternate stylesheet" href="assets/landing/yellow.css" title="yellow">
+    <link rel="alternate stylesheet" href="assets/landing/grey.css" title="grey">
+    <link rel="alternate stylesheet" href="assets/landing/blue.css" title="blue">
+    <link rel="alternate stylesheet" href="assets/landing/midnight-blue.css" title="midnight-blue">
+    <link rel="stylesheet" href="assets/landing/demo.css">
+    <link rel="stylesheet" href="assets/landing/venobox.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/landing/font-awesome.css">
+    <style>
+        .counter {
+            display: table-cell;
+            margin:;
+            font-size:30px;
+            background-color: transparent;
+            border: 2px solid rgb(12,185,238);
+            color:#ffffff;
+            width:100px;
+            border-radius: 50%;
+            height:100px;
+            vertical-align: middle;
+            text-align:center;
+        }
+    </style>
+     <link rel="stylesheet" href="assets/landing/bootstrap1.css">
+    <link rel="stylesheet" href="assets/landing/icons1.css">
+    <link href="assets/landing/css1.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/landing/animate1.css">
+    <link rel="stylesheet" href="assets/landing/venobox1.css">
+    <link rel="stylesheet" href="assets/landing/style1.css">
+    <link rel="stylesheet" href="assets/landing/responsive1.css">
+    <link rel="stylesheet" href="assets/landing/red1.css" title="red">
+    <link rel="alternate stylesheet" href="assets/landing/green1.css" title="green">
+    <link rel="alternate stylesheet" href="assets/landing/orange1.css" title="orange">
+    <link rel="alternate stylesheet" href="assets/landing/purple1.css" title="purple">
+    <link rel="alternate stylesheet" href="assets/landing/yellow1.css" title="yellow">
+    <link rel="alternate stylesheet" href="assets/landing/grey1.css" title="grey">
+    <link rel="alternate stylesheet" href="assets/landing/blue1.css" title="blue">
+    <link rel="alternate stylesheet" href="assets/landing/midnight-blue1.css" title="midnight-blue">
+    <link rel="stylesheet" href="assets/landing/demo1.css">
+    
+    <!--[if lt IE 9]>
+            <script src="assets/landing/plugins/html5shiv.min.js"></script>
+            <script src="assets/landing/plugins/respond.min.js"></script>
+    <![endif]-->
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+                        <style> 
+
+                        .content {
+                          width: 80%;
+                          padding: 20px;
+                          margin: 0 auto;
+                          padding: 0 60px 0 0;
+                        }
+
+                        .centerplease {
+                          margin: 0 auto;
+                          max-width: 270px;
+                          font-size: 40px;
+                        }
+
+                        .question {
+                          position: relative;
+                          background: rgba(50,56,69,0.95);
+                          margin: 0;
+                          padding: 10px 10px 10px 50px;
+                          display: block;
+                          width:100%;
+                          cursor: pointer;
+                          color:#ffffff;
+                        }
+
+                        .answers {
+                          background: #ffffff;
+                          padding: 0px 15px;
+                          margin: 5px 0;
+                          height: 0;
+                          overflow: hidden;
+                          z-index: -1;
+                          position: relative;
+                          opacity: 0;
+                          -webkit-transition: .7s ease;
+                          -moz-transition: .7s ease;
+                          -o-transition: .7s ease;
+                          transition: .7s ease;
+                        }
+
+                        .questions:checked ~ .answers{
+                          height: auto;
+                          opacity: 1;
+                          padding: 15px;
+                        }
+
+                        .plus {
+                          position: absolute;
+                          margin-left: 10px;
+                          z-index: 5;
+                          font-size: 2em;
+                          line-height: 100%;
+                          -webkit-user-select: none;    
+                          -moz-user-select: none;
+                          -ms-user-select: none;
+                          -o-user-select: none;
+                          user-select: none;
+                          -webkit-transition: .3s ease;
+                          -moz-transition: .3s ease;
+                          -o-transition: .3s ease;
+                          transition: .3s ease;
+                        }
+
+                        .questions:checked ~ .plus {
+                          -webkit-transform: rotate(45deg);
+                          -moz-transform: rotate(45deg);
+                          -o-transform: rotate(45deg);
+                          transform: rotate(45deg);
+                        }
+
+                        .questions {
+                          display: none;
+                        }
+
+                        .text-logo2 {
+                            font-family: 'P22 Corinthia', arial;
+                            color : #ffffff;
+                            text-shadow: 1px 1px 1px #aaa;
+                            font-size: 60px;
+                        }                        
+                     </style>
+
+
+
+
+</head>
+
+
+<body data-offset="11" data-target=".navbar-fixed-top" data-spy="scroll">
+    <div class="main-wrapper">
+
+        <div style="display: none;" class="preloader">
+            <div class="loader-container">
+                <div >classcollab</div>
+                <div style="display: none;" class="signal"></div>
+            </div>
+        </div> 
+        
+        <header style="background-position: 50% 0px;" class="header fast-reg-img" id="top" data-stellar-background-ratio="0.5">
+            <!-- Background Overlay -->
+            <div class="overlay">
+
+                <!-- =========================================
+                     Navigation
+                ========================================== -->
+                <nav class="navbar navbar-fixed-top" role="navigation">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Navbar-Header -->
+                                <div class="navbar-header">
+                                    
+                                    <!-- Mobile Menu -->
+                                    <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                                        <i class="icon icon_menu"></i>
+                                    </button>
+
+                                    <!-- Text-Logo -->
+                                    <a href="#" class="navbar-brand scrollto" title="ClassCollab" class="text-logo2">
+                                        <span class="text-logo2">ClassCollab</span>
+                                    </a> 
+
+                                </div><!-- /End Navbar-Header -->
+
+                                <!-- Navbar-Collapse -->
+                                <div class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <!-- Menu Items -->
+                                        <li><a href="#about" title="" class="scrollto">About</a></li>
+                                        <li><a href="#features" title="" class="scrollto">Features</a></li>
+                                        <li><a href="#faq" title="" class="scrollto">FAQ</a></li>                                        
+                                        <!-- Login and Signup Modal on click -->
+                                        <li><%= link_to('Login', new_user_session_path)  %></li>
+                                        <li><%= link_to('SignUp', new_user_registration_path) %>
+                                        </li>
+                                    </ul>
+                                </div><!-- /End Navbar-Collapse -->
+                              <%= render partial: "shared/flash_messages", flash: flash %>
+                            </div><!-- /End Col -->
+                        </div><!-- /End Row -->
+                    </div><!-- /End Container -->
+                </nav><!-- /End Sticky Navigation -->
+
+
+                
+                <!-- =========================================
+                     Hero-Section
+                ========================================== -->
+                <div class="container vmiddle fast-reg">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="hero-section">
+                                
+                                <!-- Welcome - Hero Message -->
+                                <h1 class="text-white">CLASS COLAB <br> Reinventing Your Acadamic World</h1>
+                                <p class="text-white">Your academia, anywhere, anytime.</p>
+                                
+                                <div class="col-md-10 col-md-offset-3">
+                                    <div style="float:left ; margin-right:40px ;color:#ffffff">
+                                    <div class="counter" data-count="40">0</div>
+                                    Colleges
+                                    </div>
+                                    <div style="float:left ; margin-right:40px ;color:#ffffff">
+                                    <div class="counter" data-count="230">100</div>
+                                    Branches
+                                    </div>
+                                    <div style="float:left ; margin-right:40px ;color:#ffffff">
+                                    <div class="counter" data-count="1181">200</div> <!-- /End Fast-Reg -->
+                                    Courses
+                                    </div>
+                                    <div style="float:left ; margin-right:40px ;color:#ffffff">
+                                    <div class="counter" data-count="12149">200</div> <!-- /End Fast-Reg -->
+                                    Collabers
+                                    </div>
+                                </div><!-- /End Col -->
+                            </div><!-- /End Intro-Section -->
+
+                        </div><!-- /End Col -->
+                    </div><!-- /End Row -->
+                </div><!-- /End Container Hero-Section -->
+
+
+            </div><!-- /End Background Overlay -->
+        </header>
+        <!-- =========================
+             /END HEADER
+        ============================== -->
+
+        
+        <!-- =================================
+             SECTION ABOUT - INTRO FEATURES
+        ====================================== -->
+        <section class="intro-features" id="about">
+            <div class="container">
+                <!-- Padding -->
+                <div class="wrapper-lg">
+                    <div class="row">
+                        <!-- Section Header Title -->
+                        <div class="col-xs-12">
+                            <h2>It's about uniting world of education</h2>
+                            <p class="large">Spend less time in searching about the relevant documents and give more time to read them</p>
+                        </div>
+                    </div>
+                    <!-- Three Main Features with Icons -->
+                    <div class="row">
+                        <div class="col-sm-4 intro-content">
+                            <div class="icon-lg">
+                                <i class="fa fa-share-alt"></i>
+                            </div>
+                            <h4>Everthing shared</h4>
+                            <p>When it comes to studying, there is nothing more easy. ClassCollab gives you a new way of sharing experience.</p>
+                        </div>
+                        <div class="col-sm-4 intro-content">
+                            <div class="icon-lg">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <h4>New way of Collaboration</h4>
+                            <p>Collaboration of difference classes, which makes you experience limitless, all on the tips of your fingers.</p>  
+                        </div>
+                        <div class="col-sm-4 intro-content">
+                            <div class="icon-lg">
+                                <i class="fa fa-globe"></i>
+                            </div>
+                            <h4>Boundaries Redefined </h4>
+                            <p>The needed resources from different classrooms across different colleges along with the resources of your own college are made accessible anytime, anywhere.</p>
+                        </div>
+                    </div><!-- /End Row -->
+                </div><!-- /End Wrapper -->
+            </div><!-- /End Container -->
+        </section>
+        <!-- =============================
+             /END INTRO FEATURES
+        ============================== -->
+        
+        
+        <!-- ==================================================
+             SECTION 2 COLS - IMAGE RIGHT AND TEXT WITH CALL TO ACTION
+        ======================================================= -->
+        <!-- =============================
+             /END CHARTS SECTION 
+        ============================== -->
+        
+        
+        <!-- ==================================================
+            FEATURES SECTION
+        ======================================================= -->
+       
+        <section id="features" class="features" style="background-color:rgba(50,56,69,0.95); color:#ffffff ; padding:40px">
+      <div class="container">
+        <div class="row">
+        
+          <div style="visibility: visible; animation-duration: 500ms; animation-name: bounceInDown;" class="sec-title text-center mb50 wow bounceInDown animated animated" data-wow-duration="500ms">
+            <h2 style="color:#ffffff">Features</h2>
+            <div class="devider"><br><hr style="width:30%"></div>
+          </div>
+          
+          <br>
+          <!-- service item -->
+          <!--<div style="visibility: visible; animation-duration: 500ms; animation-name: fadeInLeft;" class="col-md-4 wow fadeInLeft animated" data-wow-duration="500ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-github fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">Branding</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+              </div>
+            </div>
+          </div>-->
+          <!-- end service item -->
+          
+          <!-- service item -->
+          <!--<div style="visibility: visible; animation-duration: 500ms; animation-delay: 500ms; animation-name: fadeInUp;" class="col-md-4 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="500ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-pencil fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">Development</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore</p>
+              </div>
+            </div>
+          </div>-->
+          <!-- end service item -->
+          <div class="row">
+          <!-- service item -->
+          <div style="visibility: visible; animation-duration: 500ms;  animation-name: fadeInRight;" class="col-md-6 wow fadeInRight animated" data-wow-duration="500ms" data-wow-delay="900ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-cloud fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">Cloud with SECURITY and PRIVACY</h3>
+                <p>Never fear of loosing your important notes or lectures, we have all of it secured in our cloud storage.We provide cloud storage which delivers optimised, flexible storage solutions. This feature gives complete and limitless access to the always in need resources that too with the desired PRIVACY. Our unique PUBLIC and PRIVATE sharing feature gives you the facility that you always wish for, it gives you the ability to reguate the visibilty of any file or folder to the selected audience.</p>
+              </div>
+            </div>
+          </div>
+          <!-- end service item -->
+            <div style="visibility: visible; animation-duration: 500ms; animation-name: fadeInLeft;animation-delay: 900ms;" class="col-md-6 wow fadeInRight animated" data-wow-duration="1000ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-bolt fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">GET just what you NEED</h3>
+                <p>Exam papers, Peer Notes, Lecture slides Books whatever it is, now there is no need to spend your valuable time searching them in a pile, find it all, just a few clicks away. Our filtering of files based on wide range of categories makes the searching experiece smeamless. Means you can easily sort on the basis of the category you need, giving you only what you really need.</p>
+              </div>
+            </div>
+          </div>
+          </div>
+          <br><br><br>
+          <div class = "row">
+          <div style="visibility: visible; animation-duration: 500ms; animation-delay: 500ms; animation-name: fadeInRight;" class="col-md-6 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="500ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-comment-o fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">Discussion Forums</h3>
+                <p>No need to wait, to hear from professor for getting your doubts solved nor you will have to search someone with a torch light in your hand to get your queries answered.Now get all your queries answered, doubts solved in a forum designed just to cater this need. A unique design, a forum for discussion, where you can ask queries in the form of comments and also reply to those comments. Not only this, each and every file can be discussed seperately as a all new topic and so can be done with buckets, making it very simpler and easy to distinguish.</p>
+              </div>
+            </div>
+          </div>
+          <div style="visibility: visible; animation-duration: 500ms; animation-delay: 900ms; animation-name: fadeInRight;" class="col-md-6 wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="900ms">
+            <div class="service-item">
+              <div class="service-icon">
+                <i class="fa fa-users fa-2x"></i>
+              </div>
+              
+              <div class="service-desc">
+                <h3 style="color:#ffffff">COLLABORATION</h3>
+                <p>Its not just about your class, its the collabartion of the classes, sharing of never ending resources from different colleges. So that you can always have something that can fit in your need perfectly. Come out and Collaborate, it's one world , one class.  </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+        <!-- =============================
+             /END FEATURES TAB
+        ============================== -->
+        
+        
+        <!-- ==================================================
+            SIGNUP DIVIDER
+        ======================================================= -->
+        <!-- =============================
+             /END PRICING SECTION 
+        ============================== -->
+
+
+        <!-- =======================================================
+             TESTIMONIALS WITH PRESS/CLIENTS LOGOS
+        ============================================================ -->
+        <!-- =============================
+             /END TESTIMONIALS
+        ============================== -->
+        
+
+        <!-- ==================================================
+            TEAM
+        ======================================================= -->
+        
+            
+        <!-- ==================================================
+            MOBILE DOWNLOAD SECTION
+        ======================================================= -->
+                        <div class="col-md-6">
+                                      
+                            <!-- =========================
+                                LOCAL SUBSCRIPTION FORM 
+                            ============================== -->
+                            <!-- ALTERNATE USE: SAVE YOUR SUBSCRIBE LIST IN .TXT
+
+                            <form id="subscribe" role="form">
+                                <div class="table">
+                                    <div class="table-row">
+                                        <div class="table-cell getnewsletter">
+                                            <h5 class="table-title">Get the Newsletter</h5>
+                                        </div>
+                                    </div>
+                                    <div class="table-cell">
+                                        <div class="input-group">
+                                            <input type="email" id="s-email" name="email" placeholder="Your email address" class="form-control">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-color">Submit</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
+                                    <p class="subscription-success"><i class="icon icon_check_alt2"></i> You are successfully subscribed for our newsletter.</p>
+                                    <p class="subscription-failed"><i class="icon icon_close_alt2"></i> Something went wrong!</p>
+                                </div>
+                            </form>
+                            -->
+
+                        </div><!-- /End Col -->
+                    </div><!-- /End Row -->
+                </div><!-- End Wrapper -->
+            </div><!-- /End Container -->
+        </section>
+        <!-- =============================
+             /END NEWSLETTER SECTION 
+        ============================== -->
+                <section id="faq" class="faq">
+
+         <div class="container" >
+                <div class="wrapper-lg">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Frequently Asked Questions</h2>
+                            <p class="large">Here is the list of FAQs for our website</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- Team Box -->
+                                             
+                   
+                    <div class="content" style="font-size:14px">
+                    <div>
+                      <input type="checkbox" id="question1" name="q"  class="questions">
+                      <div class="plus">+</div>
+                      <label for="question1" class="question">
+                        What is ClassCollab?
+                      </label>
+                      <div class="answers">
+                      ClassCollab is a webportal where studets of different colleges can share,manage and collaborate their resouses of their acadamia. The resources are stored on a cloud storage which gives our users limitless access any time.
+                      </div>
+                    </div>
+
+                    <div>
+                          <input type="checkbox" id="question2" name="q" class="questions">
+                          <div class="plus">+</div>
+                          <label for="question2" class="question">
+                                How can I access all features of classcollab?
+                          </label>
+                          <div class="answers">
+                            You need to create your account by signing up with your email id or Facebook account. If you are logged in and have not enrolled in any college you can access resources which is shared between inter-colleges publicly, and if you have enrolled in your college you can access private resources shared by students of your college which  are not accessible by those who are not enrolled in the college.                       
+                          </div>
+                    </div>
+                      
+                    <div>
+                          <input type="checkbox" id="question3" name="q" class="questions">
+                          <div class="plus">+</div>
+                          <label for="question3" class="question">
+                            What content can I download from ClassCollab?
+                          </label>
+                          <div class="answers">
+                            If you are enrolled in your college you can download private resources uploaded by the  students of your college and public resources shared between intercolleges but if you are not enrolled in your college then you can download only public resources shared between intercolleges. 
+                          </div>
+                    </div>
+
+                     <div>
+                          <input type="checkbox" id="question4" name="q" class="questions">
+                          <div class="plus">+</div>
+                          <label for="question4" class="question">
+                            How can I upload my study materials on ClassCollab?
+                          </label>
+                          <div class="answers">
+                            You can upload only in the registered college and for uploading you have to enrol in a course of your college in which you wish upload.
+                          </div>
+                    </div>
+                     <div>
+                          <input type="checkbox" id="question5" name="q" class="questions">
+                          <div class="plus">+</div>
+                          <label for="question5" class="question">
+                            What if I want to leave the registered college?
+                          </label>
+                          <div class="answers">
+                            Once you have enrolled in any college you cannot unenroll from your registered college till 6 months. So it is advised to enroll in college in which you are studying so that you can also access the private resources shared in your college. 
+                          </div>
+                    </div>
+
+                     <div>
+                        <input type="checkbox" id="question6" name="q" class="questions">
+                        <div class="plus">+</div>
+                        <label for="question6" class="question">
+                          What if my college is not available in ClassCollab?
+                        </label>
+                        <div class="answers">
+                          If your college is not available on ClassCollab, you can request us for the having your college in the list. We will put your college in ClassCollab.
+                        </div>
+                    </div>
+
+                     <div>
+                        <input type="checkbox" id="question7" name="q" class="questions">
+                        <div class="plus">+</div>
+                        <label for="question7" class="question">
+                          How can I make the best use of ClassCollab?
+                        </label>
+                        <div class="answers">
+                          ClassCollab is made to be used by you and your peers, so we suggest to make the best use of it for your advantage. You can get the best out of ClassCollab, by using our unique feature of categorywise searching which makes finding things easier, find exactly what you need. Further we advise you to report the irrelevant and redundant data so that we can make your experience beautiful. We also suggest you to comment and discuss your problems views about the topics.
+                        </div>
+                    </div>
+
+                        </div>
+                    </div><!-- /End Row -->
+                </div><!-- End Wrapper -->
+            </div><!--/End Container -->
+
+        
+        <!-- ==================================================
+            FOOTER
+        ======================================================= -->
+       <footer class="footer dark-bg" id="footer">
+            <div class="container">
+                <div class="wrapper-lg">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5 class="text-white">Get in touch!</h5>
+                            <p class="form-text">Want to support or just
+ want to say hi? It's all good, we'd love to connect with you. </p>
+                            
+                            <form id="contact" role="form" style="color:#ffffff">
+                                <!-- Notifications -->
+                                <p class="email-success"><i class="fa fa-envelop"></i> <strong>Your quote has successfully been sent.</strong></p>
+                                <p class="email-failed"><i class="icon icon_close_alt2"></i><strong> Something went wrong!</strong></p>
+                            
+                                <!-- Input Fields -->
+                                <div class="form-group">
+                                    <input class="form-control input-lg" name="name" id="name" placeholder="Your name" required="" type="text">
+                                </div>
+
+                                <div class="form-group">
+                                    <input class="form-control input-lg" name="email" id="email" placeholder="Email Address" required="" type="email">
+                                </div>
+                                
+                                <!-- Message Textarea -->
+                                <div class="form-group">
+                                    <textarea name="message" class="form-control input-lg textarea" id="message" cols="30" rows="5" placeholder="Your Message.."></textarea>
+                                </div>
+
+                                <!-- Send Button -->
+                                <button class="btn btn-color">Send Message</button>
+
+                            </form>                          
+
+                        </div>
+                        
+
+                        <div class="col-md-4 footer-right">
+                            
+                            <h5 class="text-white">Our Contact</h5>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div class="contact-content">
+                                    <a href="mailto:classcollab@gmail.com">classcollab.sen@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fa fa-location-arrow"></i>
+                                </div>
+                                <div class="contact-content">
+                                     DA-IICT,Near Indroda Circle<br>
+                                     Gandhinagar 382007 Gujarat, India
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div><!-- End Row -->
+
+                    <!-- Footer Menu and Copy -->
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <p class="footer-copy">© 2015 - Class-Collab. </p>
+                        </div>
+                    </div><!-- End Row -->
+                
+
+
+                </div><!-- /End Wrapper -->
+            </div><!-- /End Container -->
+        </footer>    </div><!-- /End Main Wrapper -->
+
+    <!-- =========================
+         SCRIPTS 
+    ============================== -->
+    <script src="assets/landing/jquery1.js"></script>
+    <script src="assets/landing/bootstrap.js"></script>
+    <script src="assets/landing/jquery.js"></script>
+    <script src="assets/landing/modernizr.js"></script>
+    <script src="assets/landing/plugins.js"></script>
+    <script src="assets/landing/tweetie.js"></script>
+    <!-- Custom Script -->
+    <script src="assets/landing/custom.js"></script>
+
+    <!-- =========================================================
+     STYLE SWITCHER | ONLY FOR DEMO NOT INCLUDED IN MAIN FILES
+    ============================================================== -->
+    <script type="text/javascript" src="assets/landing/styleswitcher.js"></script>
+    <script type="text/javascript" src="assets/landing/demo.js"></script>
+    
+
+    
+
+
+</body>
+<!--added for circle counter-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script src="assets/landing/analytics.js"></script>
+<script src="assets/landing/demo.js"></script>
+<script src="assets/landing/custom.js"></script>
+<script src="assets/landing/jquery.js"></script>
+<script src="assets/landing/jquery1.js"></script>
+<script src="assets/landing/plugins.js"></script>
+<script src="assets/landing/tweetie.js"></script>
+<script src="assets/landing/bootstrap.js"></script>
+<script src="assets/landing/modernizr.js"></script>
+<script src="assets/landing/styleswitcher.js"></script>
+<script src="assets/landing/jquery.easing.1.3.js"></script>
+
+    <!-- Custom Script -->
+    <script src="assets/landing/jquery21.js"></script>
+    <script src="assets/landing/bootstrap1.js"></script>
+    <script src="assets/landing/modernizr1.js"></script>
+    <script src="assets/landing/plugins1.js"></script>
+    <script src="assets/landing/tweetie1.js"></script>
+    <!-- Custom Script -->
+    <script src="assets/landing/custom1.js"></script>
+
+<script>
+$('.counter').each(function() {
+  var $this = $(this),
+      countTo = $this.attr('data-count');
+  
+  $({ countNum: $this.text()}).animate({
+    countNum: countTo
+  },
+
+  {
+
+    duration: 5000,
+    easing:'linear',
+    step: function() {
+      $this.text(Math.floor(this.countNum));
+    },
+    complete: function() {
+      $this.text(this.countNum);
+      //alert('finished');
+    }
+
+  });  
+  
+  
+
+});
+</script>
+<script>
+        $(document).ready(function(){
+            $("#link-feature-1").click(function(event){
+                $("#feature-1").addClass('active');
+                $("#feature-2").removeClass('active');
+                $("#feature-3").removeClass('active');
+                $("#feature-4").removeClass('active');
+                $("#feature-5").removeClass('active');
+                document.getElementById("tab-feature-1").style.display="block";
+                document.getElementById("tab-feature-1").style.position="static";
+                document.getElementById("tab-feature-1").style.visibility="visible";
+                
+                document.getElementById("tab-feature-2").style.display="none";
+                document.getElementById("tab-feature-3").style.display="none";
+                document.getElementById("tab-feature-4").style.display="none";
+                document.getElementById("tab-feature-5").style.display="none";
+            });
+            $("#link-feature-2").click(function(event){
+                $("#feature-2").addClass('active');
+                $("#feature-1").removeClass('active');
+                $("#feature-3").removeClass('active');
+                $("#feature-4").removeClass('active');
+                $("#feature-5").removeClass('active');
+                
+                document.getElementById("tab-feature-2").style.display="block";
+                document.getElementById("tab-feature-2").style.position="static";
+                document.getElementById("tab-feature-2").style.visibility="visible";
+                document.getElementById("tab-feature-1").style.display="none";
+                document.getElementById("tab-feature-3").style.display="none";
+                document.getElementById("tab-feature-4").style.display="none";
+                document.getElementById("tab-feature-5").style.display="none";
+               
+          });
+            $("#link-feature-3").click(function(event){
+                $("#feature-3").addClass('active');
+                $("#feature-1").removeClass('active');
+                $("#feature-2").removeClass('active');
+                $("#feature-4").removeClass('active');
+                $("#feature-5").removeClass('active');
+                
+                document.getElementById("tab-feature-3").style.display="block";
+                document.getElementById("tab-feature-3").style.position="static";
+                document.getElementById("tab-feature-3").style.visibility="visible";
+                document.getElementById("tab-feature-1").style.display="none";
+                document.getElementById("tab-feature-2").style.display="none";
+                document.getElementById("tab-feature-4").style.display="none";
+                document.getElementById("tab-feature-5").style.display="none";
+            });
+            $("#link-feature-4").click(function(event){
+                $("#feature-4").addClass('active');
+                $("#feature-1").removeClass('active');
+                $("#feature-2").removeClass('active');
+                $("#feature-3").removeClass('active');
+                $("#feature-5").removeClass('active');
+                
+                document.getElementById("tab-feature-4").style.display="block";
+                document.getElementById("tab-feature-4").style.position="static";
+                document.getElementById("tab-feature-4").style.visibility="visible";
+                document.getElementById("tab-feature-1").style.display="none";
+                document.getElementById("tab-feature-2").style.display="none";
+                document.getElementById("tab-feature-3").style.display="none";
+                document.getElementById("tab-feature-5").style.display="none";
+            });
+            $("#link-feature-5").click(function(event){
+                $("#feature-5").addClass('active');
+                $("#feature-1").removeClass('active');
+                $("#feature-2").removeClass('active');
+                $("#feature-4").removeClass('active');
+                $("#feature-3").removeClass('active');
+                
+                document.getElementById("tab-feature-5").style.display="block";
+                document.getElementById("tab-feature-5").style.position="relative";
+                document.getElementById("tab-feature-5").style.visibility="visible";
+                document.getElementById("tab-feature-1").style.display="none";
+                document.getElementById("tab-feature-2").style.display="none";
+                document.getElementById("tab-feature-4").style.display="none";
+                document.getElementById("tab-feature-3").style.display="none";
+            });
+                            
+        });
+</script>
+
+
+</html>
+

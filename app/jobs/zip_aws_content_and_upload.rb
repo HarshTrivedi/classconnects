@@ -3,6 +3,7 @@ require 'awesome_print'
 require 'fileutils'
 require 'zip_file_generator.rb'
 require 'active_job'
+<<<<<<< HEAD
 
 
 class ZipAwsContentAndUpload < ActiveJob::Base
@@ -12,6 +13,28 @@ class ZipAwsContentAndUpload < ActiveJob::Base
 
 	bucket = Bucket.find_by_id(bucket_id)
   	
+=======
+require 'pusher'
+
+#bundle exec rake environment resque:work QUEUE=*
+#Do this to start the server
+
+class ZipAwsContentAndUpload 
+   @queue = :default
+  
+  def self.perform(downloader_id , bucket_id)
+
+	bucket = Bucket.find_by_id(bucket_id)
+	bucket.zip_url  	
+	bucket.last_zip_time = DateTime.now
+	bucket.download_waiter_ids
+
+	original_zip_url = bucket.zip_url
+	original_last_zip_time = bucket.last_zip_time
+	original_download_waiter_ids = bucket.download_waiter_ids
+	original_updated_at = bucket.updated_at
+
+>>>>>>> tempclasscollab/master
   	if not bucket.zip_being_formed 
   		begin
 			bucket.zip_being_formed = true
@@ -78,7 +101,11 @@ class ZipAwsContentAndUpload < ActiveJob::Base
 			bucket.last_zip_time = DateTime.now
 			ap bucket
 
+<<<<<<< HEAD
 			waiter_ids = bucket.download_waiter_ids
+=======
+			waiter_ids = bucket.download_waiter_ids.uniq
+>>>>>>> tempclasscollab/master
 			ap "My waiters are   #{waiter_ids}"
 			for waiter_id in waiter_ids
 				ap "My waiter #{waiter_id}"
@@ -98,16 +125,25 @@ class ZipAwsContentAndUpload < ActiveJob::Base
 		        user.save
 		        ap user
 		        ap user.reload
+<<<<<<< HEAD
+=======
+		        Pusher['private-' + waiter_id.to_s ].trigger('ready_download', { :message => "update download notifications" })
+>>>>>>> tempclasscollab/master
 			end
 
 			bucket.download_waiter_ids = []
 			bucket.zip_being_formed = false
+<<<<<<< HEAD
+=======
+			bucket.updated_at = original_updated_at
+>>>>>>> tempclasscollab/master
 			ap bucket
 
 			ap "------------bucket before saveing-----------------"
 			ap bucket.class
 			bucket.save
 			ap bucket
+<<<<<<< HEAD
 		rescue
 			ap "Fallen In to an ERROR"
 
@@ -115,6 +151,19 @@ class ZipAwsContentAndUpload < ActiveJob::Base
 			bucket.reload
 			bucket.zip_being_formed = false
 			bucket.save
+=======
+
+		rescue
+			ap "Fallen In to an ERROR"
+			ap "About to restore the bucket"
+			bucket.reload
+			bucket.zip_url = original_zip_url 
+			bucket.last_zip_time = original_last_zip_time 
+			bucket.download_waiter_ids = original_download_waiter_ids
+			bucket.zip_being_formed = false
+			bucket.save
+			bucket.reload
+>>>>>>> tempclasscollab/master
 		end	
 	end
 

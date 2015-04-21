@@ -5,4 +5,9 @@ class Comment < ActiveRecord::Base
   has_many :comment_responses
   belongs_to :commentable , polymorphic: true
 
+<<<<<<< HEAD
+=======
+  validates :user, :presence => true
+
+>>>>>>> tempclasscollab/master
 end

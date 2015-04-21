@@ -1,6 +1,26 @@
 
 <%= render(:partial => 'shared/course_navbar' , :locals => {:course => @course }) %> 
 
+<<<<<<< HEAD
 <div id="buckets">
 	<%= render(:partial => 'shared/buckets', :locals => {:buckets => @buckets } )%>
 </div>
+=======
+
+<div class="breadcrumb default square rsaquo sm">
+	<%= link_to( @course.college.name , college_content_path(@course.college) )%> 
+		> 
+		<%= link_to( @course.branch.name , college_content_path( :id => @course.college.id , :branch_id => @course.branch.id) ) %> 
+		> 
+		<%= @course.name %>				
+</div>
+
+
+
+<hr class="marginbot-10">
+	<div id="buckets">
+		<%= render(:partial => 'shared/buckets', :locals => {:buckets => @buckets } )%>
+	</div>
+</div>
+
+>>>>>>> tempclasscollab/master

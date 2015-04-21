@@ -11,7 +11,11 @@ class CollegesController < ApplicationController
     	@college = College.find_by_id(college_id)
       search = params[:search] || ""
 
+<<<<<<< HEAD
       if current_user.college_branch_enrolled?
+=======
+      if current_user.college_branch_enrolled? and (@college == current_user.college)
+>>>>>>> tempclasscollab/master
         @branch = current_user.branch        
       else      
         branches = @college.branches.order(:created_at)
@@ -23,10 +27,17 @@ class CollegesController < ApplicationController
 
       if @branch
           @message = "College-Branch specific buckets"
+<<<<<<< HEAD
           @buckets = @college.buckets_by_branch(@branch).search(search).order(:created_at).page(params[:page])
       else
           @message = "College specific buckets"
     	   	@buckets = @college.buckets.order(:created_at).search(search).page(params[:page])
+=======
+          @buckets = @college.buckets_by_branch(@branch).filter_search_for(current_user).search(search).order(:created_at).page(params[:page])
+      else
+          @message = "College specific buckets"
+    	   	@buckets = @college.buckets.order(:created_at).filter_search_for(current_user).search(search).page(params[:page])
+>>>>>>> tempclasscollab/master
       end
 
   end
@@ -36,7 +47,11 @@ class CollegesController < ApplicationController
       @college = College.find_by_id(college_id)
       search = params[:search] || ""
 
+<<<<<<< HEAD
       if current_user.college_branch_enrolled?
+=======
+      if current_user.college_branch_enrolled? and (@college == current_user.college)
+>>>>>>> tempclasscollab/master
         @branch = current_user.branch
       else
         branches = @college.branches.order(:created_at)
@@ -60,7 +75,11 @@ class CollegesController < ApplicationController
       @college = College.find_by_id(college_id)
       search = params[:search] || ""
 
+<<<<<<< HEAD
       if current_user.college_branch_enrolled?
+=======
+      if current_user.college_branch_enrolled? and (@college == current_user.college)
+>>>>>>> tempclasscollab/master
         @branch = current_user.branch
       else
         branches = @college.branches.order(:created_at)
@@ -84,7 +103,11 @@ class CollegesController < ApplicationController
       college_id = params[:id]
       @college = College.find_by_id(college_id)
 
+<<<<<<< HEAD
       if current_user.college_branch_enrolled?
+=======
+      if current_user.college_branch_enrolled? and (@college == current_user.college)
+>>>>>>> tempclasscollab/master
         @branch = current_user.branch
       else
         branches = @college.branches.order(:created_at)
@@ -110,7 +133,12 @@ class CollegesController < ApplicationController
 
 
   def college_autocomplete_elements
+<<<<<<< HEAD
     @colleges = College.order(:name).where("name like ?" , "%#{params[:term]}%")
+=======
+    college_ids = College.order(:name).where("name ilike ?" , "%#{params[:term]}%").map(&:id).take(10)
+    @colleges = College.where( :id => college_ids )
+>>>>>>> tempclasscollab/master
     respond_to do |format|  
         format.json { render :json => @colleges.to_json }
     end
@@ -118,6 +146,7 @@ class CollegesController < ApplicationController
 
 
   def branch_autocomplete_elements
+<<<<<<< HEAD
     college = College.find_by_name(params[:college_name])
     if not college.nil?
       @branches = college.branches.order(:name).where("name like ?" , "%#{params[:term]}%")
@@ -126,10 +155,33 @@ class CollegesController < ApplicationController
       end
     else
       render json: []      
+=======
+    college_name = params[:college_name]
+    if not college_name.nil?
+      logger.ap "College Given !!!!"
+      college = College.find_by_name( college_name )
+      ap college
+      if college
+          branch_ids = college.branches.order(:name).where("name ilike ?" , "%#{params[:term]}%").map(&:id).take(10).uniq          
+      else
+          branch_ids = [] 
+      end
+      ap branch_ids
+    else
+      logger.ap "College not Given !!!!"
+      branch_ids = Branch.order(:name).where("name ilike ?" , "%#{params[:term]}%").map(&:id).take(10)
+    end
+
+    @branches = Branch.where( :id => branch_ids )
+    ap @branches
+    respond_to do |format|  
+        format.json { render :json => @branches.to_json }
+>>>>>>> tempclasscollab/master
     end
   end
 
   def course_autocomplete_elements
+<<<<<<< HEAD
     college = College.find_by_name(params[:college_name])
     branch  = Branch.find_by_name(params[:branch_name])
     if (not college.nil?) and (not branch.nil?)
@@ -139,6 +191,12 @@ class CollegesController < ApplicationController
       end
     else
       render json: []
+=======
+    course_ids = Course.order(:name).where("name like ?" , "%#{params[:term]}%").to_a.uniq{|p| p.name}.take(10).map(&:id)
+    @courses = Course.where(:id => course_ids )
+    respond_to do |format|  
+        format.json { render :json => @courses.to_json }
+>>>>>>> tempclasscollab/master
     end
   end
 

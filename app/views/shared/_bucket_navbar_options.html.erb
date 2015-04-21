@@ -1,0 +1,101 @@
+<a href="#fakelink" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
+ <ul class="dropdown-menu square margin-list-rounded with-triangle"  style="cursor:pointer" >
+
+              <%if bucket.uploader == current_user %>
+                  <li>
+                      <a data-toggle="modal" data-target="#modal_add_folder" ><i class="fa fa-folder">Add Folder</i> </a>
+                  </li>
+                  <li>
+                      <a data-toggle="modal" data-target="#add_document" style="cursor:pointer"><i class="fa fa-file">Add Documents</i></a>
+                  </li>
+              <%end%> 
+              <li class="divider"></li>
+              <li>
+
+
+              <%if current_user.has_upvoted?(bucket)  %>
+                  <li>
+                      <%= link_to( fa_icon("thumbs-up" , :text => "Like") , like_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                  </li>
+              <%else%>
+                  <li>
+                      <%= link_to( fa_icon("thumbs-o-up" , :text => "Like") , like_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                  </li>
+              <%end%>
+              <%if current_user.has_downvoted?(bucket)  %>
+                  <li>
+                      <%= link_to( fa_icon("thumbs-down" , :text => "DisLike") , dislike_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                  </li>
+              <%else%>
+                  <li>
+                      <%= link_to( fa_icon("thumbs-o-down" , :text => "DisLike") , dislike_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                  </li>
+              <%end%>
+            <li>
+      				<%= link_to( fa_icon("cloud-download", text: "Download") , request_download_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+			      </li>
+
+			<li class="divider"></li>
+			<li>
+                <a data-toggle="modal" data-target="#modal_report_bucket_<%=bucket.id%>">
+                   <i class="fa fa-ban"> Report</i>
+                </a>
+			</li>
+ </ul>
+
+
+ <div class="modal fade" id="modal_add_folder" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+     <div class="modal-dialog">
+       <div class="modal-content modal-no-shadow">
+         <div class="modal-header bg-dark no-border">
+           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+           <h4 class="modal-title">Add a Folder</h4>
+         </div>
+         <div class="modal-body">
+      <%= simple_form_for Folder.new , :url => create_folder_path( "bucket" , bucket.id ) , :method => :post , :remote => true, :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
+        <%= f.input :name , :input_html => { :class => ""  , :required => true  } %>
+               <div class="modal-footer">
+                 <div class="text-center">
+                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   <%= f.button :submit , "Create", :class => "btn btn-primary" %>
+                 </div>
+               </div>
+      <% end %>
+         </div>
+       </div><!-- /.modal-content .modal-no-shadow -->
+     </div><!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="add_document" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+     <div class="modal-dialog">
+       <div class="modal-content modal-no-shadow">
+         <div class="modal-header bg-dark no-border">
+           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+           <h4 class="modal-title">Upload Documents</h4>
+         </div>
+         <div class="modal-body">
+            <div id="upload_documents" style="margin-bottom:30px">
+              <%= render(:partial => 'shared/upload_documents' , :locals => {:parent => bucket }) %>
+            </div>
+         </div>
+       </div><!-- /.modal-content .modal-no-shadow -->
+     </div><!-- /.modal-dialog -->
+</div>
+
+
+
+<script>
+
+  $('#modal_add_folder').on('shown.bs.modal', function() {
+    $("#modal_add_folder form").validate({
+          rules: {
+            'folder[name]': "required"
+          },
+          messages: {
+            'folder[name]': "Please enter non-empty folder name"
+          }
+    });
+  });
+
+</script>

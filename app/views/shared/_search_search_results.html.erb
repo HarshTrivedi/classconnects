@@ -1,0 +1,10 @@
+<%= form_tag landing_remote_path , :id => "search_results_search" , :remote => true , :method => :post do %>
+    <%= text_field_tag :search, nil , {:placeholder=>"search"} %>
+<% end %>
+
+<script>
+  $("#search_results_search input").keyup(function() {
+	    $.get($("#search_results_search").attr("action"), $("#search_results_search").serialize(), null, "script");
+	    return false;
+  });
+</script>

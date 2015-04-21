@@ -1,0 +1,7 @@
+toastr.info('Successfully', 'Added comment response!');
+$("form").trigger("reset");
+
+var comment_id = "<%= @comment.id %>";
+var comment_response_id = "<%= @comment_response.id %>";
+
+$("#comment_responses_" + comment_id ).append("<div id=\"comment_response_<%=@comment_response.id%>\" >   <%= escape_javascript(      render(:partial => 'shared/comment_response', :locals => {:comment_response => @comment_response })      ) %>   </div>"  );

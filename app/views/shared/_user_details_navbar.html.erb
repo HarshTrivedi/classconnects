@@ -24,16 +24,28 @@
 
 
 			<%if current_page?(enrolled_courses_path) %>
+<<<<<<< HEAD
 				<%= content_tag(:li , link_to(fa_icon("fa-book", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("fa-book", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"" )%>
+=======
+				<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"" )%>
+>>>>>>> tempclasscollab/master
 			<%end%>
 
 
 			<%if current_page?(favorite_courses_path) %>
+<<<<<<< HEAD
 				<%= content_tag(:li , link_to(fa_icon("fa-book", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("fa-book", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
+=======
+				<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
+			<%else%>
+				<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
+>>>>>>> tempclasscollab/master
 			<%end%>
 
 			<div id="internal_search_bar">

@@ -4,7 +4,11 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
+<<<<<<< HEAD
   config.site_title = "Classcolab"
+=======
+  config.site_title = "classcollab"
+>>>>>>> tempclasscollab/master
   config.comments = false
 
   def can?(action, resource)
@@ -32,7 +36,11 @@ ActiveAdmin.setup do |config|
       # Destroy link on show
       if can?(:destroy, resource) && controller.action_methods.include?("destroy")
         link_to(I18n.t('active_admin.delete_model', :model => active_admin_config.resource_name), resource_path(resource),
+<<<<<<< HEAD
           :method => :delete, :confirm => I18n.t('active_admin.delete_confirmation'))
+=======
+          :method => :delete , data: { confirm: "Are you sure u want to delete this Resource ?" }   )
+>>>>>>> tempclasscollab/master
       end
     end
   end
@@ -163,7 +171,11 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
+<<<<<<< HEAD
   # config.root_to = 'dashboard#index'
+=======
+  config.root_to = 'colleges#index'
+>>>>>>> tempclasscollab/master
 
   # == Admin Comments
   #

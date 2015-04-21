@@ -24,9 +24,21 @@ class Ability
         can :read, :all
 
     elsif user.role? :content_moderator
+<<<<<<< HEAD
         can :destroy, Bucket
         can :destroy, Folder
         can :destroy, Document
+=======
+        can :destroy, ReportedInappropriate
+        can :manage, InappropriateType
+        can :destroy, Bucket
+        can :update,  Bucket
+        can :destroy, Folder
+        can :update,  Folder
+        can :destroy, Document
+        can :update,  Document
+        can :destroy, Suggestion
+>>>>>>> tempclasscollab/master
         can :read, :all
     else
 

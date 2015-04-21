@@ -1,4 +1,5 @@
 <!-- bucket -->
+<<<<<<< HEAD
 <div class="media-body">
 	  <p></p>
 	  <h4 class="media-heading">
@@ -20,3 +21,49 @@
 
 </div>
 
+=======
+<div class="the-box">
+<div class="media-body">
+<p></p>
+<h2 class="media-heading">
+<%= link_to( folder.name , folder_content_path(folder.id) ) %>
+</h2>
+<hr class="marginbot-10">
+<p></p>
+<% bucket = folder.bucket %>
+<% uploader = bucket.uploader %>
+<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Owner</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= link_to( uploader.full_name , profile_main_path( :user_id => uploader.id) ) %></p>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Size</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= folder.size %></p>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Catagory</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= bucket.category.category %></p>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Accessibility</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= ( (bucket.privately_shared) ? ("Private") : ("Public") ) %></p>
+					</div>
+				</div><!-- /.form-group -->
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Last Updated At</label>
+					<div class="col-sm-10">
+					  <p class="form-control-static"><%= time_ago_in_words( folder.updated_at ) %> ago</p>
+					</div>
+				</div><!-- /.form-group -->
+
+</div>
+</div>
+>>>>>>> tempclasscollab/master
