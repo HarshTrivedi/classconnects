@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-  <title>Classcolab</title>
-=======
   <title>classcollab</title>
->>>>>>> tempclasscollab/master
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 <!-- Prelang: Analytics / Google Analytics -->
-<<<<<<< HEAD
-   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
-=======
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href="http://allfont.net/css/?fonts=p22-corinthia" rel="stylesheet" type="text/css" />
    <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -192,22 +183,10 @@ button#facebook {
         font-size: 60px;
     }                            
 </style>
->>>>>>> tempclasscollab/master
 
 </head>
 
 
-<<<<<<< HEAD
-<body>
-  	<%= render partial: "shared/flash_messages", flash: flash %> 
-   <header class="navbar navbar-fixed-top	">
-		<%= render partial: "elements/navbar" %>
-    </header>
-    <div class="container">
-      <%= yield %>
-    </div>
-
-=======
 <body style="background-color:transparent">
 
   <nav class="navbar navbar-fixed-top" role="navigation" style="height:40px ;color:#ffffff">
@@ -255,7 +234,6 @@ button#facebook {
 <div style="background:transparent">
       <%= yield %>
 </div>
->>>>>>> tempclasscollab/master
 </body>
 </html>
 
