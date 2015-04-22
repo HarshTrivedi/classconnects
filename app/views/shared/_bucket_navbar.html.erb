@@ -7,33 +7,16 @@
 		<ul class="nav nav-tabs">
 
 			<%if current_page?(bucket_content_path) %>
-<<<<<<< HEAD
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), bucket_content_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
-			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), bucket_content_path(bucket.id) , :data => {:toggle=>""} ), :class=>"" )%>
-=======
+
 				<%= content_tag(:li , link_to(fa_icon("folder-open-o", text: "Content"), bucket_content_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("folder-open-o", text: "Content"), bucket_content_path(bucket.id) , :data => {:toggle=>""} ), :class=>"" )%>
->>>>>>> tempclasscollab/master
+
 			<%end%>
 
 
 			<%if current_page?(bucket_details_path)%>
-<<<<<<< HEAD
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Details"), bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
-			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Details"), bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"" )%>
-			<%end%>
 
-
-			<%if current_page?(edit_bucket_details_path)%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Edit Details"), edit_bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
-			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Edit Details"), edit_bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"" )%>
-			<%end%>
-
-=======
 				<%= content_tag(:li , link_to(fa_icon("info-circle", text: "Details"), bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("info-circle", text: "Details"), bucket_details_path(bucket.id) , :data => {:toggle=>""}), :class=>"" )%>
@@ -43,7 +26,7 @@
 			<li class="dropdown" id="bucket_navbar_options" >
 				<%= render(:partial => 'shared/bucket_navbar_options' , :locals => {:bucket => bucket } ) %>
 			</li>
->>>>>>> tempclasscollab/master
+
 
 			<div id="internal_search_bar">
 				<%if current_page?(bucket_content_path) %>
@@ -58,8 +41,7 @@
 
 
 
-<<<<<<< HEAD
-=======
+
 <div class="modal fade" id="modal_report_bucket_<%=bucket.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
      <div class="modal-dialog">
        <div class="modal-content modal-no-shadow">
@@ -86,4 +68,4 @@
      </div><!-- /.modal-dialog -->
 </div>
 
->>>>>>> tempclasscollab/master
+

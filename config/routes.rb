@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-=======
+
 require 'resque/server'
->>>>>>> tempclasscollab/master
+
 Rails.application.routes.draw do
   get 'landings/index'
 
@@ -24,10 +23,9 @@ Rails.application.routes.draw do
 
   get 'colleges/:id/discuss'  => 'colleges#show_discussion'      , as: :college_discussion
 
-<<<<<<< HEAD
-=======
+
   post 'pusher/auth', :to => "pusher#auth"
->>>>>>> tempclasscollab/master
+
 
   get 'courses/:id/content'  => 'courses#show_content'          , as: :course_content
   post 'courses/:id/content'  => 'courses#show_content'          , as: :course_content_remote
@@ -43,21 +41,14 @@ Rails.application.routes.draw do
 
   get 'buckets/:id/details'  => 'buckets#show_details'          , as: :bucket_details
   get 'buckets/:id/edit_details'  => 'buckets#edit_details'     , as: :edit_bucket_details
-<<<<<<< HEAD
-  patch 'buckets/:id'          => 'buckets#update_details'        , as: :update_bucket_details  
-  get 'buckets/new/:course_id'  => 'buckets#new_bucket'          , as: :new_bucket
-  post 'buckets/create/:course_id'  => 'buckets#create_bucket'   , as: :create_bucket
-  delete 'buckets/:id'  => 'buckets#destroy_bucket'   , as: :destroy_bucket
-  put '/buckets/:id/like',     to: 'buckets#up_vote'  , as: :like_bucket
-  put '/buckets/:id/dislike',  to: 'buckets#down_vote', as: :dislike_bucket
-=======
+
   post 'buckets/create'  => 'buckets#create_bucket'   , as: :create_bucket
   post 'buckets/:id'          => 'buckets#update_details'        , as: :update_bucket_details  
   get 'buckets/new/:course_id'  => 'buckets#new_bucket'          , as: :new_bucket
   delete 'buckets/:id'  => 'buckets#destroy_bucket'   , as: :destroy_bucket
   post '/buckets/:id/like',     to: 'buckets#up_vote'  , as: :like_bucket
   post '/buckets/:id/dislike',  to: 'buckets#down_vote', as: :dislike_bucket
->>>>>>> tempclasscollab/master
+
 
 
   get 'folders/:id/content'       => 'folders#show_content'     , as: :folder_content
@@ -65,22 +56,18 @@ Rails.application.routes.draw do
 
   get 'folders/:id/details'       => 'folders#show_details'     , as: :folder_details
   get 'folders/:id/edit_details'  => 'folders#edit_details'     , as: :edit_folder_details
-<<<<<<< HEAD
-  patch 'folders/:id'               => 'folders#update_details'   , as: :update_folder_details  
-=======
+
   post 'folders/:id'               => 'folders#update_details'   , as: :update_folder_details  
->>>>>>> tempclasscollab/master
+
   get 'folders/new/:parent_type/:parent_id'       => 'folders#new_folder'           , as: :new_folder
   post 'folders/create/:parent_type/:parent_id'   => 'folders#create_folder'        , as: :create_folder
   delete 'folders/:id'  => 'folders#destroy_folder'   , as: :destroy_folder
 
   get '/documents/:id/details'       => 'documents#show_details'         , as: :document_details
   get '/documents/:id/edit_details'  => 'documents#edit_details'         , as: :edit_document_details
-<<<<<<< HEAD
-  patch '/documents/:id'             => 'documents#update_details'       , as: :update_document_details  
-=======
+
   post '/documents/:id'             => 'documents#update_details'       , as: :update_document_details  
->>>>>>> tempclasscollab/master
+
   get   '/documents/new'               => 'documents#new_document'         , as: :new_document
   post  '/documents/create/:parent_type/:parent_id' => 'documents#create_document'      , as: :create_document
   delete '/documents/:id'  => 'documents#destroy_document'   , as: :destroy_document
@@ -108,11 +95,10 @@ Rails.application.routes.draw do
   get  '/enrollment'                  => 'user_details#new_college_branch_enrollment'           , as: :new_college_branch_enrollment
   post '/enrollment'                  => 'user_details#create_college_branch_enrollment'        , as: :create_college_branch_enrollment
 
-<<<<<<< HEAD
-=======
+
   post '/unenrollment'                  => 'user_details#unenroll_college_branch_pair'        , as: :unenroll_college_branch_pair
 
->>>>>>> tempclasscollab/master
+
   post '/favorite_course/:course_id'             => 'user_details#favorite_course'                         , as: :favorite_course
   post '/unfavorite_course/:course_id'           => 'user_details#unfavorite_course'                       , as: :unfavorite_course
 
@@ -120,10 +106,7 @@ Rails.application.routes.draw do
   post '/unenroll_course/:course_id'             => 'user_details#unenroll_course'              , as: :unenroll_course
 
   post '/request_download_bucket/:bucket_id'  => 'user_details#request_download_bucket'         , as: :request_download_bucket
-<<<<<<< HEAD
-  get '/download_bucket/:bucket_id'          => 'user_details#download_bucket'                 , as: :download_bucket
-  post '/upload_bucket/:bucket_id'    => 'user_details#upload_bucket'                           , as: :upload_bucket
-=======
+
   post '/report/:bucket_id'                   => 'user_details#report_inappropriate'            , as: :report_inappropriate
   get '/download_bucket/:bucket_id'          => 'user_details#download_bucket'                 , as: :download_bucket
   get '/download_document/:document_id'          => 'user_details#download_document'           , as: :download_document
@@ -133,7 +116,7 @@ Rails.application.routes.draw do
 
 
   get '/redirect_to_college'          => 'user_details#redirect_to_college'                     , as: :redirect_to_college
->>>>>>> tempclasscollab/master
+
   
   post '/comments/create/:parent_type/:parent_id'            => 'comments#create_comment'                  , as: :create_comment
   post '/comment_responses/create/:comment_id'               => 'comments#create_comment_response'         , as: :create_comment_response
@@ -148,66 +131,7 @@ Rails.application.routes.draw do
   post '/search_courses'     => "user_details#search_courses" , as: :search_courses
   post '/search_users'       => "user_details#search_users" , as: :search_users
 
-<<<<<<< HEAD
 
-  get '/'                       => 'landings#index'                         , as: :landing
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # namespace :admin do
-  #   resources :courses do
-  #     resources :buckets do
-  #     end
-  #   end
-  # end
-
-=======
   post '/test_action' => "landings#test_action" , as: :test_action
 
   post '/refresh_download_buckets_notifications' => "landings#refresh_download_buckets_notifications" , as: :refresh_download_buckets_notifications
@@ -222,7 +146,7 @@ Rails.application.routes.draw do
   Classcolab::Application.routes.draw do
     mount Resque::Server.new, at: "/resque"
   end
->>>>>>> tempclasscollab/master
+
   
   #->Prelang (user_login:devise/stylized_paths)
   devise_scope :user do
@@ -234,10 +158,9 @@ Rails.application.routes.draw do
     post   "signup"  => "users/registrations#create", as: :user_registration
     put    "signup"  => "users/registrations#update", as: :update_user_registration
     get    "account" => "users/registrations#edit",   as: :edit_user_registration
-<<<<<<< HEAD
-=======
+
     put    "ajax_change_password"  => "users/registrations#ajax_change_password", as: :ajax_change_password
->>>>>>> tempclasscollab/master
+
   end
 
 end

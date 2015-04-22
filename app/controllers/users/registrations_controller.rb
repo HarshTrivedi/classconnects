@@ -13,8 +13,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-<<<<<<< HEAD
-=======
 
   def ajax_change_password
       password = params[:user][:password]
@@ -31,7 +29,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
   end
 
->>>>>>> tempclasscollab/master
   private
  
   def sign_up_params

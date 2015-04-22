@@ -50,11 +50,7 @@ class ApplicationController < ActionController::Base
  def authenticate_active_admin_user!
         authenticate_user!
         unless current_user.is_admin?
-<<<<<<< HEAD
-            flash[:alert] = "You are not authorized to access this resource!"
-=======
             flash[:danger] = "You are not authorized to access this resource!"
->>>>>>> tempclasscollab/master
             redirect_to root_path
         end
     end

@@ -108,11 +108,9 @@ code,kbd,pre,samp{
 }
 
 button,input,optgroup,select,textarea{
-<<<<<<< HEAD
-	margin:5px;
-=======
+
 	margin:0px;
->>>>>>> tempclasscollab/master
+
 	font:inherit;
 	color:inherit
 }
@@ -143,12 +141,7 @@ input{
 	line-height:normal
 }
 /* added 84  search align right*/
-<<<<<<< HEAD
-#search{
-	line-height:normal;
-	float:right;
-}
-=======
+
 /*#search{
 	line-height:normal;
 	float:right;
@@ -191,7 +184,7 @@ input{
     text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 
     }
->>>>>>> tempclasscollab/master
+
 input[type=checkbox],input[type=radio]{
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
@@ -1181,20 +1174,16 @@ a:hover,a:focus{
 	color:#2a6496;
 	text-decoration:underline
 }
-<<<<<<< HEAD
 
-=======
 /* added 94
->>>>>>> tempclasscollab/master
+
 a:focus{
 	outline:thin dotted;
 	outline:5px auto -webkit-focus-ring-color;
 	outline-offset:-2px
-<<<<<<< HEAD
-}
-=======
+
 }*/
->>>>>>> tempclasscollab/master
+
 
 figure{
 	margin:0
@@ -1361,9 +1350,7 @@ mark,.mark{
 .text-center{
 	text-align:center
 }
-<<<<<<< HEAD
 
-=======
 /* added 84 main-search background white*/
 
 #main-search-background{
@@ -1371,7 +1358,7 @@ mark,.mark{
 	border-radius: 10px 10px 10px 10px;
 	padding: 10px;
 }
->>>>>>> tempclasscollab/master
+
 .text-justify{
 	text-align:justify
 }
@@ -1690,12 +1677,10 @@ pre code{
 	padding-right:15px;
 	padding-left:15px;
 	margin-right:auto;
-<<<<<<< HEAD
-	margin-left:auto
-=======
+
 	margin-left:auto;
 	min-height: 1000px;
->>>>>>> tempclasscollab/master
+
 }
 
 .row{
@@ -2938,11 +2923,9 @@ textarea.input-lg,select[multiple].input-lg{
 }
 
 .has-feedback .form-control{
-<<<<<<< HEAD
-	padding-right:42.5px
-=======
+
 	padding-right:35px
->>>>>>> tempclasscollab/master
+
 }
 
 .form-control-feedback{
@@ -3170,24 +3153,18 @@ textarea.input-lg,select[multiple].input-lg{
 	-ms-user-select:none;
 	user-select:none;
 	background-image:none;
-<<<<<<< HEAD
-	border:1px solid transparent;
-=======
+
 	border:0px solid transparent;
->>>>>>> tempclasscollab/master
+
 	border-radius:4px
 }
 
 .btn:focus,.btn:active:focus,.btn.active:focus{
-<<<<<<< HEAD
-	outline:thin dotted;
-	outline:5px auto -webkit-focus-ring-color;
-	outline-offset:-2px
-=======
+
 	/* added 94 outline:thin dotted;
 	outline:5px auto -webkit-focus-ring-color;
 	outline-offset:-2px*/
->>>>>>> tempclasscollab/master
+
 }
 
 .btn:hover,.btn:focus{
@@ -3411,11 +3388,9 @@ textarea.input-lg,select[multiple].input-lg{
 
 .btn-xs,.btn-group-xs>.btn{
 	padding:1px 5px;
-<<<<<<< HEAD
-	font-size:12px;
-=======
+
 	font-size:10px;
->>>>>>> tempclasscollab/master
+
 	line-height:1.5;
 	border-radius:3px
 }
@@ -3534,15 +3509,11 @@ tbody.collapse.in{
 }
 
 .dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus{
-<<<<<<< HEAD
-	color:#262626;
-	text-decoration:none;
-	background-color:#f5f5f5
-=======
+
 	color:#ffffff;
 	text-decoration:none;
 	background-color:rgb(36,42,52);
->>>>>>> tempclasscollab/master
+
 }
 
 .dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus{
@@ -4394,11 +4365,9 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 @media (min-width:768px){
 	.navbar-nav{
 		float:left;
-<<<<<<< HEAD
-		margin:0
-=======
+
 		margin:17px;   /*added 114 */ 
->>>>>>> tempclasscollab/master
+
 	}
 
 	.navbar-nav>li{
@@ -4993,13 +4962,10 @@ a.label:hover,a.label:focus{
 .badge{
 	display:inline-block;
 	min-width:10px;
-<<<<<<< HEAD
-	padding:3px 7px;
-	font-size:12px;
-=======
+
 	padding:3px 5px;
 	font-size:10px;
->>>>>>> tempclasscollab/master
+
 	font-weight:700;
 	line-height:1;
 	color:#fff;
@@ -5343,16 +5309,14 @@ a.thumbnail:hover,a.thumbnail:focus,a.thumbnail.active{
 }
 
 .media-object{
-<<<<<<< HEAD
-	display:block
-=======
+
 	display:block;
 	/*add for image sizing*/
 
 	height:60px;
 	width:60px;
 
->>>>>>> tempclasscollab/master
+
 }
 
 .media-heading{
@@ -5555,11 +5519,9 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:hover,a.list-gro
 
 .panel{
 	margin-bottom:20px;
-<<<<<<< HEAD
-	background-color:#fff;
-=======
+
 	background-color:rgb(233,233,233);
->>>>>>> tempclasscollab/master
+
 	border:1px solid transparent;
 	border-radius:4px;
 	-webkit-box-shadow:0 1px 1px rgba(0,0,0,.05);

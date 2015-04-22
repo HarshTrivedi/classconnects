@@ -16,24 +16,15 @@ class UserDetailsController < ApplicationController
   end
 
   def profile_main
-<<<<<<< HEAD
-    @user = current_user
-=======
     user_id = params[:user_id]    
     @user = User.find_by_id(user_id) || current_user
->>>>>>> tempclasscollab/master
     render(:template => "user_details/profile")    
   end
 
   def profile_uploads
-<<<<<<< HEAD
-    @user = current_user
-    @buckets = @user.uploaded_buckets.page(params[:page])
-=======
     user_id = params[:user_id]
     @user = User.find_by_id(user_id) || current_user
     @buckets = @user.uploaded_buckets.filter_search_for(current_user).page(params[:page])
->>>>>>> tempclasscollab/master
 
     respond_to do |format|
       format.html { render(:template => "user_details/profile")   }
@@ -74,12 +65,6 @@ class UserDetailsController < ApplicationController
   end
 
   def create_college_branch_enrollment
-<<<<<<< HEAD
-    college_id = params[:college_branch_pair][:college_id]
-    branch_id  = params[:college_branch_pair][:branch_id]
-    current_user.enroll_college_branch_pair(college_id , branch_id)
-    redirect_to landing_path
-=======
     college_id = params[:enroll_college_autocomplete_id].to_i rescue nil
     branch_id  = params[:enroll_branch_autocomplete_id].to_i rescue nil
     if college_id and branch_id
@@ -89,16 +74,11 @@ class UserDetailsController < ApplicationController
       flash[:notice] = 'Bad Request'  
     end
     redirect_to :back
->>>>>>> tempclasscollab/master
   end
 
   #Need link to reach here (In Buckets partial)
   def favorite_course
       course_id = params[:course_id]
-<<<<<<< HEAD
-      current_user.favorite_course(course_id)
-      redirect_to :back
-=======
       @course = Course.find_by_id(course_id)
       if @course
         @user = current_user
@@ -110,15 +90,10 @@ class UserDetailsController < ApplicationController
         format.js
       end
 
->>>>>>> tempclasscollab/master
   end
 
   def unfavorite_course
       course_id = params[:course_id]
-<<<<<<< HEAD
-      current_user.unfavorite_course(course_id)
-      redirect_to :back
-=======
       @course = Course.find_by_id(course_id)
       @user = current_user
       if @course
@@ -130,16 +105,11 @@ class UserDetailsController < ApplicationController
         format.js
       end
 
->>>>>>> tempclasscollab/master
   end
 
   #Need link to reach here (In Buckets partial)
   def enroll_course
       course_id = params[:course_id]
-<<<<<<< HEAD
-      current_user.enroll_course(course_id)
-      redirect_to :back
-=======
       @course = Course.find_by_id(course_id)
       @user = current_user
       if @course
@@ -151,14 +121,10 @@ class UserDetailsController < ApplicationController
         format.js
       end
 
->>>>>>> tempclasscollab/master
   end
 
   def unenroll_course
       course_id = params[:course_id]
-<<<<<<< HEAD
-      current_user.unenroll_course(course_id)
-=======
       @course = Course.find_by_id(course_id)
       if @course
         @user = current_user
@@ -187,7 +153,6 @@ class UserDetailsController < ApplicationController
           unlock_date = unlock_date.strftime("%B %d, %Y")
           flash[:alert] = "Sorry You cannot unenroll from this college until : #{unlock_date}"
       end
->>>>>>> tempclasscollab/master
       redirect_to :back
   end
 
@@ -197,19 +162,6 @@ class UserDetailsController < ApplicationController
       bucket_id = params[:bucket_id]
       bucket = Bucket.find_by_id(bucket_id)
       user = current_user
-<<<<<<< HEAD
-
-      if user and bucket
-        if bucket.zip_being_formed
-            ##some worker is already zipping it and so add him to waiter list of that bucket.
-            bucket.download_waiter_ids << user.id
-            bucket.save
-            user.pending_request_bucket_ids << bucket.id
-            user.save
-        elsif (  (bucket.updated_time < bucket.last_zip_time) rescue false  )
-            user.ready_bucket_ids << bucket.id
-            user.save
-=======
       ap "-----------------"
       ap bucket.updated_at
       ap bucket.last_zip_time
@@ -234,42 +186,28 @@ class UserDetailsController < ApplicationController
             ap user.ready_bucket_ids
             ap user.errors
             ap "IN 2-------------"
->>>>>>> tempclasscollab/master
         else
 
             bucket = Bucket.find_by_id(bucket.id)
             bucket.download_waiter_ids += [user.id]
-<<<<<<< HEAD
-=======
             bucket.download_waiter_ids_will_change!
->>>>>>> tempclasscollab/master
             bucket.save
             ap bucket
             user.reload
             user.pending_request_bucket_ids += [bucket.id]
-<<<<<<< HEAD
-            user.save
-            ap user
-            ZipAwsContentAndUpload.enqueue(user.id , bucket.id)
-=======
             user.pending_request_bucket_ids_will_change!
             user.save
             ap user
             ap user.errors
             ap "IN 3-------------"
             Resque.enqueue(ZipAwsContentAndUpload, user.id , bucket.id)
->>>>>>> tempclasscollab/master
         end
       end
       # show flash message that your download will soon become ready.
       # but ready so directly can be served
-<<<<<<< HEAD
-      render :nothing => true
-=======
       respond_to do |format|
         format.js
       end
->>>>>>> tempclasscollab/master
   end
 
   #Need link to reach here (In Buckets partial)
@@ -281,28 +219,13 @@ class UserDetailsController < ApplicationController
         current_user.ready_bucket_ids.delete("#{bucket.id}")
         current_user.ready_bucket_ids_will_change!
         current_user.save
-<<<<<<< HEAD
-
-        current_user.download_bucket(bucket_id)
-
-        # Downloaded data size for user should only be added if it is 
-        # not already added
-        #ThinkOverThis... what if the old download is updated..??
-        if not current_user.downloads.map(&:id).include?(bucket_id.to_i)
-          current_user.downloaded_data_size = current_user.downloaded_data_size + bucket.size
-          current_user.save
-        end
-=======
         current_user.download_bucket(bucket_id)
         current_user.downloaded_data_size = current_user.downloaded_data_size + bucket.size
         current_user.save
->>>>>>> tempclasscollab/master
       end
       redirect_to bucket.download_url
   end
 
-<<<<<<< HEAD
-=======
   def download_document
       document_id = params[:document_id]
       document = Document.find_by_id( document_id )
@@ -315,7 +238,6 @@ class UserDetailsController < ApplicationController
 
 
 
->>>>>>> tempclasscollab/master
   #uploading bucket is not necessarily actual uploading
   #it can also be just make a bucket and not uploading anything.
   #Need link to reach here (In Buckets partial)
@@ -323,9 +245,6 @@ class UserDetailsController < ApplicationController
       bucket_id = params[:bucket_id]
       current_user.upload_bucket(bucket_id)
       redirect_to college_content_path(bucket_id)
-<<<<<<< HEAD
-      redirect_to :back
-=======
       render :js => "toastr.success('New Bucket Added', '...')"
   end
 
@@ -361,7 +280,6 @@ class UserDetailsController < ApplicationController
     current_user.sign_in_count += 1
     current_user.save
     render :nothing => true
->>>>>>> tempclasscollab/master
   end
 
   private
@@ -370,8 +288,6 @@ class UserDetailsController < ApplicationController
     params.require(:college_branch_pair).permit(:college_id , :branch_id )
   end
 
-<<<<<<< HEAD
-=======
   def report_params
     params.require(:reported_inappropriate).permit(:user_id , :bucket_id , :description , :inappropriate_type_id )
   end
@@ -379,7 +295,6 @@ class UserDetailsController < ApplicationController
   def suggestion_params
     params.require(:suggestion).permit(:user_id , :college_name , :branch_name , :course_name , :message )
   end
->>>>>>> tempclasscollab/master
 
 
 end

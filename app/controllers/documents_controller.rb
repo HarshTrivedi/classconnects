@@ -2,11 +2,7 @@ class DocumentsController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
   before_filter :document_exists , :except => ["new_document" , "create_document"]
-<<<<<<< HEAD
-
-=======
   before_filter :authenticate_access_document , :except => [:new_document , :create_document ]
->>>>>>> tempclasscollab/master
   skip_before_filter :verify_authenticity_token, :only => [:create_document]
 
 
@@ -25,17 +21,11 @@ class DocumentsController < ApplicationController
 
   def update_details
     document_id = params[:document][:id]
-<<<<<<< HEAD
-    document = Document.find_by_id(document_id)
-    document.update_attributes( document_params )
-    redirect_to :back
-=======
     @document = Document.find_by_id(document_id)
     @document.update_attributes( document_params )
     respond_to do |format|
       format.js
     end
->>>>>>> tempclasscollab/master
   end
 
   def create_document
@@ -55,23 +45,13 @@ class DocumentsController < ApplicationController
 
     parent_type = params["parent_type"]
     parent_id =   params["parent_id"]
-<<<<<<< HEAD
-=======
     ap parent_type
     ap parent_id
->>>>>>> tempclasscollab/master
 
     if parent_type == "folder"
         folder = Folder.find_by_id(parent_id)
         if not folder.nil? 
             # logger.ap "Folder"
-<<<<<<< HEAD
-            document = Document.create( :name => name ,  :folder_id => parent_id , :bucket_id => folder.bucket_id , :cloud_path => cloud_path , :s3 => s3)
-            # logger.ap document.valid?
-            # logger.ap document
-            bucket = Bucket.find_by_id(folder.bucket_id)
-            bucket.size = bucket.size + s3["filesize"]
-=======
             @document = Document.create( :name => name ,  :folder_id => parent_id.to_i , :bucket_id => folder.bucket.id , :cloud_path => cloud_path , :s3 => s3)
             ap @document
             ap @document.errors
@@ -80,19 +60,12 @@ class DocumentsController < ApplicationController
             bucket = Bucket.find_by_id(folder.bucket.id)
             ap bucket
             bucket.size = bucket.size.to_i + s3["filesize"].to_i
->>>>>>> tempclasscollab/master
             bucket.save
         end
     elsif parent_type == "bucket"
         bucket = Bucket.find_by_id(parent_id)
         if not bucket.nil? 
             # logger.ap "Bucket"
-<<<<<<< HEAD
-            Document.create( :name => name , :bucket_id => parent_id , :cloud_path => cloud_path , :s3 => s3)
-            # logger.ap document.valid?
-            # logger.ap document
-            bucket.size = bucket.size + s3["filesize"].to_i
-=======
             @document = Document.create( :name => name , :bucket_id => parent_id.to_i , :cloud_path => cloud_path , :s3 => s3)
             ap @document
             ap @document.errors
@@ -101,7 +74,6 @@ class DocumentsController < ApplicationController
             # logger.ap document
             bucket.size = bucket.size.to_i + s3["filesize"].to_i
             ap bucket
->>>>>>> tempclasscollab/master
             bucket.save
         end
     end
@@ -110,13 +82,9 @@ class DocumentsController < ApplicationController
     uploader.save
     # redirect_to :back
     #Need to render JS over here!
-<<<<<<< HEAD
-    render :nothing => true
-=======
     respond_to do |format|
       format.js
     end
->>>>>>> tempclasscollab/master
   end
 
 
@@ -127,12 +95,6 @@ class DocumentsController < ApplicationController
 
   #ie remove from the uploads
   def destroy_document
-<<<<<<< HEAD
-    document_id = params[:document_id]
-    document = Document.find_by_id(document_id)
-    document_id.destroy if current_user == document.bucket.uploader
-    redirect_to :back
-=======
     document_id = params[:id]
     @document = Document.find_by_id(document_id)
     uploader = @document.bucket.uploader
@@ -146,7 +108,6 @@ class DocumentsController < ApplicationController
       format.js
     end
 
->>>>>>> tempclasscollab/master
   end
 
 
@@ -158,11 +119,6 @@ class DocumentsController < ApplicationController
     filename = document.name
 
     doc = BoxView::Api::Document.new.upload( path , filename )
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> tempclasscollab/master
     document_session = doc.document_session
     view_url = document_session.view_url
 
@@ -184,8 +140,6 @@ class DocumentsController < ApplicationController
       end
   end
 
-<<<<<<< HEAD
-=======
   def authenticate_access_document
       document = Document.find_by_id(params[:id])
       bucket = document.bucket
@@ -200,7 +154,6 @@ class DocumentsController < ApplicationController
       end
   end
 
->>>>>>> tempclasscollab/master
   #PERMITTING mass assignment
   def document_params
     params.require(:document).permit(:name )

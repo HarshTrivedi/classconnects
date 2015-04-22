@@ -24,8 +24,6 @@ class CollegeBranchPair < ActiveRecord::Base
       Document.where( :bucket_id => self.buckets.map(&:id) )
   end
 
-<<<<<<< HEAD
-=======
   def buckets_shared
       courses = self.courses
       size = 0
@@ -34,7 +32,6 @@ class CollegeBranchPair < ActiveRecord::Base
       end
       return size
   end
->>>>>>> tempclasscollab/master
 
 
 end

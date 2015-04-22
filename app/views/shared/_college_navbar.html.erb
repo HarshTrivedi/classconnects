@@ -7,46 +7,25 @@
 		<ul class="nav nav-tabs">
 
 			<%if current_page?(college_content_path) %>
-<<<<<<< HEAD
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), college_content_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
-			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Content"), college_content_path(college.id) , :data => {:toggle=>""} ), :class=>"" )%>
-=======
+
 				<%= content_tag(:li , link_to(fa_icon("briefcase", text: "Buckets"), college_content_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("briefcase", text: "Buckets"), college_content_path(college.id) , :data => {:toggle=>""} ), :class=>"" )%>
->>>>>>> tempclasscollab/master
+
 			<%end%>
 
 
 			<%if current_page?(college_users_path)%>
-<<<<<<< HEAD
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Users"), college_users_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
-			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Users"), college_users_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
-=======
+
 				<%= content_tag(:li , link_to(fa_icon("users", text: "Enrolled Students"), college_users_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("users", text: "Enrolled Students"), college_users_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
->>>>>>> tempclasscollab/master
+
 			<%end%>
 
 
 			<%if current_page?(college_courses_path)%>
-<<<<<<< HEAD
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Courses"), college_courses_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
-			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Courses"), college_courses_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
-			<%end%>
 
-
-			<%if current_page?(college_discussion_path)%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), college_discussion_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
-			<%else%>
-				<%= content_tag(:li , link_to(fa_icon("cloud-download", text: "Discuss"), college_discussion_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
-			<%end%>
-			 
-=======
 				<%= content_tag(:li , link_to(fa_icon("book", text: "Courses"), college_courses_path(college.id) , :data => {:toggle=>""}), :class=>"active" )%>
 			<%else%>
 				<%= content_tag(:li , link_to(fa_icon("book", text: "Courses"), college_courses_path(college.id) , :data => {:toggle=>""}), :class=>"" )%>
@@ -58,7 +37,7 @@
 			<li id="select_branch" style="margin-top:7px">
 				<%= render(:partial => 'shared/select_branch' ,:locals => { :college => @college } ) %>
 			</li>			 
->>>>>>> tempclasscollab/master
+
 
 			<div id="internal_search_bar">
 				<%if current_page?(college_content_path) %>

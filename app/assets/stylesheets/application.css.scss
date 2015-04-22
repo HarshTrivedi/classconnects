@@ -10,11 +10,7 @@
 * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
 * file per style scope.
 *
-<<<<<<< HEAD
-*= require_tree .
-*= stub active_admin
-*= require s3_direct_upload_progress_bars
-=======
+
 *= require bootstrap.css
 *= require bootstrapValidator.min.css
 *= require buckets.css.scss
@@ -34,13 +30,12 @@
 *= require s3_direct_upload_progress_bars
 *= require toastr
 *= require nprogress.css
->>>>>>> tempclasscollab/master
+
 *= require_self
 */
 
 @import "font-awesome";
-<<<<<<< HEAD
-=======
+
 
 /* line 7, /var/lib/gems/1.9.1/gems/s3_direct_upload-0.1.6/app/assets/stylesheets/s3_direct_upload_progress_bars.css.scss */
 .upload .progress {
@@ -311,4 +306,4 @@ input::-moz-focus-inner { border: 0; }
   border-radius: 50%;
 }
 
->>>>>>> tempclasscollab/master
+

@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-<div class="row">
-<%for course in courses%>
-	<%= render(:partial => 'shared/course', :locals => {:course => course } )%>
-<%end%>
-</div>
-<%= paginate courses  , :remote => true  %>
-=======
+
 <%if courses.size > 0%>
 <div class="row">
 <%for course in courses%>
@@ -22,4 +15,4 @@
 		<h1  style="font-size:60px; margin:250px"><i class="fa fa-search"></i> Nothing Found! </h1>
 	</div> 
 <%end%>
->>>>>>> tempclasscollab/master
+

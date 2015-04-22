@@ -1,9 +1,7 @@
 <div class="col-sm-4">
-<<<<<<< HEAD
-	<div class="the-box no-border">
-=======
+
 	<div class="the-box no-border"  style="cursor:pointer" >
->>>>>>> tempclasscollab/master
+
 		<div class="media user-card-sm">
 		<div class="media-body">
 			<h4 class="media-heading">
@@ -13,16 +11,7 @@
 			<br>
 			<span class="small text-muted">
 					<b>College:</b>
-<<<<<<< HEAD
-					<%=course.college_branch_pair.college.name%>
-			</span>
-    	</div>
-		<div class="right-button">
-			  <%if not course.enrolled_users.include?(current_user) %>
-			  	<%= link_to(  fa_icon("plus", text: "Enroll") , enroll_course_path(course.id) , :method => :post , :class => "btn btn-xs btn-success") %>
-			  <%else%>
-			  	<%= link_to(  fa_icon("plus", text: "Un-Enroll")  , unenroll_course_path(course.id) , :method => :post , :class => "label label-danger span-sidebar") %>	  	
-=======
+
 					<% college = course.college_branch_pair.college %>
 					<%= link_to(  truncate( college.name , :length => 15) , college_content_path(college.id) )  %>
 			</span>
@@ -34,22 +23,18 @@
 				  <%else%>
 				  	<%= link_to(  fa_icon("plus-square")  , unenroll_course_path(course.id) , :method => :post , :remote => true ,:style => "color:rgb(3,14,97)" ) %>	  	
 				  <%end%>
->>>>>>> tempclasscollab/master
+
 			  <%end%>
 
 
 			  <p></p>
 
  			  <%if not course.favorited_users.include?(current_user) %>
-<<<<<<< HEAD
-			  	<%= link_to(  fa_icon("heart", text: "Favorite") , favorite_course_path(course.id) , :method => :post , :class => "btn btn-xs btn-warning") %>
-		      <%else%>
-			  	<%= link_to(   fa_icon("heart", text: "Un-Favorite")  , unfavorite_course_path(course.id) , :method => :post , :class => "label label-warning span-sidebar") %>	  
-=======
+
 			  	<%= link_to(  fa_icon("heart-o") , favorite_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(215,31,68)" , "data-toggle" => "tooltip" , "title" => "Favorite Course") %>
 		      <%else%>
 			  	<%= link_to(   fa_icon("heart")  , unfavorite_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(215,31,68)" , "data-toggle" => "tooltip" , "title" => "Un-Favorite Course") %>	  
->>>>>>> tempclasscollab/master
+
 		      <%end%>
 
 			</div>	

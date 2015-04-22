@@ -1,37 +1,4 @@
-<<<<<<< HEAD
 
-<div class="row">
-  <%for folder in folders%>
-		<%= render(:partial => 'shared/folder', :locals => {:folder => folder } )%>				  
-  <%end%>
-</div>
-
-<button type="button" data-toggle="modal" data-target="#add_folder" class="btn btn-success btn-perspective">Add Folder</button>
-
-<%= paginate folders, :param_name => "folder_page"  , :remote => true %>
-
-<div class="modal fade" id="add_folder" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-     <div class="modal-dialog">
-       <div class="modal-content modal-no-shadow">
-         <div class="modal-header bg-dark no-border">
-           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-           <h4 class="modal-title">Add a Folder</h4>
-         </div>
-         <div class="modal-body">
-			<%= simple_form_for Folder.new , :url => create_folder_path( parent_type , parent_id ) , :method => "post" , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
-			  <%= f.input :name , :input_html => { :class => ""} %>
-               <div class="modal-footer">
-                 <div class="text-center">
-                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                   <%= f.button :submit , "Create", :class => "btn btn-success" %>
-                 </div>
-               </div>
-			<% end %>
-         </div>
-       </div><!-- /.modal-content .modal-no-shadow -->
-     </div><!-- /.modal-dialog -->
-</div>
-=======
 <%if folders.size > 0%>
 <div class="row">
   <%for folder in folders%>
@@ -53,4 +20,4 @@
 	</div>
 <%end%>
 
->>>>>>> tempclasscollab/master
+

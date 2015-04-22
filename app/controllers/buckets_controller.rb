@@ -2,10 +2,7 @@ class BucketsController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
   before_filter :bucket_exists , :except => [:new_bucket , :create_bucket ]
-<<<<<<< HEAD
-=======
   before_filter :authenticate_access_bucket , :except => [:new_bucket , :create_bucket ]
->>>>>>> tempclasscollab/master
   respond_to :html , :js
 
   def show_content
@@ -32,11 +29,6 @@ class BucketsController < ApplicationController
 
   def update_details
     bucket_id = params[:bucket][:id]
-<<<<<<< HEAD
-    bucket = Bucket.find_by_id(bucket_id)
-    bucket.update_attributes( bucket_params )
-    redirect_to :back
-=======
     @bucket = Bucket.find_by_id(bucket_id)
     @bucket.update_attributes( bucket_params )
 
@@ -48,7 +40,6 @@ class BucketsController < ApplicationController
       format.js
     end
 
->>>>>>> tempclasscollab/master
   end
 
   def new_bucket
@@ -63,16 +54,6 @@ class BucketsController < ApplicationController
   def create_bucket
     course_id = params[:bucket][:course_id]
     course = Course.find_by_id(course_id)
-<<<<<<< HEAD
-    if not course.nil?
-      # name = bucket_params[:name]
-      # description = bucket_params[:description]
-
-      bucket = Bucket.create(bucket_params)
-      current_user.upload_bucket(bucket.id)
-    end
-    redirect_to :back
-=======
     privately_shared = params[:bucket][:privately_shared]
     privately_shared =  ( privately_shared == "true" ) ? (true) : (false)
 
@@ -95,24 +76,12 @@ class BucketsController < ApplicationController
     respond_to do |format|
       format.js
     end
->>>>>>> tempclasscollab/master
   end
 
 
   #ie remove from the uploads
   def destroy_bucket
     bucket_id = params[:id]
-<<<<<<< HEAD
-    bucket = Bucket.find_by_id(bucket_id)
-
-    if current_user == bucket.uploader
-      uploader = bucket.uploader
-      uploader.uploaded_data_size = uploader.uploaded_data_size - bucket.size
-      uploader.save
-      bucket.destroy
-    end 
-    redirect_to :back
-=======
     @bucket = Bucket.find_by_id(bucket_id)
 
     if current_user == @bucket.uploader
@@ -125,23 +94,10 @@ class BucketsController < ApplicationController
       format.js
     end
 
->>>>>>> tempclasscollab/master
   end
 
 
   def up_vote
-<<<<<<< HEAD
-    bucket = Bucket.find_by_id(params[:id])
-    if not bucket.nil?
-      # if not current_user.voted_for?(bucket)
-      logger.ap "About to upvote"
-      current_user.up_votes(bucket)
-      # else
-      #     flash[:notice] = 'Sorry!! You had allready voted this Bucket!'
-      # end
-    end
-    redirect_to :back    
-=======
     @bucket = Bucket.find_by_id(params[:id])
     if not @bucket.nil?
       @message = ""
@@ -155,23 +111,10 @@ class BucketsController < ApplicationController
     respond_to do |format|
       format.js
     end
->>>>>>> tempclasscollab/master
   end
 
 
   def down_vote
-<<<<<<< HEAD
-    bucket = Bucket.find_by_id(params[:id])
-    if not bucket.nil?
-      # if not current_user.voted_for?(bucket)
-      logger.ap "About to downvote"
-      current_user.down_votes(bucket)
-      # else
-      #     flash[:notice] = 'Sorry!! You had allready voted this Bucket!'
-      # end
-    end
-    redirect_to :back
-=======
     @bucket = Bucket.find_by_id(params[:id])
     if not @bucket.nil?      
       @message = ""
@@ -185,7 +128,6 @@ class BucketsController < ApplicationController
     respond_to do |format|
       format.js
     end
->>>>>>> tempclasscollab/master
   end
 
 
@@ -202,8 +144,6 @@ class BucketsController < ApplicationController
       end
   end
 
-<<<<<<< HEAD
-=======
 
   def authenticate_access_bucket
       bucket = Bucket.find_by_id(params[:id])
@@ -218,7 +158,6 @@ class BucketsController < ApplicationController
       end
   end
 
->>>>>>> tempclasscollab/master
   #PERMITTING mass assignment
   def bucket_params
     params.require(:bucket).permit(:name , :description , :category_id , :course_id )

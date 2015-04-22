@@ -4,18 +4,10 @@
 
 <%= simple_form_for @bucket , :url => create_bucket_path , :method => "post" , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
   <%= f.input :course_id, :as => :hidden, :input_html => { :value => @course.id } %> 
-<<<<<<< HEAD
-  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => ""}%>
-  <%= f.input :name , :input_html => { :class => ""} %>
-  <%= f.input :description , :input_html => { :class => ""} %>
-   <div class="text-center">
-  	<%= f.button :submit , "Create", :class => "btn btn-success"%>
-=======
   <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => ""  , "data-bv-notempty" => "true"}%>
   <%= f.input :name , :input_html => { :class => ""  , "data-bv-notempty" => "true"} %>
   <%= f.input :description , :input_html => { :class => ""  , "data-bv-notempty" => "true"} %>
    <div class="text-center">
   	<%= f.button :submit , "Create", :class => "btn btn-primary"%>
->>>>>>> tempclasscollab/master
   </div>
 <% end %>

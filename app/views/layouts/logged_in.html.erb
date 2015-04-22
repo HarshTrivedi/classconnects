@@ -1,29 +1,13 @@
 <!DOCTYPE html>
 <html>
 <html lang="en"><head>
-<<<<<<< HEAD
-	  	<title>Classcolab</title>
-=======
 	  	<title>classcollab</title>
->>>>>>> tempclasscollab/master
 	  	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 	  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	  	<%= csrf_meta_tags %>
 		<!-- Prelang: Analytics / Google Analytics -->
 	    <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<<<<<<< HEAD
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Sentir, Responsive admin and dashboard UI kits template">
-		<meta name="keywords" content="admin,bootstrap,template,responsive admin,dashboard template,web apps template">
-		<meta name="author" content="Ari Rusmanto, Isoh Design Studio, Warung Themes">
-		<title>Welcome - CollegeColab</title>
-    	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-	   <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
-=======
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 		<title>Welcome - CollegeColab</title>
@@ -77,7 +61,6 @@
                     font-weight:lighter;
             }
 	    </style>
->>>>>>> tempclasscollab/master
 
 </head>
 
@@ -89,13 +72,8 @@
 				<div class="top-navbar-inner">
 					
 					<!-- Begin Logo brand -->
-<<<<<<< HEAD
-					<div class="logo-brand">
-						<h3><a href="#">Class-Colab</a></h3>
-=======
 					<div class="logo-brand text-logo2">
 						ClassCollab
->>>>>>> tempclasscollab/master
 					</div><!-- /.logo-brand -->
 					<!-- End Logo brand -->
 					
@@ -106,9 +84,6 @@
 							<i class="fa fa-bars"></i>
 						</div><!-- /.btn-collapse-sidebar-left -->
 
-<<<<<<< HEAD
-						<%= render(:partial => 'shared/notifications' ) %>
-=======
 						<ul class="nav navbar-nav navbar-left" >
 							<%= render( :partial => 'shared/main_college_search' )%>
 						</ul>
@@ -117,7 +92,6 @@
 								<%= render(:partial => 'shared/notifications' ) %>
 							</div>
 						</ul>
->>>>>>> tempclasscollab/master
 
 						<ul class="nav-user navbar-right">
 							<li class="dropdown">
@@ -126,14 +100,6 @@
 								Hi, <strong><%=current_user.full_name%></strong>
 							  </a>
 							  <ul class="dropdown-menu square primary margin-list-rounded with-triangle">
-<<<<<<< HEAD
-								<li><a href="#fakelink">Account setting</a></li>
-								<li><%= link_to 'Change Password', edit_user_registration_path %></li>
-								<li><a href="#fakelink">Profile</a></li>
-								<li class="divider"></li>
-								<li><a href="#">Lock screen</a></li>
-								<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %>. </li>
-=======
 								<li>
 									<a style="cursor:pointer" data-toggle="modal" data-target="#edit_passowrd">
 										Change Password
@@ -144,7 +110,6 @@
 								</li>
 								<li class="divider"></li>
 								<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
->>>>>>> tempclasscollab/master
 							  </ul>
 							</li>
 						</ul>
@@ -157,8 +122,6 @@
 			<!-- BEGIN SIDEBAR LEFT -->
 			<div tabindex="5000" style="overflow: hidden;" class="sidebar-left sidebar-nicescroller">
 				<ul class="sidebar-menu">
-<<<<<<< HEAD
-=======
 
 					<br>
 					<div class="static left-profile-summary">
@@ -174,7 +137,6 @@
 						</div>
 					</div>
 					<br>
->>>>>>> tempclasscollab/master
 					<%if current_page?(uploads_path) %>
 					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"active" )%>
 					<%else%>
@@ -195,34 +157,6 @@
 					<%else%>
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
 					<%end%>
-<<<<<<< HEAD
-					<%if current_page?("#fake_link_yet") %>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Upload"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"active" )%>
-					<%else%>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Upload"), "#fake_link_yet" , :data => {:toggle=>""}), :class=>"" )%>
-					<%end%>
-					<%if current_page?(profile_main_path) %>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), profile_main_path , :data => {:toggle=>""}), :class=>"active" )%>
-					<%else%>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Profile"), profile_main_path , :data => {:toggle=>""}), :class=>"" )%>
-					<%end%>
-					
-					<%if not current_user.college.nil?%>
-						<%if current_page?(my_college_path) %>
-						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"active" )%>
-						<%else%>
-						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
-						<%end%>
-					<%else%>
-						<%if current_page?(new_college_branch_enrollment_path) %>
-						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enroll College/Branch"), my_college_path , :data => {:toggle=>""}), :class=>"active" )%>
-						<%else%>
-						<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enroll College/Branch"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
-						<%end%>
-						
-					<%end%>
-
-=======
 					<%if not current_user.college.nil?%>
 						<%if current_page?(my_college_path) %>
 						<%= content_tag(:li , link_to(fa_icon("graduation-cap", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"active" )%>
@@ -258,16 +192,11 @@
 						Activity Quotient
 					</div>
 
->>>>>>> tempclasscollab/master
 				</ul>
 			</div><!-- /.sidebar-left -->
 			
 
-<<<<<<< HEAD
-			<div class="modal fade" id="DarkNoShadowModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-=======
 			<div class="modal fade" id="enroll_college_branch_modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
->>>>>>> tempclasscollab/master
 				  <div class="modal-dialog">
 					<div class="modal-content modal-no-shadow">
 					  <div class="modal-header bg-dark no-border">
@@ -276,15 +205,6 @@
 					  </div>
 					  <div class="modal-body">
 							<%= simple_form_for CollegeBranchPair.new , :url => create_college_branch_enrollment_path , :method => "post" , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
-<<<<<<< HEAD
-							  <%= f.input :user_id, :as => :hidden, :input_html => { :value => 1 } %>
-							  <%= f.association :college, label_method: :name , :include_blank => false , :input_html => { :class => "chosen-input"} %>
-							  <%= f.association :branch, label_method: :name , :include_blank => false , :input_html =>  { :class => "chosen-input"} %>
-							  <div class="modal-footer">
-								  <div class="text-center">
-	   							  	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-								  	<%= f.button :submit , "Enroll Me", :class => "btn btn-success"%>
-=======
 							  <%= f.input :user_id, :as => :hidden, :input_html => { :value => current_user.id } %>
 
 							  <%= hidden_field_tag("enroll_college_autocomplete_id", "", :id => "enroll_college_autocomplete_id") %>
@@ -298,7 +218,6 @@
 								  <div class="text-center">
 	   							  	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 								  	<%= f.button :submit , "Enroll Me", :class => "btn btn-primary" , data: { confirm: "Are you sure you want to enroll in this college/branch and access private data shared? You will not be able to unenroll for next 6 months." } %>
->>>>>>> tempclasscollab/master
 								  </div><!-- /.modal-footer -->
 							  </div>
 							<% end %>
@@ -306,27 +225,6 @@
 					</div><!-- /.modal-content .modal-no-shadow -->
 				  </div><!-- /.modal-dialog -->
 			</div>
-<<<<<<< HEAD
-			
-			
-			<!-- BEGIN PAGE CONTENT -->
-			<%= render partial: "shared/flash_messages", flash: flash %>
-			<div class="page-content">
-				<div class="container-fluid">
-					<%= render(:partial => 'shared/main_search_form' ) %>
-					<div class="setting_two"></div> 			
-				</div>
-				<%= yield %>
-				<!-- BEGIN FOOTER -->
-				<footer class="footer">
-					<br>
-					© 2015 <a href="http://classcolab.com">CodeArt</a><br>
-					Design by <a href="http://classcolab.com" target="_blank">CodeArt</a>.
-				</footer>
-			</div>		
-
-</body>
-=======
 			<div class="modal fade" id="modal_add_bucket_with_course" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
 			     <div class="modal-dialog">
 			       <div class="modal-content modal-no-shadow">
@@ -790,5 +688,4 @@
 setProgress("<%= current_user.activity_quotient %>");
 </script>
 
->>>>>>> tempclasscollab/master
 </html>

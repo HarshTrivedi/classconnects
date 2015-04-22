@@ -1,15 +1,5 @@
 
-<<<<<<< HEAD
-<%= form_tag( college_content_path(college.id) , :method => "get" , :class => "form-group has-feedback lg no-label" ) do %>
-	<div class="form-group has-feedback lg no-label">
-		<%= select_tag(:branch_id, options_for_select( branches_name_id ) , :class => "form-control" ,  :prompt => "No Branch Selected" ) %>
-	</div>
-	<div class="text-center">
-		<%= submit_tag(:Go , :class => "btn btn-danger") %>
-	</div>
-<% end %>
 
-=======
 
 <%if current_page?(college_content_path) %>
 
@@ -37,4 +27,4 @@
 		$("#branch_id").chosen( {search_contains: true , placeholder: "Visit a Branch" , allow_single_deselect: true , no_results_text: "Oops, no Branch found!"});
 	});
 </script>
->>>>>>> tempclasscollab/master
+

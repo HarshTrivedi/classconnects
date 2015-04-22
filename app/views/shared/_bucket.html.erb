@@ -1,45 +1,3 @@
-<<<<<<< HEAD
-
-<div class="the-box no-border property-list">
-    <div class="media">
-        <a class="pull-left" href="#fakelink"> <!--if want to give user profile link-->
-        
-        <%= image_tag avatar_url(bucket.uploader) , :class => "media-object img-circle" , :title => bucket.uploader.full_name%>
-
-        <div class="clearfix visible-xs"></div>
-        <div class="media-body">
-            <a href="#fakelink"></a>
-            <h4 class="media-heading">
-                <%= link_to( bucket.name , bucket_content_path(bucket.id)  ) %>
-                <% category = bucket.category.category %>
-                <small class="pull-right">
-                	<b>Catagory: </b><span class="label label-warning span-sidebar">
-                    <%= category %></span>
-		        </small>                 
-            </h4>
-
-            <ul class = "list-inline">
-		        <li>
-        	     	<%= link_to("Download" , request_download_bucket_path(bucket.id) , :method => :post , :class => "label label-warning span-sidebar") %>
-                  <li>
-                      <%= link_to( fa_icon("thumbs-o-up") , like_bucket_path(bucket.id) , :method => :put)%> 
-                      </b> 
-                      <%= bucket.up_votes %>
-                  </li>  |  
-                  <li>
-                      <%= link_to( fa_icon("thumbs-o-down") , like_bucket_path(bucket.id) , :method => :put)%> 
-                      </b> 
-                      <%= bucket.down_votes %>
-                  </li>
-                    <button type="button" data-toggle="modal" data-target="#bucket_<%=bucket.id%>" class="btn btn-success">
-                        Edit
-                    </button>
-                </li>
-            </ul>
-
-	         <p class="hidden-xs"><!--ask-->
-                <b>Description:</b><%= bucket.description %>
-=======
 <div class="col-sm-6">
 <div class="the-box no-border property-list">
     <div class="media">
@@ -88,16 +46,12 @@
 
 	         <p class="hidden-xs">
                 <%= truncate(bucket.description , length: 40) %>
->>>>>>> tempclasscollab/master
             </p>
 
             <span class="small text-muted">
                 <% course = bucket.course %>
               <b>Course:  </b><%= link_to(  course.name , course_content_path(course.id)  ) %>
       			</span>
-<<<<<<< HEAD
-
-=======
             <br>
             <%= link_to( fa_icon("cloud-download", text: "Download") , request_download_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "")%> 
             <%if bucket.uploader == current_user %>
@@ -106,20 +60,13 @@
                     </a>
                     <%= link_to( fa_icon("trash-o" , :text=>"Delete") , destroy_bucket_path(bucket.id) , :method => :delete , :remote => true ,:style=>"margin-left:20px" , :data => { :confirm => "Are you sure you want to delete?"  }  )%> 
             <%end%>
->>>>>>> tempclasscollab/master
         </div>
 	 </div>
 
 </div>
-<<<<<<< HEAD
-
-
-<div class="modal fade" id="bucket_<%=bucket.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-=======
 </div>
 
 <div class="modal fade" id="modal_edit_bucket_<%=bucket.id%>" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
->>>>>>> tempclasscollab/master
      <div class="modal-dialog">
        <div class="modal-content modal-no-shadow">
          <div class="modal-header bg-dark no-border">
@@ -127,17 +74,6 @@
            <h4 class="modal-title">Change Bucket Name : <%= bucket.name %> </h4>
          </div>
          <div class="modal-body">
-<<<<<<< HEAD
-                <%= simple_form_for bucket , :url => update_bucket_details_path( bucket.id )  , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
-                  <%= f.input :id, :as => :hidden, :input_html => { :value => bucket.id } %>
-                  <%= f.input :name , :input_html => { :class => "chosen-input"}  %>
-                  <%= f.input :description, :hint => "Please describe in detail" , :input_html => { :class => "chosen-input"}%>
-                  <%= f.association :category, label_method: :category , :include_blank => false , :input_html => { :class => "chosen-input" }%>
-                    <div class="modal-footer">
-                      <div class="text-center">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <%= f.button :submit , "Edit", :class => "btn btn-success" %>
-=======
                 <%= simple_form_for bucket , :url => update_bucket_details_path( bucket.id ) , :method => :post , :remote => true , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
                   <%= f.input :id, :as => :hidden, :input_html => { :value => bucket.id } %>
                   <%= f.input :name , :input_html => { :class => "chosen-input" , :required => true}  %>
@@ -148,7 +84,6 @@
                       <div class="text-center">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <%= f.button :submit , "Edit", :class => "btn btn-primary" %>
->>>>>>> tempclasscollab/master
                       </div>
                     </div>
                 <% end %>
@@ -157,8 +92,6 @@
      </div><!-- /.modal-dialog -->
 </div>
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -180,4 +113,3 @@
   });
 
 </script>
->>>>>>> tempclasscollab/master

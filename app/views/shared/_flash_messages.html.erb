@@ -1,12 +1,5 @@
 <% flash.each do |type, message| %>
-<<<<<<< HEAD
-	
-	<div class="alert <%= bootstrap_class_for(type.to_sym) %> fade in alert-dismissable">
-	  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-	  <%= message %>
-	</div>
-<% end %>
-=======
+
 	<% type = bootstrap_class_for(type.to_sym) %>
 	<%logger.ap "Flash type class : #{type}"%>
 	<div class="alert <%= type %> fade in alert-dismissable">
@@ -14,4 +7,4 @@
 	  <%= message %>
 	</div>
 <% end %>
->>>>>>> tempclasscollab/master
+

@@ -4,11 +4,7 @@ class Branch < ActiveRecord::Base
   has_many :colleges, through: :college_branch_pairs
 
   validates :name, :presence => true
-<<<<<<< HEAD
-  validates :name, :uniqueness => true
-=======
   validates :name, :uniqueness => true , :case_sensitive => false
->>>>>>> tempclasscollab/master
 
   def buckets
   	all_college_branch_pairs = self.college_branch_pairs
@@ -29,8 +25,6 @@ class Branch < ActiveRecord::Base
     return courses
   end
 
-<<<<<<< HEAD
-=======
   def data_shared
       courses = self.courses
       buckets = []
@@ -45,7 +39,6 @@ class Branch < ActiveRecord::Base
   end
 
 
->>>>>>> tempclasscollab/master
   ransacker :by_college_name,
         formatter: proc { |selected_college_id|
               data = College.find_by_id(selected_college_id).branches.map(&:id)

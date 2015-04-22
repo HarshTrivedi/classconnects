@@ -1,11 +1,6 @@
 
 <%= render(:partial => 'shared/course_navbar' , :locals => {:course => @course }) %> 
 
-<<<<<<< HEAD
-<%= render(:partial => 'shared/comments' ,:locals => { :comments => @comments } ) %>
-
-<%= render(:partial => "shared/leave_comment" , :locals => {:type => "course"  })%>
-=======
 <div class="breadcrumb default square rsaquo sm">
 		<%= link_to( @course.college.name , college_content_path(@course.college) )%> 
 		> 
@@ -28,4 +23,3 @@
 </div>
 
 <%= render(:partial => "shared/leave_comment" , :locals => {:parent_type => "course" , :parent_id => @course.id })%>
->>>>>>> tempclasscollab/master

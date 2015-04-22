@@ -16,24 +16,6 @@ class LandingsController < ApplicationController
             branch  = Branch.find_by_id(branch_id)
             course  = Course.find_by_id(course_id)
 
-<<<<<<< HEAD
-            @buckets = Bucket.where(id: nil)
-            if college
-                    if branch
-                        if course
-                            @buckets = course.buckets.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
-                        else
-                            college_branch_pair = CollegeBranchPair.where(:college_id => college.id , :branch_id => branch.id).first
-                            @buckets = college_branch_pair.buckets.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
-                        end
-                    else
-                          @buckets = college.buckets.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
-                    end
-            else
-                @buckets = Bucket.order(:name).where("name like ?" , "%#{search}%").page(params[:page])
-            end
-    	  		render(:template => "landings/login_landing_with_search")
-=======
             bucket_ids = []            
             college_bucket_ids = []
             branch_bucket_ids = []
@@ -84,7 +66,6 @@ class LandingsController < ApplicationController
               format.js {render(:template => "landings/login_landing_with_search")}
             end
     	  		
->>>>>>> tempclasscollab/master
 	  		else
           @downloaded_buckets = current_user.downloaded_buckets.page(params[:page])
   				render(:template => "landings/login_landing_without_search")
@@ -93,8 +74,6 @@ class LandingsController < ApplicationController
   end
 
 
-<<<<<<< HEAD
-=======
   def refresh_download_buckets_notifications
       
   end
@@ -111,18 +90,13 @@ class LandingsController < ApplicationController
 
   end
 
->>>>>>> tempclasscollab/master
   protected
 
   def layout_by_resource
       if not current_user.nil?
           "logged_in"
       else
-<<<<<<< HEAD
-          "application"
-=======
           "non_logged_in"
->>>>>>> tempclasscollab/master
       end
   end
 

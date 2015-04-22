@@ -10,16 +10,12 @@
 					 key_starts_with: "uploads/", 
 					 data: {:parent_type => @parent_type , :parent_id => @parent_id } ,
 					 max_file_size: 5.megabytes do %>
-<<<<<<< HEAD
-<%= file_field_tag :file, multiple: true %>
-=======
 
 <label class="myLabel">
 	<%= file_field_tag :file, multiple: true %>
     <span>Upload File</span>
 </label>
 
->>>>>>> tempclasscollab/master
 
 <% end %>
 
@@ -30,10 +26,7 @@
 
 <script id="template-upload" type="text/x-tmpl">
 	<div id="upload_{%=o.unique_id%}" class="upload">
-<<<<<<< HEAD
-=======
 		<br>
->>>>>>> tempclasscollab/master
 		<h5>{%=o.name%}</h5>
 		<div class="progress progress-striped active">
 			<div class="bar" style="width: 0%"></div>
@@ -48,11 +41,7 @@
 	$(function() {
 
 		$('#s3_uploader').S3Uploader({
-<<<<<<< HEAD
-			remove_completed_progress_bar: false,
-=======
 			remove_completed_progress_bar: true,
->>>>>>> tempclasscollab/master
 			progress_bar_target: $('#uploads_container') , 
 			click_submit_target: $('#submit_upload') });
 

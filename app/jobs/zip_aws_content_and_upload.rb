@@ -3,17 +3,6 @@ require 'awesome_print'
 require 'fileutils'
 require 'zip_file_generator.rb'
 require 'active_job'
-<<<<<<< HEAD
-
-
-class ZipAwsContentAndUpload < ActiveJob::Base
-  queue_as :default
-  
-  def perform(downloader_id , bucket_id)
-
-	bucket = Bucket.find_by_id(bucket_id)
-  	
-=======
 require 'pusher'
 
 #bundle exec rake environment resque:work QUEUE=*
@@ -34,7 +23,6 @@ class ZipAwsContentAndUpload
 	original_download_waiter_ids = bucket.download_waiter_ids
 	original_updated_at = bucket.updated_at
 
->>>>>>> tempclasscollab/master
   	if not bucket.zip_being_formed 
   		begin
 			bucket.zip_being_formed = true
@@ -101,11 +89,7 @@ class ZipAwsContentAndUpload
 			bucket.last_zip_time = DateTime.now
 			ap bucket
 
-<<<<<<< HEAD
-			waiter_ids = bucket.download_waiter_ids
-=======
 			waiter_ids = bucket.download_waiter_ids.uniq
->>>>>>> tempclasscollab/master
 			ap "My waiters are   #{waiter_ids}"
 			for waiter_id in waiter_ids
 				ap "My waiter #{waiter_id}"
@@ -125,33 +109,18 @@ class ZipAwsContentAndUpload
 		        user.save
 		        ap user
 		        ap user.reload
-<<<<<<< HEAD
-=======
 		        Pusher['private-' + waiter_id.to_s ].trigger('ready_download', { :message => "update download notifications" })
->>>>>>> tempclasscollab/master
 			end
 
 			bucket.download_waiter_ids = []
 			bucket.zip_being_formed = false
-<<<<<<< HEAD
-=======
 			bucket.updated_at = original_updated_at
->>>>>>> tempclasscollab/master
 			ap bucket
 
 			ap "------------bucket before saveing-----------------"
 			ap bucket.class
 			bucket.save
 			ap bucket
-<<<<<<< HEAD
-		rescue
-			ap "Fallen In to an ERROR"
-
-			##also reset the queing .. ids as earlier .. load earlier
-			bucket.reload
-			bucket.zip_being_formed = false
-			bucket.save
-=======
 
 		rescue
 			ap "Fallen In to an ERROR"
@@ -163,7 +132,6 @@ class ZipAwsContentAndUpload
 			bucket.zip_being_formed = false
 			bucket.save
 			bucket.reload
->>>>>>> tempclasscollab/master
 		end	
 	end
 

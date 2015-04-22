@@ -1,18 +1,10 @@
-<<<<<<< HEAD
-=======
 require "notify_enrolled_waiters"
 require "notify_favorited_waiters"
 
->>>>>>> tempclasscollab/master
 class Bucket < ActiveRecord::Base
   attr_accessor :course_id
   acts_as_votable
   include PgSearch
-<<<<<<< HEAD
-  pg_search_scope :search, :against => [:name, :description]
-
-  paginates_per 3
-=======
 
   pg_search_scope :full_text_search, :against => [:name, :description],
   associated_against: { category: :category , course: [:name] , folders: [:name] , documents: [:name] } ,
@@ -36,7 +28,6 @@ class Bucket < ActiveRecord::Base
     Resque.enqueue( NotifyFavoritedWaiters , self.uploader.id , self.id )    
   end
 
->>>>>>> tempclasscollab/master
 
 
   belongs_to :category
@@ -47,11 +38,7 @@ class Bucket < ActiveRecord::Base
   # has_many :uploads , :dependent => :destroy
   has_many :downloads , :dependent => :destroy
   has_many :comments, as: :commentable , :dependent => :destroy
-<<<<<<< HEAD
-
-=======
   has_many :reported_inappropriates , :dependent => :destroy
->>>>>>> tempclasscollab/master
 
   validates :user, :presence => true
   validates :name, :presence => true
@@ -81,12 +68,6 @@ class Bucket < ActiveRecord::Base
 
   def self.search(search)
       if not search.strip.empty?
-<<<<<<< HEAD
-        where('name LIKE ?', "%#{search}%")
-      else
-        all
-      end
-=======
         full_text_search(search)
       else
         all
@@ -111,19 +92,15 @@ class Bucket < ActiveRecord::Base
 
       where(:id => accessible_bucket_ids)
 
->>>>>>> tempclasscollab/master
   end
 
   def data_shared
   end
 
-<<<<<<< HEAD
-=======
   def college
       self.course.college
   end
 
->>>>>>> tempclasscollab/master
   ransacker :by_college_name,
         formatter: proc { |selected_college_id|
               data = College.find_by_id( selected_college_id ).buckets.map(&:id)
@@ -160,9 +137,6 @@ class Bucket < ActiveRecord::Base
 
 
   def aws_root_to_self_path
-<<<<<<< HEAD
-    "bucket_id_#{self.id}/#{self.name}"
-=======
     "bucket_id_#{self.id}/#{self.aws_name}"
   end
 
@@ -171,7 +145,6 @@ class Bucket < ActiveRecord::Base
       self.folders.each{|folder| size += folder.size }
       self.documents.each{|document| size += document.size }
       return size
->>>>>>> tempclasscollab/master
   end
 
 

@@ -1,21 +1,5 @@
 							<div class="the-box transparent full no-margin profile-heading">
-<<<<<<< HEAD
-								<div class="right-action">
-									<button class="btn btn-warning btn-square btn-xs">Change cover</button>
-								</div><!-- /.right-action -->
-								<img src="http://diliat.in/themeforest/sentir/1.2/assets/img/photo/wide/img-2@2x.jpg" class="bg-cover" alt="Image" height="236" width="590">
 
-
-								<img src="http://diliat.in/themeforest/sentir/1.2/assets/img/avatar/avatar-1@2x.jpg" class="avatar" alt="Avatar" height="100" width="100">
-
-								<div class="profile-info">
-									<p class="user-name"><%= @user.email %></p>
-									<p class="text-muted">College : <a href="#fakelink"><%= @user.college.name rescue "None yet" %></a></p>
-									<p class="right-button">
-									<button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Change Password</button>
-									<button class="btn btn-danger btn-sm"><i class="fa fa-edit"></i>Change ProPic</button>
-									</p>
-=======
 								<div class="setting3">									
 								</div>
 
@@ -34,39 +18,29 @@
 											<%= link_to(fa_icon("fa-edit", text: "Change Profile Pic") , "http://en.gravatar.com/" , :class => "btn btn-primary btn-sm") %>
 										</p>
 									<%end%>
->>>>>>> tempclasscollab/master
+
 								</div><!-- /.profile-info -->
 							</div><!-- /.the-box .transparent .profile-heading -->
 							<!-- END PROFILE HEADING -->
 							
-<<<<<<< HEAD
-							<div class="panel with-nav-tabs panel-primary panel-square panel-no-border">
-								<%if current_page?(profile_main_path) %>
-									  <div class="panel-heading">
-										<ul class="nav nav-tabs">
-												<%= content_tag(:li , link_to(fa_icon("user", text: "Profile"), profile_main_path , :data => {:toggle=>""} ), :class=>"active" )%>											
-												<%= content_tag(:li , link_to(fa_icon("cloud-upload", text: "Uploads"), profile_uploads_path , :data => {:toggle=>""} ), :class=>"" )%>											
-=======
+
 							<div class="panel with-nav-tabs panel-success panel-square panel-no-border">
 								<%if current_page?(profile_main_path) %>
 									  <div class="panel-heading">
 										<ul class="nav nav-tabs">
 												<%= content_tag(:li , link_to(fa_icon("user", text: "Profile"), profile_main_path(:user_id => @user.id) , :data => {:toggle=>""} ), :class=>"active" )%>											
 												<%= content_tag(:li , link_to(fa_icon("cloud-upload", text: "Uploads"), profile_uploads_path(:user_id => @user.id) , :data => {:toggle=>""} ), :class=>"" )%>											
->>>>>>> tempclasscollab/master
+
 										</ul>
 									  </div>
 									<%= render(:partial => 'shared/profile_main' , :locals => { :user => @user }) %> 
 								<%elsif current_page?(profile_uploads_path) %>
 									  <div class="panel-heading">
 										<ul class="nav nav-tabs">
-<<<<<<< HEAD
-												<%= content_tag(:li , link_to(fa_icon("user", text: "Profile"), profile_main_path , :data => {:toggle=>""} ), :class=>"" )%>											
-												<%= content_tag(:li , link_to(fa_icon("cloud-upload", text: "Uploads"), profile_uploads_path , :data => {:toggle=>""}), :class=>"active" )%>
-=======
+
 												<%= content_tag(:li , link_to(fa_icon("user", text: "Profile"), profile_main_path(:user_id => @user.id) , :data => {:toggle=>""} ), :class=>"" )%>											
 												<%= content_tag(:li , link_to(fa_icon("cloud-upload", text: "Uploads"), profile_uploads_path(:user_id => @user.id) , :data => {:toggle=>""}), :class=>"active" )%>
->>>>>>> tempclasscollab/master
+
 										</ul>
 									  </div>
 									<%= render(:partial => 'shared/profile_uploads' , :locals => { :user => @user , :buckets => @buckets }) %> 
