@@ -1,6 +1,7 @@
 
     $(document).ready(function(){
-
+        console.log("In main : document ready");
+        alert("In main : document ready");
     	$('.counter').each(function() {
     	  var $this = $(this),
     	      countTo = $this.attr('data-count');

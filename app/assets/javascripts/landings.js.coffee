@@ -8,3 +8,5 @@
 //= require_tree ./landing
 
 
+console.log("HEYA")
+alert("FSDFDF")
