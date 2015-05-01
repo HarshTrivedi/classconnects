@@ -25,7 +25,7 @@ working_directory "/home/rails/" # available in 0.94.0+
 
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
-listen "/home/unicorn/.unicorn.sock", :backlog => 64
+listen "/home/rails/tmp/.unicorn.sock", :backlog => 64
 listen 8080, :tcp_nopush => true
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
