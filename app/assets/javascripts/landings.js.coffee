@@ -5,12 +5,12 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require landing/bootstrap1.js
-//= require landing/custom1.js
 //= require landing/main.js
-//= require landing/modernizr.js
+//= require landing/jquery.easing.1.3.js
 //= require landing/plugins.js
-//= require landing/tabchange.js
+//= require landing/bootstrap1.js
+//= require landing/custom.js
+//= require landing/modernizr.js
 
 console.log("HEYA")
 alert("FSDFDF")
