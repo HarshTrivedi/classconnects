@@ -4,151 +4,14 @@
   <title>classcollab</title>
   <%= csrf_meta_tags %>
    <%= analytics_init if Rails.env.production? or Rails.env.development? %><meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    
+    
+    <%= stylesheet_link_tag    'landings', media: 'all' %>
+    <%= javascript_include_tag 'landings', media: 'all'  %>
+
     <link href="http://allfont.net/css/?fonts=p22-corinthia" rel="stylesheet" type="text/css" />
     <link rel="icon" href="http://www.themedept.com/demo/smartmvp/assets/images/favicon/favicon.ico">
-    <link rel="stylesheet" href="assets/landing/bootstrap.css">
-    <link rel="stylesheet" href="assets/landing/icons.css">
-    <link href="assets/landing/css.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/landing/plugins.css">
-    <link rel="stylesheet" href="assets/landing/style.css">
-    <link rel="stylesheet" href="assets/landing/responsive.css">
-    <link rel="stylesheet" href="assets/landing/red.css" title="red">
-    <link rel="alternate stylesheet" href="assets/landing/green.css" title="green">
-    <link rel="alternate stylesheet" href="assets/landing/orange.css" title="orange">
-    <link rel="alternate stylesheet" href="assets/landing/purple.css" title="purple">
-    <link rel="alternate stylesheet" href="assets/landing/yellow.css" title="yellow">
-    <link rel="alternate stylesheet" href="assets/landing/grey.css" title="grey">
-    <link rel="alternate stylesheet" href="assets/landing/blue.css" title="blue">
-    <link rel="alternate stylesheet" href="assets/landing/midnight-blue.css" title="midnight-blue">
-    <link rel="stylesheet" href="assets/landing/demo.css">
-    <link rel="stylesheet" href="assets/landing/venobox.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="assets/landing/font-awesome.css">
-    <style>
-        .counter {
-            display: table-cell;
-            margin:;
-            font-size:30px;
-            background-color: transparent;
-            border: 2px solid rgb(12,185,238);
-            color:#ffffff;
-            width:100px;
-            border-radius: 50%;
-            height:100px;
-            vertical-align: middle;
-            text-align:center;
-        }
-    </style>
-     <link rel="stylesheet" href="assets/landing/bootstrap1.css">
-    <link rel="stylesheet" href="assets/landing/icons1.css">
-    <link href="assets/landing/css1.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/landing/animate1.css">
-    <link rel="stylesheet" href="assets/landing/venobox1.css">
-    <link rel="stylesheet" href="assets/landing/style1.css">
-    <link rel="stylesheet" href="assets/landing/responsive1.css">
-    <link rel="stylesheet" href="assets/landing/red1.css" title="red">
-    <link rel="alternate stylesheet" href="assets/landing/green1.css" title="green">
-    <link rel="alternate stylesheet" href="assets/landing/orange1.css" title="orange">
-    <link rel="alternate stylesheet" href="assets/landing/purple1.css" title="purple">
-    <link rel="alternate stylesheet" href="assets/landing/yellow1.css" title="yellow">
-    <link rel="alternate stylesheet" href="assets/landing/grey1.css" title="grey">
-    <link rel="alternate stylesheet" href="assets/landing/blue1.css" title="blue">
-    <link rel="alternate stylesheet" href="assets/landing/midnight-blue1.css" title="midnight-blue">
-    <link rel="stylesheet" href="assets/landing/demo1.css">
-    
-    <!--[if lt IE 9]>
-            <script src="assets/landing/plugins/html5shiv.min.js"></script>
-            <script src="assets/landing/plugins/respond.min.js"></script>
-    <![endif]-->
-
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-                        <style> 
-
-                        .content {
-                          width: 80%;
-                          padding: 20px;
-                          margin: 0 auto;
-                          padding: 0 60px 0 0;
-                        }
-
-                        .centerplease {
-                          margin: 0 auto;
-                          max-width: 270px;
-                          font-size: 40px;
-                        }
-
-                        .question {
-                          position: relative;
-                          background: rgba(50,56,69,0.95);
-                          margin: 0;
-                          padding: 10px 10px 10px 50px;
-                          display: block;
-                          width:100%;
-                          cursor: pointer;
-                          color:#ffffff;
-                        }
-
-                        .answers {
-                          background: #ffffff;
-                          padding: 0px 15px;
-                          margin: 5px 0;
-                          height: 0;
-                          overflow: hidden;
-                          z-index: -1;
-                          position: relative;
-                          opacity: 0;
-                          -webkit-transition: .7s ease;
-                          -moz-transition: .7s ease;
-                          -o-transition: .7s ease;
-                          transition: .7s ease;
-                        }
-
-                        .questions:checked ~ .answers{
-                          height: auto;
-                          opacity: 1;
-                          padding: 15px;
-                        }
-
-                        .plus {
-                          position: absolute;
-                          margin-left: 10px;
-                          z-index: 5;
-                          font-size: 2em;
-                          line-height: 100%;
-                          -webkit-user-select: none;    
-                          -moz-user-select: none;
-                          -ms-user-select: none;
-                          -o-user-select: none;
-                          user-select: none;
-                          -webkit-transition: .3s ease;
-                          -moz-transition: .3s ease;
-                          -o-transition: .3s ease;
-                          transition: .3s ease;
-                        }
-
-                        .questions:checked ~ .plus {
-                          -webkit-transform: rotate(45deg);
-                          -moz-transform: rotate(45deg);
-                          -o-transform: rotate(45deg);
-                          transform: rotate(45deg);
-                        }
-
-                        .questions {
-                          display: none;
-                        }
-
-                        .text-logo2 {
-                            font-family: 'P22 Corinthia', arial;
-                            color : #ffffff;
-                            text-shadow: 1px 1px 1px #aaa;
-                            font-size: 60px;
-                        }                        
-                     </style>
-
-
-
 
 </head>
 
@@ -650,53 +513,11 @@
                 </div><!-- /End Wrapper -->
             </div><!-- /End Container -->
         </footer>    </div><!-- /End Main Wrapper -->
-
-    <!-- =========================
-         SCRIPTS 
-    ============================== -->
-    <script src="assets/landing/jquery1.js"></script>
-    <script src="assets/landing/bootstrap.js"></script>
-    <script src="assets/landing/jquery.js"></script>
-    <script src="assets/landing/modernizr.js"></script>
-    <script src="assets/landing/plugins.js"></script>
-    <script src="assets/landing/tweetie.js"></script>
-    <!-- Custom Script -->
-    <script src="assets/landing/custom.js"></script>
-
-    <!-- =========================================================
-     STYLE SWITCHER | ONLY FOR DEMO NOT INCLUDED IN MAIN FILES
-    ============================================================== -->
-    <script type="text/javascript" src="assets/landing/styleswitcher.js"></script>
-    <script type="text/javascript" src="assets/landing/demo.js"></script>
-    
-
     
 
 
 </body>
 <!--added for circle counter-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-<script src="assets/landing/analytics.js"></script>
-<script src="assets/landing/demo.js"></script>
-<script src="assets/landing/custom.js"></script>
-<script src="assets/landing/jquery.js"></script>
-<script src="assets/landing/jquery1.js"></script>
-<script src="assets/landing/plugins.js"></script>
-<script src="assets/landing/tweetie.js"></script>
-<script src="assets/landing/bootstrap.js"></script>
-<script src="assets/landing/modernizr.js"></script>
-<script src="assets/landing/styleswitcher.js"></script>
-<script src="assets/landing/jquery.easing.1.3.js"></script>
-
-    <!-- Custom Script -->
-    <script src="assets/landing/jquery21.js"></script>
-    <script src="assets/landing/bootstrap1.js"></script>
-    <script src="assets/landing/modernizr1.js"></script>
-    <script src="assets/landing/plugins1.js"></script>
-    <script src="assets/landing/tweetie1.js"></script>
-    <!-- Custom Script -->
-    <script src="assets/landing/custom1.js"></script>
 
 <script>
 $('.counter').each(function() {
