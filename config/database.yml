@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: classcolab_production
-  username: classcolab
-  password: <%= ENV['CLASSCOLAB_DATABASE_PASSWORD'] %>
+  database: classconnects_production
+  username: classconnects
+  password: <%= ENV['PRODUCTION_DATABASE_PASSWORD'] %>
