@@ -1,3 +1,99 @@
-// Place all the styles related to the Landings controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require font-awesome.css
+ *= require_tree ./landing/
+ *= require_self
+*/
+
+
+     .counter {
+         display: table-cell;
+         font-size:30px;
+         background-color: transparent;
+         border: 2px solid rgb(12,185,238);
+         color:#ffffff;
+         width:100px;
+         border-radius: 50%;
+         height:100px;
+         vertical-align: middle;
+         text-align:center;
+     }
+     .content {
+       width: 80%;
+       padding: 20px;
+       margin: 0 auto;
+       padding: 0 60px 0 0;
+     }
+     .centerplease {
+       margin: 0 auto;
+       max-width: 270px;
+       font-size: 40px;
+     }
+     .question {
+       position: relative;
+       background: rgba(50,56,69,0.95);
+       margin: 0;
+       padding: 10px 10px 10px 50px;
+       display: block;
+       width:100%;
+       cursor: pointer;
+       color:#ffffff;
+     }
+     .answers {
+       background: #ffffff;
+       padding: 0px 15px;
+       margin: 5px 0;
+       height: 0;
+       overflow: hidden;
+       z-index: -1;
+       position: relative;
+       opacity: 0;
+       -webkit-transition: .7s ease;
+       -moz-transition: .7s ease;
+       -o-transition: .7s ease;
+       transition: .7s ease;
+     }
+     .questions:checked ~ .answers{
+       height: auto;
+       opacity: 1;
+       padding: 15px;
+     }
+     .plus {
+       position: absolute;
+       margin-left: 10px;
+       z-index: 5;
+       font-size: 2em;
+       line-height: 100%;
+       -webkit-user-select: none;    
+       -moz-user-select: none;
+       -ms-user-select: none;
+       -o-user-select: none;
+       user-select: none;
+       -webkit-transition: .3s ease;
+       -moz-transition: .3s ease;
+       -o-transition: .3s ease;
+       transition: .3s ease;
+     }
+     .questions:checked ~ .plus {
+       -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+       -o-transform: rotate(45deg);
+       transform: rotate(45deg);
+     }
+     .questions {
+       display: none;
+     }
+     .text-logo2 {
+         font-family: 'P22 Corinthia', arial;
+         color : #ffffff;
+         text-shadow: 1px 1px 1px #aaa;
+         font-size: 60px;
+     }                        
