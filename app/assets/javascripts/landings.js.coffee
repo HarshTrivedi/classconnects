@@ -11,6 +11,3 @@
 //= require landing/bootstrap1.js
 //= require landing/custom.js
 //= require landing/modernizr.js
-
-console.log("HEYA")
-alert("FSDFDF")
