@@ -61,7 +61,8 @@ class User < ActiveRecord::Base
                 password: Devise.friendly_token[0,20],
                 first_name: auth.info.first_name , 
                 last_name: auth.info.last_name ,
-                confirmed_at: DateTime.now)
+                omniauth_image_url: auth.info.image,
+                confirmed_at: DateTime.now )
   end
 
   def enrolled_courses
