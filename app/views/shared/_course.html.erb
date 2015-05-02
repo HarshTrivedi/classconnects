@@ -31,9 +31,9 @@
 
  			  <%if not course.favorited_users.include?(current_user) %>
 
-			  	<%= link_to(  fa_icon("heart-o") , favorite_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(215,31,68)" , "data-toggle" => "tooltip" , "title" => "Favorite Course") %>
+			  	<%= link_to(  fa_icon("heart-o") , favorite_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(215,31,68)" ) %>
 		      <%else%>
-			  	<%= link_to(   fa_icon("heart")  , unfavorite_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(215,31,68)" , "data-toggle" => "tooltip" , "title" => "Un-Favorite Course") %>	  
+			  	<%= link_to(   fa_icon("heart")  , unfavorite_course_path(course.id) , :method => :post  , :remote => true ,:style => "color:rgb(215,31,68)" ) %>	  
 
 		      <%end%>
 
