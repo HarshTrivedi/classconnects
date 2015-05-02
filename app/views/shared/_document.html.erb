@@ -22,7 +22,7 @@
        						</a>
        					</li>
        					<li>
-       						<%= link_to(fa_icon("remove", text: "Remove"), destroy_document_path(document.id) , :method => :delete , :remote => true , :data => { :confirm => "Are you sure you want to delete?"  }) %>
+       						<%= link_to(fa_icon("remove", text: "Remove"), destroy_document_path(document.id) , :method => :delete , :remote => true , :data => { :confirm => "Are you sure you want to delete?"  } , :target => '_blank' ) %>
 	            		</li>
 	            	<%end%>			
 			</ul>
