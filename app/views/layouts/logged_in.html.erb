@@ -16,9 +16,10 @@
 
 	    <script>
 
-			function subscribe_pusher_channel() {	  
-		        var pusher = new Pusher("1c597dcba2477dbb3e59");
-		        var channel = pusher.subscribe('private-<%=current_user.id%>');
+			function subscribe_pusher_channel(channelName) {	  
+		        var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>');
+				console.log("about to subscribe to: " + channelName );
+		        var channel = pusher.subscribe(channelName);
 		        
 		        pusher.connection.bind('connecting', function() {
 			          console.log("Connecting to Pusher...");
@@ -39,12 +40,14 @@
 			    });
 		   	}
 
-			$(document).on('page:load', function() {
-				subscribe_pusher_channel();
-			});
+			function unsubscribe_pusher_channel(channelName) {
+				console.log("about to un-subscribe to: " + channelName );
+		        var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>');
+			    pusher.unsubscribe(channelName);
+    		}
 
 			$(document).on('ready', function() {
-				subscribe_pusher_channel();
+				subscribe_pusher_channel('private-<%=Rails.env%>-<%=current_user.id%>');
 			});
 
 	    </script>

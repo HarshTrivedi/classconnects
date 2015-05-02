@@ -109,7 +109,7 @@ class ZipAwsContentAndUpload
 		        user.save
 		        ap user
 		        ap user.reload
-		        Pusher['private-' + waiter_id.to_s ].trigger('ready_download', { :message => "update download notifications" })
+		        Pusher["private-#{Rails.env}-#{waiter_id}"].trigger('ready_download', { :message => "update download notifications" })
 			end
 
 			bucket.download_waiter_ids = []
