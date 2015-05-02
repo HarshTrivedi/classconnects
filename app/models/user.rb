@@ -54,11 +54,14 @@ class User < ActiveRecord::Base
     return user if user
 
     # The User was not found and we need to create them
-    User.create(name:     auth.extra.raw_info.name,
+    user = User.create(name:     auth.extra.raw_info.name,
                 provider: auth.provider,
                 uid:      auth.uid,
                 email:    auth.info.email,
-                password: Devise.friendly_token[0,20])
+                password: Devise.friendly_token[0,20],
+                first_name: auth.info.first_name , 
+                last_name: auth.info.last_name ,
+                confirmed_at: DateTime.now)
   end
 
   def enrolled_courses
