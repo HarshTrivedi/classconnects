@@ -33,14 +33,14 @@ class ZipAwsContentAndUpload
 
 		    aws_prefix = bucket.aws_root_to_self_path
 		    s3 = AWS::S3.new
-			aws_bucket = s3.buckets['harshtrivedi']
+			aws_bucket = s3.buckets[ ENV['S3_BUCKET'] ]
 			documents = aws_bucket.objects.with_prefix( aws_prefix ).collect(&:key)
 
 			ap "Listing documents starts"
 			ap documents	
 			ap "Listing documents ends"
 			
-			local_storage_path = "/home/harsh/s3_testing/"
+			local_storage_path = File.join( Rails.root , '..' , "background_storage" , Rails.env ).to_s
 
 			#clean before creating (Cleaning required in case previous one was rescued  and toggle is changed in resuce block ; and code block )
 			FileUtils.rm_rf(    File.dirname(File.join( local_storage_path , aws_prefix)) )		
