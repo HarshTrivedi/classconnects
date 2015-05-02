@@ -2,7 +2,7 @@ class Course < ActiveRecord::Base
   attr_accessor :college_branch_pair_id
   paginates_per 12
   belongs_to :college_branch_pair
-  has_many :buckets
+  has_many :buckets , :dependent => :destroy
   has_many :course_enrollments
   has_many :course_favorites
   has_many :comments, as: :commentable
