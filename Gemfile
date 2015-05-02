@@ -72,7 +72,7 @@ gem "font-awesome-rails"
 gem 's3_direct_upload'
 gem 'aws-sdk'
 
-gem 'dotenv-rails', :groups => [:development, :test]
+gem 'dotenv-rails'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'box_view'
 gem 'chosen-rails'
