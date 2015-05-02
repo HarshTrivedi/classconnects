@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :course_enrollments
   # has_many :uploads
-  has_many :buckets
+  has_many :buckets , :dependent => :destroy
   has_many :course_favorites
   has_many :downloads
   has_many :reported_inappropriates
