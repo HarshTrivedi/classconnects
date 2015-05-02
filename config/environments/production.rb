@@ -80,6 +80,22 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.action_mailer.default_url_options = { :host => '45.55.204.68' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gmail.com',
+    user_name:            'classcollab.sen@gmail.com',
+    password:              ENV['GMAIL_PASSWORD'] ,
+    authentication:       'plain',
+    enable_starttls_auto: true  
+  }
+
+
+
+
   #->Prelang
   GA.tracker = "UA-60680467-1"
 
