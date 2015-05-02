@@ -15,6 +15,8 @@ class Course < ActiveRecord::Base
   validates :name, :presence => true
   validates :college_branch_pair, :presence => true
 
+  validates :name, :uniqueness => { :scope => :college_branch_pair_id }
+
 
   def enrolled_users
   	user_ids = course_enrollments.map{|course_enrollment| course_enrollment.user.id }
