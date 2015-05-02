@@ -22,7 +22,7 @@ module ApplicationHelper
 		#retro
 		#mosterid
 		#wavatar
-		if not user.omniauth_image_url.empty?
+		if not user.omniauth_image_url.nil?
 			"http://gravatar.com/avatar/#{gravatar_id}.png?d=#{user.omniauth_image_url}"
 		else
 			"http://gravatar.com/avatar/#{gravatar_id}.png?d=identicon"
