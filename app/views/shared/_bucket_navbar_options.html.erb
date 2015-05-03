@@ -15,20 +15,20 @@
 
               <%if current_user.has_upvoted?(bucket)  %>
                   <li>
-                      <%= link_to( fa_icon("thumbs-up" , :text => "Like") , like_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                      <%= link_to( fa_icon("thumbs-up" , :text => "UpVote") , like_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
                   </li>
               <%else%>
                   <li>
-                      <%= link_to( fa_icon("thumbs-o-up" , :text => "Like") , like_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                      <%= link_to( fa_icon("thumbs-o-up" , :text => "UpVote") , like_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
                   </li>
               <%end%>
               <%if current_user.has_downvoted?(bucket)  %>
                   <li>
-                      <%= link_to( fa_icon("thumbs-down" , :text => "DisLike") , dislike_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                      <%= link_to( fa_icon("thumbs-down" , :text => "DownVote") , dislike_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
                   </li>
               <%else%>
                   <li>
-                      <%= link_to( fa_icon("thumbs-o-down" , :text => "DisLike") , dislike_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
+                      <%= link_to( fa_icon("thumbs-o-down" , :text => "DownVote") , dislike_bucket_path(bucket.id) , :method => :post , :remote => true)%> 
                   </li>
               <%end%>
             <li>
