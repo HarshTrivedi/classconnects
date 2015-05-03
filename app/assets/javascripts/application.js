@@ -364,7 +364,9 @@ function rotate($el, deg) {
 function tour_guide(){
 	console.log( Number($("#sign_in_count").html().trim()) );
 	if(  Number($("#sign_in_count").html().trim())  <= 1 ){
-		start_tour_guide();
+		if( window.location.pathname == "/"){
+			start_tour_guide();
+		}
 	}
 }
 
