@@ -66,14 +66,25 @@
 
 <script>
  $(function() {
-  
+
+    $.validator.addMethod("naming_regex", function(value, element) {
+        return this.optional(element) || /^[a-z]+$/i.test(value);
+    }, "Name must contain only letters");  
+
+
     // Setup form validation on the #register-form element
     $("#new_user").validate({
     
         // Specify the validation rules
         rules: {
-            'user[first_name]': "required",
-            'user[last_name]': "required",
+            'user[first_name]': {
+              required: true , 
+              naming_regex: true
+            },
+            'user[last_name]': {
+              required: true , 
+              naming_regex: true
+            },
             'email': {
                 required: true,
                 email: true
@@ -91,8 +102,14 @@
         
         // Specify the validation error messages
         messages: {
-            'user[first_name]': "Please enter your first name",
-            'user[last_name]': "Please enter your last name",
+            'user[first_name]': {
+               required: "Please enter your first name" , 
+               naming_regex: "Name should only contain alphabets"
+            },
+            'user[last_name]':{
+               required: "Please enter your first name" , 
+               naming_regex: "Name should only contain alphabets"
+            },
             'user[password]': {
                 required: "Please provide a password",
                 minlength: "Your password must be at least 5 characters long"
