@@ -76,6 +76,14 @@ ActiveAdmin.register Course do
 	        link_to( course.name , admin_course_path( course) )
       end
       column :code
+      column :college do |course|
+          college = course.college
+          link_to( course.college.name , admin_college_path( college ) )
+      end
+      column :branch do |course|
+          branch = course.branch
+          link_to( course.branch.name , admin_branch_path( branch ) )
+      end
       column :created_at
       actions
   end
