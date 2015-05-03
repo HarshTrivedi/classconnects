@@ -151,9 +151,9 @@
 					<%= content_tag(:li , link_to(fa_icon("cloud-download icon-sidebar", text: "My Downloads"), downloads_path , :data => {:toggle=>""}), :class=>"" )%>
 					<%end%>
 					<%if current_page?(enrolled_courses_path) %>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enrolled Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
 					<%else%>
-					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "My Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enrolled Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"" )%>
 					<%end%>
 					<%if current_page?(favorite_courses_path) %>
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
@@ -174,7 +174,7 @@
 						</li>
 					<%end%>
 
-					<div class="upload-button" data-toggle="tooltip" title = "Create empty bucket" >
+					<div class="upload-button" data-toggle="tooltip" title = "Create New Bucket" >
 						<button type="button" data-toggle="modal" data-target="#modal_add_bucket_with_course" class="btn btn-success btn-perspective">
 							<i class="fa fa-cloud-upload fa-xs"></i>
 							Upload
@@ -204,7 +204,7 @@
 					<div class="modal-content modal-no-shadow">
 					  <div class="modal-header bg-dark no-border">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							<h4 class="modal-title"> Register in College / Branch </h4>
+							<h4 class="modal-title"> Enroll in College / Branch </h4>
 					  </div>
 					  <div class="modal-body">
 							<%= simple_form_for CollegeBranchPair.new , :url => create_college_branch_enrollment_path , :method => "post" , :input_html=> { :class => "form-group has-feedback lg no-label " } do |f| %>
