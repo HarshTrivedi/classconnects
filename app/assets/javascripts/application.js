@@ -369,7 +369,7 @@ function tour_guide(){
 }
 
 function start_tour_guide() {
-	$('#step-2').hide();
+	$('#step-1').hide();
 	$('#step-3').hide();
 	$('#step-4').hide();
 	$('#step-5').hide();
@@ -381,7 +381,7 @@ function start_tour_guide() {
 	$('#step-11').hide();
 	$('#step-12').hide();
 
-	$('#next-1').click(function(event){
+/*	$('#next-1').click(function(event){
 		event.preventDefault();
 		$('#step-2').show();
 		$('#step-1').hide();
@@ -396,7 +396,7 @@ function start_tour_guide() {
 		event.preventDefault();
 		$('#step-1').show();
 		$('#step-2').hide();
-	});
+	});*/
 	$('#next-2').click(function(event){
 		event.preventDefault();
 		$('#step-3').show();
