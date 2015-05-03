@@ -4,7 +4,7 @@
 
 	<div class="media-body">
 		<h4 class="media-heading">
-			<%= link_to( user.email , "#no_profile_yet"  ) %>
+			<%= link_to( user.email , profile_main_path(:user_id => user.id)  ) %>
 		</h4>
 
 		<p class="date"><small> Created <%= time_ago_in_words(comment.created_at) %> ago </small></p>	  	
