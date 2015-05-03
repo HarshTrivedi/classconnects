@@ -26,3 +26,30 @@
     </div>
 </div>
 <% end %>
+
+<script>
+ $(function() {
+  
+    // Setup form validation on the #register-form element
+    $("#new_user").validate({
+    
+        // Specify the validation rules
+        rules: {
+            'user[email]': {
+                required: true,
+                email: true
+            }
+        },
+        
+        // Specify the validation error messages
+        messages: {
+            'email': "Please enter a valid email address"
+        },
+        
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+
+  });  
+</script>

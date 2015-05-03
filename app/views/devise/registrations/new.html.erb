@@ -62,3 +62,49 @@
 
 <% end %>
 
+
+
+<script>
+ $(function() {
+  
+    // Setup form validation on the #register-form element
+    $("#new_user").validate({
+    
+        // Specify the validation rules
+        rules: {
+            'user[first_name]': "required",
+            'user[last_name]': "required",
+            'email': {
+                required: true,
+                email: true
+            },
+            'user[password]': {
+                required: true,
+                minlength: 8
+            },
+            'user[password_confirmation]' : {
+                    minlength : 8,
+                    equalTo : "#user_password"
+            }
+
+        },
+        
+        // Specify the validation error messages
+        messages: {
+            'user[first_name]': "Please enter your first name",
+            'user[last_name]': "Please enter your last name",
+            'user[password]': {
+                required: "Please provide a password",
+                minlength: "Your password must be at least 5 characters long"
+            },
+            'user[password_confirmation]': "password and confirmation must match",
+            'email': "Please enter a valid email address"
+        },
+        
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+
+  });  
+</script>

@@ -644,16 +644,16 @@
           rules: {
             'user[current_password]': "required",
 			'user[password]' : {
-                    minlength : 5
+                    minlength : 8
                 },
             'user[password_confirmation]' : {
-                    minlength : 5,
+                    minlength : 8,
                     equalTo : "#user_password"
             }
           },
           messages: {
             'user[current_password]': "Please enter non empty current_password",
-            'user[password]': "Please enter password of size greater than 5",
+            'user[password]': "Please enter password of size greater than 8",
             'user[password_confirmation]': "password and confirmation must match"
           }
     });
@@ -667,5 +667,40 @@
 <script>
 setProgress("<%= current_user.activity_quotient %>");
 </script>
+
+
+
+<script>
+ $(function() {
+  
+    // Setup form validation on the #register-form element
+    $("#new_news_letter").validate({
+    
+        // Specify the validation rules
+        rules: {
+            'news_letter[user_name]': {
+                required: true
+            },
+            'news_letter[email]': {
+                required: true,
+                email: true
+            }
+        },
+        
+        // Specify the validation error messages
+        messages: {
+        	'news_letter[user_name]': "Please enter valid non-empty name",
+            'news_letter[email]': "Please enter a valid email address"
+        },
+        
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+
+  });  
+</script>
+
+
 
 </html>

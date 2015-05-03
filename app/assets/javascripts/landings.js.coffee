@@ -11,3 +11,4 @@
 //= require landing/bootstrap1.js
 //= require landing/custom.js
 //= require landing/modernizr.js
+//= require jquery_validator.js
