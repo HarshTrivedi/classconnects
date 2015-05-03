@@ -11,15 +11,16 @@ class CollegesController < ApplicationController
     	@college = College.find_by_id(college_id)
       search = params[:search] || ""
 
-      if current_user.college_branch_enrolled? and (@college == current_user.college)
-        @branch = current_user.branch        
-      else      
+      branch_id = params[:branch_id]
+      if not branch_id.nil?
         branches = @college.branches.order(:created_at)
         @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
-        branch_id = params[:branch_id]
         @branch = Branch.find_by_id(branch_id)
+      elsif current_user.college_branch_enrolled? and (@college == current_user.college)
+        @branch = current_user.branch
+      else
+        @branch = nil        
       end
-
 
       if @branch
           @message = "College-Branch specific buckets"
@@ -36,14 +37,17 @@ class CollegesController < ApplicationController
       @college = College.find_by_id(college_id)
       search = params[:search] || ""
 
-      if current_user.college_branch_enrolled? and (@college == current_user.college)
-        @branch = current_user.branch
-      else
+      branch_id = params[:branch_id]
+      if not branch_id.nil?
         branches = @college.branches.order(:created_at)
         @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
-        branch_id = params[:branch_id]
         @branch = Branch.find_by_id(branch_id)
+      elsif current_user.college_branch_enrolled? and (@college == current_user.college)
+        @branch = current_user.branch
+      else
+        @branch = nil        
       end
+
 
       if @branch
         @message = "College-Branch specific users"
@@ -60,14 +64,17 @@ class CollegesController < ApplicationController
       @college = College.find_by_id(college_id)
       search = params[:search] || ""
 
-      if current_user.college_branch_enrolled? and (@college == current_user.college)
-        @branch = current_user.branch
-      else
+      branch_id = params[:branch_id]
+      if not branch_id.nil?
         branches = @college.branches.order(:created_at)
         @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
-        branch_id = params[:branch_id]
         @branch = Branch.find_by_id(branch_id)
+      elsif current_user.college_branch_enrolled? and (@college == current_user.college)
+        @branch = current_user.branch
+      else
+        @branch = nil        
       end
+
 
       if @branch
         @message = "College-Branch specific courses"
@@ -84,13 +91,15 @@ class CollegesController < ApplicationController
       college_id = params[:id]
       @college = College.find_by_id(college_id)
 
-      if current_user.college_branch_enrolled? and (@college == current_user.college)
-        @branch = current_user.branch
-      else
+      branch_id = params[:branch_id]
+      if not branch_id.nil?
         branches = @college.branches.order(:created_at)
         @branches_name_id = branches.map{|branch| [branch.name , branch.id] }
-        branch_id = params[:branch_id]
         @branch = Branch.find_by_id(branch_id)
+      elsif current_user.college_branch_enrolled? and (@college == current_user.college)
+        @branch = current_user.branch
+      else
+        @branch = nil        
       end
 
       if @branch
