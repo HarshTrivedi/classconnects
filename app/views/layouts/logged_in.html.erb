@@ -346,8 +346,7 @@
 					<%= current_user.sign_in_count%>
 				</div>
 
-				<%if( (current_user.sign_in_count <= 1 ) && ( window.location.pathname == "/") )%>
-
+				<%if( (current_user.sign_in_count <= 1 ) && ( current_page?("/") ) )%>
 
 					<div style="top: 0px; left: 300px; display: block;" id="step-2" class="popover tour-tour tour-tour-2 fade bottom in">
 					<div class="arrow" style="left: 40%"></div> 
@@ -355,7 +354,7 @@
 						 	Search college
 						 </h3> 
 						 <div class="popover-content">
-						 	You can search any college using this search box. Just type the name and click enter.
+						 	You can search and visit any college using this search box. Just type the name , select and click enter.
 						 </div>
 						 <div class="popover-navigation"> 
 						 	<div class="btn-group"> 
@@ -378,7 +377,7 @@
 						 	Notifications
 						 </h3> 
 						 <div class="popover-content">
-						 	These is notifications pane. Gives the notifications about ready downloads , pending downloads and general notifications. 
+						 	This is notifications panel. It gives the notifications about ready downloads , pending downloads and general notifications. 
 						 </div>
 						 <div class="popover-navigation"> 
 						  	<div class="btn-group"> 
@@ -401,7 +400,7 @@
 						 	Settings Menu
 						 </h3> 
 						 <div class="popover-content">
-						 	This is Your Profile Icon.You can change the settings and log out using the dropdown menu given here.
+						 	This is your profile icon.You can change change password visit your own public profile using the dropdown menu given here.
 						 </div>
 						 <div class="popover-navigation"> 
 						 	<div class="btn-group"> 
@@ -421,10 +420,10 @@
 					<div id="step-6" class="popover tour-tour tour-tour-6 fade right in" style="top: 350px; left: 175px; display: block;">
 						    <div class="arrow" ></div>
 							    <h3 class="popover-title">
-								    Uploading content
+								    Create Empty Buckets
 						    	</h3>
 							<div class="popover-content">
-								Uploading can be done using this button.
+								You can create your Buckets in the courses that you have enrolled in. And then upload folders and documents within.
 							</div>
 							<div class="popover-navigation">
 								<div class="btn-group">
@@ -470,7 +469,7 @@
 								    Enroll/Visit your college
 						    	</h3>
 							<div class="popover-content">
-								When You are not enrolled you can enroll using this button to a specific college and branch . After enrollment this button will lead you to your college page.
+								When You are not enrolled you can enroll in using this button to a specific college and branch. After enrollment this button will lead you to your college page. Note : You must enroll in college and branch to access its privately shared data and you can upload buckets only in your own College and Branch.
 							</div>
 							<div class="popover-navigation">
 								<div class="btn-group">
@@ -490,10 +489,10 @@
 					<div style="top: 107px; left: 1077px; display: block;" id="step-8" class="popover tour-tour tour-tour-8 fade bottom in">
 						 <div class="arrow"></div> 
 						 <h3 class="popover-title">
-						 	Search documents
+						 	Search buckets
 						 </h3> 
 						 <div class="popover-content">
-						 	You can search material according to keywords and also college, branch and course specific.
+						 	You can search buckets according to keywords and filter them by college , branch and course.
 						 </div>
 						 <div class="popover-navigation"> 
 						 	<div class="btn-group"> 
@@ -517,7 +516,7 @@
 						 	View downloads
 						 </h3> 
 						 <div class="popover-content">
-						 	You can view material downloaded by you by this tab, and the same option is also given in the side panel.
+						 	You can view buckets downloaded by you on this tab. Same option is also given in the side panel.
 						 </div>
 						 <div class="popover-navigation"> 
 						 	<div class="btn-group"> 
@@ -541,7 +540,7 @@
 						 	View Uploads
 						 </h3> 
 						 <div class="popover-content">
-						 	You can view material uploaded by you by this tab, and the same option is also given in the side panel.
+						 	You can view buckets uploaded by you on this tab. Same option is also given in the side panel.
 						 </div>
 						 <div class="popover-navigation"> 
 						 	<div class="btn-group"> 
@@ -564,7 +563,7 @@
 						 	View Courses
 						 </h3> 
 						 <div class="popover-content">
-						 	You can view the courses enrolled by you by this tab, and the same option is also given in the side panel.
+						 	You can view the courses enrolled by you on this tab. Same option is also given in the side panel. Enrolling in course is mandatory for uploading buckets within it. You can only enroll the courses of your own college branch pair (enrolled ones).
 						 </div>
 						 <div class="popover-navigation"> 
 						 	<div class="btn-group"> 
@@ -587,7 +586,7 @@
 						 	View Favourite Courses
 						 </h3> 
 						 <div class="popover-content">
-						 	You can view the courses tagged by you as favourites by this tab, and the same option is also given in the side panel.
+						 	You can view the courses tagged as favourite by you. Unlike enrolling course , you can favorite any course from any college and any branch.
 						 </div>
 						 <div class="popover-navigation"> 
 						 	<div class="btn-group"> 
