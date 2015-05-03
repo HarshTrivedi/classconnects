@@ -83,7 +83,7 @@
 					<div class="top-nav-content">
 						
 						<!-- Begin button sidebar left toggle -->
-						<div class="btn-collapse-sidebar-left">
+						<!--<div class="btn-collapse-sidebar-left">
 							<i class="fa fa-bars"></i>
 						</div><!-- /.btn-collapse-sidebar-left -->
 
@@ -128,14 +128,14 @@
 
 					<br>
 					<div class="static left-profile-summary">
-						<div class="media">
-						  <p class="pull-left">
-							<%= link_to( (image_tag avatar_url(current_user) , :class => "avatar img-circle" , :style =>"width:60px ; height:60px") , profile_main_path )%>
-						  </p>
-						  <div class="media-body">
-							<h4><%= current_user.first_name%>, <br><%= current_user.last_name %></h4>
+						<div class="media" >
+						  <!--<p class="pull-left">-->
+							<%= link_to( (image_tag avatar_url(current_user) , :class => "avatar img-circle" , :style =>"width:60px ; height:60px;margin-left:35%") , profile_main_path )%>
+						  <!--</p>-->
+						  <div class="media-body" style="margin-left:25%">
+							<h4><%= current_user.first_name%>&nbsp<%= current_user.last_name %></h4>
 							
-							<%= link_to "Log Out", destroy_user_session_path, :method => :delete , :class => "btn btn-primary btn-xs"%>
+							
 						  </div>
 						</div>
 					</div>
@@ -348,28 +348,6 @@
 
 				<%if current_user.sign_in_count <= 1 %>
 
-					<div style="top: -10px; left: 250px; display: block;" id="step-1" class="popover tour-tour tour-tour-1 fade bottom in">
-						 <div class="arrow" style="left: 10%"></div> 
-						 <h3 class="popover-title">
-						 	Toggle navigation bar
-						 </h3> 
-						 <div class="popover-content">
-						 	You can toggle this navigation bar to go to user-specific pages.
-						 </div>
-						 <div class="popover-navigation"> 
-						 	<div class="btn-group"> 
-						  		<button class="btn btn-sm btn-default disabled" data-role="prev">
-						  			 Prev
-						 		</button> 
-						 		<button class="btn btn-sm btn-default" id = "next-1">	
-						  			Next 
-						  		</button>  
-						  	</div> 
-						  	<button class="btn btn-sm btn-default" id = "end_tour-1">
-						  		End tour
-						  	</button> 
-						  </div> 
-					</div>
 
 					<div style="top: 0px; left: 300px; display: block;" id="step-2" class="popover tour-tour tour-tour-2 fade bottom in">
 					<div class="arrow" style="left: 40%"></div> 

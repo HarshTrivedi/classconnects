@@ -3,7 +3,9 @@
 </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-horizontal form-user"}) do |f| %>
+<div class = "error" style="background-color:rgba(119,119,119,0.5) ; color:rgb(255,255,255); padding-left:35% ; font-weight:bold">
   <%= devise_error_messages! %>
+</div>
 
  <div class="form-group" style="color:#ffffff">
     <%= f.label :first_name, class: "control-label col-md-4" %>

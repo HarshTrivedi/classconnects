@@ -3038,7 +3038,9 @@ textarea.input-lg,select[multiple].input-lg{
 	display:block;
 	margin-top:5px;
 	margin-bottom:10px;
-	color:#737373
+	color:rgb(200,52,57);
+	font-weight:bold;
+	font-size:14px;
 }
 
 @media (min-width:768px){
