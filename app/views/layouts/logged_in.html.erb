@@ -346,7 +346,7 @@
 					<%= current_user.sign_in_count%>
 				</div>
 
-				<%if current_user.sign_in_count <= 1 %>
+				<%if( (current_user.sign_in_count <= 1 ) && ( window.location.pathname == "/") )%>
 
 
 					<div style="top: 0px; left: 300px; display: block;" id="step-2" class="popover tour-tour tour-tour-2 fade bottom in">
