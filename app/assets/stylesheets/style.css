@@ -3506,7 +3506,7 @@ textarea.no-resize{
 }
 
 .help-block{
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .bg-color-showcase{
@@ -8532,12 +8532,12 @@ body {
   cursor: pointer;
 }
 .increment.up {
-  background: #4BC35F;
+  background: rgb(0,150,0);
   height: 50%;
   margin-bottom: 0.25rem;
 }
 .increment.down {
-  background: #C15044;
+  background: rgb(150,0,0);;
   height: 50%;
   
 }
@@ -8553,12 +8553,12 @@ body {
  
 }
 .hasvoted.up{
-	background: #4BC35F;
+	background: rgb(0,150,0);
  	 height: 50%;
   	margin-bottom: 0.25rem;	
 }
 .hasvoted.down{
-	background: #C15044;
+	background: rgb(150,0,0);
   	height: 50%;
   	
 }
