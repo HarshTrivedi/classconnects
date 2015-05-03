@@ -10,7 +10,7 @@ class NotifyEnrolledWaiters
 
   	users = course.enrolled_users
 
-  	users = users.to_a - user
+  	users = users.to_a - [user]
 
   	for user in users
       notification = Notification.new 
