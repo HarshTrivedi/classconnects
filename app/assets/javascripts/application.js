@@ -568,3 +568,9 @@ function start_tour_guide() {
 
 
 }
+
+$('form').submit(function(){
+    $(':submit', this).click(function() {
+        return false;
+    });
+});
