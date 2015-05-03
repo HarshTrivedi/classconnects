@@ -10,8 +10,30 @@
 
 								<div class="profile-info">
 									<p class="user-name"><%= @user.full_name %></p>
-									<p class="text-muted">College : <a href="#fakelink"><%= @user.college.name rescue "None yet" %></a></p>
-									<p class="text-muted">Branch : <a href="#fakelink"><%= @user.branch.name rescue "None yet" %></a></p>
+									<% college = @user.college %>
+									<% branch = @user.branch %>
+									<p class="text-muted">College : 
+										<%if college%>
+											<a href="<%= college_content_path( :id => college.id , :branch_id => branch.id)  %>">
+												<%= @user.college.name %>
+											</a>
+										<%else%>
+											<a href="<%= %>">
+												<%= "None yet" %>
+											</a>
+										<%end%>
+									</p>
+									<p class="text-muted">Branch : 
+										<%if branch %>
+											<a href="<%= college_content_path( :id => college.id , :branch_id => branch.id)  %>">
+												<%= @user.branch.name %>
+											</a>
+										<%else%>
+											<a href="#">
+												<%= "None yet"  %>
+											</a>
+										<%end%>
+									</p>
 									<%if @user == current_user %>
 										<p class="right-button">									
 											<%= link_to(fa_icon("fa-edit", text: "Change Password") , edit_user_registration_path , :class => "btn btn-primary btn-sm") %>
