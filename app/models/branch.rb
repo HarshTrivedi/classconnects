@@ -1,6 +1,6 @@
 class Branch < ActiveRecord::Base
   attr_accessor :college_id
-  has_many :college_branch_pairs
+  has_many :college_branch_pairs  , :dependent => :destroy
   has_many :colleges, through: :college_branch_pairs
 
   validates :name, :presence => true
