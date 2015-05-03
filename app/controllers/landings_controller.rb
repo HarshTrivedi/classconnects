@@ -91,14 +91,14 @@ class LandingsController < ApplicationController
   end
 
   def store_news_letter
-    user_name = params[:user_name]
-    email = params[:email]
-    message = params[:message]
+    user_name = params[:news_letter][:user_name]
+    email = params[:news_letter][:email]
+    message = params[:news_letter][:message]
     news_letter = NewsLetter.new(:user_name => user_name , :email => email , :message => message)
     if news_letter.save
       flash[:success] = "Registerd your mail for news letter. Thankyou for subscribing :) "
     else
-      flash[:danger] = "Please enter non-empty name and email in your subscription."
+      flash[:danger] = "Sorry your message couldn't be sent : "+ news_letter.errors.full_messages.join(" | ")
     end
     redirect_to :back
   end

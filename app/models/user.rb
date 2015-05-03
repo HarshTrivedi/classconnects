@@ -27,7 +27,9 @@ class User < ActiveRecord::Base
   validates :first_name, :presence => true
   validates :last_name, :presence => true
   validates :email, :presence => true
-
+  validates_format_of :email,:with => Devise::email_regexp
+  
+  
   scope :all_admins,        ->{ User.where(  :id =>  User.all.select{|user| user.is_admin? }.map(&:id)                      )}
   scope :content_generator, ->{ User.where(  :id =>  User.all.select{|user| user.role?(:content_generator)    }.map(&:id)   )}
   scope :content_moderator, ->{ User.where(  :id =>  User.all.select{|user| user.role?(:content_moderator)    }.map(&:id)   )}

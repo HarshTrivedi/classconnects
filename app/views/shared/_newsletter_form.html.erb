@@ -6,7 +6,7 @@
                 <%= f.input :user_name , :input_html => { :class => "form-control input-lg" , :placeholder => "Your Name" , :required => true }  %>
           </div>
            <div class="form-group">
-                <%= f.input :email , :input_html => { :class => "form-control input-lg" , :placeholder => "Your Email" , :required => true  }  %>
+                <%= f.input :email , :input_html => { :class => "form-control input-lg" , :placeholder => "Your Email" , :required => true , :placeholder => "Your Email" , :pattern => '\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z'}  %>
           </div>
 
            <div class="form-group">
