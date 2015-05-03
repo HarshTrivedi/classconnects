@@ -27,8 +27,12 @@
                                     <li class="unread">
                                       <a href="<%= notification.link %>">
                                           
-                                          <strong> XXX </strong>
-                                          <span class="small-caps"> <%= notification.message %> </span>
+                                          <strong>
+                                            <span class="small-caps" style="white-space:normal"> <%= notification.message %> </span> 
+                                          </strong>
+                                          <span class="small-caps">
+                                            <%= time_ago_in_words( notification.created_at ) %> ago
+                                          </span>
                                       </a>
                                     </li>
                                   <%end%>
