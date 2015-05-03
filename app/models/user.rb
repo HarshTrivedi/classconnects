@@ -213,7 +213,7 @@ class User < ActiveRecord::Base
   end
 
   def unfavorite_course(course_id)    
-    CourseFavorite.delete_all( :user_id => id , :course_id => course_id)
+    CourseFavorite.destroy_all( :user_id => id , :course_id => course_id)
   end
 
 
@@ -229,7 +229,7 @@ class User < ActiveRecord::Base
   end
 
   def unenroll_course(course_id)
-    CourseEnrollment.delete_all( :user_id => id , :course_id => course_id)
+    CourseEnrollment.destroy_all( :user_id => id , :course_id => course_id)
   end
 
   def full_name
