@@ -1,0 +1,17 @@
+
+<%= simple_form_for NewsLetter.new , :url => store_news_letter_path , :input_html=> { :style => "color:#ffffff" } do |f| %>
+           <p class="email-success"><i class="fa fa-envelop"></i> <strong>Your quote has successfully been sent.</strong></p>
+           <p class="email-failed"><i class="icon icon_close_alt2"></i><strong> Something went wrong!</strong></p>
+           <div class="form-group">
+                <%= f.input :user_name , :input_html => { :class => "form-control input-lg" , :placeholder => "Your Name" , :required => true }  %>
+          </div>
+           <div class="form-group">
+                <%= f.input :email , :input_html => { :class => "form-control input-lg" , :placeholder => "Your Email" , :required => true  }  %>
+          </div>
+
+           <div class="form-group">
+                <%= f.input :message , :input_html => { :class => "form-control input-lg textarea" , :placeholder => "Your Message" }  %>
+          </div>
+
+          <%= f.button :submit , "Send Message", :class => "btn btn-color"%>
+<% end %>

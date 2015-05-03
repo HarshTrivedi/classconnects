@@ -140,6 +140,9 @@ Rails.application.routes.draw do
   post '/seen_tour_guide' => "user_details#seen_tour_guide" , as: :seen_tour_guide
 
 
+  post '/store_news_letter' => "landings#store_news_letter" , as: :store_news_letter
+
+
   get '/'                       => 'landings#index'                         , as: :landing
   post '/'                       => 'landings#index'                         , as: :landing_remote
 
