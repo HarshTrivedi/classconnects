@@ -173,7 +173,7 @@ class UserDetailsController < ApplicationController
             bucket.download_waiter_ids_will_change!
             bucket.save
             user.pending_request_bucket_ids += [bucket.id]
-            user.pending_bucket_ids_will_change!
+            user.pending_request_bucket_ids_will_change!
             user.save
             ap user.errors
             ap "IN 1-------------"
