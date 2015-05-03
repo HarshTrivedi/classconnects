@@ -3,7 +3,6 @@ class CollegeBranchPair < ActiveRecord::Base
   belongs_to :branch
   has_many :courses  , :dependent => :destroy
   has_many :comments, as: :commentable  , :dependent => :destroy
-  has_many :user_college_branch_enrollments  , :dependent => :destroy
   has_many :users
 
   validates :college, :presence => true
