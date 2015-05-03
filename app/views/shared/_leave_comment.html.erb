@@ -11,6 +11,17 @@
 </div>
 
 <script>
+    $(".new_comment").validate({
+          rules: {
+            'comment[message]': "required"
+          },
+          messages: {
+            'comment[message]': "Please leave non-empty message"
+          }
+    });
+</script>
+
+<script>
     $(".new_comment_response").validate({
           rules: {
             'comment_response[message]': "required"
@@ -20,4 +31,3 @@
           }
     });
 </script>
-
