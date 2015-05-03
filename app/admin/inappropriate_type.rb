@@ -1,4 +1,4 @@
-ActiveAdmin.register User do
-  menu label: "Report Types" , :priority => 9
+ActiveAdmin.register InappropriateType do
+  menu label: "Report Types" , :priority => 10
 
 end
