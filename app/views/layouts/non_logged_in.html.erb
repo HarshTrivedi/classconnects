@@ -447,31 +447,7 @@
                             <h5 class="text-white">Get in touch!</h5>
                             <p class="form-text">Want to support or just
  want to say hi? It's all good, we'd love to connect with you. </p>
-                            
-                            <form id="contact" role="form" style="color:#ffffff">
-                                <!-- Notifications -->
-                                <p class="email-success"><i class="fa fa-envelop"></i> <strong>Your quote has successfully been sent.</strong></p>
-                                <p class="email-failed"><i class="icon icon_close_alt2"></i><strong> Something went wrong!</strong></p>
-                            
-                                <!-- Input Fields -->
-                                <div class="form-group">
-                                    <input class="form-control input-lg" name="name" id="name" placeholder="Your name" required="" type="text">
-                                </div>
-
-                                <div class="form-group">
-                                    <input class="form-control input-lg" name="email" id="email" placeholder="Email Address" required="" type="email">
-                                </div>
-                                
-                                <!-- Message Textarea -->
-                                <div class="form-group">
-                                    <textarea name="message" class="form-control input-lg textarea" id="message" cols="30" rows="5" placeholder="Your Message.."></textarea>
-                                </div>
-
-                                <!-- Send Button -->
-                                <button class="btn btn-color">Send Message</button>
-
-                            </form>                          
-
+                            <%= render partial: "shared/newsletter_form" %>
                         </div>
                         
 
