@@ -2,7 +2,7 @@ class CollegesController < ApplicationController
   layout "logged_in"
   before_action :authenticate_user!
   before_filter :college_exists , :except => [:college_autocomplete_elements , :branch_autocomplete_elements , :course_autocomplete_elements]
-  before_filter :branch_exists_if_passed 
+  # before_filter :branch_exists_if_passed 
   # before_filter :branch_passed , :only => [:show_discussion]
   respond_to :html , :js
 
