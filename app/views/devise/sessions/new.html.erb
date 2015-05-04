@@ -56,30 +56,35 @@
  $(function() {
   
     // Setup form validation on the #register-form element
+
     $("#new_user").validate({
-        
+    
         // Specify the validation rules
         rules: {
-            email: {
+            'user[email]': {
                 required: true,
                 email: true
             },
-            password: {
+            'user[password]': {
                 required: true
             }
+
         },
         
         // Specify the validation error messages
         messages: {
-            password: {
+            'user[password]': {
                 required: "Please provide a password"
             },
-            email: "Please enter a valid email address"
-        },        
+            'user[email]': "Please enter a valid email address"
+        },
+        
         submitHandler: function(form) {
             form.submit();
         }
     });
+
+
 
   });
 </script>
