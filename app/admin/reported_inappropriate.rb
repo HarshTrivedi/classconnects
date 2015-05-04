@@ -27,9 +27,11 @@ ActiveAdmin.register ReportedInappropriate do
 
 
       def destroy
-      	@reported_inappropriate = ReportedInappropriate.new( params[:id])
+        @reported_inappropriate = ReportedInappropriate.find_by_id(params[:id])
         authorize_me_to( :destroy , @reported_inappropriate )
-        destroy!
+        destroy! do |format|
+            format.html { redirect_to :back }
+        end
       end
 
 
