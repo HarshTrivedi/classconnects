@@ -20,15 +20,16 @@
                           <div class="nav-dropdown-heading">
                           Notifications
                           </div><!-- /.nav-dropdown-heading -->
-                          <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 350px;"><div class="nav-dropdown-content scroll-nav-dropdown" style="overflow: hidden; width: auto; height: 350px;">
+                           
+                          <div class="slimScrollDiv" style="position: relative; overflow: visible; width: auto; height: 350px;"><div class="nav-dropdown-content scroll-nav-dropdown" style="overflow: visible; width: auto; height: 350px;">
 
-                            <ul>
+                           <ul>
                                   <%for notification in notifications %>
                                     <li class="unread">
-                                      <a href="<%= notification.link %>">
+                                      <a href="<%= notification.link %>" style="height:100%">
                                           
                                           <strong>
-                                            <span class="small-caps" style="white-space:normal"> <%= notification.message %> </span> 
+                                            <span style="white-space:normal;font-size:12px"> <%= notification.message %> </span> 
                                           </strong>
                                           <span class="small-caps">
                                             <%= time_ago_in_words( notification.created_at ) %> ago
