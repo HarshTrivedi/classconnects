@@ -9,7 +9,7 @@
         </li>
 
 
-        <%notifications = current_user.notifications.order(:created_at).reverse.take(10) %>
+        <%notifications = current_user.notifications.order(:created_at).reverse.take(4) %>
         <li class="dropdown" style="float:left ; margin-left:20px">
                   <a href="index.html#fakelink" class="dropdown-toggle" data-toggle="dropdown">
                     <span class="badge badge-success icon-count"><%= notifications.size %></span>
