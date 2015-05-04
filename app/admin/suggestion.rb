@@ -1,17 +1,35 @@
 ActiveAdmin.register Suggestion do
   menu :label => "Suggestion" , :priority => 8
 
-  config.clear_action_items!   
-  action_item :except => [:new, :show , :index ] do
-    if can?(:create, active_admin_config.resource_class) && controller.action_methods.include?('new')
-      link_to(I18n.t('active_admin.new_model', :model => active_admin_config.resource_name), new_resource_path)
-    end
-  end
-   
-  action_item :only => [:show] do
-    if can?(:update, resource) && controller.action_methods.include?('edit')
-      link_to(I18n.t('active_admin.edit_model', :model => active_admin_config.resource_name), edit_resource_path(resource))
-    end
+  config.clear_action_items!      
+
+  index do
+      column :user_id do |suggestion|
+          user = User.find_by_id(suggestion.user_id)
+          user.full_name rescue ""
+      end
+      column :college_name do |suggestion|
+          suggestion.college_name
+      end 
+      column :branch_name do |suggestion|
+          suggestion.branch_name
+      end 
+      column :course_name do |suggestion|
+          suggestion.course_name
+      end 
+
+      column :message do |suggestion|
+          suggestion.message
+      end
+      column :created_at do |suggestion|
+          "#{time_ago_in_words( suggestion.created_at )} ago"
+      end
+      column :view do |suggestion|
+          link_to("view" , admin_suggestion_path(suggestion) )
+      end
+      column :destroy do |suggestion|
+          link_to("destroy" , admin_suggestion_path(suggestion) , :method => :delete , data: { confirm: "Are you sure u want to delete this Suggestion ?" } ) if can?(:destroy , suggestion )
+      end
   end
    
   action_item :only => [:show] do
