@@ -29,7 +29,7 @@
 	  
 	  <div class="media-body" >		
 			<span class="user-heading">
-				<%= link_to( folder.name , folder_content_path(folder.id)  ) %>
+				<%= link_to( truncate(folder.name , length: 29) , folder_content_path(folder.id)  ) %>
 			</span>
 			<br>
 			<span class="user-mail">

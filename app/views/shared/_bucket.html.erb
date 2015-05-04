@@ -40,7 +40,7 @@
         <div class="media-body" >
             <a href="#fakelink"></a>
             <h4 class="media-heading">
-                <%= link_to( bucket.name , bucket_content_path(bucket.id)  ) %>
+                <%= link_to( truncate(bucket.name , length: 29) , bucket_content_path(bucket.id)  ) %>
             </h4>
 
 
@@ -50,7 +50,7 @@
 
             <span class="small text-muted">
                 <% course = bucket.course %>
-              <b>Course:  </b><%= link_to(  course.name , course_content_path(course.id)  ) %>
+              <b>Course:  </b><%= link_to(  truncate(course.name , length: 29) , course_content_path(course.id)  ) %>
       			</span>
             <br>
             <%= link_to( fa_icon("cloud-download", text: "Download") , request_download_bucket_path(bucket.id) , :method => :post , :remote => true , :class => "")%> 

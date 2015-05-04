@@ -9,8 +9,7 @@
 					 # key: "uploads/${filename}",
 
 					 remove_completed_progress_bar: true,
-					 key_starts_with: "bucket_id_" , 
-					 max_file_size: 5.megabytes do %>
+					 key_starts_with: "bucket_id_" do %>
 
 <label class="myLabel">
 	<%= file_field_tag :file, multiple: true %>

@@ -5,15 +5,15 @@
 		<div class="media user-card-sm">
 		<div class="media-body">
 			<h4 class="media-heading">
-				<%= link_to( course.name , course_content_path(course.id)  ) %>
+				<%= link_to( truncate(course.name , length: 29) , course_content_path(course.id)  ) %>
 			</h4>					
-			<span class="course-coding"><%= course.code %></span>
+			<span class="course-coding"><%= truncate(course.code , length: 29) %></span>
 			<br>
 			<span class="small text-muted">
 					<b>College:</b>
 
 					<% college = course.college_branch_pair.college %>
-					<%= link_to(  truncate( college.name , :length => 15) , college_content_path(college.id) )  %>
+					<%= link_to(  truncate( college.name , :length => 25) , college_content_path(college.id) )  %>
 			</span>
     	</div>
 		<div class="right-button">

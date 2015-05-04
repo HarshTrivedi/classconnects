@@ -9,12 +9,12 @@
 		  <div class="media-body">
 		  	
 			<span class="user-heading">
-				<%= link_to( user.full_name , profile_main_path(:user_id => user.id)  ) %>
+				<%= link_to( truncate(user.full_name, length: 40) , profile_main_path(:user_id => user.id)  ) %>
 
 			</span>
 			<br>
 			<span class="user-mail">
-				<%= user.email%>
+				<%= truncate(user.email, length: 40)%>
 			</span>
 			<br>
 			<span class="small-user text-muted">

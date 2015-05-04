@@ -30,7 +30,7 @@
 	</div>
 	  <div class="media-body">
 		<span class="document-heading">
-			<%= document.name %> | <b> ( <%= number_to_human_size( document.size )  %>  )</b>
+			<%= truncate(document.name , length: 19) %> | <b> ( <%= number_to_human_size( document.size )  %>  )</b>
 		</span>
 		<br>
 
