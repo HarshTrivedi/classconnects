@@ -161,7 +161,7 @@
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Favourite Courses"), favorite_courses_path , :data => {:toggle=>""}), :class=>"" )%>
 					<%end%>
 					<%if not current_user.college.nil?%>
-						<%if current_page?(my_college_path) %>
+						<%if current_page?(college_content_path(current_user.college) ) %>
 						<%= content_tag(:li , link_to(fa_icon("graduation-cap", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"active" )%>
 						<%else%>
 						<%= content_tag(:li , link_to(fa_icon("graduation-cap", text: "My College"), my_college_path , :data => {:toggle=>""}), :class=>"" )%>
