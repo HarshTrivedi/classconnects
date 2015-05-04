@@ -20,6 +20,7 @@ class Ability
         can :create, Document
         can :update, Document
         can :manage, Category
+        can :destroy, Suggestion
         # can :manage, InappropriateReport
         can :read, :all
 
@@ -32,7 +33,8 @@ class Ability
         can :update,  Folder
         can :destroy, Document
         can :update,  Document
-        can :destroy, Suggestion
+        can :destroy, Comment
+        can :destroy, CommentResponse
         can :read, :all
     else
 
