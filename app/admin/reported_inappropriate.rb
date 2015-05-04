@@ -66,7 +66,14 @@ ActiveAdmin.register ReportedInappropriate do
       	"#{time_ago_in_words(report.created_at)} ago"
       end
 
-      actions
+      column :view do |report|
+          link_to("View" , admin_reported_inappropriate_path(report) ) 
+      end
+
+      column :destroy do |report|
+          link_to("destroy" , admin_reported_inappropriate_path(report) , :method => :delete , data: { confirm: "Are you sure u want to delete this report entry ?" } ) if can?(:destroy , report )
+      end
+
   end
 
 
