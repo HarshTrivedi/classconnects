@@ -8,8 +8,7 @@
 					 # acl: "public-read-write" , 
 					 key: "uploads/${filename}",
 					 key_starts_with: "uploads/", 
-					 data: {:parent_type => @parent_type , :parent_id => @parent_id } ,
-					 max_file_size: 5.megabytes do %>
+					 data: {:parent_type => @parent_type , :parent_id => @parent_id }  do %>
 
 <label class="myLabel">
 	<%= file_field_tag :file, multiple: true %>
