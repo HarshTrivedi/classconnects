@@ -15,7 +15,7 @@ class NotifyCoursePeers
       notification = Notification.new 
       notification.user_id = user.id 
       notification.message = "A new user #{uploader.full_name} has enrolled in #{course.name}"
-      notification.link = "/profile_main?user_id=#{user.id}"
+      notification.link = "/profile_main?user_id=#{uploader.id}"
       notification.save
   	end
 
