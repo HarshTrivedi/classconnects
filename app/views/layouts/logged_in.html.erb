@@ -140,15 +140,15 @@
 						</div>
 					</div>
 					<br>
-					<%if current_page?(uploads_path) %>
-					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"active" )%>
-					<%else%>
-					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"")%>
-					<%end%>
 					<%if current_page?(downloads_path) %>
 					<%= content_tag(:li , link_to(fa_icon("cloud-download icon-sidebar", text: "My Downloads"), downloads_path , :data => {:toggle=>""}), :class=>"active" )%>
 					<%else%>
 					<%= content_tag(:li , link_to(fa_icon("cloud-download icon-sidebar", text: "My Downloads"), downloads_path , :data => {:toggle=>""}), :class=>"" )%>
+					<%end%>
+					<%if current_page?(uploads_path) %>
+					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"active" )%>
+					<%else%>
+					<%= content_tag(:li , link_to(fa_icon("cloud-upload icon-sidebar", text: "My Uploads"), uploads_path , :data => {:toggle=>""}), :class=>"")%>
 					<%end%>
 					<%if current_page?(enrolled_courses_path) %>
 					<%= content_tag(:li , link_to(fa_icon("book icon-sidebar", text: "Enrolled Courses"), enrolled_courses_path , :data => {:toggle=>""}), :class=>"active" )%>
