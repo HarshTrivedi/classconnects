@@ -48,7 +48,7 @@ ActiveAdmin.register Bucket do
         update! do |format|
             format.html { 
               if @bucket.valid?
-                redirect_to admin_course_path( @course ) 
+                redirect_to admin_course_path( @bucket.course ) 
               else
                 render 'new'
               end
@@ -167,23 +167,7 @@ ActiveAdmin.register Bucket do
             end
             render(:partial => 'shared/upload_documents' , :locals => {:parent => bucket })
       end
-      panel "Bucket Comments" do
-            table_for bucket.comments do
-                column "Name" do |comment|
-                    user = comment.user
-                    link_to( user.full_name , admin_user_path( user ) ) 
-                end
-                column "Title Thread" do |comment|
-                    link_to( comment.message , admin_comment_path( comment ) ) 
-                end
-                column "Destroy" do |comment|
-                    link_to( "Remove" , admin_comment_path(document) , :method => :delete , data: { confirm: "Are you sure u want to delete this document ?" } ) if can?(:destroy , document )
-                end
-            end
-            # span link_to( "Create Document within" , new_admin_bucket_document_path( bucket ) ) if can?(:destroy , Document )
-            # render 'upload_documents_in_bucket'
-            # render(:partial => 'shared/upload_documents' , :locals => {:parent => bucket })
-      end
+
       active_admin_comments
   end
 
