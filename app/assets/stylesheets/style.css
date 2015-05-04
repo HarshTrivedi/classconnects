@@ -570,7 +570,7 @@ ul.nav-user li.dropdown a.dropdown-toggle{
 }
 
 .nav-dropdown-content ul li.unread a{
-	background: rgb(250,250,250);
+	background: #FAFAFA;
 }
 
 .nav-dropdown-content.static-list ul li .small-caps,.nav-dropdown-content ul li a .small-caps{
