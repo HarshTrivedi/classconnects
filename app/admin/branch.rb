@@ -1,5 +1,5 @@
 ActiveAdmin.register Branch do
-  menu :label => "Departments" , :priority => 4
+  menu :label => "Branches" , :priority => 4
   permit_params :name 
   belongs_to :college , :optional => true
   active_admin_import
