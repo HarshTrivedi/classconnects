@@ -35,8 +35,9 @@
 										<%end%>
 									</p>
 									<%if @user == current_user %>
-										<p class="right-button">									
-											<%= link_to(fa_icon("fa-edit", text: "Change Password") , edit_user_registration_path , :class => "btn btn-primary btn-sm") %>
+										<p class="right-button">																	<a style="cursor:pointer" data-toggle="modal" data-target="#edit_passowrd" class="btn btn-primary btn-sm">
+												<%= fa_icon("fa-edit", text: "Change Password") %>
+											</a>
 											<%= link_to(fa_icon("fa-edit", text: "Change Profile Pic") , "http://en.gravatar.com/" , :class => "btn btn-primary btn-sm") %>
 										</p>
 									<%end%>
