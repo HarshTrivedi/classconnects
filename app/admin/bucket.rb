@@ -119,6 +119,8 @@ ActiveAdmin.register Bucket do
             row("Branch  Name")   { link_to( bucket.course.branch.name , admin_branch_path( bucket.course.branch ) )  }
             uploader = bucket.uploader
             row("Uploader") { link_to( uploader.full_name , admin_user_path( uploader ) )   }
+            row("Up Votes") { bucket.up_votes }
+            row("Down Votes") { bucket.down_votes }
             row("Size") { number_to_human_size(bucket.size)  }
             row("Created") { time_ago_in_words( bucket.created_at )  }
         end
