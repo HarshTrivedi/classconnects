@@ -13,7 +13,7 @@
 			</a>
 			<ul class="dropdown-menu primary" role="menu" style="position:relative">
 				<li>
-					<%= link_to(  fa_icon("cloud-download", text: "Download") , download_document_path(document.id) )%>
+					<%= link_to(  fa_icon("cloud-download", text: "Download") , download_document_path(document.id) , :target => "_blank" )%>
 				</li>
 					<%if uploader == current_user %>
        					<li>
