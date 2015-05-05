@@ -63,6 +63,13 @@ class ApplicationController < ActionController::Base
         end
     end
 
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      redirect_to "/", :notice => 'You need to sign in or sign up before continuing.'
+    end
+  end
 
 
 end
