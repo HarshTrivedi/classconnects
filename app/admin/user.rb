@@ -140,7 +140,7 @@ ActiveAdmin.register User do
               f.input :password
               f.input :password_confirmation
             end
-            f.input :role, as: :radio, collection: { :content_generator => "content_generator" , :content_moderator => "content_moderator", :college_generator => "college_generator" , :non_admin => "non_admin" }
+            f.input :role, as: :radio, collection: { :content_generator => "content_generator" , :content_moderator => "content_moderator", :college_generator => "college_generator" }
         end
         f.actions
     end
