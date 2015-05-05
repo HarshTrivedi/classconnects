@@ -71,7 +71,8 @@
 <body class="tooltips">
 		<div class="wrapper">
 			<!-- BEGIN TOP NAV -->
-			<div class="top-navbar">
+			<%logger.ap cookies[:toggle] %>
+			<div class="top-navbar <%=cookies[:toggle]%>">
 				<div class="top-navbar-inner">
 					
 					<!-- Begin Logo brand -->
@@ -83,9 +84,9 @@
 					<div class="top-nav-content">
 						
 						<!-- Begin button sidebar left toggle -->
-						<!--<div class="btn-collapse-sidebar-left">
+						<div class="btn-collapse-sidebar-left">
 							<i class="fa fa-bars"></i>
-						</div><!-- /.btn-collapse-sidebar-left -->
+						</div>
 
 						<ul class="nav navbar-nav navbar-left" >
 							<%= render( :partial => 'shared/main_college_search' )%>
@@ -123,7 +124,7 @@
 			</div><!-- /.top-navbar -->
 			
 			<!-- BEGIN SIDEBAR LEFT -->
-			<div tabindex="5000" style="overflow: hidden;" class="sidebar-left sidebar-nicescroller">
+			<div tabindex="5000" style="overflow: hidden;" class="sidebar-left sidebar-nicescroller <%=cookies[:toggle]%>">
 				<ul class="sidebar-menu">
 
 					<br>
@@ -315,7 +316,7 @@
 
 			
 			<!-- BEGIN PAGE CONTENT -->
-			<div class="page-content">
+			<div class="page-content <%=cookies[:toggle]%>">
 				<%= render partial: "shared/flash_messages", flash: flash %>
 				<div class="container-fluid">
 					<div class="fixed-main transparent full search-page">
