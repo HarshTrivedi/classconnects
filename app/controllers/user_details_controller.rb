@@ -150,6 +150,7 @@ class UserDetailsController < ApplicationController
           flash[:success] = 'Successfully Un enrolled! Now you can enroll in any college / branch'
       else
           unlock_date = current_user.college_branch_enrollment_date || DateTime.now
+          unlock_date = unlock_date + 6.months
           unlock_date = unlock_date.strftime("%B %d, %Y")
           flash[:alert] = "Sorry You cannot unenroll from this college until : #{unlock_date}"
       end
