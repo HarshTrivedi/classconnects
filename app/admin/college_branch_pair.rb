@@ -5,10 +5,10 @@ ActiveAdmin.register CollegeBranchPair do
 
   index do 
       column :college_id do |college_branch_pair|
-            link_to( college_branch_pair.college.name , admin_college_path(college) )
+            link_to( college_branch_pair.college.name , admin_college_path(college_branch_pair.college) )
       end
       column :branch_id do |college_branch_pair|
-          link_to( college_branch_pair.branch.name , admin_branch_path(branch) )
+          link_to( college_branch_pair.branch.name , admin_branch_path(college_branch_pair.branch) )
       end
       column :created_at do |college_branch_pair|
           time_ago_in_words( college_branch_pair.created_at )
