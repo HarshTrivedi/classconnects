@@ -1,5 +1,5 @@
 $('.modal').modal("hide") ;
-$("form").trigger("reset");
+$("form").trigger("reset");var form_enabled = false;
 var id = "<%= @folder.id %>" ;
 toastr.info('Successfully', 'folder updated');
 window.setTimeout(function () {

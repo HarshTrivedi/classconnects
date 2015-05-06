@@ -26,7 +26,19 @@
 //= require jquery.cookie.js
 //= require jquery_validator.js
 
+var form_enabled = true
 
+function disable_form_double_click(){
+	$('form').submit(function(){
+	    $(':submit', this).click(function() {
+	        if(form_enabled){	        	
+		        return false;
+	        }else{
+	        	return true;
+	        }
+	    });
+	});
+}
 
 
 function enable_side_bar_toggle(){
@@ -350,6 +362,7 @@ $(document).on('page:load', function() {
 	tour_guide();
 	$('[data-toggle="tooltip"]').tooltip();
 	enable_side_bar_toggle();
+	disable_form_double_click();
 });
 
 $(document).on('ready', function() {
@@ -360,6 +373,7 @@ $(document).on('ready', function() {
 	tour_guide();
 	$('[data-toggle="tooltip"]').tooltip();
 	enable_side_bar_toggle();
+	disable_form_double_click();
 });
 
 $(document).on('page:fetch',   function() { NProgress.start(); });
@@ -620,11 +634,6 @@ function start_tour_guide() {
 
 }
 
-$('form').submit(function(){
-    $(':submit', this).click(function() {
-        return false;
-    });
-});
 
 
 
