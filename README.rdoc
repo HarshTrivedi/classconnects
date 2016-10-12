@@ -1,28 +1,15 @@
-== README
+# Class Connects
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> ClassConnects is a Ruby on Rails based web-portal where students of different colleges / school can share, manage and collaborate their academical resources in hierarchical folder system with ease.
 
-Things you may want to cover:
+For some reason the deployed server is down. Untill the problem is fixed, here are some of the snaphots from the portal:
 
-* Ruby version
+Few snapshots from the game: 
 
-* System dependencies
+![Image1](README-Images/1.png?raw=true)  |  ![Image2](README-Images/2.png?raw=true)
+:-------------------------:|:-------------------------:
+![Image3](README-Images/3.png?raw=true)  |  ![Image4](README-Images/4.png?raw=true)
+![Image5](README-Images/5.png?raw=true)  |  ![Image6](README-Images/6.png?raw=true)
+---
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+You can contact me at harshjtrivedi94@gmail.com in case of any problem.
